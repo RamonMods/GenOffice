@@ -70,7 +70,7 @@ export const pt = {
   aiNetworkError:
     'Problema de rede: não foi possível conectar ao serviço de IA. Verifique sua conexão e tente novamente',
   aiCreditsExhausted:
-    'Seus créditos RamonMods acabaram. Recarregue em ramonmods.com e tente novamente',
+    'Os créditos ou a cota do seu provedor de IA acabaram. Verifique sua conta do provedor ou configure outro provedor.',
   aiToolWorkbookContext: 'Ler informações da pasta de trabalho',
   aiToolReadRange: 'Ler intervalo',
   aiToolReadRangeOf: 'Ler intervalo {range}',

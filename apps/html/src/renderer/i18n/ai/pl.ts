@@ -4,7 +4,7 @@ export const pl = {
   aiCollapsePanel: 'Zwiń panel',
   aiComposerPlaceholder: 'Poproś AI o napisanie lub edycję…',
   aiCopyReplyTitle: 'Kopiuj odpowiedź',
-  aiCreditsExhausted: 'Brak kredytów — doładuj na ramonmods.ai',
+  aiCreditsExhausted: 'Kredyty lub limit Twojego dostawcy AI zostały wyczerpane. Sprawdź konto dostawcy lub skonfiguruj innego dostawcę.',
   aiEmptyTitle: 'Zaprojektuj stronę z AI',
   aiEmptyBody:
     'Landing page, raport, plakat: powiedz, po co i dla kogo; AI najpierw zaproponuje brief, a potem zbuduje stronę',

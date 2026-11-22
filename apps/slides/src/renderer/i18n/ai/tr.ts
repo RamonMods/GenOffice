@@ -116,7 +116,7 @@ export const tr = {
   aiErrOverloaded: 'AI hizmeti şu anda yoğun — lütfen birazdan yeniden deneyin',
   aiErrNetwork: 'Ağ sorunu: AI hizmetine ulaşılamadı. Bağlantınızı denetleyip yeniden deneyin',
   aiCreditsExhausted:
-    'RamonMods krediniz tükendi. Yüklemek için ramonmods.com adresini ziyaret edin, sonra yeniden deneyin',
+    'Yapay zeka sağlayıcınızın kredileri veya kotası tükendi. Sağlayıcı hesabınızı kontrol edin veya başka bir sağlayıcı yapılandırın.',
   aiErrRequestFailed: 'İstek gönderilemedi: {msg}',
   aiErrGenerateFailed: 'Oluşturma başarısız',
   aiErrRegenFailed: 'Slayt yeniden oluşturulamadı',

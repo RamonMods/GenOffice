@@ -69,7 +69,7 @@ export const en = {
   aiNetworkError:
     'Network problem: could not reach the AI service. Check your connection and try again',
   aiCreditsExhausted:
-    'Your RamonMods credits have run out. Visit ramonmods.com to top up, then try again',
+    'Your AI provider credits or quota are exhausted. Check your provider account or configure another provider.',
   aiToolWorkbookContext: 'Read workbook info',
   aiToolReadRange: 'Read range',
   aiToolReadRangeOf: 'Read range {range}',

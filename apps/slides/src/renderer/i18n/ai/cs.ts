@@ -118,7 +118,7 @@ export const cs = {
   aiErrNetwork:
     'Problém se sítí: službu AI se nepodařilo kontaktovat. Zkontrolujte připojení a zkuste to znovu',
   aiCreditsExhausted:
-    'Vaše kredity RamonMods byly vyčerpány. Navštivte ramonmods.com, dobijte je a zkuste to znovu',
+    'Kredity nebo kvóta vašeho poskytovatele AI byly vyčerpány. Zkontrolujte účet poskytovatele nebo nastavte jiného poskytovatele.',
   aiErrRequestFailed: 'Odeslání požadavku se nezdařilo: {msg}',
   aiErrGenerateFailed: 'Generování se nezdařilo',
   aiErrRegenFailed: 'Přepracování snímku se nezdařilo',

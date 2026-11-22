@@ -68,7 +68,7 @@ export const pl = {
   aiNetworkError:
     'Problem z siecią: nie można połączyć się z usługą AI. Sprawdź połączenie i spróbuj ponownie',
   aiCreditsExhausted:
-    'Twoje kredyty RamonMods wyczerpały się. Doładuj konto na ramonmods.com i spróbuj ponownie',
+    'Kredyty lub limit Twojego dostawcy AI zostały wyczerpane. Sprawdź konto dostawcy lub skonfiguruj innego dostawcę.',
   aiToolWorkbookContext: 'Odczyt informacji o skoroszycie',
   aiToolReadRange: 'Odczyt zakresu',
   aiToolReadRangeOf: 'Odczyt zakresu {range}',

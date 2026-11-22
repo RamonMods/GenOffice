@@ -124,7 +124,7 @@ export const cs = {
   aiNetworkError:
     'Problém se sítí: nepodařilo se připojit ke službě AI. Zkontrolujte připojení a zkuste to znovu',
   aiCreditsExhausted:
-    'Vaše kredity RamonMods byly vyčerpány. Navštivte ramonmods.com pro dobití a zkuste to znovu',
+    'Kredity nebo kvóta vašeho poskytovatele AI byly vyčerpány. Zkontrolujte účet poskytovatele nebo nastavte jiného poskytovatele.',
   aiSumReadAttachment: 'Přečtena příloha',
   aiSumImageAttachment: 'Obrázková příloha {name}',
   aiSumRead: 'Přečteno {name}',

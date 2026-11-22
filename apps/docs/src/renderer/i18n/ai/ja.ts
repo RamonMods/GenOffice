@@ -123,7 +123,7 @@ export const ja = {
   aiNetworkError:
     'ネットワークに問題があり、AI サービスに接続できません。接続を確認して再試行してください',
   aiCreditsExhausted:
-    'RamonModsクレジットを使い切りました。github.com/RamonMods/GenOffice でチャージしてから再試行してください',
+    'AIプロバイダーのクレジットまたはクォータが不足しています。プロバイダーのアカウントを確認するか、別のプロバイダーを設定してください。',
   aiSumReadAttachment: '添付ファイルを読み取り',
   aiSumImageAttachment: '画像添付 {name}',
   aiSumRead: '{name} を読み取り',

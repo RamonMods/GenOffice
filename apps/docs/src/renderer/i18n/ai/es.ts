@@ -126,7 +126,7 @@ export const es = {
   aiNetworkError:
     'Problema de red: no se pudo conectar con el servicio de IA. Comprueba tu conexión e inténtalo de nuevo',
   aiCreditsExhausted:
-    'Tus créditos de RamonMods se han agotado. Recarga en ramonmods.com e inténtalo de nuevo',
+    'Los créditos o la cuota de tu proveedor de IA se agotaron. Revisa tu cuenta del proveedor o configura otro proveedor.',
   aiSumReadAttachment: 'Leer dato adjunto',
   aiSumImageAttachment: 'Imagen adjunta {name}',
   aiSumRead: 'Leer {name}',

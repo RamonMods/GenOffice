@@ -427,7 +427,7 @@ function capabilityAvailable(
   if (!settings) return ramonmodsLoggedIn
   const model = byokModel(settings, capability)
   if (model !== null) return model !== ''
-  return ramonmodsLoggedIn && settings.ramonmodsToolsEnabled !== false
+  return ramonmodsLoggedIn && settings.ramonmodsToolsEnabled === true
 }
 
 /** live predicate for the generate_image tool: BYOK image model configured, or ramonmods login + cloud tools on */

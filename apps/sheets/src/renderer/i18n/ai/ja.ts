@@ -68,7 +68,7 @@ export const ja = {
   aiNetworkError:
     'ネットワークに問題があり、AI サービスに接続できません。接続を確認して再試行してください',
   aiCreditsExhausted:
-    'RamonModsクレジットを使い切りました。ramonmods.com でチャージしてから再試行してください',
+    'AIプロバイダーのクレジットまたはクォータが不足しています。プロバイダーのアカウントを確認するか、別のプロバイダーを設定してください。',
   aiToolWorkbookContext: 'ブック情報を読み取り',
   aiToolReadRange: '範囲を読み取り',
   aiToolReadRangeOf: '範囲 {range} を読み取り',

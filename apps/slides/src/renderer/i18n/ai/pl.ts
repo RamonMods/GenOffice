@@ -117,7 +117,7 @@ export const pl = {
   aiErrNetwork:
     'Problem z siecią: nie można połączyć się z usługą AI. Sprawdź połączenie i spróbuj ponownie',
   aiCreditsExhausted:
-    'Twoje kredyty RamonMods wyczerpały się. Doładuj konto na ramonmods.com i spróbuj ponownie',
+    'Kredyty lub limit Twojego dostawcy AI zostały wyczerpane. Sprawdź konto dostawcy lub skonfiguruj innego dostawcę.',
   aiErrRequestFailed: 'Wysłanie żądania nie powiodło się: {msg}',
   aiErrGenerateFailed: 'Generowanie nie powiodło się',
   aiErrRegenFailed: 'Ponowne wygenerowanie slajdu nie powiodło się',

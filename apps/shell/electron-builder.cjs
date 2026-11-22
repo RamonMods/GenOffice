@@ -138,9 +138,7 @@ const LINUX_SIDECAR =
 
 function assertExtraResourceSources() {
   for (const rel of [
-    '../../node_modules/@genspark/cli',
-    '../../node_modules/@genspark/cli/node_modules/commander',
-    '../../node_modules/ws',
+
     '../../node_modules/electron/dist/LICENSES.chromium.html',
     '../../node_modules/@embedpdf/pdfium/dist/pdfium.wasm',
     '../pdf/node_modules/harfbuzzjs/hb-subset.wasm',
@@ -652,12 +650,8 @@ const config = {
       from: '../../packages/pdf2docx/ocr-helper/win-ocr.exe',
       to: 'ocr/win-ocr.exe',
     },
-    {
-      from: '../../node_modules/@genspark/cli',
-      to: 'ramonmods/node_modules/@genspark/cli',
-    },
-    // genoffice command line: runs on the app binary with ELECTRON_RUN_AS_NODE (as
-    // the ramonmods CLI above already does), so the RunAsNode fuse must stay enabled.
+    // genoffice command line: runs on the app binary with ELECTRON_RUN_AS_NODE, so
+    // the RunAsNode fuse must stay enabled.
     // Layout (Resources/cli next to wasm/, native/, ocr/) is what
     // packages/cli/src/resources.ts expects.
     {
@@ -691,14 +685,6 @@ const config = {
     {
       from: '../../packages/cli/dist/node_modules',
       to: 'cli/node_modules',
-    },
-    {
-      from: '../../node_modules/@genspark/cli/node_modules/commander',
-      to: 'ramonmods/node_modules/commander',
-    },
-    {
-      from: '../../node_modules/ws',
-      to: 'ramonmods/node_modules/ws',
     },
   ],
   // `mimeType` is read only by the Linux target, where it becomes the

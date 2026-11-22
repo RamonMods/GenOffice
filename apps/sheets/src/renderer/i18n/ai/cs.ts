@@ -69,7 +69,7 @@ export const cs = {
   aiNetworkError:
     'Problém se sítí: službu AI se nepodařilo kontaktovat. Zkontrolujte připojení a zkuste to znovu',
   aiCreditsExhausted:
-    'Vaše kredity RamonMods jsou vyčerpány. Dobijte je na ramonmods.com a zkuste to znovu',
+    'Kredity nebo kvóta vašeho poskytovatele AI byly vyčerpány. Zkontrolujte účet poskytovatele nebo nastavte jiného poskytovatele.',
   aiToolWorkbookContext: 'Načtení informací o sešitu',
   aiToolReadRange: 'Načtení oblasti',
   aiToolReadRangeOf: 'Načtení oblasti {range}',

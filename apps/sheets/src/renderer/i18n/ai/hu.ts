@@ -70,7 +70,7 @@ export const hu = {
   aiNetworkError:
     'Hálózati probléma: nem sikerült elérni az AI-szolgáltatást. Ellenőrizd a kapcsolatot, és próbáld újra',
   aiCreditsExhausted:
-    'Elfogytak a RamonMods-kreditjeid. Töltsd fel az egyenlegedet a ramonmods.com oldalon, majd próbáld újra',
+    'Az AI-szolgáltatód kreditjei vagy kvótája elfogyott. Ellenőrizd a szolgáltatói fiókodat, vagy állíts be másik szolgáltatót.',
   aiToolWorkbookContext: 'Munkafüzet-információk beolvasása',
   aiToolReadRange: 'Tartomány beolvasása',
   aiToolReadRangeOf: 'Tartomány beolvasása: {range}',

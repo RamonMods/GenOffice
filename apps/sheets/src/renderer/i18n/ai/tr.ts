@@ -69,7 +69,7 @@ export const tr = {
   aiOverloadedError: 'AI hizmeti şu anda meşgul — lütfen birazdan yeniden deneyin',
   aiNetworkError: 'Ağ sorunu: AI hizmetine ulaşılamadı. Bağlantınızı kontrol edip yeniden deneyin',
   aiCreditsExhausted:
-    'GenOffice krediniz tükendi. Yüklemek için ramonmods.com adresini ziyaret edin, sonra yeniden deneyin',
+    'Yapay zeka sağlayıcınızın kredileri veya kotası tükendi. Sağlayıcı hesabınızı kontrol edin veya başka bir sağlayıcı yapılandırın.',
   aiToolWorkbookContext: 'Çalışma kitabı bilgisini oku',
   aiToolReadRange: 'Aralığı oku',
   aiToolReadRangeOf: '{range} aralığını oku',

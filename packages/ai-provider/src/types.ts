@@ -285,10 +285,10 @@ export interface AiSettings {
   search?: AiSearchSettings | undefined
   /**
    * RamonMods cloud tools (web/image search via ramonmods, image generation, media
-   * analysis). Default true; false makes tools skip the ramonmods backend entirely
-   * (search falls back to free sources, ramonmods-only tools are unavailable).
-   * Only meaningful while signed in — signed out, the ramonmods backend is
-   * unavailable regardless.
+   * analysis). Default false because the default RamonMods cloud backend is unavailable;
+   * true only when explicitly enabled for a working compatible backend. When false,
+   * tools skip the ramonmods backend entirely (search falls back to free sources,
+   * ramonmods-only tools are unavailable).
    */
   ramonmodsToolsEnabled?: boolean
   /**

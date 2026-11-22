@@ -123,7 +123,7 @@ export const ms = {
   aiNetworkError:
     'Masalah rangkaian: tidak dapat menghubungi perkhidmatan AI. Semak sambungan anda dan cuba lagi',
   aiCreditsExhausted:
-    'Kredit RamonMods anda telah habis. Tambah nilai di github.com/RamonMods/GenOffice dan cuba lagi',
+    'Kredit atau kuota pembekal AI anda telah habis. Semak akaun pembekal anda atau konfigurasikan pembekal lain.',
   aiSumReadAttachment: 'Baca lampiran',
   aiSumImageAttachment: 'Lampiran imej {name}',
   aiSumRead: 'Baca {name}',

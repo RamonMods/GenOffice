@@ -4,7 +4,7 @@ export const vi = {
   aiCollapsePanel: 'Thu gọn bảng điều khiển',
   aiComposerPlaceholder: 'Yêu cầu AI viết hoặc chỉnh sửa tài liệu…',
   aiCopyReplyTitle: 'Sao chép câu trả lời',
-  aiCreditsExhausted: 'Đã hết điểm tín dụng — nạp thêm tại ramonmods.ai',
+  aiCreditsExhausted: 'Tín dụng hoặc hạn mức của nhà cung cấp AI của bạn đã hết. Hãy kiểm tra tài khoản nhà cung cấp hoặc cấu hình nhà cung cấp khác.',
   aiEmptyTitle: 'Thiết kế trang bằng AI',
   aiEmptyBody:
     'Trang đích, báo cáo, áp phích — nêu rõ mục đích và đối tượng; AI sẽ đề xuất bản tóm tắt trước, sau đó tạo trang',

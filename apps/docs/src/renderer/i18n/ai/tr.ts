@@ -122,7 +122,7 @@ export const tr = {
   aiOverloadedError: 'AI hizmeti şu anda yoğun — lütfen biraz sonra yeniden deneyin',
   aiNetworkError: 'Ağ sorunu: AI hizmetine ulaşılamadı. Bağlantınızı kontrol edip yeniden deneyin',
   aiCreditsExhausted:
-    'RamonMods krediniz tükendi. Yüklemek için github.com/RamonMods/GenOffice adresini ziyaret edin, sonra yeniden deneyin',
+    'Yapay zeka sağlayıcınızın kredileri veya kotası tükendi. Sağlayıcı hesabınızı kontrol edin veya başka bir sağlayıcı yapılandırın.',
   aiSumReadAttachment: 'Ek okundu',
   aiSumImageAttachment: 'Resim eki {name}',
   aiSumRead: '{name} okundu',

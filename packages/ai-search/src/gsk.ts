@@ -1,21 +1,13 @@
 /**
- * Wrapper around ramonmods (RamonMods CLI, @genspark/cli) — search / image generation /
- * media analysis / upload / transcription.
+ * Legacy cloud-backend compatibility layer.
  *
- * Execution: the main process spawns the CLI's JS entry with
- * ELECTRON_RUN_AS_NODE=1 so Electron itself acts as Node (the variable is a
- * no-op in a plain Node environment), avoiding the Windows problem where
- * .cmd files cannot be passed to execFile.
- *
- * Auth: ramonmodsApiKey() below. When not logged in, hasGskAuth() returns false and
- * callers should fall back to other implementations (e.g. Serper search).
+ * The legacy external CLI cloud backend has been removed. Functions
+ * that depended on it are kept as graceful no-ops/unavailable so callers and
+ * imports do not break. BYOK and keyless search/media providers are handled
+ * elsewhere in this package.
  */
 
-import { execFile } from 'node:child_process'
-import { existsSync, mkdirSync, unwatchFile, watchFile, writeFileSync } from 'node:fs'
-import { homedir } from 'node:os'
-import { join } from 'node:path'
-import { createRequire } from 'node:module'
+import { unwatchFile, watchFile } from 'node:fs'
 import {
   asRecord,
   firstItem,
@@ -32,82 +24,28 @@ import {
   reloadGenofficeAuth,
   type GskRecoveryOutcome,
 } from './genoffice-auth'
-// deep import: the package root re-exports Electron-bound modules, and this file also runs in the genoffice CLI
 
 const SEARCH_TIMEOUT_MS = 60_000
 const GENERATE_TIMEOUT_MS = 600_000
-const MAX_BUFFER = 32 * 1024 * 1024
+export const GSK_BACKEND_UNAVAILABLE_ERROR =
+  'O backend em nuvem legado não está disponível nesta versão; configure um provedor BYOK ou use a busca integrada'
 
 // ── CLI resolution & auth ───────────────────────────────────────────
 
-let cachedEntry: string | null | undefined
-
-/** JS entry of @genspark/cli (null if not found). Can be overridden via RAMONMODS_CLI_PATH. */
+/** Legacy CLI entry resolution. Always unavailable (CLI backend removed). */
 export function resolveGskEntry(): string | null {
-  if (process.env.RAMONMODS_CLI_PATH) return process.env.RAMONMODS_CLI_PATH
-  if (cachedEntry !== undefined) return cachedEntry
-  try {
-    const require = createRequire(import.meta.url)
-    cachedEntry = require.resolve('@genspark/cli/dist/index.js')
-  } catch {
-    // The packaged app has no node_modules; electron-builder extraResources
-    // copies the CLI into Resources/ramonmods/
-    const resourcesPath = (process as { resourcesPath?: string }).resourcesPath
-    const packed = resourcesPath
-      ? join(resourcesPath, 'ramonmods', 'node_modules', '@ramonmods', 'cli', 'dist', 'index.js')
-      : null
-    cachedEntry = packed && existsSync(packed) ? packed : null
-  }
-  return cachedEntry
-}
-
-let compatPath: string | null | undefined
-
-/**
- * Under Electron-as-Node, Commander.js sees process.versions.electron and
- * parses argv with Electron conventions (skipping one argument fewer), so it
- * treats the entry path as a command and prints help. Workaround: --require a
- * script that deletes versions.electron. In a plain Node environment
- * (tests/tsx) no handling is needed and an empty array is returned.
- */
-function electronCompatArgs(): string[] {
-  if (!process.versions.electron) return []
-  if (compatPath === undefined) {
-    try {
-      const dir = join(homedir(), '.genoffice', 'bin')
-      mkdirSync(dir, { recursive: true })
-      compatPath = join(dir, 'electron-compat.js')
-      writeFileSync(compatPath, 'delete process.versions.electron;\n')
-    } catch {
-      compatPath = null
-    }
-  }
-  return compatPath ? ['--require', compatPath] : []
-}
-
-/**
- * API key for RamonMods LLM proxy / tool_cli auth; '' when not logged in.
- * Priority: explicit RAMONMODS_API_KEY env → GenOffice's own login.
- * Never borrow the shared CLI login: it can belong to another app or account,
- * and must not silently undo GenOffice sign-out.
- */
-export function ramonmodsApiKey(): string {
-  const env = process.env.RAMONMODS_API_KEY
-  if (env && !rejectedKeys.has(env)) return env
-  const own = genofficeApiKey()
-  return own && !rejectedKeys.has(own) ? own : ''
+  return null
 }
 
 // ── Rejected keys (401) ─────────────────────────────────────────────
 
 /**
- * Keys the server answered 401 for (expired / revoked). GenOffice's own key
- * is also deleted from disk; env keys are only skipped for the rest of this
- * process because GenOffice does not own their source.
+ * Keys the server answered 401 for. Kept for API compatibility; no CLI backend
+ * is active in this build.
  */
 const rejectedKeys = new Set<string>()
 
-/** Thrown when a ramonmods-key call is refused with 401 and no fresh key could be minted. */
+/** Thrown when a legacy cloud-key call is refused/unavailable. */
 export class GskAuthError extends Error {
   constructor(message: string) {
     super(message)
@@ -115,17 +53,13 @@ export class GskAuthError extends Error {
   }
 }
 
-/** Whether an error text reports an HTTP 401 (ramonmods CLI, tool_cli, LLM proxy shapes). */
+/** Whether an error text reports an HTTP 401. */
 export function isGskUnauthorizedText(text: unknown): boolean {
   return /\bHTTP 401\b|\b401 Unauthorized\b/i.test(String(text ?? ''))
 }
 
 /**
- * Records that `key` was refused with 401: it stops being offered (so
- * hasGskAuth() / ai:ramonmods-status report signed-out and the existing sign-in UI
- * appears) and the re-mint / re-login recovery starts. The invalidation is
- * synchronous, before the first await, so a caller can report the failure
- * right after this returns.
+ * Records that `key` was refused with 401. Kept for API compatibility.
  */
 export function noteGskKeyRejected(
   key: string,
@@ -136,9 +70,8 @@ export function noteGskKeyRejected(
 }
 
 /**
- * For callers that used the ramonmods key outside this module (the RamonMods LLM
- * proxy chat/stream): when `error` reports a 401, drop the key and start the
- * recovery in the background. Returns whether it was an auth failure.
+ * For callers that used the legacy cloud key outside this module: when `error`
+ * reports a 401, drop the key and start recovery in background.
  */
 export function noteGskCallFailure(key: string, error: unknown): boolean {
   if (!key) return false
@@ -148,36 +81,25 @@ export function noteGskCallFailure(key: string, error: unknown): boolean {
   return true
 }
 
-/**
- * Runs `call` with the current key; on a 401 drops the key and, when the
- * stored session minted a replacement, retries exactly once with it.
- */
-async function withKeyRecovery<T>(
-  call: (key: string) => Promise<T>,
-  options: { allowLogin?: boolean } = {},
-): Promise<T> {
-  const key = ramonmodsApiKey()
-  try {
-    return await call(key)
-  } catch (err) {
-    if (!(err instanceof GskAuthError)) throw err
-    const outcome = await noteGskKeyRejected(key, options)
-    const next = ramonmodsApiKey()
-    if (outcome !== 'reminted' || !next || next === key) throw err
-    return call(next)
-  }
-}
-
 /** Test hook: forget rejected keys. */
 export function resetGskRejectedKeys(): void {
   rejectedKeys.clear()
 }
 
 /**
- * Fires when the effective ramonmods key changes on disk — another GenOffice-family
- * app re-logging in mints a new key and revokes the one this process holds.
- * Polls by path (watchFile): auth.json is replaced whole, and fs.watch misses
- * events for a moment after it is armed.
+ * API key for legacy cloud auth; '' when not logged in / unavailable.
+ * Kept for API compatibility; the external CLI backend is removed.
+ */
+export function ramonmodsApiKey(): string {
+  const env = process.env.RAMONMODS_API_KEY
+  if (env && !rejectedKeys.has(env)) return env
+  const own = genofficeApiKey()
+  return own && !rejectedKeys.has(own) ? own : ''
+}
+
+/**
+ * Fires when the effective legacy cloud key changes on disk. Kept for API
+ * compatibility; no CLI backend is active.
  */
 export function watchGskApiKey(onChange: (key: string) => void, intervalMs = 2000): () => void {
   let last = ramonmodsApiKey()
@@ -196,25 +118,19 @@ export function watchGskApiKey(onChange: (key: string) => void, intervalMs = 200
 }
 
 /**
- * Whether ramonmods is usable (CLI installed and logged in / has a key). Callers use this to decide fallback.
- * Set AI_SEARCH_DISABLE_GSK=1 to force-disable (test isolation / force Serper).
+ * Whether the legacy cloud backend is usable. Always false: the external CLI
+ * backend was removed. Callers should fall back to BYOK/DDG/Parallel.
  */
 export function hasGskAuth(): boolean {
-  if (process.env.AI_SEARCH_DISABLE_GSK === '1') return false
-  return !!ramonmodsApiKey() && resolveGskEntry() !== null
+  return false
 }
 
 // ── Child-process proxy plumbing ────────────────────────────────────
 
-// The main process's undici dispatcher (see the apps' proxy bootstraps) never
-// reaches child processes: without forwarding they dial ramonmods.com directly.
 export { setGskProxyUrl, ramonmodsProxyUrl } from './shared'
 
 /**
- * env for ramonmods CLI children: Electron-as-Node plus proxy forwarding. The CLI
- * uses Node's built-in fetch, which ignores proxy env vars unless
- * NODE_USE_ENV_PROXY=1 (Node >= 24 — Electron 41 ships Node 24). Only
- * http(s):// proxies are forwarded; undici's env proxy cannot speak SOCKS.
+ * env for legacy CLI children. Kept for API compatibility.
  */
 export function ramonmodsChildEnv(base: NodeJS.ProcessEnv = process.env): NodeJS.ProcessEnv {
   const env: NodeJS.ProcessEnv = { ...base, ELECTRON_RUN_AS_NODE: '1' }
@@ -228,8 +144,6 @@ export function ramonmodsChildEnv(base: NodeJS.ProcessEnv = process.env): NodeJS
     base.all_proxy,
   ].find((v) => v && /^https?:\/\//.test(v))
   if (proxy) {
-    // scrub inherited variants: undici's env proxy prefers the lowercase
-    // names, so a leftover https_proxy/all_proxy would override the selection
     delete env.https_proxy
     delete env.http_proxy
     delete env.ALL_PROXY
@@ -244,20 +158,14 @@ export function ramonmodsChildEnv(base: NodeJS.ProcessEnv = process.env): NodeJS
 // ── Low-level execution ─────────────────────────────────────────────
 
 /**
- * ramonmods failures can arrive as a full HTML error page (a gateway or CDN
- * answering for an unavailable service) in the message or on stderr. That text
- * otherwise lands verbatim in CLI output, logs and agent context, so distill
- * it to one readable line: the HTTP status plus the page's visible text for an
- * HTML page, the [ERROR] lines for ramonmods's own multi-line logs, a plain clip
- * otherwise. Exported for tests.
+ * Distill a backend failure to one readable line. Exported for tests and kept
+ * for compatibility with callers that format legacy errors.
  */
 export function summarizeGskFailure(raw: unknown, fallback = 'unknown error'): string {
   const text = (typeof raw === 'string' ? raw : raw == null ? '' : String(raw)).trim()
   if (!text) return fallback
   const isHtml = /<!doctype|<html[\s>]|<\/html>|<body[\s>]/i.test(text)
   if (!isHtml) {
-    // ramonmods logs mix [INFO] progress chatter, [ERROR] failures and crash noise;
-    // prefer the [ERROR] lines, drop [INFO] ones, and keep it to one line
     const lines = text
       .split(/\r?\n/)
       .map((l) => l.trim())
@@ -283,14 +191,12 @@ export function summarizeGskFailure(raw: unknown, fallback = 'unknown error'): s
   return `${label}: ${plain.length > 200 ? `${plain.slice(0, 200)}…` : plain}`
 }
 
-/**
- * The balanced `{...}` / `[...]` block that starts at `start`, or null when it
- * never closes. String-aware, so braces and quotes inside string values do not
- * change the depth, and a block ends at its own closer rather than at the end
- * of the output (trailing log lines are left out).
- * `budget` is shared across candidates: each restarts at its own offset, so
- * without it the recovery pass is quadratic in the number of candidate lines.
- */
+interface ScanBudget {
+  chars: number
+}
+
+const MAX_RECOVERY_SCAN_CHARS = 4 * 1024 * 1024
+
 function jsonBlockAt(text: string, start: number, budget: ScanBudget): string | null {
   let depth = 0
   let inString = false
@@ -315,19 +221,8 @@ function jsonBlockAt(text: string, start: number, budget: ScanBudget): string | 
   return null
 }
 
-interface ScanBudget {
-  chars: number
-}
-
-// the output is model-controlled (bounded only by MAX_BUFFER), so the recovery
-// scan gets a fixed total budget across all candidate openers
-const MAX_RECOVERY_SCAN_CHARS = 4 * 1024 * 1024
-
 /**
- * ramonmods output may have [INFO] log lines mixed in before or after the JSON;
- * find the first line that opens a JSON block and take that block, so a
- * pretty-printed payload is located in one linear scan instead of by reparsing
- * every line-bounded prefix.
+ * Parse JSON output from a legacy CLI response. Kept for compatibility/tests.
  */
 export function parseGskOutput(stdout: string): unknown {
   const trimmed = stdout.trim()
@@ -353,85 +248,15 @@ export function parseGskOutput(stdout: string): unknown {
     }
     offset += line.length + 1
   }
-  throw new Error(`No JSON found in ramonmods output: ${summarizeGskFailure(stdout, '')}`)
+  throw new Error(`No JSON found in output: ${summarizeGskFailure(stdout, '')}`)
 }
 
-/** `passive`: a status/background call — a rejected key is dropped but no browser login opens */
-function runGsk(
-  args: string[],
-  timeoutMs: number,
-  signal?: AbortSignal,
-  passive = false,
-): Promise<unknown> {
-  const entry = resolveGskEntry()
-  if (!entry) return Promise.reject(new Error('@genspark/cli is not installed'))
-  return withKeyRecovery((key) => runGskOnce(entry, key, args, timeoutMs, signal), {
-    allowLogin: !passive,
-  })
-}
-
-function runGskOnce(
-  entry: string,
-  key: string,
-  args: string[],
-  timeoutMs: number,
-  signal?: AbortSignal,
-): Promise<unknown> {
-  // With no injected key the CLI would independently load its shared login.
-  if (!key) return Promise.reject(new GskAuthError('Sign in to GenOffice to use RamonMods'))
-  // inject the resolved key so the CLI bills the same identity as our direct HTTP calls
-  return new Promise((resolve, reject) => {
-    execFile(
-      process.execPath,
-      [...electronCompatArgs(), entry, ...args, '--output', 'json'],
-      {
-        timeout: timeoutMs,
-        maxBuffer: MAX_BUFFER,
-        env: {
-          ...ramonmodsChildEnv(),
-          RAMONMODS_API_KEY: key,
-        },
-        ...(signal ? { signal } : {}),
-      },
-      (err, stdout, stderr) => {
-        if (err) {
-          // stderr carries ramonmods's real reason ([ERROR] lines, or a whole HTML
-          // page); err.message only repeats the command line, so use it alone
-          // when stderr has nothing
-          const stderrText = summarizeGskFailure(stderr, '')
-          const message = stderrText
-            ? `ramonmods failed: ${stderrText}`
-            : summarizeGskFailure((err as Error).message, 'ramonmods failed')
-          // the CLI prints a refused call's {status:'error', message:'HTTP 401…'} on stdout
-          const unauthorized =
-            !!key && (isGskUnauthorizedText(stdout) || isGskUnauthorizedText(stderr))
-          reject(unauthorized ? new GskAuthError(message) : new Error(message))
-          return
-        }
-        try {
-          const result = parseGskOutput(String(stdout))
-          const rec = asRecord(result)
-          if (rec.status && rec.status !== 'ok') {
-            const message = `ramonmods returned an error: ${summarizeGskFailure(rec.message ?? rec.status)}`
-            reject(
-              key && isGskUnauthorizedText(rec.message)
-                ? new GskAuthError(message)
-                : new Error(message),
-            )
-            return
-          }
-          resolve(result)
-        } catch (parseErr) {
-          reject(parseErr)
-        }
-      },
-    )
-  })
+function unavailable(): never {
+  throw new GskAuthError(GSK_BACKEND_UNAVAILABLE_ERROR)
 }
 
 // ── Search ──────────────────────────────────────────────────────────
 
-/** Max search results kept; longest snippet/title chars (prevents MB fields blowing context). */
 export const MAX_RAMONMODS_RESULTS = 20
 export const MAX_RAMONMODS_SNIPPET_CHARS = 2_000
 const MAX_RAMONMODS_URL_CHARS = 8_192
@@ -446,7 +271,7 @@ function clipField(v: unknown, max = MAX_RAMONMODS_SNIPPET_CHARS): string {
   return s.length > max ? s.slice(0, max) : s
 }
 
-/** Parses the `ramonmods search` response shape data.organic_results[{title,link,snippet}] (exported for tests) */
+/** Parses legacy web search response shape (exported for tests/compat). */
 export function parseGskWebSearch(
   raw: unknown,
   maxResults: number,
@@ -471,14 +296,13 @@ export function parseGskWebSearch(
 }
 
 export async function ramonmodsWebSearch(
-  query: string,
-  maxResults = 6,
+  _query: string,
+  _maxResults = 6,
 ): Promise<{ results: WebSearchResult[]; answer?: string }> {
-  const raw = await runGsk(['search', query], SEARCH_TIMEOUT_MS)
-  return parseGskWebSearch(raw, maxResults)
+  unavailable()
 }
 
-/** Parses the `ramonmods img-search` response shape data[{image_url,title,source,link,width,height}] (exported for tests) */
+/** Parses legacy image search response shape (exported for tests/compat). */
 export function parseGskImageSearch(raw: unknown, maxResults: number): ImageSearchResult[] {
   const bounded = normalizeMaxResults(maxResults)
   const dataRaw = asRecord(raw).data
@@ -505,79 +329,53 @@ export function parseGskImageSearch(raw: unknown, maxResults: number): ImageSear
   return images
 }
 
-export async function ramonmodsImageSearch(query: string, maxResults = 8): Promise<ImageSearchResult[]> {
-  const raw = await runGsk(['img-search', query], SEARCH_TIMEOUT_MS)
-  return parseGskImageSearch(raw, maxResults)
+export async function ramonmodsImageSearch(
+  _query: string,
+  _maxResults = 8,
+): Promise<ImageSearchResult[]> {
+  unavailable()
 }
 
 // ── Image generation ────────────────────────────────────────────────
 
 export interface GskGenerateImageOptions {
-  /** Image description (English works better; text that must appear in the image stays verbatim) */
   prompt: string
-  /** Generation model; defaults to the CLI default (nano-banana-2). Special-purpose: fal-bria-rmbg background removal, fal-ai/recraft-clarity-upscale upscaling, flux-pro/outpaint outpainting, fal-ai/image-editing/text-removal watermark text removal */
   model?: string
-  /** Reference/edit-target image URLs (local paths also supported; the CLI uploads them automatically) */
   referenceImageUrls?: string[]
-  /** 1:1 | 4:3 | 16:9 | 9:16 | 3:4 | 2:3 | 3:2 | auto */
   aspectRatio?: string
-  /** auto | 0.5k | 1k | 2k | 3k | 4k */
   imageSize?: string
 }
 
 export interface GskGeneratedImage {
-  /** Watermark-free image URL (preferred); can be downloaded and inserted directly */
   url: string
   taskId: string
 }
 
-/** Parses `ramonmods img` results: prefers data.generated_images[].image_urls_nowatermark (exported for tests) */
+/** Parses legacy generated image response (exported for tests/compat). */
 export function parseGskGeneratedImage(raw: unknown): GskGeneratedImage {
   const data = asRecord(asRecord(raw).data ?? raw)
   const img = asRecord(firstItem(data.generated_images ?? data.images ?? []))
   const url = firstItem(img.image_urls_nowatermark) ?? firstItem(img.image_urls) ?? img.url ?? ''
   if (!url) {
-    throw new Error(`ramonmods image generation returned no result: ${JSON.stringify(raw).slice(0, 200)}`)
+    throw new Error(`image generation returned no result: ${JSON.stringify(raw).slice(0, 200)}`)
   }
   return { url: String(url), taskId: String(img.task_id ?? '') }
 }
 
 export async function ramonmodsGenerateImage(
-  options: GskGenerateImageOptions,
-  signal?: AbortSignal,
+  _options: GskGenerateImageOptions,
+  _signal?: AbortSignal,
 ): Promise<GskGeneratedImage> {
-  const args = ['img', options.prompt]
-  if (options.model) args.push('-m', options.model)
-  if (options.referenceImageUrls?.length) args.push('--image_urls', ...options.referenceImageUrls)
-  if (options.aspectRatio) args.push('--aspect_ratio', options.aspectRatio)
-  if (options.imageSize) args.push('--image_size', options.imageSize)
-  const raw = await runGsk(args, GENERATE_TIMEOUT_MS, signal)
-  const result = parseGskGeneratedImage(raw)
-  // Bare ramonmods file URLs (/api/files/) return 403; swap for a signed direct link with a token
-  // so later plain fetch downloads (e.g. insert_web_image) need no auth
-  result.url = await ramonmodsResolveDownloadUrl(result.url)
-  return result
+  unavailable()
 }
 
-/**
- * Swaps a ramonmods file wrapper URL for an anonymously downloadable signed direct link (`ramonmods download`).
- * Non-ramonmods file URLs are returned as-is; on swap failure the URL is also returned as-is
- * (callers handle download failures themselves).
- */
 export async function ramonmodsResolveDownloadUrl(url: string): Promise<string> {
-  if (!url.includes('/api/files/')) return url
-  try {
-    const raw = asRecord(await runGsk(['download', url], SEARCH_TIMEOUT_MS))
-    const downloadUrl = asRecord(raw.data).download_url ?? raw.download_url
-    return downloadUrl ? String(downloadUrl) : url
-  } catch {
-    return url
-  }
+  return url
 }
 
 // ── Media analysis / transcription ──────────────────────────────────
 
-/** Best-effort text extraction from ramonmods analysis-type command output (shape varies by task, so be lenient; exported for tests) */
+/** Best-effort text extraction from legacy analysis output (exported for tests/compat). */
 export function extractGskText(raw: unknown): string {
   const data = asRecord(raw).data ?? raw
   if (typeof data === 'string') return data
@@ -599,57 +397,37 @@ export function extractGskText(raw: unknown): string {
 }
 
 export interface GskAnalyzeMediaOptions {
-  /** Media URLs or local paths (image/audio/video; the CLI uploads local files automatically) */
   mediaUrls: string[]
-  /** Analysis requirements (in English): what info to extract and what it's for */
   requirements: string
 }
 
 export async function ramonmodsAnalyzeMedia(
-  options: GskAnalyzeMediaOptions,
-  signal?: AbortSignal,
+  _options: GskAnalyzeMediaOptions,
+  _signal?: AbortSignal,
 ): Promise<string> {
-  const args = [
-    'media-analyze',
-    '--media_urls',
-    ...options.mediaUrls,
-    '--requirements',
-    options.requirements,
-  ]
-  const raw = await runGsk(args, GENERATE_TIMEOUT_MS, signal)
-  return extractGskText(raw)
+  unavailable()
 }
 
 export interface GskTranscribeOptions {
-  /** Audio URLs or local paths */
   audioUrls: string[]
-  /** Prompt (context / proper nouns; can improve recognition quality) */
   prompt?: string
-  /** whisper-1 (default, with timestamps) | gemini-3-flash-preview | elevenlabs_scribe_v2 */
   model?: string
 }
 
 export async function ramonmodsTranscribe(
-  options: GskTranscribeOptions,
-  signal?: AbortSignal,
+  _options: GskTranscribeOptions,
+  _signal?: AbortSignal,
 ): Promise<string> {
-  const args = ['transcribe', '--audio_urls', ...options.audioUrls]
-  if (options.prompt) args.push('--prompt', options.prompt)
-  if (options.model) args.push('-m', options.model)
-  const raw = await runGsk(args, GENERATE_TIMEOUT_MS, signal)
-  return extractGskText(raw)
+  unavailable()
 }
 
-// ── Past projects (RamonMods web) ────────────────────────────────────
+// ── Past projects (legacy) ──────────────────────────────────────────
 
 export interface GskPastProject {
   projectId: string
-  /** raw project type, e.g. 'slides_agent_git' */
   type: string
   title: string
-  /** creation time, ISO-like string from the API */
   ctime: string
-  /** relative web URL, e.g. '/agents?id=...' — join with https://ramonmods.com */
   projectUrl: string
 }
 
@@ -659,11 +437,6 @@ export interface GskPastProjectsPage {
   hasMore: boolean
 }
 
-/**
- * Parses `ramonmods projects`. data.projects lacks project_url — it only appears in
- * session_state.past_projects — so take it from there, falling back to
- * deriving it from the project id. (exported for tests)
- */
 export function parseGskPastProjects(raw: unknown): GskPastProjectsPage {
   const rec = asRecord(raw)
   const data = asRecord(rec.data ?? raw)
@@ -700,25 +473,16 @@ export function parseGskPastProjects(raw: unknown): GskPastProjectsPage {
 }
 
 export interface GskListPastProjectsOptions {
-  /** 'slides' | 'docs' | 'sheets' | ...; omit for all kinds */
   artifactTypes?: string[]
-  /** page size, CLI default 20, max 100 */
   limit?: number
   offset?: number
   signal?: AbortSignal
 }
 
-/** Lists the user's own past RamonMods web projects, newest first (`ramonmods projects`). */
 export async function ramonmodsListPastProjects(
-  options: GskListPastProjectsOptions = {},
+  _options: GskListPastProjectsOptions = {},
 ): Promise<GskPastProjectsPage> {
-  const args = ['projects']
-  if (options.artifactTypes?.length) args.push('--artifact_types', ...options.artifactTypes)
-  if (options.limit !== undefined) args.push('--limit', String(options.limit))
-  if (options.offset) args.push('--offset', String(options.offset))
-  // background sync: never the reason a browser window opens
-  const raw = await runGsk(args, SEARCH_TIMEOUT_MS, options.signal, true)
-  return parseGskPastProjects(raw)
+  unavailable()
 }
 
 export interface GskLoginInfo {
@@ -727,20 +491,6 @@ export interface GskLoginInfo {
   creditBalance?: number
 }
 
-/** Current login info; null when not logged in */
 export async function ramonmodsLoginInfo(): Promise<GskLoginInfo | null> {
-  try {
-    const raw = await runGsk(['login-info'], SEARCH_TIMEOUT_MS, undefined, true)
-    const d = asRecord(asRecord(raw).data ?? raw)
-    if (!d.email) return null
-    const info: GskLoginInfo = {
-      email: String(d.email),
-      plan: String(d.plan ?? d.personal_plan ?? ''),
-    }
-    const balance = Number(d.credit_balance)
-    if (Number.isFinite(balance)) info.creditBalance = balance
-    return info
-  } catch {
-    return null
-  }
+  return null
 }

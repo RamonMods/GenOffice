@@ -1,8 +1,9 @@
 /**
  * generate_image / analyze_media for the five editors' main processes: one
  * place that reads ai-settings.json live, routes to the BYOK media provider
- * when one is configured, and otherwise to the RamonMods CLI behind the usual
- * login + cloud-tools gate. BYOK providers answer with bytes; those land in
+ * when one is configured. The legacy external cloud backend was removed; when
+ * no BYOK provider is configured, these tools return unavailable. BYOK providers
+ * answer with bytes; those land in
  * the local generated-image store and come back as a file:// URL that the
  * insert pipelines' fetchRemoteImage accepts.
  */
@@ -31,9 +32,9 @@ import { fetchWithSsrfGuard } from '@genoffice/electron-utils/safe-remote-url'
 import { ramonmodsAnalyzeMedia, ramonmodsGenerateImage, hasGskAuth, type GskGenerateImageOptions } from './ramonmods'
 
 export const RAMONMODS_NOT_LOGGED_IN_ERROR =
-  'A conta do RamonMods não está conectada neste computador; peça ao usuário para entrar primeiro'
+  'Nenhum backend em nuvem legado está disponível; configure um provedor de mídia BYOK em Configurações (Mídia de IA)'
 export const RAMONMODS_TOOLS_OFF_ERROR =
-  'As ferramentas em nuvem do RamonMods estão desativadas em Configurações (Modelo de IA); ative-as ou configure um provedor de imagens em Configurações (Mídia de IA) para usar esta ferramenta'
+  'O backend em nuvem legado não está disponível nesta versão; configure um provedor de mídia BYOK em Configurações (Mídia de IA)'
 
 /** 200 MB: enough for a long clip through the Gemini Files API, small enough to hold in memory */
 const MAX_MEDIA_BYTES = 200 * 1024 * 1024
@@ -57,13 +58,13 @@ export const MEDIA_BUDGET = {
   concurrency: MEDIA_LOAD_CONCURRENCY,
 } as const
 
-/** the only load failure that may hand the request back to RamonMods; validation failures never do */
+/** the only load failure that may fall back to the legacy cloud route; validation failures never do */
 export class MediaTooLargeError extends Error {}
 
-/** Subclasses MediaTooLargeError so the existing "too big, try RamonMods" fallback applies. */
+/** Subclasses MediaTooLargeError so the existing "too big, try legacy fallback" logic applies. */
 export class MediaBudgetExceededError extends MediaTooLargeError {}
 
-/** The item ceiling in one place, so the RamonMods route rejects like the BYOK one. */
+/** The item ceiling in one place, so legacy and BYOK routes reject consistently. */
 function assertMediaItemCount(count: number, maxItems: number): void {
   if (count > maxItems) {
     throw new MediaBudgetExceededError(
@@ -171,7 +172,7 @@ export function isLocalMediaPathAllowed(
   return verifiedLocalPath(ref, roots) !== null
 }
 
-/** the RamonMods route's preconditions; null when it may proceed */
+/** the legacy cloud route's preconditions; null when it may proceed */
 function ramonmodsGate(settings: AiSettings, notLoggedInError: string): Gate {
   if (!hasGskAuth()) return { error: notLoggedInError }
   if (!cloudToolsEnabled(settings)) return { error: RAMONMODS_TOOLS_OFF_ERROR }
@@ -310,7 +311,7 @@ export async function loadMediaReferences(
   return blobs
 }
 
-/** RamonMods background-removal model — chained after generation for transparentBackground */
+/** Legacy background-removal model id (kept for API compatibility; backend removed). */
 export const RAMONMODS_RMBG_MODEL = 'fal-bria-rmbg'
 
 export type GenerateImageToolOp = GskGenerateImageOptions & {
@@ -350,7 +351,7 @@ export async function generateImageTool(
         return { url: gen.url } // strip failed: the opaque image is still usable
       }
     }
-    // `model` names RamonMods-only special models (fal-*); BYOK uses the configured image model
+    // `model` names legacy-only special models (fal-*); BYOK uses the configured image model
     const references = await loadMediaReferences(
       op.referenceImageUrls ?? [],
       MEDIA_BUDGET,
@@ -397,8 +398,8 @@ export async function analyzeMediaTool(
     try {
       media = await loadMediaReferences(mediaUrls, MEDIA_BUDGET, mediaRoots)
     } catch (err) {
-      // only the size cap hands the request back to RamonMods (the CLI streams large
-      // files itself); scheme / path / SSRF rejections stay rejections
+      // only the size cap hands the request back to the legacy route;
+      // scheme / path / SSRF rejections stay rejections
       if (err instanceof MediaTooLargeError && (!imageByok || !videoByok)) return await viaGsk()
       return { error: errorText(err) }
     }

@@ -4,7 +4,7 @@ export const ja = {
   aiCollapsePanel: 'パネルを折りたたむ',
   aiComposerPlaceholder: 'AI に執筆・編集を依頼…',
   aiCopyReplyTitle: '返信をコピー',
-  aiCreditsExhausted: 'クレジット不足です。ramonmods.ai でチャージしてください',
+  aiCreditsExhausted: 'AIプロバイダーのクレジットまたはクォータが不足しています。プロバイダーのアカウントを確認するか、別のプロバイダーを設定してください。',
   aiEmptyTitle: 'AI でページをデザイン',
   aiEmptyBody:
     'ランディングページ、レポート、ポスターなど。用途と対象を伝えると、AI がまず概要を提案し、確認後にページを生成します',

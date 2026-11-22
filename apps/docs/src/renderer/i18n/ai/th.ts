@@ -121,7 +121,7 @@ export const th = {
   aiNetworkError:
     'เครือข่ายมีปัญหา ไม่สามารถเชื่อมต่อบริการ AI ได้ โปรดตรวจสอบการเชื่อมต่อแล้วลองใหม่',
   aiCreditsExhausted:
-    'เครดิต RamonMods ของคุณหมดแล้ว โปรดเติมเครดิตที่ github.com/RamonMods/GenOffice แล้วลองใหม่',
+    'เครดิตหรือโควตาของผู้ให้บริการ AI ของคุณหมดแล้ว ตรวจสอบบัญชีผู้ให้บริการหรือกำหนดค่าผู้ให้บริการรายอื่น',
   aiSumReadAttachment: 'อ่านสิ่งที่แนบ',
   aiSumImageAttachment: 'รูปภาพแนบ {name}',
   aiSumRead: 'อ่าน {name}',

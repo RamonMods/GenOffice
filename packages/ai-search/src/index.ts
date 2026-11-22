@@ -1,12 +1,9 @@
 /**
- * Search utilities (main process) — ramonmods (RamonMods CLI) first, then Serper Google API,
- * then Serply, SearchApi, Tavily, Parallel (whose free Search MCP answers keyless), Exa,
- * Firecrawl and Keenable (keyless only when selected), before the DuckDuckGo last resort. Runs
- * in the main process (Node fetch / child process) to avoid renderer CORS; the Serper key reuses
- * SERPER_API_KEY, the Serply key reuses SERPLY_API_KEY, the SearchApi key reuses
- * SEARCHAPI_API_KEY, the Tavily key reuses TAVILY_API_KEY, Parallel uses PARALLEL_API_KEY, Exa
- * uses EXA_API_KEY, Firecrawl uses FIRECRAWL_API_KEY and Keenable uses KEENABLE_API_KEY.
- * For RamonMods auth see ./ramonmods.ts (GenOffice sign-in or explicit RAMONMODS_API_KEY).
+ * Search utilities (main process) — Serper, Serply, SearchApi, Tavily,
+ * Parallel (whose free Search MCP answers keyless), Exa, Firecrawl and
+ * Keenable (keyless only when selected), before the DuckDuckGo last resort.
+ * Runs in the main process (Node fetch) to avoid renderer CORS. The legacy
+ * external CLI cloud backend was removed; BYOK/DDG/Parallel paths remain.
  */
 
 import {
@@ -40,7 +37,7 @@ const KEENABLE_KEY = () => process.env.KEENABLE_API_KEY ?? ''
  * callers (search-tools.ts) pass the user's key and turn ramonmods off so the chosen backend runs first.
  */
 export interface SearchOptions {
-  /** false = skip the RamonMods backend (cloud tools off, or a BYOK search provider is active) */
+  /** false = skip the legacy cloud backend (cloud tools off, or a BYOK search provider is active) */
   useGsk?: boolean
   serperKey?: string
   serplyKey?: string
@@ -498,8 +495,8 @@ export async function webSearch(
 ): Promise<WebSearchResponse> {
   const o = normalizeOptions(options)
   const { query: q, max } = normalizeSearchArgs(query, maxResults, 6)
-  // useGsk=false: the user turned RamonMods cloud tools off or picked their own
-  // search key — skip straight to the keyed/free backends
+  // useGsk=false: cloud tools off or a BYOK search provider is active —
+  // skip straight to keyed/free backends
   if (o.useGsk && hasGskAuth()) {
     try {
       const r = await ramonmodsWebSearch(q, max)

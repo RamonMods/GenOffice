@@ -4,7 +4,7 @@ export const es = {
   aiCollapsePanel: 'Contraer panel',
   aiComposerPlaceholder: 'Pide a la IA escribir o editar…',
   aiCopyReplyTitle: 'Copiar respuesta',
-  aiCreditsExhausted: 'Sin créditos — recarga en ramonmods.ai',
+  aiCreditsExhausted: 'Los créditos o la cuota de tu proveedor de IA se agotaron. Revisa tu cuenta del proveedor o configura otro proveedor.',
   aiEmptyTitle: 'Diseña una página con IA',
   aiEmptyBody:
     'Landing, informe, cartel: di para qué es y para quién; la IA propone primero un brief y luego construye la página',

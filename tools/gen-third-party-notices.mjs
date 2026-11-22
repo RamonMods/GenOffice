@@ -54,8 +54,7 @@ const DATA_SOURCES = ['@fluentui/svg-icons']
 
 /**
  * Packages copied into the installer verbatim by electron-builder rather than
- * bundled — the ramonmods CLI and its runtime deps are spawned, never imported, so
- * they are invisible to the import scan.
+ * bundled — spawned at runtime, never imported, so invisible to the import scan.
  */
 function extraResourceSeeds() {
   // the electron-builder config lives in its own cjs module (not package.json
@@ -76,8 +75,6 @@ const NOTE = {
     'Copyright (c) Microsoft Corporation. Licensed under the MIT License.\nhttps://github.com/microsoft/fluentui-system-icons',
   '@fluentui/svg-icons':
     'Copyright (c) 2020 Microsoft Corporation. Licensed under the MIT License.\nhttps://github.com/microsoft/fluentui-system-icons',
-  '@genspark/cli':
-    'Copyright (c) RamonMods. Licensed under the MIT License.\nhttps://www.npmjs.com/package/@genspark/cli',
 }
 
 /**

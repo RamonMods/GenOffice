@@ -211,7 +211,7 @@ export const strings = {
     aiRegionError: '该模型的厂商不向当前地区提供服务，请换一个模型或切换网络',
     aiOverloadedError: 'AI 服务当前繁忙，请稍后重试',
     aiNetworkError: '网络有问题，无法连接 AI 服务。请检查网络后重试',
-    aiCreditsExhausted: '积分不足，请前往 ramonmods.ai 充值',
+    aiCreditsExhausted: 'AI 提供商的积分或配额已用完。请检查您的提供商账户，或配置其他提供商。',
     aiOpenAssistant: '打开 AI 助手',
     aiNameFile: '用 AI 起名…',
     aiSummarizeBtn: 'AI 总结',
@@ -498,7 +498,7 @@ export const strings = {
     aiOverloadedError: 'The AI service is busy right now — please try again in a moment',
     aiNetworkError:
       'Network problem: could not reach the AI service. Check your connection and try again',
-    aiCreditsExhausted: 'Out of credits — top up at ramonmods.ai',
+    aiCreditsExhausted: 'Your AI provider credits or quota are exhausted. Check your provider account or configure another provider.',
     aiOpenAssistant: 'Open AI assistant',
     aiNameFile: 'Name with AI…',
     aiSummarizeBtn: 'AI Summarize',
@@ -787,7 +787,7 @@ export const strings = {
       'Nhà cung cấp của mô hình này không phục vụ khu vực hiện tại của bạn — hãy chọn mô hình khác hoặc đổi mạng',
     aiOverloadedError: 'Dịch vụ AI hiện đang bận — vui lòng thử lại sau giây lát',
     aiNetworkError: 'Sự cố mạng: không thể kết nối với dịch vụ AI. Kiểm tra kết nối và thử lại',
-    aiCreditsExhausted: 'Đã hết tín dụng — nạp thêm tại ramonmods.ai',
+    aiCreditsExhausted: 'Tín dụng hoặc hạn mức của nhà cung cấp AI của bạn đã hết. Hãy kiểm tra tài khoản nhà cung cấp hoặc cấu hình nhà cung cấp khác.',
     aiOpenAssistant: 'Mở trợ lý AI',
     aiNameFile: 'Đặt tên bằng AI…',
     aiSummarizeBtn: 'AI Tóm tắt',
@@ -1077,7 +1077,7 @@ export const strings = {
     aiOverloadedError: 'AI hizmeti şu anda yoğun — lütfen biraz sonra yeniden deneyin',
     aiNetworkError:
       'Ağ sorunu: AI hizmetine ulaşılamadı. Bağlantınızı kontrol edip yeniden deneyin',
-    aiCreditsExhausted: 'Krediniz bitti — ramonmods.ai adresinden yükleyin',
+    aiCreditsExhausted: 'Yapay zeka sağlayıcınızın kredileri veya kotası tükendi. Sağlayıcı hesabınızı kontrol edin veya başka bir sağlayıcı yapılandırın.',
     aiOpenAssistant: 'AI asistanını aç',
     aiNameFile: 'AI ile adlandır',
     aiSummarizeBtn: 'AI Özet',
@@ -1372,7 +1372,7 @@ export const strings = {
     aiOverloadedError: 'Az AI-szolgáltatás jelenleg túlterhelt — próbáld újra egy pillanat múlva',
     aiNetworkError:
       'Hálózati probléma: nem sikerült elérni az AI-szolgáltatást. Ellenőrizd a kapcsolatot, és próbáld újra',
-    aiCreditsExhausted: 'Elfogytak a kreditek — töltsd fel a ramonmods.ai oldalon',
+    aiCreditsExhausted: 'Az AI-szolgáltatód kreditjei vagy kvótája elfogyott. Ellenőrizd a szolgáltatói fiókodat, vagy állíts be másik szolgáltatót.',
     aiOpenAssistant: 'AI-asszisztens megnyitása',
     aiNameFile: 'Névadás AI-val…',
     aiSummarizeBtn: 'AI összefoglalás',
@@ -1664,7 +1664,7 @@ export const strings = {
     aiOverloadedError: 'AI サービスが混み合っています。しばらくしてからもう一度お試しください',
     aiNetworkError:
       'ネットワークに問題があり、AI サービスに接続できません。接続を確認して再試行してください',
-    aiCreditsExhausted: 'クレジット不足です。ramonmods.ai でチャージしてください',
+    aiCreditsExhausted: 'AIプロバイダーのクレジットまたはクォータが不足しています。プロバイダーのアカウントを確認するか、別のプロバイダーを設定してください。',
     aiOpenAssistant: 'AI アシスタントを開く',
     aiNameFile: 'AI で名前を変更…',
     aiSummarizeBtn: 'AI 要約',
@@ -1953,7 +1953,7 @@ export const strings = {
     aiOverloadedError: 'AI 서비스가 혼잡합니다. 잠시 후 다시 시도해 주세요',
     aiNetworkError:
       '네트워크에 문제가 있어 AI 서비스에 연결할 수 없습니다. 연결을 확인한 후 다시 시도해 주세요',
-    aiCreditsExhausted: '크레딧이 부족합니다. ramonmods.ai에서 충전하세요',
+    aiCreditsExhausted: 'AI 제공업체의 크레딧 또는 할당량이 소진되었습니다. 제공업체 계정을 확인하거나 다른 제공업체를 설정하세요.',
     aiOpenAssistant: 'AI 어시스턴트 열기',
     aiNameFile: 'AI로 이름 지정…',
     aiSummarizeBtn: 'AI 요약',
@@ -2246,7 +2246,7 @@ export const strings = {
     aiOverloadedError: "Le service d'IA est actuellement surchargé — réessayez dans un instant",
     aiNetworkError:
       'Problème réseau : impossible de joindre le service IA. Vérifiez votre connexion et réessayez',
-    aiCreditsExhausted: 'Crédits épuisés — rechargez sur ramonmods.ai',
+    aiCreditsExhausted: 'Les crédits ou le quota de votre fournisseur d\'IA sont épuisés. Vérifiez votre compte fournisseur ou configurez un autre fournisseur.',
     aiOpenAssistant: "Ouvrir l'assistant IA",
     aiNameFile: "Nommer avec l'IA…",
     aiSummarizeBtn: 'Résumé IA',
@@ -2542,7 +2542,7 @@ export const strings = {
     aiOverloadedError: 'Der KI-Dienst ist derzeit überlastet — bitte gleich erneut versuchen',
     aiNetworkError:
       'Netzwerkproblem: Der KI-Dienst ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut',
-    aiCreditsExhausted: 'Guthaben aufgebraucht — bei ramonmods.ai aufladen',
+    aiCreditsExhausted: 'Die Credits oder das Kontingent Ihres KI-Anbieters sind aufgebraucht. Prüfen Sie Ihr Anbieter-Konto oder konfigurieren Sie einen anderen Anbieter.',
     aiOpenAssistant: 'KI-Assistent öffnen',
     aiNameFile: 'Mit KI benennen…',
     aiSummarizeBtn: 'KI-Zusammenfassung',
@@ -2835,7 +2835,7 @@ export const strings = {
       'El servicio de IA está saturado en este momento; inténtalo de nuevo en unos instantes',
     aiNetworkError:
       'Problema de red: no se pudo conectar con el servicio de IA. Comprueba tu conexión e inténtalo de nuevo',
-    aiCreditsExhausted: 'Sin créditos — recarga en ramonmods.ai',
+    aiCreditsExhausted: 'Los créditos o la cuota de tu proveedor de IA se agotaron. Revisa tu cuenta del proveedor o configura otro proveedor.',
     aiOpenAssistant: 'Abrir asistente de IA',
     aiNameFile: 'Nombrar con IA…',
     aiSummarizeBtn: 'Resumen IA',
@@ -3123,7 +3123,7 @@ export const strings = {
     aiOverloadedError: 'บริการ AI มีผู้ใช้งานจำนวนมากในขณะนี้ โปรดลองอีกครั้งในอีกสักครู่',
     aiNetworkError:
       'เครือข่ายมีปัญหา ไม่สามารถเชื่อมต่อบริการ AI ได้ โปรดตรวจสอบการเชื่อมต่อแล้วลองใหม่',
-    aiCreditsExhausted: 'เครดิตหมด — เติมได้ที่ ramonmods.ai',
+    aiCreditsExhausted: 'เครดิตหรือโควตาของผู้ให้บริการ AI ของคุณหมดแล้ว ตรวจสอบบัญชีผู้ให้บริการหรือกำหนดค่าผู้ให้บริการรายอื่น',
     aiOpenAssistant: 'เปิดผู้ช่วย AI',
     aiNameFile: 'ตั้งชื่อด้วย AI…',
     aiSummarizeBtn: 'สรุปด้วย AI',
@@ -3412,7 +3412,7 @@ export const strings = {
     aiOverloadedError: 'Layanan AI sedang sibuk — silakan coba lagi sebentar lagi',
     aiNetworkError:
       'Masalah jaringan: tidak dapat terhubung ke layanan AI. Periksa koneksi Anda lalu coba lagi',
-    aiCreditsExhausted: 'Kredit habis — isi ulang di ramonmods.ai',
+    aiCreditsExhausted: 'Kredit atau kuota penyedia AI Anda telah habis. Periksa akun penyedia Anda atau konfigurasikan penyedia lain.',
     aiOpenAssistant: 'Buka asisten AI',
     aiNameFile: 'Beri nama dengan AI…',
     aiSummarizeBtn: 'Ringkasan AI',
@@ -3702,7 +3702,7 @@ export const strings = {
     aiOverloadedError: 'Сервис ИИ сейчас перегружен — повторите попытку чуть позже',
     aiNetworkError:
       'Проблема с сетью: не удалось подключиться к сервису ИИ. Проверьте подключение и повторите попытку',
-    aiCreditsExhausted: 'Кредиты закончились — пополните на ramonmods.ai',
+    aiCreditsExhausted: 'Кредиты или квота вашего провайдера ИИ исчерпаны. Проверьте аккаунт провайдера или настройте другого провайдера.',
     aiOpenAssistant: 'Открыть ИИ-ассистента',
     aiNameFile: 'Назвать с помощью ИИ…',
     aiSummarizeBtn: 'ИИ-резюме',
@@ -3988,7 +3988,7 @@ export const strings = {
     aiOverloadedError: 'خدمة الذكاء الاصطناعي مشغولة حاليًا — يرجى المحاولة مرة أخرى بعد قليل',
     aiNetworkError:
       'مشكلة في الشبكة: تعذّر الوصول إلى خدمة الذكاء الاصطناعي. تحقق من الاتصال وحاول مجددًا',
-    aiCreditsExhausted: 'نفدت الأرصدة — أعد الشحن على ramonmods.ai',
+    aiCreditsExhausted: 'نفدت أرصدة مزود الذكاء الاصطناعي أو حصته. تحقق من حساب المزود أو قم بإعداد مزود آخر.',
     aiOpenAssistant: 'فتح مساعد الذكاء الاصطناعي',
     aiNameFile: 'التسمية بالذكاء الاصطناعي…',
     aiSummarizeBtn: 'تلخيص AI',
@@ -4280,7 +4280,7 @@ export const strings = {
       'O serviço de IA está sobrecarregado no momento — tente novamente em instantes',
     aiNetworkError:
       'Problema de rede: não foi possível conectar ao serviço de IA. Verifique sua conexão e tente novamente',
-    aiCreditsExhausted: 'Créditos esgotados — recarregue em ramonmods.ai',
+    aiCreditsExhausted: 'Os créditos ou a cota do seu provedor de IA acabaram. Verifique sua conta do provedor ou configure outro provedor.',
     aiOpenAssistant: 'Abrir assistente de IA',
     aiNameFile: 'Nomear com IA…',
     aiSummarizeBtn: 'Resumo IA',
@@ -4572,7 +4572,7 @@ export const strings = {
     aiOverloadedError: 'Il servizio IA è momentaneamente sovraccarico — riprova tra poco',
     aiNetworkError:
       'Problema di rete: impossibile raggiungere il servizio IA. Controlla la connessione e riprova',
-    aiCreditsExhausted: 'Crediti esauriti — ricarica su ramonmods.ai',
+    aiCreditsExhausted: 'I crediti o la quota del tuo provider IA sono esauriti. Controlla l’account del provider o configura un altro provider.',
     aiOpenAssistant: 'Apri assistente IA',
     aiNameFile: 'Assegna un nome con IA…',
     aiSummarizeBtn: 'Riassunto IA',
@@ -4863,7 +4863,7 @@ export const strings = {
     aiOverloadedError: 'Usługa AI jest obecnie przeciążona — spróbuj ponownie za chwilę',
     aiNetworkError:
       'Problem z siecią: nie można połączyć się z usługą AI. Sprawdź połączenie i spróbuj ponownie',
-    aiCreditsExhausted: 'Brak kredytów — doładuj na ramonmods.ai',
+    aiCreditsExhausted: 'Kredyty lub limit Twojego dostawcy AI zostały wyczerpane. Sprawdź konto dostawcy lub skonfiguruj innego dostawcę.',
     aiOpenAssistant: 'Otwórz asystenta AI',
     aiNameFile: 'Nazwij za pomocą AI…',
     aiSummarizeBtn: 'Podsumowanie AI',
@@ -5137,7 +5137,7 @@ export const strings = {
     aiOverloadedError: 'Služba AI je právě zaneprázdněna – zkuste to za chvíli znovu',
     aiNetworkError:
       'Problém se sítí: službu AI se nepodařilo kontaktovat. Zkontrolujte připojení a zkuste to znovu',
-    aiCreditsExhausted: 'Došly kredity – dobijte je na ramonmods.ai',
+    aiCreditsExhausted: 'Kredity nebo kvóta vašeho poskytovatele AI byly vyčerpány. Zkontrolujte účet poskytovatele nebo nastavte jiného poskytovatele.',
     aiOpenAssistant: 'Otevřít asistenta AI',
     aiNameFile: 'Pojmenovat pomocí AI…',
     aiSummarizeBtn: 'Shrnout pomocí AI',
@@ -5443,7 +5443,7 @@ export const strings = {
     aiOverloadedError: 'De AI-service is momenteel overbelast — probeer het zo opnieuw',
     aiNetworkError:
       'Netwerkprobleem: kan de AI-service niet bereiken. Controleer je verbinding en probeer het opnieuw',
-    aiCreditsExhausted: 'Credits op — waardeer op via ramonmods.ai',
+    aiCreditsExhausted: 'De credits of het quotum van je AI-provider zijn op. Controleer je provideraccount of configureer een andere provider.',
     aiOpenAssistant: 'AI-assistent openen',
     aiNameFile: 'Naam geven met AI…',
     aiSummarizeBtn: 'AI-samenvatting',
@@ -5732,7 +5732,7 @@ export const strings = {
     aiOverloadedError: 'Perkhidmatan AI sedang sibuk — sila cuba lagi sebentar lagi',
     aiNetworkError:
       'Masalah rangkaian: tidak dapat menghubungi perkhidmatan AI. Semak sambungan anda dan cuba lagi',
-    aiCreditsExhausted: 'Kredit habis — tambah nilai di ramonmods.ai',
+    aiCreditsExhausted: 'Kredit atau kuota pembekal AI anda telah habis. Semak akaun pembekal anda atau konfigurasikan pembekal lain.',
     aiOpenAssistant: 'Buka pembantu AI',
     aiNameFile: 'Namakan dengan AI…',
     aiSummarizeBtn: 'Ringkasan AI',
@@ -6015,7 +6015,7 @@ export const strings = {
     aiRegionError: 'ספק המודל הזה אינו פועל באזור הנוכחי שלך — בחרו מודל אחר או החליפו רשת',
     aiOverloadedError: 'שירות ה-AI עמוס כרגע — נסו שוב בעוד רגע',
     aiNetworkError: 'בעיית רשת: לא ניתן להתחבר לשירות ה-AI. בדוק את החיבור ונסה שוב',
-    aiCreditsExhausted: 'נגמרו הקרדיטים — טענו ב-ramonmods.ai',
+    aiCreditsExhausted: 'הקרדיטים או המכסה של ספק הבינה המלאכותית אזלו. בדוק את חשבון הספק או הגדר ספק אחר.',
     aiOpenAssistant: 'פתחו את עוזר ה-AI',
     aiNameFile: 'מתן שם באמצעות AI…',
     aiSummarizeBtn: 'סיכום AI',
@@ -6304,7 +6304,7 @@ export const strings = {
     aiOverloadedError: 'AI सेवा अभी व्यस्त है — कृपया थोड़ी देर बाद फिर से प्रयास करें',
     aiNetworkError:
       'नेटवर्क समस्या: AI सेवा से कनेक्ट नहीं हो सका। कनेक्शन जांचें और फिर से प्रयास करें',
-    aiCreditsExhausted: 'क्रेडिट समाप्त — ramonmods.ai पर रिचार्ज करें',
+    aiCreditsExhausted: 'आपके AI प्रदाता के क्रेडिट या कोटा समाप्त हो गए हैं। अपने प्रदाता खाते की जाँच करें या कोई अन्य प्रदाता कॉन्फ़िगर करें।',
     aiOpenAssistant: 'AI सहायक खोलें',
     aiNameFile: 'AI से नाम दें…',
     aiSummarizeBtn: 'AI सारांश',
@@ -6587,7 +6587,7 @@ export const strings = {
     aiRegionError: '該模型的廠商不向目前地區提供服務，請換一個模型或切換網路',
     aiOverloadedError: 'AI 服務目前繁忙，請稍後重試',
     aiNetworkError: '網路有問題，無法連接 AI 服務。請檢查網路後重試',
-    aiCreditsExhausted: '點數不足，請前往 ramonmods.ai 儲值',
+    aiCreditsExhausted: 'आपके AI प्रदाता के क्रेडिट या कोटा समाप्त हो गए हैं। अपने प्रदाता खाते की जाँच करें या कोई अन्य प्रदाता कॉन्फ़िगर करें।',
     aiOpenAssistant: '開啟 AI 助手',
     aiNameFile: '用 AI 命名…',
     aiSummarizeBtn: 'AI 總結',

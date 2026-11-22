@@ -117,7 +117,7 @@ export const ms = {
   aiErrNetwork:
     'Masalah rangkaian: tidak dapat menghubungi perkhidmatan AI. Semak sambungan anda dan cuba lagi',
   aiCreditsExhausted:
-    'Kredit RamonMods anda telah habis. Tambah nilai di ramonmods.com dan cuba lagi',
+    'Kredit atau kuota pembekal AI anda telah habis. Semak akaun pembekal anda atau konfigurasikan pembekal lain.',
   aiErrRequestFailed: 'Gagal menghantar permintaan: {msg}',
   aiErrGenerateFailed: 'Penjanaan gagal',
   aiErrRegenFailed: 'Gagal membuat semula slaid',

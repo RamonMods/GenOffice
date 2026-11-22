@@ -117,7 +117,7 @@ export const vi = {
   aiErrNetwork:
     'Sự cố mạng: không thể kết nối tới dịch vụ AI. Vui lòng kiểm tra kết nối và thử lại',
   aiCreditsExhausted:
-    'Tín dụng RamonMods của bạn đã hết. Truy cập ramonmods.com để nạp thêm, sau đó thử lại',
+    'Tín dụng hoặc hạn mức của nhà cung cấp AI của bạn đã hết. Hãy kiểm tra tài khoản nhà cung cấp hoặc cấu hình nhà cung cấp khác.',
   aiErrRequestFailed: 'Gửi yêu cầu thất bại: {msg}',
   aiErrGenerateFailed: 'Tạo thất bại',
   aiErrRegenFailed: 'Tạo lại trang chiếu thất bại',

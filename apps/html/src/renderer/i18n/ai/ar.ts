@@ -4,7 +4,7 @@ export const ar = {
   aiCollapsePanel: 'طي اللوحة',
   aiComposerPlaceholder: 'اطلب من الذكاء الاصطناعي الكتابة أو التعديل…',
   aiCopyReplyTitle: 'نسخ الرد',
-  aiCreditsExhausted: 'نفدت الأرصدة — أعد الشحن على ramonmods.ai',
+  aiCreditsExhausted: 'نفدت أرصدة مزود الذكاء الاصطناعي أو حصته. تحقق من حساب المزود أو قم بإعداد مزود آخر.',
   aiEmptyTitle: 'صمّم صفحة بالذكاء الاصطناعي',
   aiEmptyBody:
     'صفحة هبوط أو تقرير أو ملصق: حدّد الغرض والجمهور، يقترح الذكاء الاصطناعي موجزًا أولًا ثم يبني الصفحة',

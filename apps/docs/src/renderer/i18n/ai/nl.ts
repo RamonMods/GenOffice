@@ -125,7 +125,7 @@ export const nl = {
   aiNetworkError:
     'Netwerkprobleem: kan de AI-service niet bereiken. Controleer je verbinding en probeer het opnieuw',
   aiCreditsExhausted:
-    'Je RamonMods-credits zijn op. Waardeer op via github.com/RamonMods/GenOffice en probeer het opnieuw',
+    'De credits of het quotum van je AI-provider zijn op. Controleer je provideraccount of configureer een andere provider.',
   aiSumReadAttachment: 'Bijlage lezen',
   aiSumImageAttachment: 'Afbeeldingsbijlage {name}',
   aiSumRead: '{name} lezen',

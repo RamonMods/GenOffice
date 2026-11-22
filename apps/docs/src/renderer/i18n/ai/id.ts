@@ -123,7 +123,7 @@ export const id = {
   aiNetworkError:
     'Masalah jaringan: tidak dapat terhubung ke layanan AI. Periksa koneksi Anda lalu coba lagi',
   aiCreditsExhausted:
-    'Kredit RamonMods Anda telah habis. Isi ulang di ramonmods.com lalu coba lagi',
+    'Kredit atau kuota penyedia AI Anda telah habis. Periksa akun penyedia Anda atau konfigurasikan penyedia lain.',
   aiSumReadAttachment: 'Baca lampiran',
   aiSumImageAttachment: 'Lampiran gambar {name}',
   aiSumRead: 'Baca {name}',

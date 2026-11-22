@@ -741,7 +741,7 @@ export const strings = {
     aiRegionError: '该模型的厂商不向当前地区提供服务，请换一个模型或切换网络',
     aiOverloadedError: 'AI 服务当前繁忙，请稍后重试',
     aiNetworkError: '网络有问题，无法连接 AI 服务。请检查网络后重试',
-    aiCreditsExhausted: 'RamonMods 积分已用完，请前往 ramonmods.com 充值后重试',
+    aiCreditsExhausted: 'AI 提供商的积分或配额已用完。请检查您的提供商账户，或配置其他提供商。',
     aiToolReadPages: '读取第 {start}-{end} 页',
     aiToolSearch: '搜索"{query}"（{count} 处）',
     aiToolGoto: '跳转到第 {page} 页',
@@ -1186,7 +1186,7 @@ export const strings = {
     aiNetworkError:
       'Network problem: could not reach the AI service. Check your connection and try again',
     aiCreditsExhausted:
-      'Your RamonMods credits have run out. Visit ramonmods.com to top up, then try again',
+      'Your AI provider credits or quota are exhausted. Check your provider account or configure another provider.',
     aiToolReadPages: 'Read pages {start}-{end}',
     aiToolSearch: 'Search "{query}" ({count} hits)',
     aiToolGoto: 'Go to page {page}',
@@ -1637,7 +1637,7 @@ export const strings = {
     aiNetworkError:
       'Sự cố mạng: không thể kết nối tới dịch vụ AI. Kiểm tra kết nối của bạn và thử lại',
     aiCreditsExhausted:
-      'RamonMods credits của bạn đã hết. Hãy truy cập ramonmods.com để nạp thêm rồi thử lại',
+      'Tín dụng hoặc hạn mức của nhà cung cấp AI của bạn đã hết. Hãy kiểm tra tài khoản nhà cung cấp hoặc cấu hình nhà cung cấp khác.',
     aiToolReadPages: 'Đọc các trang {start}-{end}',
     aiToolSearch: 'Tìm kiếm "{query}" ({count} kết quả)',
     aiToolGoto: 'Đi tới trang {page}',
@@ -2089,7 +2089,7 @@ export const strings = {
     aiNetworkError:
       'Ağ sorunu: AI hizmetine ulaşılamadı. Bağlantınızı kontrol edip yeniden deneyin',
     aiCreditsExhausted:
-      'RamonMods krediniz bitti. Yüklemek için ramonmods.com adresini ziyaret edin, sonra yeniden deneyin',
+      'Yapay zeka sağlayıcınızın kredileri veya kotası tükendi. Sağlayıcı hesabınızı kontrol edin veya başka bir sağlayıcı yapılandırın.',
     aiToolReadPages: '{start}-{end}. sayfaları oku',
     aiToolSearch: '"{query}" ara ({count} eşleşme)',
     aiToolGoto: '{page}. sayfaya git',
@@ -2539,7 +2539,7 @@ export const strings = {
     aiNetworkError:
       'Hálózati probléma: nem sikerült elérni az AI-szolgáltatást. Ellenőrizd a kapcsolatot, és próbáld újra',
     aiCreditsExhausted:
-      'Elfogytak a RamonMods-kreditek. Töltsd fel az egyenleged a ramonmods.com oldalon, majd próbáld újra',
+      'Az AI-szolgáltatód kreditjei vagy kvótája elfogyott. Ellenőrizd a szolgáltatói fiókodat, vagy állíts be másik szolgáltatót.',
     aiToolReadPages: 'Oldalak elolvasása: {start}-{end}',
     aiToolSearch: '„{query}” keresése ({count} találat)',
     aiToolGoto: 'Ugrás az oldalra: {page}',
@@ -2996,7 +2996,7 @@ export const strings = {
     aiNetworkError:
       'ネットワークに問題があり、AI サービスに接続できません。接続を確認して再試行してください',
     aiCreditsExhausted:
-      'RamonModsクレジットを使い切りました。ramonmods.com でチャージしてから再試行してください',
+      'AIプロバイダーのクレジットまたはクォータが不足しています。プロバイダーのアカウントを確認するか、別のプロバイダーを設定してください。',
     aiToolReadPages: 'ページ {start}-{end} を読む',
     aiToolSearch: '「{query}」を検索（{count} 件）',
     aiToolGoto: 'ページ {page} へ移動',
@@ -3446,7 +3446,7 @@ export const strings = {
     aiNetworkError:
       '네트워크에 문제가 있어 AI 서비스에 연결할 수 없습니다. 연결을 확인한 후 다시 시도해 주세요',
     aiCreditsExhausted:
-      'RamonMods 크레딧을 모두 사용했습니다. ramonmods.com에서 충전한 후 다시 시도해 주세요',
+      'AI 제공업체의 크레딧 또는 할당량이 소진되었습니다. 제공업체 계정을 확인하거나 다른 제공업체를 설정하세요.',
     aiToolReadPages: '{start}-{end}쪽 읽기',
     aiToolSearch: '"{query}" 검색 ({count}건)',
     aiToolGoto: '{page}쪽으로 이동',
@@ -3901,7 +3901,7 @@ export const strings = {
     aiNetworkError:
       'Problème réseau : impossible de joindre le service IA. Vérifiez votre connexion et réessayez',
     aiCreditsExhausted:
-      'Vos crédits RamonMods sont épuisés. Rechargez sur ramonmods.com puis réessayez',
+      'Les crédits ou le quota de votre fournisseur d\'IA sont épuisés. Vérifiez votre compte fournisseur ou configurez un autre fournisseur.',
     aiToolReadPages: 'Lire les pages {start}-{end}',
     aiToolSearch: 'Rechercher « {query} » ({count} occurrences)',
     aiToolGoto: 'Aller à la page {page}',
@@ -4362,7 +4362,7 @@ export const strings = {
     aiNetworkError:
       'Netzwerkproblem: Der KI-Dienst ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut',
     aiCreditsExhausted:
-      'Deine RamonMods-Credits sind aufgebraucht. Lade unter ramonmods.com auf und versuche es erneut',
+      'Die Credits oder das Kontingent Ihres KI-Anbieters sind aufgebraucht. Prüfen Sie Ihr Anbieter-Konto oder konfigurieren Sie einen anderen Anbieter.',
     aiToolReadPages: 'Seiten {start}-{end} lesen',
     aiToolSearch: '„{query}" suchen ({count} Treffer)',
     aiToolGoto: 'Zu Seite {page} springen',
@@ -4820,7 +4820,7 @@ export const strings = {
     aiNetworkError:
       'Problema de red: no se pudo conectar con el servicio de IA. Comprueba tu conexión e inténtalo de nuevo',
     aiCreditsExhausted:
-      'Tus créditos de RamonMods se han agotado. Recarga en ramonmods.com e inténtalo de nuevo',
+      'Los créditos o la cuota de tu proveedor de IA se agotaron. Revisa tu cuenta del proveedor o configura otro proveedor.',
     aiToolReadPages: 'Leer páginas {start}-{end}',
     aiToolSearch: 'Buscar «{query}» ({count} resultados)',
     aiToolGoto: 'Ir a la página {page}',
@@ -5272,7 +5272,7 @@ export const strings = {
     aiNetworkError:
       'เครือข่ายมีปัญหา ไม่สามารถเชื่อมต่อบริการ AI ได้ โปรดตรวจสอบการเชื่อมต่อแล้วลองใหม่',
     aiCreditsExhausted:
-      'เครดิต RamonMods ของคุณหมดแล้ว โปรดเติมเครดิตที่ ramonmods.com แล้วลองใหม่',
+      'เครดิตหรือโควตาของผู้ให้บริการ AI ของคุณหมดแล้ว ตรวจสอบบัญชีผู้ให้บริการหรือกำหนดค่าผู้ให้บริการรายอื่น',
     aiToolReadPages: 'อ่านหน้า {start}-{end}',
     aiToolSearch: 'ค้นหา "{query}" ({count} แห่ง)',
     aiToolGoto: 'ไปที่หน้า {page}',
@@ -5722,7 +5722,7 @@ export const strings = {
     aiNetworkError:
       'Masalah jaringan: tidak dapat terhubung ke layanan AI. Periksa koneksi Anda lalu coba lagi',
     aiCreditsExhausted:
-      'Kredit RamonMods Anda telah habis. Isi ulang di ramonmods.com lalu coba lagi',
+      'Kredit atau kuota penyedia AI Anda telah habis. Periksa akun penyedia Anda atau konfigurasikan penyedia lain.',
     aiToolReadPages: 'Baca halaman {start}-{end}',
     aiToolSearch: 'Cari "{query}" ({count} temuan)',
     aiToolGoto: 'Ke halaman {page}',
@@ -6176,7 +6176,7 @@ export const strings = {
     aiNetworkError:
       'Проблема с сетью: не удалось подключиться к сервису ИИ. Проверьте подключение и повторите попытку',
     aiCreditsExhausted:
-      'Кредиты RamonMods исчерпаны. Пополните баланс на ramonmods.com и повторите попытку',
+      'Кредиты или квота вашего провайдера ИИ исчерпаны. Проверьте аккаунт провайдера или настройте другого провайдера.',
     aiToolReadPages: 'Чтение страниц {start}-{end}',
     aiToolSearch: 'Поиск «{query}» ({count} совпадений)',
     aiToolGoto: 'Перейти на страницу {page}',
@@ -6626,7 +6626,7 @@ export const strings = {
     aiNetworkError:
       'مشكلة في الشبكة: تعذّر الوصول إلى خدمة الذكاء الاصطناعي. تحقق من الاتصال وحاول مجددًا',
     aiCreditsExhausted:
-      'نفدت أرصدة RamonMods لديك. يرجى إعادة الشحن عبر ramonmods.com ثم المحاولة مجددًا',
+      'نفدت أرصدة مزود الذكاء الاصطناعي أو حصته. تحقق من حساب المزود أو قم بإعداد مزود آخر.',
     aiToolReadPages: 'قراءة الصفحات {start}-{end}',
     aiToolSearch: 'بحث عن "{query}" ({count} نتيجة)',
     aiToolGoto: 'الانتقال إلى الصفحة {page}',
@@ -7078,7 +7078,7 @@ export const strings = {
     aiNetworkError:
       'Problema de rede: não foi possível conectar ao serviço de IA. Verifique sua conexão e tente novamente',
     aiCreditsExhausted:
-      'Seus créditos RamonMods acabaram. Recarregue em ramonmods.com e tente novamente',
+      'Os créditos ou a cota do seu provedor de IA acabaram. Verifique sua conta do provedor ou configure outro provedor.',
     aiToolReadPages: 'Ler páginas {start}-{end}',
     aiToolSearch: 'Pesquisar "{query}" ({count} ocorrências)',
     aiToolGoto: 'Ir para a página {page}',
@@ -7536,7 +7536,7 @@ export const strings = {
     aiNetworkError:
       'Problema di rete: impossibile raggiungere il servizio IA. Controlla la connessione e riprova',
     aiCreditsExhausted:
-      'I tuoi crediti RamonMods sono esauriti. Ricarica su ramonmods.com e riprova',
+      'I crediti o la quota del tuo provider IA sono esauriti. Controlla l’account del provider o configura un altro provider.',
     aiToolReadPages: 'Leggi le pagine {start}-{end}',
     aiToolSearch: 'Cerca "{query}" ({count} risultati)',
     aiToolGoto: 'Vai alla pagina {page}',
@@ -7991,7 +7991,7 @@ export const strings = {
     aiNetworkError:
       'Problem z siecią: nie można połączyć się z usługą AI. Sprawdź połączenie i spróbuj ponownie',
     aiCreditsExhausted:
-      'Twoje kredyty RamonMods wyczerpały się. Doładuj konto na ramonmods.com i spróbuj ponownie',
+      'Kredyty lub limit Twojego dostawcy AI zostały wyczerpane. Sprawdź konto dostawcy lub skonfiguruj innego dostawcę.',
     aiToolReadPages: 'Czytaj strony {start}-{end}',
     aiToolSearch: 'Szukaj „{query}" ({count} wyników)',
     aiToolGoto: 'Przejdź do strony {page}',
@@ -8445,7 +8445,7 @@ export const strings = {
     aiNetworkError:
       'Problém se sítí: službu AI se nepodařilo kontaktovat. Zkontrolujte připojení a zkuste to znovu',
     aiCreditsExhausted:
-      'Vaše kredity RamonMods byly vyčerpány. Navštivte ramonmods.com, dobijte je a zkuste to znovu',
+      'Kredity nebo kvóta vašeho poskytovatele AI byly vyčerpány. Zkontrolujte účet poskytovatele nebo nastavte jiného poskytovatele.',
     aiToolReadPages: 'Číst stránky {start}-{end}',
     aiToolSearch: 'Hledat „{query}“ ({count} výskytů)',
     aiToolGoto: 'Přejít na stránku {page}',
@@ -8900,7 +8900,7 @@ export const strings = {
     aiNetworkError:
       'Netwerkprobleem: kan de AI-service niet bereiken. Controleer je verbinding en probeer het opnieuw',
     aiCreditsExhausted:
-      'Je RamonMods-credits zijn op. Waardeer op via ramonmods.com en probeer het opnieuw',
+      'De credits of het quotum van je AI-provider zijn op. Controleer je provideraccount of configureer een andere provider.',
     aiToolReadPages: "Pagina's {start}-{end} lezen",
     aiToolSearch: 'Zoeken naar "{query}" ({count} resultaten)',
     aiToolGoto: 'Ga naar pagina {page}',
@@ -9354,7 +9354,7 @@ export const strings = {
     aiNetworkError:
       'Masalah rangkaian: tidak dapat menghubungi perkhidmatan AI. Semak sambungan anda dan cuba lagi',
     aiCreditsExhausted:
-      'Kredit RamonMods anda telah habis. Tambah nilai di ramonmods.com dan cuba lagi',
+      'Kredit atau kuota pembekal AI anda telah habis. Semak akaun pembekal anda atau konfigurasikan pembekal lain.',
     aiToolReadPages: 'Baca halaman {start}-{end}',
     aiToolSearch: 'Cari "{query}" ({count} padanan)',
     aiToolGoto: 'Pergi ke halaman {page}',
@@ -9800,7 +9800,7 @@ export const strings = {
     aiRegionError: 'ספק המודל הזה אינו פועל באזור הנוכחי שלך — בחרו מודל אחר או החליפו רשת',
     aiOverloadedError: 'שירות ה-AI עמוס כרגע — נסו שוב בעוד רגע',
     aiNetworkError: 'בעיית רשת: לא ניתן להתחבר לשירות ה-AI. בדוק את החיבור ונסה שוב',
-    aiCreditsExhausted: 'קרדיטי RamonMods שלך אזלו. טען מחדש ב-ramonmods.com ונסה שוב',
+    aiCreditsExhausted: 'הקרדיטים או המכסה של ספק הבינה המלאכותית אזלו. בדוק את חשבון הספק או הגדר ספק אחר.',
     aiToolReadPages: 'קריאת עמודים {start}-{end}',
     aiToolSearch: 'חיפוש "{query}" ({count} תוצאות)',
     aiToolGoto: 'מעבר לעמוד {page}',
@@ -10245,7 +10245,7 @@ export const strings = {
     aiNetworkError:
       'नेटवर्क समस्या: AI सेवा से कनेक्ट नहीं हो सका। कनेक्शन जांचें और फिर से प्रयास करें',
     aiCreditsExhausted:
-      'आपके RamonMods क्रेडिट समाप्त हो गए हैं। ramonmods.com पर रिचार्ज करें और फिर से प्रयास करें',
+      'आपके AI प्रदाता के क्रेडिट या कोटा समाप्त हो गए हैं। अपने प्रदाता खाते की जाँच करें या कोई अन्य प्रदाता कॉन्फ़िगर करें।',
     aiToolReadPages: 'पृष्ठ {start}-{end} पढ़ें',
     aiToolSearch: '"{query}" खोजें ({count} परिणाम)',
     aiToolGoto: 'पृष्ठ {page} पर जाएँ',
@@ -10689,7 +10689,7 @@ export const strings = {
     aiRegionError: '該模型的廠商不向目前地區提供服務，請換一個模型或切換網路',
     aiOverloadedError: 'AI 服務目前繁忙，請稍後重試',
     aiNetworkError: '網路有問題，無法連接 AI 服務。請檢查網路後重試',
-    aiCreditsExhausted: 'RamonMods 點數已用完，請前往 ramonmods.com 儲值後重試',
+    aiCreditsExhausted: 'आपके AI प्रदाता के क्रेडिट या कोटा समाप्त हो गए हैं। अपने प्रदाता खाते की जाँच करें या कोई अन्य प्रदाता कॉन्फ़िगर करें।',
     aiToolReadPages: '讀取第 {start}-{end} 頁',
     aiToolSearch: '搜尋「{query}」（{count} 處）',
     aiToolGoto: '跳至第 {page} 頁',

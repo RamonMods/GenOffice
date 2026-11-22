@@ -117,7 +117,7 @@ export const en = {
   aiErrNetwork:
     'Network problem: could not reach the AI service. Check your connection and try again',
   aiCreditsExhausted:
-    'Your RamonMods credits have run out. Visit ramonmods.com to top up, then try again',
+    'Your AI provider credits or quota are exhausted. Check your provider account or configure another provider.',
   aiErrRequestFailed: 'Failed to send request: {msg}',
   aiErrGenerateFailed: 'Generation failed',
   aiErrRegenFailed: 'Slide redo failed',

@@ -121,7 +121,7 @@ export const ko = {
   aiNetworkError:
     '네트워크에 문제가 있어 AI 서비스에 연결할 수 없습니다. 연결을 확인한 후 다시 시도해 주세요',
   aiCreditsExhausted:
-    'RamonMods 크레딧을 모두 사용했습니다. github.com/RamonMods/GenOffice에서 충전한 후 다시 시도해 주세요',
+    'AI 제공업체의 크레딧 또는 할당량이 소진되었습니다. 제공업체 계정을 확인하거나 다른 제공업체를 설정하세요.',
   aiSumReadAttachment: '첨부 파일 읽기',
   aiSumImageAttachment: '이미지 첨부 {name}',
   aiSumRead: '{name} 읽기',

@@ -68,7 +68,7 @@ export const vi = {
   aiOverloadedError: 'Dịch vụ AI hiện đang bận — vui lòng thử lại sau giây lát',
   aiNetworkError: 'Sự cố mạng: không thể kết nối với dịch vụ AI. Hãy kiểm tra kết nối và thử lại',
   aiCreditsExhausted:
-    'Điểm tín dụng GenOffice của bạn đã hết. Hãy truy cập ramonmods.com để nạp thêm rồi thử lại',
+    'Tín dụng hoặc hạn mức của nhà cung cấp AI của bạn đã hết. Hãy kiểm tra tài khoản nhà cung cấp hoặc cấu hình nhà cung cấp khác.',
   aiToolWorkbookContext: 'Đọc thông tin sổ làm việc',
   aiToolReadRange: 'Đọc dải ô',
   aiToolReadRangeOf: 'Đọc dải ô {range}',

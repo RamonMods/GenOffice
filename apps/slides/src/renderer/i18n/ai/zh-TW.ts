@@ -109,7 +109,7 @@ export const zhTW = {
   aiErrRegion: '該模型的廠商不向目前地區提供服務，請換一個模型或切換網路',
   aiErrOverloaded: 'AI 服務目前繁忙，請稍後重試',
   aiErrNetwork: '網路有問題，無法連接 AI 服務。請檢查網路後重試',
-  aiCreditsExhausted: 'RamonMods 點數已用完，請前往 ramonmods.com 儲值後重試',
+  aiCreditsExhausted: 'AI 提供商的點數或配額已用完。請檢查您的提供商帳戶，或設定其他提供商。',
   aiErrRequestFailed: '要求傳送失敗: {msg}',
   aiErrGenerateFailed: '產生失敗',
   aiErrRegenFailed: '重做頁面失敗',

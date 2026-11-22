@@ -127,7 +127,7 @@ export const de = {
   aiNetworkError:
     'Netzwerkproblem: Der KI-Dienst ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut',
   aiCreditsExhausted:
-    'Deine RamonMods-Credits sind aufgebraucht. Lade unter ramonmods.com auf und versuche es erneut',
+    'Die Credits oder das Kontingent Ihres KI-Anbieters sind aufgebraucht. Prüfen Sie Ihr Anbieter-Konto oder konfigurieren Sie einen anderen Anbieter.',
   aiSumReadAttachment: 'Anlage lesen',
   aiSumImageAttachment: 'Bildanlage {name}',
   aiSumRead: '{name} lesen',

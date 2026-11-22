@@ -126,7 +126,7 @@ export const pt = {
   aiNetworkError:
     'Problema de rede: não foi possível conectar ao serviço de IA. Verifique sua conexão e tente novamente',
   aiCreditsExhausted:
-    'Seus créditos RamonMods acabaram. Recarregue em github.com/RamonMods/GenOffice e tente novamente',
+    'Os créditos ou a cota do seu provedor de IA acabaram. Verifique sua conta do provedor ou configure outro provedor.',
   aiSumReadAttachment: 'Ler anexo',
   aiSumImageAttachment: 'Imagem anexada {name}',
   aiSumRead: 'Ler {name}',

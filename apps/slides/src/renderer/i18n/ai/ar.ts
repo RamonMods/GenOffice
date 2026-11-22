@@ -115,7 +115,7 @@ export const ar = {
   aiErrNetwork:
     'مشكلة في الشبكة: تعذّر الوصول إلى خدمة الذكاء الاصطناعي. تحقق من الاتصال وحاول مجددًا',
   aiCreditsExhausted:
-    'نفدت أرصدة RamonMods لديك. يرجى إعادة الشحن عبر ramonmods.com ثم المحاولة مجددًا',
+    'نفدت أرصدة مزود الذكاء الاصطناعي أو حصته. تحقق من حساب المزود أو قم بإعداد مزود آخر.',
   aiErrRequestFailed: 'فشل إرسال الطلب: {msg}',
   aiErrGenerateFailed: 'فشل الإنشاء',
   aiErrRegenFailed: 'فشلت إعادة إنشاء الصفحة',

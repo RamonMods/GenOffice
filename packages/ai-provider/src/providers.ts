@@ -8,6 +8,10 @@ import type { AiProviderId, AiProviderMeta, AiSettings, LegacyAiSettings } from 
  * RamonMods server-side LLM proxy endpoints. All three protocols share the
  * api_key from the ramonmods login; model ids follow the proxy's own naming scheme,
  * which differs from the official vendor ids.
+ *
+ * NOTE: the default ramonmods.com backend is not available in this build.
+ * The provider is kept for compatibility/BYOK-style custom routing, but it is
+ * not selected by default and callers should not depend on it.
  */
 export const RAMONMODS_LLM_BASE_URLS = {
   anthropic: 'https://ramonmods.com/api/anthropic',
@@ -583,44 +587,44 @@ export function defaultAiSettings(
     }
   }
   return {
-    provider: 'ramonmods',
+    provider: 'custom',
     providers,
-    ramonmodsToolsEnabled: true,
+    ramonmodsToolsEnabled: false,
     media: defaultAiMediaSettings(),
     search: defaultAiSearchSettings(),
   }
 }
 
-/** false only on an explicit opt-out; absent (pre-toggle settings files) means on */
+/** RamonMods cloud tools are disabled by default because the default cloud backend is unavailable. */
 export function cloudToolsEnabled(settings: Pick<AiSettings, 'ramonmodsToolsEnabled'>): boolean {
-  return settings.ramonmodsToolsEnabled !== false
+  return settings.ramonmodsToolsEnabled === true
 }
 
 /**
  * The stored provider selection is honored only when its config is usable
  * (api-key providers need a key and a model id; custom also needs a base URL).
  * Codex can auto-discover its executable. Anything else — including unknown
- * ids from a hand-edited
- * settings file — falls back to ramonmods, so a half-filled setup degrades
- * to the signed-in default instead of silently disabling AI.
+ * ids from a hand-edited settings file — falls back to custom, so a half-filled
+ * setup degrades to local/BYOK configuration instead of depending on the
+ * unavailable RamonMods cloud.
  */
 export function activeProvider(settings: AiSettings): AiProviderId {
   const provider = settings.provider
   if (provider === 'ramonmods') return 'ramonmods'
   const meta = AI_PROVIDERS.find((m) => m.id === provider)
   const config = settings.providers?.[provider]
-  if (!meta || !config) return 'ramonmods'
+  if (!meta || !config) return 'custom'
   if (meta.needsCliPath) return provider
   // Trim-aware: in-memory settings bypass the trimConfigs applied to
   // persisted files, and a whitespace-only key/URL/model is a 401, not a config.
-  if (!config.model?.trim()) return 'ramonmods'
+  if (!config.model?.trim()) return 'custom'
   if (meta.needsBaseUrl) {
     // Custom OpenAI-compatible endpoints (Ollama, LM Studio, vLLM) accept
     // anonymous requests: base URL + model suffice, the key stays optional.
-    if (!config.baseUrl?.trim()) return 'ramonmods'
+    if (!config.baseUrl?.trim()) return 'custom'
     return provider
   }
-  if (!config.apiKey?.trim()) return 'ramonmods'
+  if (!config.apiKey?.trim()) return 'custom'
   return provider
 }
 
@@ -759,7 +763,12 @@ export function resolveAiSettings(stored: unknown, defaults: AiSettings): AiSett
     providers: migrateRetiredModels(
       trimConfigs(mergeProviderConfigs(defaults.providers, storedProviders)),
     ),
-    ramonmodsToolsEnabled: settings.ramonmodsToolsEnabled ?? defaults.ramonmodsToolsEnabled ?? true,
+    ramonmodsToolsEnabled:
+      typeof settings.ramonmodsToolsEnabled === 'boolean'
+        ? settings.ramonmodsToolsEnabled
+        : typeof (settings as Record<string, unknown>).gskToolsEnabled === 'boolean'
+          ? ((settings as Record<string, unknown>).gskToolsEnabled as boolean)
+          : (defaults.ramonmodsToolsEnabled ?? false),
     media: resolveAiMediaSettings(settings.media ?? defaults.media),
     search: resolveAiSearchSettings(settings.search ?? defaults.search),
     // clamped on read: a hand-edited settings file with an absurd cap must not be

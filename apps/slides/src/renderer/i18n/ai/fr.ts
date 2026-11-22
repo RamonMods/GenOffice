@@ -119,7 +119,7 @@ export const fr = {
   aiErrNetwork:
     'Problème réseau : impossible de joindre le service IA. Vérifiez votre connexion et réessayez',
   aiCreditsExhausted:
-    'Vos crédits RamonMods sont épuisés. Rechargez sur ramonmods.com puis réessayez',
+    'Les crédits ou le quota de votre fournisseur d\'IA sont épuisés. Vérifiez votre compte fournisseur ou configurez un autre fournisseur.',
   aiErrRequestFailed: "Échec de l'envoi de la requête : {msg}",
   aiErrGenerateFailed: 'Échec de la génération',
   aiErrRegenFailed: 'Échec de la régénération de la diapositive',

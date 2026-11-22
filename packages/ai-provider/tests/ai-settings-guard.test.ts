@@ -51,6 +51,17 @@ describe('sanitizeAiSettings', () => {
     expect(sanitized!.maxOutputTokens).toBe(4096)
   })
 
+  it('normalizes legacy gskToolsEnabled to ramonmodsToolsEnabled', () => {
+    const sanitized = sanitizeAiSettings({
+      ...baseSettings(),
+      ramonmodsToolsEnabled: undefined,
+      gskToolsEnabled: false,
+    } as any)
+    expect(sanitized).not.toBeNull()
+    expect(sanitized!.ramonmodsToolsEnabled).toBe(false)
+    expect((sanitized as any)!.gskToolsEnabled).toBeUndefined()
+  })
+
   it('rejects payloads that are not the right shape at all', () => {
     for (const bad of [
       null,

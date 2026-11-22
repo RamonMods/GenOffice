@@ -4,7 +4,7 @@ export const th = {
   aiCollapsePanel: 'ยุบแผง',
   aiComposerPlaceholder: 'ให้ AI เขียนหรือแก้ไขเอกสาร…',
   aiCopyReplyTitle: 'คัดลอกคำตอบ',
-  aiCreditsExhausted: 'เครดิตหมด — เติมได้ที่ ramonmods.ai',
+  aiCreditsExhausted: 'เครดิตหรือโควตาของผู้ให้บริการ AI ของคุณหมดแล้ว ตรวจสอบบัญชีผู้ให้บริการหรือกำหนดค่าผู้ให้บริการรายอื่น',
   aiEmptyTitle: 'ออกแบบหน้าเว็บด้วย AI',
   aiEmptyBody:
     'หน้า Landing รายงาน หรือโปสเตอร์ก็ได้ บอกจุดประสงค์และกลุ่มเป้าหมาย AI จะเสนอบรีฟก่อน แล้วจึงสร้างหน้าให้',

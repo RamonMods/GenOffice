@@ -118,7 +118,7 @@ export const pt = {
   aiErrNetwork:
     'Problema de rede: não foi possível conectar ao serviço de IA. Verifique sua conexão e tente novamente',
   aiCreditsExhausted:
-    'Seus créditos RamonMods acabaram. Recarregue em ramonmods.com e tente novamente',
+    'Os créditos ou a cota do seu provedor de IA acabaram. Verifique sua conta do provedor ou configure outro provedor.',
   aiErrRequestFailed: 'Falha ao enviar a solicitação: {msg}',
   aiErrGenerateFailed: 'Falha na geração',
   aiErrRegenFailed: 'Falha ao refazer o slide',

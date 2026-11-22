@@ -127,7 +127,7 @@ export const it = {
   aiNetworkError:
     'Problema di rete: impossibile raggiungere il servizio IA. Controlla la connessione e riprova',
   aiCreditsExhausted:
-    'I tuoi crediti RamonMods sono esauriti. Ricarica su ramonmods.com e riprova',
+    'I crediti o la quota del tuo provider IA sono esauriti. Controlla l’account del provider o configura un altro provider.',
   aiSumReadAttachment: 'Lettura allegato',
   aiSumImageAttachment: 'Immagine allegata {name}',
   aiSumRead: 'Lettura di {name}',

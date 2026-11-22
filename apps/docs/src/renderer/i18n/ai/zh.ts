@@ -113,7 +113,7 @@ export const zh = {
   aiRegionError: '该模型的厂商不向当前地区提供服务，请换一个模型或切换网络',
   aiOverloadedError: 'AI 服务当前繁忙，请稍后重试',
   aiNetworkError: '网络有问题，无法连接 AI 服务。请检查网络后重试',
-  aiCreditsExhausted: 'RamonMods 积分已用完，请前往 ramonmods.com 充值后重试',
+  aiCreditsExhausted: 'AI 提供商的积分或配额已用完。请检查您的提供商账户，或配置其他提供商。',
   aiSumReadAttachment: '读取附件',
   aiSumImageAttachment: '图片附件 {name}',
   aiSumRead: '读取 {name}',
