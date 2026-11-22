@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F7FAFF"/>
+      <stop offset="55%" stop-color="#EEF4FF"/>
+      <stop offset="100%" stop-color="#E8F0FE"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#1E3A8A" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1340" cy="180" r="220" fill="#2563EB" opacity="0.06"/>
+  <circle cx="250" cy="760" r="260" fill="#06B6D4" opacity="0.07"/>
+  <g filter="url(#shadow)">
+    <rect x="120" y="110" width="1360" height="680" rx="28" fill="#FFFFFF" stroke="#DCE7F8"/>
+  </g>
+  <rect x="120" y="110" width="1360" height="72" rx="28" fill="#F8FBFF"/>
+  <rect x="120" y="154" width="1360" height="28" fill="#F8FBFF"/>
+  <circle cx="160" cy="146" r="8" fill="#FF5F57"/>
+  <circle cx="186" cy="146" r="8" fill="#FEBC2E"/>
+  <circle cx="212" cy="146" r="8" fill="#28C840"/>
+  <text x="180" y="270" font-family="Segoe UI, Arial, sans-serif" font-size="72" font-weight="700" fill="#0F172A">GenOffice</text>
+  <text x="180" y="322" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#475569">Sua suíte de escritório com IA open-source</text>
+  <rect x="180" y="350" width="360" height="6" rx="3" fill="url(#accent)"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="180" y="410" width="230" height="120" rx="18" fill="#EFF6FF" stroke="#BFDBFE"/>
+    <text x="205" y="455" font-size="28" font-weight="700" fill="#1D4ED8">Docs</text>
+    <text x="205" y="490" font-size="18" fill="#475569">.docx com IA</text>
+
+    <rect x="430" y="410" width="230" height="120" rx="18" fill="#ECFEFF" stroke="#A5F3FC"/>
+    <text x="455" y="455" font-size="28" font-weight="700" fill="#0E7490">Sheets</text>
+    <text x="455" y="490" font-size="18" fill="#475569">.xlsx e fórmulas</text>
+
+    <rect x="680" y="410" width="230" height="120" rx="18" fill="#F5F3FF" stroke="#DDD6FE"/>
+    <text x="705" y="455" font-size="28" font-weight="700" fill="#6D28D9">Slides</text>
+    <text x="705" y="490" font-size="18" fill="#475569">.pptx no canvas</text>
+
+    <rect x="930" y="410" width="230" height="120" rx="18" fill="#FFF7ED" stroke="#FED7AA"/>
+    <text x="955" y="455" font-size="28" font-weight="700" fill="#C2410C">PDF</text>
+    <text x="955" y="490" font-size="18" fill="#475569">editar e converter</text>
+  </g>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="180" y="590" width="980" height="120" rx="18" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="210" y="635" font-size="22" font-weight="600" fill="#0F172A">IA local por padrão em BYOK • formatos reais • open-source</text>
+    <text x="210" y="672" font-size="18" fill="#64748B">Mantido por RamonMods</text>
+  </g>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="1210" y="250" width="210" height="430" rx="20" fill="#0F172A"/>
+    <text x="1238" y="292" font-size="20" font-weight="700" fill="#F8FAFC">Painel IA</text>
+    <rect x="1235" y="320" width="160" height="44" rx="10" fill="#1E293B"/>
+    <text x="1250" y="348" font-size="14" fill="#CBD5E1">Resuma este doc</text>
+    <rect x="1235" y="378" width="160" height="44" rx="10" fill="#1E293B"/>
+    <text x="1250" y="406" font-size="14" fill="#CBD5E1">Crie uma tabela</text>
+    <rect x="1235" y="436" width="160" height="90" rx="10" fill="#2563EB"/>
+    <text x="1250" y="466" font-size="14" fill="#EFF6FF">Edite o arquivo,</text>
+    <text x="1250" y="488" font-size="14" fill="#EFF6FF">mostre o diff e</text>
+    <text x="1250" y="510" font-size="14" fill="#EFF6FF">deixe desfazer.</text>
+  </g>
+</svg>
