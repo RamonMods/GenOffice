@@ -146,15 +146,7 @@ import {
 } from './cloud-projects'
 import { handleDroppedFiles } from './dropped-files'
 import { collectLaunchPaths } from './launch-paths'
-import {
-  genofficeLogout,
-  ramonmodsLoginInfo,
-  loadGenofficeAuth,
-  setGenofficeLoginSuccessListener,
-  setGskProxyUrl,
-  startGenofficeLogin,
-  watchGskApiKey,
-} from '@genoffice/ai-search'
+import { setGskProxyUrl } from '@genoffice/ai-search'
 
 import {
   buildDocsMenu,
@@ -806,9 +798,7 @@ function initAnalytics(): void {
 // invite link, which stays out of this repo and rotates server-side.
 const GENTEAM_URL = 'https://genoffice.ai/join'
 
-// RamonMods credit-usage page opened from the account menu's credits row.
-// Kept main-side so the renderer never supplies the URL.
-const CREDIT_USAGE_URL = 'https://ramonmods.com/credit-usage'
+// Account credit-usage page is unavailable in this build.
 
 // ---- "star us on GitHub" prompt (see star-prompt.ts for the rules) ----
 
@@ -4999,52 +4989,21 @@ function statEntries(paths: string[]): Promise<RecentEntry[]> {
 }
 
 function registerHomeIpc(): void {
-  // signed-in means GenOffice's own device-code login; the shared ramonmods CLI key
-  // is only a silent fallback, deliberately not shown here to nudge users onto our key
-  ipcMain.handle(HOME_CHANNELS.accountStatus, async () => {
-    if (!loadGenofficeAuth()) return { loggedIn: false }
-    await proxyBootstrap
-    const info = await ramonmodsLoginInfo()
-    if (info) return { loggedIn: true, email: info.email, creditBalance: info.creditBalance }
-    // login-info answering 401 drops an expired key: report signed-out right away
-    return { loggedIn: !!loadGenofficeAuth() }
-  })
+  // Account/cloud login is disabled in this build: no external auth dependency.
+  ipcMain.handle(HOME_CHANNELS.accountStatus, async () => ({ loggedIn: false }))
 
-  // login progress is streamed to the requesting renderer; the auth URL is
-  // kept main-side so the "open manually" rescue never opens a renderer-supplied URL
-  let pendingLoginUrl = ''
   ipcMain.handle(HOME_CHANNELS.accountLogin, async (event) => {
-    analytics.track('login_click')
     const sender = event.sender
-    pendingLoginUrl = ''
-    await proxyBootstrap
-    const send = (payload: AccountLoginEvent) => {
-      if (!sender.isDestroyed()) sender.send(HOME_CHANNELS.accountLoginEvent, payload)
-    }
-    // open the browser on the first url event only; later events refresh the rescue URL
-    let opened = false
-    const launched = startGenofficeLogin((progress) => {
-      if (progress.url) {
-        pendingLoginUrl = progress.url
-        if (!opened) {
-          opened = true
-          void shell.openExternal(progress.url)
-        }
-      }
-      if (progress.phase === 'success') analytics.track('login_success')
-      send(progress)
-    })
-    if (launched) send({ phase: 'launched' })
-    return launched
+    const payload: AccountLoginEvent = { phase: 'error', error: 'unavailable' }
+    if (!sender.isDestroyed()) sender.send(HOME_CHANNELS.accountLoginEvent, payload)
+    return false
   })
 
   ipcMain.handle(HOME_CHANNELS.accountLoginOpenUrl, () => {
-    if (pendingLoginUrl) void shell.openExternal(pendingLoginUrl)
+    // no-op: account login disabled
   })
 
   ipcMain.handle(HOME_CHANNELS.accountLogout, async () => {
-    await genofficeLogout()
-    // the cloud projects cache belongs to the account that just signed out
     clearCloudProjectsStore(cloudProjectsStorePath())
   })
 
@@ -5861,9 +5820,7 @@ function registerHomeIpc(): void {
   })
 
   ipcMain.handle(HOME_CHANNELS.openCreditUsage, () => {
-    shell.openExternal(CREDIT_USAGE_URL).catch(() => {
-      // no browser handler available; nothing actionable for the user here
-    })
+    // Credit/account page disabled: no external dependency.
   })
 
   ipcMain.handle(HOME_CHANNELS.openGitHubRepo, () => {
@@ -7229,9 +7186,8 @@ async function installMainProcessProxy(): Promise<void> {
   ].find((v) => v && /^https?:\/\//.test(v))
   if (!proxyUrl) {
     try {
-      // PAC/rule proxies answer per-host: probe the host the login flow, the
-      // RamonMods LLM proxy and the ramonmods CLI actually target
-      const resolved = await session.defaultSession.resolveProxy('https://ramonmods.com/')
+      // PAC/rule proxies answer per-host: probe a generic HTTPS destination.
+      const resolved = await session.defaultSession.resolveProxy('https://example.com/')
       const m = /PROXY\s+([^;\s]+)/.exec(resolved)
       if (m) proxyUrl = `http://${m[1]}`
     } catch {
@@ -7239,8 +7195,8 @@ async function installMainProcessProxy(): Promise<void> {
     }
   }
   if (!proxyUrl) return
-  // spawned ramonmods CLI children (login/search/…) do their own fetch and never see
-  // the dispatcher below — forward the proxy to them via env
+  // spawned CLI children do their own fetch and never see the dispatcher below —
+  // forward the proxy to them via env
   setGskProxyUrl(proxyUrl)
   try {
     const { setGlobalDispatcher } = await import('undici')
@@ -7439,29 +7395,8 @@ app.whenReady().then(async () => {
     app.quit()
     return
   }
-  // another GenOffice-family app re-logging in rotates the shared key; the
-  // home page re-reads its account status. A logout that leaves only the
-  // ramonmods CLI fallback key is not a login
-  stopAuthWatch = watchGskApiKey(() => {
-    if (!loadGenofficeAuth()) return
-    for (const w of BrowserWindow.getAllWindows())
-      w.webContents.send(HOME_CHANNELS.accountLoginEvent, { phase: 'success' })
-  })
-  // A browser-approved login is otherwise invisible from the app: the approval
-  // happens in the system browser and nothing navigates back. Pull the window
-  // the user left back to the front and tell every view, so the surface they
-  // logged in from — an editor AI panel included — confirms the login at once.
-  setGenofficeLoginSuccessListener(() => {
-    if (shellWindow && !shellWindow.isDestroyed()) {
-      if (shellWindow.isMinimized()) shellWindow.restore()
-      shellWindow.show()
-      shellWindow.moveTop()
-      shellWindow.focus()
-    }
-    app.focus({ steal: true })
-    for (const wc of webContents.getAllWebContents())
-      if (!wc.isDestroyed()) wc.send('ai:ramonmods-login-landed')
-  })
+  // Account auth watchers disabled in this build (no external auth dependency).
+  stopAuthWatch = null
   // a registry left by a crashed instance must not block genoffice writes
   ownsOpenDocumentsRegistry = true
   publishOpenDocuments(OPEN_DOCUMENTS_PATH(), [])

@@ -35,7 +35,7 @@ import { loadPrintHtml } from '@genoffice/electron-utils/print-window'
 import { printOutcome, printJobOptions } from '@genoffice/electron-utils/print-job'
 import { printPdfViaCups, printToPdfOptionsFor } from '@genoffice/electron-utils/print-cups'
 import { queryPrinterOptions, DRIVER_OPTION_NAMES } from '@genoffice/electron-utils/printer-options'
-import { setGskProxyUrl } from '@genoffice/ai-search'
+// External AI-search proxy hook removed in this build.
 import {
   appMenuLabels,
   appMenuTemplate,
@@ -5344,9 +5344,6 @@ export function installSlidesMenu(): void {
  */
 async function applyMainProcessProxy(): Promise<void> {
   const setDispatcher = async (proxyUrl: string) => {
-    // spawned ramonmods CLI children do their own fetch and never see the
-    // dispatcher below — forward the proxy to them via env
-    setGskProxyUrl(proxyUrl)
     try {
       const { setGlobalDispatcher } = await import('undici')
       // loopback stays direct: a Custom provider on 127.0.0.1 must not ride
@@ -5372,9 +5369,8 @@ async function applyMainProcessProxy(): Promise<void> {
   // No environment variables: read the system proxy (requires app ready)
   try {
     await app.whenReady()
-    // PAC/rule proxies answer per-host: probe the host the login flow, the
-    // RamonMods LLM proxy and the ramonmods CLI actually target
-    const resolved = await electronSession.defaultSession.resolveProxy('https://ramonmods.com/')
+    // PAC/rule proxies answer per-host: probe a generic HTTPS destination.
+    const resolved = await electronSession.defaultSession.resolveProxy('https://example.com/')
     // resolveProxy returns strings like "PROXY 127.0.0.1:1087" or "DIRECT"
     const m = /PROXY\s+([^;]+)/i.exec(resolved || '')
     if (m) {

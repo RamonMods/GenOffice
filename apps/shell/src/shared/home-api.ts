@@ -329,7 +329,7 @@ export interface HomeApi {
   aiStreamCancel(requestId: string): Promise<void>
   /** subscribe to stream chunks; returns unsubscribe */
   onAiStream(handler: (chunk: AiStreamChunk) => void): () => void
-  /** RamonMods login state (the default provider's auth source) */
+  /** Account login state (the default provider's auth source) */
   aiGskStatus(): Promise<{ loggedIn: boolean; email?: string }>
   /** open an existing file, routing to the right module by extension */
   openHelp(): Promise<void>
@@ -398,9 +398,9 @@ export interface HomeApi {
   /** background checks download quietly and install on quit instead of showing the card (default off) */
   getSilentInstallUpdate(): Promise<boolean>
   setSilentInstallUpdate(on: boolean): Promise<void>
-  /** RamonMods account status (ramonmods login state; to be upgraded to a signup/account system later) */
+  /** Account status (login state; disabled/unavailable in builds without cloud auth) */
   accountStatus(): Promise<AccountStatus>
-  /** start RamonMods login (opens the browser; accountStatus flips to logged-in on completion); returns whether the launch succeeded */
+  /** start account login; returns whether the launch succeeded */
   accountLogin(): Promise<boolean>
   /** progress events for the login started via accountLogin; returns an unsubscribe */
   onAccountLogin(handler: (ev: AccountLoginEvent) => void): () => void
@@ -408,7 +408,7 @@ export interface HomeApi {
   onOpenSettings(handler: (target: { section: string }) => void): () => void
   /** re-open the pending login auth URL in the default browser (rescue when auto-open failed) */
   openLoginUrl(): Promise<void>
-  /** log out (clears the saved API key; the login state is shared globally with the ramonmods CLI) */
+  /** log out (clears the saved account auth state) */
   accountLogout(): Promise<void>
   /** app version (from package.json / electron app.getVersion) */
   getAppVersion(): Promise<string>
@@ -494,7 +494,7 @@ export interface HomeApi {
   onDocumentThemeChanged(handler: (theme: DocTheme) => void): () => void
   /** open the GenTeam community page in the default browser */
   openGenTeam(): Promise<void>
-  /** open the RamonMods credit-usage page in the default browser */
+  /** open the account credit-usage page in the default browser (no-op when unavailable) */
   openCreditUsage(): Promise<void>
   /** open the public GitHub repository in the default browser */
   openGitHubRepo(): Promise<void>
@@ -505,19 +505,19 @@ export interface HomeApi {
   starPromptShouldShow(): Promise<StarPromptShow>
   /** user reacted to the star prompt; 'starred' resolves it permanently */
   starPromptAction(action: StarPromptAction): Promise<void>
-  /** locally stored full cloud project list (instant; null when no store or logged out) */
+  /** locally stored full cloud project list (instant; null/unavailable when disabled) */
   cloudProjectsCached(): Promise<CloudProjectsSnapshot | null>
-  /** sync the full list from RamonMods and return it (1 request when nothing changed); null when the sync failed */
+  /** sync cloud projects; returns unavailable snapshot when cloud projects are disabled */
   cloudProjectsSync(): Promise<CloudProjectsSnapshot | null>
-  /** open a cloud project (relative '/agents?id=...' URL) in the default browser */
+  /** open a cloud project in the default browser (no-op when unavailable) */
   openCloudProject(projectUrl: string): Promise<void>
-  /** AI settings (userData/ai-settings.json, shared by every editor); the ramonmods key never appears here */
+  /** AI settings (userData/ai-settings.json, shared by every editor); external account keys never appear here */
   getAiSettings(): Promise<AiSettings>
   /** persist AI settings; every renderer gets ai:settings-changed and re-reads */
   setAiSettings(settings: AiSettings): Promise<void>
   /** ai-settings.json was rewritten by any renderer (composer model chip, another window) */
   onAiSettingsChanged(handler: () => void): () => void
-  /** provider catalog with each fixed endpoint's default base URL (empty for ramonmods/custom) */
+  /** provider catalog with each fixed endpoint's default base URL (empty for account/custom) */
   getAiProviders(): AiCatalogEntry[]
   /** live Codex model catalog discovered through the current or overridden app-server */
   getCodexModels(cliPath?: string): Promise<CodexModelCatalog>
@@ -531,14 +531,14 @@ export interface HomeApi {
   testAiSettings(settings: AiSettings): Promise<AiChatResponse>
   /** image generation / media analysis provider catalog */
   getAiMediaProviders(): AiMediaProviderMeta[]
-  /** credential check for a (possibly unsaved) media provider; ramonmods reports the ramonmods login state */
+  /** credential check for a (possibly unsaved) media provider */
   testAiMediaSettings(input: {
     provider: AiMediaProviderId
     config: AiMediaProviderConfig
   }): Promise<{ ok: boolean; error?: string }>
   /** web search provider catalog */
   getAiSearchProviders(): AiSearchProviderMeta[]
-  /** one minimal query against the given key (ramonmods reports the ramonmods login state) */
+  /** one minimal query against the given key */
   testAiSearchSettings(input: {
     provider: AiSearchProviderId
     apiKey: string
@@ -563,7 +563,7 @@ export interface StarPromptShow {
 
 export type CloudProjectKind = 'docs' | 'sheets' | 'slides'
 
-/** a RamonMods web project shown in the home cloud section */
+/** a cloud project entry shown in the home cloud section */
 export interface CloudProjectEntry {
   projectId: string
   title: string
@@ -571,13 +571,13 @@ export interface CloudProjectEntry {
   kind: CloudProjectKind | 'other'
   /** creation time, ms since epoch (0 when unparsable) */
   ctimeMs: number
-  /** relative ramonmods.com URL ('/agents?id=...') */
+  /** relative project URL */
   projectUrl: string
 }
 
 /** full local copy of the cloud project list; filtering/paging are client-side */
 export interface CloudProjectsSnapshot {
-  /** false when ramonmods is unavailable (CLI missing or not logged in) */
+  /** false when cloud projects are unavailable */
   available: boolean
   /** all projects, newest first */
   projects: CloudProjectEntry[]
@@ -586,19 +586,19 @@ export interface CloudProjectsSnapshot {
 }
 
 export interface AccountStatus {
-  /** ramonmods is installed and logged in */
+  /** account is logged in */
   loggedIn: boolean
   email?: string
-  /** remaining RamonMods credits (absent when the balance query failed) */
+  /** remaining credits (absent when unavailable) */
   creditBalance?: number
 }
 
-/** login flow progress pushed from main (ramonmods login CLI output) */
+/** login flow progress pushed from main */
 export interface AccountLoginEvent {
   phase: 'launched' | 'url' | 'success' | 'error'
   url?: string
   expiresInSec?: number
-  /** 'network' | 'expired' | raw CLI error text */
+  /** 'network' | 'expired' | raw error text */
   error?: string
 }
 

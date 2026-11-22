@@ -1,9 +1,12 @@
-# Optional native admission
+# Optional native admission (legado, não utilizada)
 
-The auth module's explicit-cookie API-key create/revoke requests use cookie-v1
-admission by default (gen-spark#72015). `GENOFFICE_NATIVE_WAF=0` is the rollback:
+> Esta admissão WAF/infra legada não é mais usada no fluxo atual. O documento
+> permanece apenas como referência histórica da implementação anterior.
+
+The auth module's explicit-cookie API-key create/revoke requests used cookie-v1
+admission by default (gen-spark#72015). `GENOFFICE_NATIVE_WAF=0` was the rollback:
 no issuer request, wait, timer or transport change. Device-code polling and the
-Bearer session exchange stay unchanged, as do all provider/agent/subprocess requests.
+Bearer session exchange stayed unchanged, as did all provider/agent/subprocess requests.
 
 The helper preserves legacy headers, binds one exact HTTPS origin and session
 cookie, coalesces requests and fences logout/reload by generation. Issuer
@@ -31,6 +34,6 @@ own `GSK_NATIVE_WAF` switch (CLI ≥ 1.15.1), not this one.
 The prod edge token rules are gen-spark#77242; without them the pass is ignored
 at the edge and legacy rules still apply.
 
-Admitted hosts come from configuration, not source: the `GSK_BASE_URL` host
-(default `ramonmods.com`) plus any comma-separated hostnames in
-`GENOFFICE_NATIVE_WAF_HOSTS`. Requests to any other origin are sent unchanged.
+Admitted hosts came from configuration, not source: the `GSK_BASE_URL` host
+plus any comma-separated hostnames in `GENOFFICE_NATIVE_WAF_HOSTS`. Requests to
+any other origin were sent unchanged.
