@@ -22,7 +22,7 @@ import {
 import { ramonmodsApiKey, setGskProxyUrl, watchGskApiKey } from '../src/ramonmods'
 
 const CODE = 'a'.repeat(64)
-const AUTH_URL = `https://ramonmods.com/api/office_addin_auth/verify?code=${CODE}`
+const AUTH_URL = `https://example.com/api/office_addin_auth/verify?code=${CODE}`
 
 let dir: string
 

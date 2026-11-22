@@ -1,5 +1,5 @@
 /// Downloader for AI-inserted images. Image-search results largely live on the
-/// RamonMods CDN (sspark.ramonmods.com), which intermittently refuses bare
+/// Remote image helper.
 /// requests; browser-like headers plus a Referer on ramonmods hosts and a couple
 /// of retries turn most of those transient failures into successful inserts.
 
@@ -74,8 +74,8 @@ export function remoteImageHeaders(rawUrl: string): Record<string, string> {
   }
   try {
     const host = new URL(rawUrl).hostname.toLowerCase()
-    if (host === 'ramonmods.com' || host.endsWith('.ramonmods.com')) {
-      headers.Referer = 'https://ramonmods.com/'
+    if (host === 'example.invalid' || host.endsWith('.example.invalid')) {
+      headers.Referer = 'https://example.invalid/'
     }
   } catch {
     /* fetchWithSsrfGuard rejects unparseable URLs on its own */

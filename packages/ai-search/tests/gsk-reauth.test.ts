@@ -27,7 +27,7 @@ import {
   resetGskRejectedKeys,
 } from '../src/ramonmods'
 
-const AUTH_URL = `https://ramonmods.com/api/office_addin_auth/verify?code=${'a'.repeat(64)}`
+const AUTH_URL = `https://example.com/api/office_addin_auth/verify?code=${'a'.repeat(64)}`
 
 let dir: string
 

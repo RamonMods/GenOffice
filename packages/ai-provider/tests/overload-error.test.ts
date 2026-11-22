@@ -33,7 +33,7 @@ describe('isAiOverloadedError', () => {
   it('never claims credits-exhausted notices (a separate error class)', () => {
     expect(
       isAiOverloadedError(
-        new Error('Your RamonMods credits have been exhausted. Visit ramonmods.com/pricing to top up'),
+        new Error('Your RamonMods credits have been exhausted. Visit example.com/pricing to top up'),
       ),
     ).toBe(false)
   })

@@ -1375,7 +1375,7 @@ describe('streamForProvider: ramonmods', () => {
       cb,
     ).catch(() => {})
     expect(fetchMock).toHaveBeenCalledWith(
-      'https://ramonmods.com/api/anthropic/v1/messages',
+      'https://example.com/api/anthropic/v1/messages',
       expect.objectContaining({ headers: expect.objectContaining({ 'x-api-key': 'ramonmods-k' }) }),
     )
   })
@@ -1394,7 +1394,7 @@ describe('streamForProvider: ramonmods', () => {
       cb,
     ).catch(() => {})
     expect(fetchMock).toHaveBeenCalledWith(
-      'https://ramonmods.com/api/llm_proxy/v1/chat/completions',
+      'https://example.com/api/llm_proxy/v1/chat/completions',
       expect.anything(),
     )
   })
@@ -1482,7 +1482,7 @@ describe('streamForProvider: ramonmods', () => {
 
 describe('streamForProvider: 200 + non-stream JSON instead of SSE', () => {
   const creditsNotice =
-    'Your RamonMods credits have been exhausted. Please visit https://ramonmods.com/pricing to purchase more credits.'
+    'Your RamonMods credits have been exhausted. Please visit https://example.com/pricing to purchase more credits.'
   const json = (value: unknown) =>
     new Response(JSON.stringify(value), {
       status: 200,
@@ -1517,7 +1517,7 @@ describe('streamForProvider: 200 + non-stream JSON instead of SSE', () => {
           candidates: [
             {
               content: {
-                parts: [{ text: 'Out of quota, visit https://ramonmods.com/pricing to top up.' }],
+                parts: [{ text: 'Out of quota, visit https://example.com/pricing to top up.' }],
               },
             },
           ],

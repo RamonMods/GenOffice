@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { NativeWaf, nativeWaf, nativeWafHosts } from '../src/native-waf'
 import { reloadGenofficeAuth } from '../src/genoffice-auth'
 
-const url = 'https://ramonmods.com/api/api_tokens/create'
+const url = 'https://example.com/api/api_tokens/create'
 const pass = () => `${Math.floor(Date.now() / 1000)}-${'a'.repeat(43)}`
 const init = () => ({ headers: { Cookie: 'session_id=original', 'GS-Test': 'legacy' } })
 
@@ -87,13 +87,13 @@ describe('optional cookie admission', () => {
   })
 
   it('admitted hosts come from the configured base URL and the extra-hosts setting', async () => {
-    expect([...nativeWafHosts({})]).toEqual(['ramonmods.com'])
+    expect([...nativeWafHosts({})]).toEqual(['example.com'])
     expect([...nativeWafHosts({ RAMONMODS_BASE_URL: 'https://office.example.com/' })]).toEqual([
       'office.example.com',
     ])
     expect([
       ...nativeWafHosts({ GENOFFICE_NATIVE_WAF_HOSTS: ' Tenant.Example.com, ,second.example.com' }),
-    ]).toEqual(['ramonmods.com', 'tenant.example.com', 'second.example.com'])
+    ]).toEqual(['example.com', 'tenant.example.com', 'second.example.com'])
 
     const admission = new NativeWaf()
     const token = pass()

@@ -145,13 +145,13 @@ describe('chatForProvider', () => {
     vi.stubGlobal('fetch', fetchMock)
     await chatForProvider('ramonmods', { apiKey: 'ramonmods-k', model: 'claude-opus-4-7' }, 'sys', 'hi')
     expect(fetchMock).toHaveBeenCalledWith(
-      'https://ramonmods.com/api/anthropic/v1/messages',
+      'https://example.com/api/anthropic/v1/messages',
       expect.anything(),
     )
     fetchMock.mockResolvedValue(jsonResponse({ choices: [{ message: { content: 'ok' } }] }))
     await chatForProvider('ramonmods', { apiKey: 'ramonmods-k', model: 'gpt-5.2' }, 'sys', 'hi')
     expect(fetchMock).toHaveBeenLastCalledWith(
-      'https://ramonmods.com/api/llm_proxy/v1/chat/completions',
+      'https://example.com/api/llm_proxy/v1/chat/completions',
       expect.anything(),
     )
   })

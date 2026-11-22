@@ -16,7 +16,7 @@ const PASS_HEADER = 'X-RamonMods-Token-Pass'
  * extra deployment hosts; no hostlist lives in source.
  */
 export function nativeAdmissionHosts(env: NodeJS.ProcessEnv = process.env): Set<string> {
-  const hosts = new Set(['ramonmods.com'])
+  const hosts = new Set<string>()
   try {
     if (env.RAMONMODS_BASE_URL) hosts.add(new URL(env.RAMONMODS_BASE_URL).hostname)
   } catch {
