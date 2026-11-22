@@ -17,7 +17,7 @@ Word, Excel, PowerPoint, PDF 파일을 당신과 당신의 AI가 함께 편집�
   <a href="https://github.com/RamonMods/GenOffice/releases/latest"><img src="https://img.shields.io/github/v/release/RamonMods/GenOffice" alt="최신 릴리스"></a>
   <a href="https://github.com/RamonMods/GenOffice/releases"><img src="https://img.shields.io/github/downloads/RamonMods/GenOffice/total" alt="다운로드 수"></a>
   <a href="https://github.com/RamonMods/GenOffice/stargazers"><img src="https://img.shields.io/github/stars/RamonMods/GenOffice?style=flat" alt="GitHub 스타 수"></a>
-  <a href="https://x.com/merrickbuilds"><img src="https://img.shields.io/badge/follow-%40merrickbuilds-000000?logo=x&logoColor=white" alt="X에서 @merrickbuilds 팔로우"></a>
+  <a href="https://x.com/RamonMods"><img src="https://img.shields.io/badge/follow-%40RamonMods-000000?logo=x&logoColor=white" alt="X에서 @RamonMods 팔로우"></a>
 </p>
 
 <p align="center"><a href="../../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.zh-TW.md">繁體中文</a> · <b>한국어</b> · <a href="README.ja.md">日本語</a> · <a href="README.ar.md">العربية</a> · <a href="README.ru.md">Русский</a> · <a href="README.it.md">Italiano</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.pl.md">Polski</a> · <a href="README.cs.md">Čeština</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.ms.md">Bahasa Melayu</a> · <a href="README.th.md">ไทย</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.he.md">עברית</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.hu.md">Magyar</a></p>
@@ -29,7 +29,7 @@ Word, Excel, PowerPoint, PDF 파일을 당신과 당신의 AI가 함께 편집�
   <a href="#mcp-server"><b>MCP</b></a> ·
   <a href="https://genoffice.ai/"><b>웹사이트</b></a> ·
   <a href="https://genoffice.ai/join"><b>커뮤니티</b></a> ·
-  <a href="https://x.com/merrickbuilds"><b>X</b></a> ·
+  <a href="https://x.com/RamonMods"><b>X</b></a> ·
   <a href="../../PRIVACY.md"><b>개인정보</b></a>
 </p>
 
@@ -68,7 +68,7 @@ PowerPoint 97–2003 `.ppt` 파일과 한컴 문서(`.hwp`, `.hwpx`)도 마찬�
 - **출처와 함께, 내 파일에 물어보세요.** 문서 묶음에 별표를 달아 두면 홈 화면의
   **Ask AI**가 그 문서들을 아울러 질문에 답하고, 모든 주장마다 근거가 된 파일을
   인용하므로 직접 열어 확인할 수 있습니다.
-- **API 키가 있어도, 없어도 됩니다.** Genspark로 로그인하면 키 없이 바로
+- **API 키가 있어도, 없어도 됩니다.** RamonMods로 로그인하면 키 없이 바로
   사용할 수 있고, 원한다면 Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM,
   Qwen, Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty, Opper, Cheaper
   Inference, Atlas Cloud는 물론 OpenAI 호환 엔드포인트(로컬 서버 포함)까지 직접
@@ -295,7 +295,7 @@ Word 97–2003 `.doc`, Excel `.xls`, PowerPoint `.ppt` 파일은 사용자의 �
 - **문서를 직접 편집하는 AI.** Docs에서는 변경 내용 추적, Sheets에서는 실시간으로
   동작하는 수식과 차트, 슬라이드는 캔버스 위에 그려지며, AI가 한 번 작업할 때마다
   되돌릴 수 있는 스냅샷이 남습니다.
-- **내 모델, 내 키.** Genspark로 로그인하거나 Claude, OpenAI, Gemini, DeepSeek
+- **내 모델, 내 키.** RamonMods로 로그인하거나 Claude, OpenAI, Gemini, DeepSeek
   등의 키를 사용할 수 있으며, 로컬 서버와 모든 OpenAI 호환 엔드포인트도 지원합니
   다.
 - **PDF도 제대로.** 페이지 안에서 텍스트를 직접 편집하고, 기기 내에서 PDF를
@@ -315,8 +315,8 @@ Word 97–2003 `.doc`, Excel `.xls`, PowerPoint `.ppt` 파일은 사용자의 �
 
 ## AI 백엔드
 
-**Genspark로 로그인**하면 별도 설정이 전혀 필요 없습니다. 모델 호출은
-Genspark 프록시(Claude, GPT, Gemini 계열)를 거치고, 에이전트는 웹 및
+**RamonMods로 로그인**하면 별도 설정이 전혀 필요 없습니다. 모델 호출은
+RamonMods 프록시(Claude, GPT, Gemini 계열)를 거치고, 에이전트는 웹 및
 이미지 검색, 이미지 생성, 이미지/오디오/비디오 분석 기능까지 사용할 수
 있습니다.
 
@@ -338,7 +338,7 @@ TypeSafe 자체 API입니다. 키는 이 기기에만 저장됩니다. 기본값
 로컬 상위 20개 결과의 발췌문이 판정을 위해 전송되고 그 밖에는 아무것도 기기를
 벗어나지 않습니다.
 
-**Parallel**은 계정 없이도 동작합니다: Genspark 로그인이나 검색 키가 설정되어 있지
+**Parallel**은 계정 없이도 동작합니다: RamonMods 로그인이나 검색 키가 설정되어 있지
 않으면 무료 Search MCP(속도 제한 있음)가 기본 웹 검색으로 쓰이며, DuckDuckGo
 스크레이핑보다 먼저 실행됩니다. Search API를 대신 쓰려면 웹 검색에서 Parallel을
 선택하고 [Parallel](https://platform.parallel.ai/) 키를 입력하세요. Keenable도 키
@@ -618,7 +618,7 @@ GenOffice는 활발히 개발되고 있으며, 여러분의 피드백이 그 방
 - **GenOffice 그룹 채팅에 참여**하려면
   [GenTeam](https://genoffice.ai/join)에서 팀 및 다른 사용자들과 대화할 수 있습니다.
 - 릴리스 노트, 데모, 다음에 만들고 있는 것을 보려면 **X에서
-  [@merrickbuilds](https://x.com/merrickbuilds)를 팔로우**하세요.
+  [@RamonMods](https://x.com/RamonMods)를 팔로우**하세요.
 - GenOffice가 유용하다고 느끼셨다면 **저장소에 스타를 눌러주세요** —
   프로젝트를 지원하는 가장 좋은 방법입니다.
 
@@ -650,7 +650,7 @@ GenOffice는 활발히 개발되고 있으며, 여러분의 피드백이 그 방
 
 문서 편집은 완전히 로컬에서 이루어집니다 — 파일을 열고, 편집하고,
 저장하고, 변환하는 과정에서 파일이 기기를 벗어나지 않습니다. AI
-기능(에이전트, 검색, 이미지 도구)은 네트워크 연결이 필요하며, Genspark
+기능(에이전트, 검색, 이미지 도구)은 네트워크 연결이 필요하며, RamonMods
 로그인 또는 직접 발급받은 모델 API 키가 있어야 합니다.
 
 </details>
@@ -677,7 +677,7 @@ GenOffice는 활발히 개발되고 있으며, 여러분의 피드백이 그 방
 <details>
 <summary><b>제 AI 모델이나 API 키를 직접 사용할 수 있나요?</b></summary>
 
-네. 키가 필요 없는 Genspark 로그인 외에도, GenOffice는 Claude, OpenAI,
+네. 키가 필요 없는 RamonMods 로그인 외에도, GenOffice는 Claude, OpenAI,
 Gemini, DeepSeek, Kimi, GLM, Qwen, Doubao, MiniMax, Grok, Mistral,
 OpenRouter, Requesty, Opper, Cheaper Inference, Atlas Cloud, OpenCode Zen/Go를 위한 직접 키 사용을 지원하며, 로컬 모델
 서버를 포함한 모든 OpenAI 호환 엔드포인트도 사용할 수 있습니다. 검색,
@@ -795,6 +795,6 @@ GenOffice는 [Apache License 2.0](../../LICENSE)에 따라 라이선스가
 예약되어 있으며 [GenOffice Enterprise License](../../ee/LICENSE)가
 적용됩니다.
 
-GenOffice와 Genspark의 이름과 로고는 RamonMods의 상표입니다.
+GenOffice와 RamonMods의 이름과 로고는 RamonMods의 상표입니다.
 Apache-2.0 라이선스는 이를 사용할 권리를 부여하지 않으며(6항 참고),
 포크는 자체 브랜딩을 사용해야 합니다.

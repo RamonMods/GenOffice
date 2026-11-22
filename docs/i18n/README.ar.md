@@ -17,7 +17,7 @@
   <a href="https://github.com/RamonMods/GenOffice/releases/latest"><img src="https://img.shields.io/github/v/release/RamonMods/GenOffice" alt="أحدث إصدار"></a>
   <a href="https://github.com/RamonMods/GenOffice/releases"><img src="https://img.shields.io/github/downloads/RamonMods/GenOffice/total" alt="عدد التنزيلات"></a>
   <a href="https://github.com/RamonMods/GenOffice/stargazers"><img src="https://img.shields.io/github/stars/RamonMods/GenOffice?style=flat" alt="نجوم GitHub"></a>
-  <a href="https://x.com/merrickbuilds"><img src="https://img.shields.io/badge/follow-%40merrickbuilds-000000?logo=x&logoColor=white" alt="تابع @merrickbuilds على X"></a>
+  <a href="https://x.com/RamonMods"><img src="https://img.shields.io/badge/follow-%40RamonMods-000000?logo=x&logoColor=white" alt="تابع @RamonMods على X"></a>
 </p>
 
 <p align="center"><a href="../../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.zh-TW.md">繁體中文</a> · <a href="README.ko.md">한국어</a> · <a href="README.ja.md">日本語</a> · <b>العربية</b> · <a href="README.ru.md">Русский</a> · <a href="README.it.md">Italiano</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.pl.md">Polski</a> · <a href="README.cs.md">Čeština</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.ms.md">Bahasa Melayu</a> · <a href="README.th.md">ไทย</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.he.md">עברית</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.hu.md">Magyar</a></p>
@@ -29,7 +29,7 @@
   <a href="#mcp-server"><b>MCP</b></a> ·
   <a href="https://genoffice.ai/"><b>الموقع الإلكتروني</b></a> ·
   <a href="https://genoffice.ai/join"><b>المجتمع</b></a> ·
-  <a href="https://x.com/merrickbuilds"><b>X</b></a> ·
+  <a href="https://x.com/RamonMods"><b>X</b></a> ·
   <a href="../../PRIVACY.md"><b>الخصوصية</b></a>
 </p>
 
@@ -66,7 +66,7 @@ GenOffice بديل مجاني ومفتوح المصدر لـ Microsoft Office ع
 - **اسأل ملفاتك، مع ذكر المصادر.** ميّز مجموعة من المستندات بنجمة، فتجيب ميزة
   **Ask AI** في الشاشة الرئيسية عن الأسئلة عبرها جميعًا، مع الاستشهاد بالملف
   الذي يستند إليه كل ادّعاء لتتمكّن من فتحه والتحقّق.
-- **مفاتيحك أو بلا مفاتيح.** سجّل الدخول بواسطة Genspark لتجنّب إدارة المفاتيح،
+- **مفاتيحك أو بلا مفاتيح.** سجّل الدخول بواسطة RamonMods لتجنّب إدارة المفاتيح،
   أو استخدم مفتاحك الخاص مع Claude أو OpenAI أو Gemini أو DeepSeek أو Kimi أو
   GLM أو Qwen أو Doubao أو MiniMax أو Grok أو Mistral أو OpenRouter أو Requesty أو Opper أو
   Cheaper Inference أو Atlas Cloud، أو أي
@@ -295,7 +295,7 @@ Desktop وCursor وأي عميل MCP آخر تشغيل `genoffice mcp` بأنف�
 - **ذكاء اصطناعي يحرِّر المستند نفسه.** تتبّع التغييرات في Docs، وصِيَغ ورسوم
   بيانية حيّة في Sheets، وشرائح تُرسم مباشرة على لوحة الرسم، وكل جولة AI هي لقطة
   يمكنك التراجع إليها.
-- **نموذجك، مفتاحك.** سجّل الدخول عبر Genspark، أو استخدم مفتاحك الخاص مع
+- **نموذجك، مفتاحك.** سجّل الدخول عبر RamonMods، أو استخدم مفتاحك الخاص مع
   Claude أو OpenAI أو Gemini أو DeepSeek وغيرها، مع دعم الخوادم المحلية وأي نقطة
   نهاية متوافقة مع OpenAI.
 - **PDF يُعالَج كما ينبغي.** حرِّر النص داخل الصفحة مباشرة، وحوِّل PDF إلى Word
@@ -314,8 +314,8 @@ Desktop وCursor وأي عميل MCP آخر تشغيل `genoffice mcp` بأنف�
 
 ## خلفيات الذكاء الاصطناعي
 
-**سجّل الدخول بواسطة Genspark** فلا تحتاج إلى أي إعداد: تُوجَّه طلبات النماذج
-عبر بروكسي Genspark (عائلات Claude و GPT و Gemini)، ويحصل الوكلاء على البحث
+**سجّل الدخول بواسطة RamonMods** فلا تحتاج إلى أي إعداد: تُوجَّه طلبات النماذج
+عبر بروكسي RamonMods (عائلات Claude و GPT و Gemini)، ويحصل الوكلاء على البحث
 عبر الويب والصور، وتوليد الصور، وتحليل الصور والصوت والفيديو.
 
 **أو استخدم مفتاحك الخاص.** تسرد صفحة Settings → AI مزوِّدين مثل Claude
@@ -342,7 +342,7 @@ OpenAI (عنوان أساسي + مفتاح)، بما في ذلك خوادم ال
 نتيجة محلية للتقييم ولا يغادر الجهاز أي شيء آخر.
 
 يعمل **Parallel** دون حساب: خدمة Search MCP المجانية التابعة له (محدودة
-المعدّل) هي البحث الافتراضي عبر الويب متى لم يكن هناك تسجيل دخول إلى Genspark
+المعدّل) هي البحث الافتراضي عبر الويب متى لم يكن هناك تسجيل دخول إلى RamonMods
 أو مفتاح بحث مُعدّ، وتعمل قبل اللجوء إلى استخلاص نتائج DuckDuckGo. اختر
 Parallel تحت Web search وأدخل مفتاح [Parallel](https://platform.parallel.ai/)
 لاستخدام Search API بدلًا من ذلك. وKeenable كذلك لا يحتاج إلى مفتاح؛ فالمفتاح
@@ -622,7 +622,7 @@ GenOffice قيد تطوير نشط، وملاحظاتك هي ما يشكِّل �
   [GitHub Issues](https://github.com/RamonMods/GenOffice/issues).
 - **انضم إلى محادثة مجموعة GenOffice** على
   [GenTeam](https://genoffice.ai/join) للتواصل مع الفريق والمستخدمين الآخرين.
-- **تابع [@merrickbuilds](https://x.com/merrickbuilds) على X** للاطلاع على
+- **تابع [@RamonMods](https://x.com/RamonMods) على X** للاطلاع على
   ملاحظات الإصدارات والعروض التوضيحية وما يُبنى تاليًا.
 - **أضِف نجمة (Star) للمستودع** إذا كان GenOffice مفيدًا لك — فهذه أفضل طريقة
   لدعم المشروع.
@@ -654,7 +654,7 @@ GenOffice قيد تطوير نشط، وملاحظاتك هي ما يشكِّل �
 
 تحرير المستندات محلي بالكامل — لا تغادر الملفات جهازك أبدًا عند الفتح أو
 التحرير أو الحفظ أو التحويل. تحتاج ميزات الذكاء الاصطناعي (الوكلاء، والبحث،
-وأدوات الصور) إلى اتصال بالشبكة، سواء عبر تسجيل الدخول بواسطة Genspark أو
+وأدوات الصور) إلى اتصال بالشبكة، سواء عبر تسجيل الدخول بواسطة RamonMods أو
 باستخدام مفتاح API لنموذجك الخاص.
 
 </details>
@@ -680,7 +680,7 @@ macOS و Windows، فتُحوَّل إلى نص قابل للتحرير بدلً
 <details>
 <summary><b>هل يمكنني استخدام نموذج ذكاء اصطناعي أو مفتاح API خاص بي؟</b></summary>
 
-نعم. إلى جانب تسجيل الدخول بواسطة Genspark الذي لا يتطلب أي مفتاح، يدعم
+نعم. إلى جانب تسجيل الدخول بواسطة RamonMods الذي لا يتطلب أي مفتاح، يدعم
 GenOffice استخدام مفتاحك الخاص مع Claude وOpenAI وGemini وDeepSeek وKimi
 وGLM وQwen وDoubao وMiniMax وGrok وMistral وOpenRouter وRequesty وOpper وCheaper Inference وAtlas Cloud وOpenCode Zen/Go،
 إضافة إلى أي نقطة نهاية متوافقة مع OpenAI — بما في ذلك خوادم النماذج المحلية.
@@ -794,6 +794,6 @@ MIT/Apache-2.0/BSD-3-Clause/OFL.
 دليل `ee/` محجوز لوحدات المؤسسات (enterprise) المستقبلية ويخضع لـ
 [GenOffice Enterprise License](../../ee/LICENSE).
 
-اسما وشعارا GenOffice و Genspark هما علامتان تجاريتان مملوكتان لشركة
+اسما وشعارا GenOffice و RamonMods هما علامتان تجاريتان مملوكتان لشركة
 RamonMods لا يمنح ترخيص Apache-2.0 إذنًا باستخدامهما (راجع البند 6)؛
 ويجب أن تستخدم النسخ المتفرعة (forks) هويتها البصرية الخاصة.

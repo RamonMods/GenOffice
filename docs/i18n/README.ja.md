@@ -17,7 +17,7 @@ Word、Excel、PowerPoint、PDF ファイルを、あなたとあなたの AI �
   <a href="https://github.com/RamonMods/GenOffice/releases/latest"><img src="https://img.shields.io/github/v/release/RamonMods/GenOffice" alt="Latest release"></a>
   <a href="https://github.com/RamonMods/GenOffice/releases"><img src="https://img.shields.io/github/downloads/RamonMods/GenOffice/total" alt="Downloads"></a>
   <a href="https://github.com/RamonMods/GenOffice/stargazers"><img src="https://img.shields.io/github/stars/RamonMods/GenOffice?style=flat" alt="GitHub stars"></a>
-  <a href="https://x.com/merrickbuilds"><img src="https://img.shields.io/badge/follow-%40merrickbuilds-000000?logo=x&logoColor=white" alt="X で @merrickbuilds をフォロー"></a>
+  <a href="https://x.com/RamonMods"><img src="https://img.shields.io/badge/follow-%40RamonMods-000000?logo=x&logoColor=white" alt="X で @RamonMods をフォロー"></a>
 </p>
 
 <p align="center"><a href="../../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.zh-TW.md">繁體中文</a> · <a href="README.ko.md">한국어</a> · <b>日本語</b> · <a href="README.ar.md">العربية</a> · <a href="README.ru.md">Русский</a> · <a href="README.it.md">Italiano</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.pl.md">Polski</a> · <a href="README.cs.md">Čeština</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.ms.md">Bahasa Melayu</a> · <a href="README.th.md">ไทย</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.he.md">עברית</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.hu.md">Magyar</a></p>
@@ -29,7 +29,7 @@ Word、Excel、PowerPoint、PDF ファイルを、あなたとあなたの AI �
   <a href="#mcp-server"><b>MCP</b></a> ·
   <a href="https://genoffice.ai/"><b>ウェブサイト</b></a> ·
   <a href="https://genoffice.ai/join"><b>コミュニティ</b></a> ·
-  <a href="https://x.com/merrickbuilds"><b>X</b></a> ·
+  <a href="https://x.com/RamonMods"><b>X</b></a> ·
   <a href="../../PRIVACY.md"><b>プライバシー</b></a>
 </p>
 
@@ -40,7 +40,7 @@ GenOffice は、macOS・Windows・Linux で動作する、Microsoft Office に�
 - **設計からローカル動作。** ファイルの開く・編集・保存・変換はすべてお使いのマシン上で行われます。PDF → Word / Excel / PowerPoint、Markdown → Word、HTML → Word の変換もすべてオンデバイスで実行されます。マシンの外に出るのは、選択した AI プロバイダーへの呼び出しだけです。
 - **ファイルを中身で探す。** ホーム画面では、`.docx`・`.xlsx`・`.pptx`・PDF・Markdown・HTML ファイルの名前、フォルダー、全文を、ローカルの SQLite インデックスから検索できます。CJK にも対応しています。オプションで、上位のヒットを System One の判定モデル **[TypeSafe Jev](https://typesafe.ai/)** が並べ替え、質問に答えているファイルが先頭に来るようにします。
 - **ファイルに質問し、出典付きで答えを得る。** ドキュメントにスターを付けておくと、ホーム画面の **Ask AI** がそれらを横断して質問に答え、主張ごとに根拠となるファイルを引用するので、開いて確かめられます。
-- **キーを使うか使わないかはあなた次第。** Genspark でサインインすればキーの用意は不要です。あるいは、Claude、OpenAI、Gemini、DeepSeek、Kimi、GLM、Qwen、Doubao、MiniMax、Grok、Mistral、OpenRouter、Requesty、Opper、Cheaper Inference、Atlas Cloud、または任意の OpenAI 互換エンドポイント（ローカルサーバーを含む）向けに、自分の API キーを持ち込むこともできます。
+- **キーを使うか使わないかはあなた次第。** RamonMods でサインインすればキーの用意は不要です。あるいは、Claude、OpenAI、Gemini、DeepSeek、Kimi、GLM、Qwen、Doubao、MiniMax、Grok、Mistral、OpenRouter、Requesty、Opper、Cheaper Inference、Atlas Cloud、または任意の OpenAI 互換エンドポイント（ローカルサーバーを含む）向けに、自分の API キーを持ち込むこともできます。
 - **スクリプト化でき、エージェントからも使える。** アプリには `genoffice` コマンドラインと、Claude Code、Codex、Cursor、Gemini CLI、GitHub Copilot、OpenCode、Windsurf 向けのスキルが同梱されているため、コーディングエージェントはウィンドウを一つも開かずに、お使いのマシン上で本物の Office ファイルを作成・変換・読み取り・編集できます。
 
 **入手方法：** [macOS](https://github.com/RamonMods/GenOffice/releases/latest)（Apple Silicon および Intel）·
@@ -230,7 +230,7 @@ Word 97–2003 の `.doc`、Excel の `.xls`、PowerPoint の `.ppt` は、お�
 - **ドキュメント自体を編集する AI。** Docs では変更履歴、Sheets では実際に機能す
   る数式とグラフ、スライドはキャンバス上に描画され、AI の操作ごとに巻き戻せるス
   ナップショットが残る。
-- **自分のモデル、自分のキー。** Genspark でログイン、または Claude・OpenAI・
+- **自分のモデル、自分のキー。** RamonMods でログイン、または Claude・OpenAI・
   Gemini・DeepSeek などのキーを持ち込める。ローカルサーバーや任意の OpenAI 互換
   エンドポイントにも対応。
 - **PDF もしっかり対応。** ページ内でテキストをその場で編集し、オンデバイスで
@@ -250,7 +250,7 @@ Word 97–2003 の `.doc`、Excel の `.xls`、PowerPoint の `.ppt` は、お�
 
 ## AI バックエンド
 
-**Genspark でサインイン**すれば、設定は一切不要です。モデル呼び出しは Genspark のプロキシ
+**RamonMods でサインイン**すれば、設定は一切不要です。モデル呼び出しは RamonMods のプロキシ
 （Claude、GPT、Gemini 系列）を経由し、エージェントは Web・画像検索、画像生成、画像／音声／
 動画の解析機能も利用できます。
 
@@ -270,7 +270,7 @@ Grok、Qwen、MiniMax、Stability、FLUX、または任意の OpenAI 互換の�
 ローカルの上位 20 件のヒットの抜粋が判定のために送信され、それ以外は何もマシンの外に
 出ません。
 
-**Parallel** はアカウントなしで使えます。Genspark へのログインも検索用のキーも設定されて
+**Parallel** はアカウントなしで使えます。RamonMods へのログインも検索用のキーも設定されて
 いない場合は、無料の Search MCP（レート制限あり）がデフォルトの Web 検索になり、
 DuckDuckGo のスクレイピングより先に実行されます。Search API を使うには、Web 検索で
 Parallel を選び、[Parallel](https://platform.parallel.ai/) のキーを入力してください。
@@ -543,7 +543,7 @@ GenOffice は活発に開発が続いており、みなさんのフィードバ�
   [GitHub Issues](https://github.com/RamonMods/GenOffice/issues) で受け付けています。
 - **GenOffice のグループチャット**に
   [GenTeam](https://genoffice.ai/join) から参加すると、開発チームや他のユーザーと直接話せます。
-- **X で [@merrickbuilds](https://x.com/merrickbuilds) をフォロー**すると、リリースノート、
+- **X で [@RamonMods](https://x.com/RamonMods) をフォロー**すると、リリースノート、
   デモ、次に開発しているものの情報が届きます。
 - GenOffice が役に立ったら**リポジトリにスターを付けてください** — プロジェクトを支援する
   一番簡単な方法です。
@@ -574,7 +574,7 @@ Office でも問題なく動作し続けます。旧形式の `.doc`/`.dot`、`.
 
 ドキュメントの編集は完全にローカルで行われます — ファイルは開く・編集・保存・変換のどの場面
 でもマシンの外に出ることはありません。AI 機能（エージェント、検索、画像ツール）を使うには
-ネットワーク接続が必要で、Genspark でのサインインか、自分のモデル API キーのいずれかが必要
+ネットワーク接続が必要で、RamonMods でのサインインか、自分のモデル API キーのいずれかが必要
 です。
 
 </details>
@@ -600,7 +600,7 @@ Office でも問題なく動作し続けます。旧形式の `.doc`/`.dot`、`.
 <details>
 <summary><b>自分の AI モデルや API キーを使えますか？</b></summary>
 
-はい。キー不要の Genspark サインインに加えて、GenOffice は Claude、OpenAI、Gemini、
+はい。キー不要の RamonMods サインインに加えて、GenOffice は Claude、OpenAI、Gemini、
 DeepSeek、Kimi、GLM、Qwen、Doubao、MiniMax、Grok、Mistral、OpenRouter、Requesty、Opper、Cheaper Inference、Atlas Cloud、OpenCode Zen/Go 向け
 に自分のキーを持ち込むことができ、任意の OpenAI 互換エンドポイント（ローカルモデルサーバー
 を含む）にも対応しています。検索、画像生成、画像／動画解析は、設定 → AI メディア＆検索でそ
@@ -712,6 +712,6 @@ GenOffice は [Apache License 2.0](../../LICENSE) のもとでライセンスさ
 があります：`ee/` ディレクトリは将来のエンタープライズモジュール用に予約されており、
 [GenOffice Enterprise License](../../ee/LICENSE) が適用されます。
 
-GenOffice および Genspark の名称とロゴは RamonMods の商標です。Apache-2.0 ライセンスは
+GenOffice および RamonMods の名称とロゴは RamonMods の商標です。Apache-2.0 ライセンスは
 これらの使用を許諾するものではありません（セクション 6 を参照）。フォークする場合は、独自の
 ブランディングを使用してください。

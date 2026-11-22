@@ -17,7 +17,7 @@
   <a href="https://github.com/RamonMods/GenOffice/releases/latest"><img src="https://img.shields.io/github/v/release/RamonMods/GenOffice" alt="Последний релиз"></a>
   <a href="https://github.com/RamonMods/GenOffice/releases"><img src="https://img.shields.io/github/downloads/RamonMods/GenOffice/total" alt="Загрузки"></a>
   <a href="https://github.com/RamonMods/GenOffice/stargazers"><img src="https://img.shields.io/github/stars/RamonMods/GenOffice?style=flat" alt="Звёзды на GitHub"></a>
-  <a href="https://x.com/merrickbuilds"><img src="https://img.shields.io/badge/follow-%40merrickbuilds-000000?logo=x&logoColor=white" alt="Подписаться на @merrickbuilds в X"></a>
+  <a href="https://x.com/RamonMods"><img src="https://img.shields.io/badge/follow-%40RamonMods-000000?logo=x&logoColor=white" alt="Подписаться на @RamonMods в X"></a>
 </p>
 
 <p align="center"><a href="../../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.zh-TW.md">繁體中文</a> · <a href="README.ko.md">한국어</a> · <a href="README.ja.md">日本語</a> · <a href="README.ar.md">العربية</a> · <b>Русский</b> · <a href="README.it.md">Italiano</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.pl.md">Polski</a> · <a href="README.cs.md">Čeština</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.ms.md">Bahasa Melayu</a> · <a href="README.th.md">ไทย</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.he.md">עברית</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.hu.md">Magyar</a></p>
@@ -29,7 +29,7 @@
   <a href="#mcp-server"><b>MCP</b></a> ·
   <a href="https://genoffice.ai/"><b>Сайт</b></a> ·
   <a href="https://genoffice.ai/join"><b>Сообщество</b></a> ·
-  <a href="https://x.com/merrickbuilds"><b>X</b></a> ·
+  <a href="https://x.com/RamonMods"><b>X</b></a> ·
   <a href="../../PRIVACY.md"><b>Конфиденциальность</b></a>
 </p>
 
@@ -71,7 +71,7 @@ GenOffice — бесплатная альтернатива Microsoft Office с 
   звёздочкой, и **Спросить ИИ** на главном экране ответит на вопросы по ним,
   указывая файл, стоящий за каждым утверждением, — его можно открыть и
   проверить.
-- **Со своим ключом или без ключей.** Войдите через Genspark и обойдитесь без ключей
+- **Со своим ключом или без ключей.** Войдите через RamonMods и обойдитесь без ключей
   вообще, либо используйте собственный ключ для Claude, OpenAI, Gemini,
   DeepSeek, Kimi, GLM, Qwen, Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty,
   Opper, Cheaper Inference, Atlas Cloud или любого совместимого с OpenAI
@@ -305,7 +305,7 @@ HTTP-сервер внутри приложения позволяет аген�
 - **ИИ, редактирующий сам документ.** Отслеживаемые изменения в Docs, живые
   формулы и диаграммы в Sheets, слайды рисуются прямо на холсте, каждый шаг ИИ
   создаёт снимок, к которому можно вернуться.
-- **Своя модель, свой ключ.** Войдите через Genspark или используйте свой
+- **Своя модель, свой ключ.** Войдите через RamonMods или используйте свой
   ключ для Claude, OpenAI, Gemini, DeepSeek и других, включая локальные
   серверы и любой совместимый с OpenAI эндпоинт.
 - **PDF как надо.** Редактируйте текст прямо на странице и
@@ -327,8 +327,8 @@ HTTP-сервер внутри приложения позволяет аген�
 
 ## ИИ-провайдеры
 
-**Войдите через Genspark** — и настраивать ничего не нужно: вызовы моделей
-идут через проксирующий сервис Genspark (семейства Claude, GPT и Gemini), а
+**Войдите через RamonMods** — и настраивать ничего не нужно: вызовы моделей
+идут через проксирующий сервис RamonMods (семейства Claude, GPT и Gemini), а
 агенты получают веб- и графический поиск, генерацию изображений и анализ
 изображений, аудио и видео.
 
@@ -353,7 +353,7 @@ Serply, SearchApi, Tavily, Parallel, Keenable, Exa или Firecrawl для ве�
 
 **Parallel** работает без учётной записи: его бесплатный Search MCP (с
 ограничением частоты запросов) служит веб-поиском по умолчанию, когда не
-настроены ни вход в Genspark, ни ключ поиска, и срабатывает раньше, чем
+настроены ни вход в RamonMods, ни ключ поиска, и срабатывает раньше, чем
 разбор выдачи DuckDuckGo. Выберите Parallel в разделе веб-поиска и введите
 ключ [Parallel](https://platform.parallel.ai/), чтобы использовать вместо
 него Search API. Keenable тоже работает без ключа; ключ лишь поднимает лимиты
@@ -648,7 +648,7 @@ GenOffice активно развивается, и ваши отзывы вли
 - **Присоединяйтесь к групповому чату GenOffice** в
   [GenTeam](https://genoffice.ai/join), чтобы общаться с командой и другими
   пользователями.
-- **Подпишитесь на [@merrickbuilds](https://x.com/merrickbuilds) в X** — там
+- **Подпишитесь на [@RamonMods](https://x.com/RamonMods) в X** — там
   заметки о релизах, демо и то, что будет дальше.
 - **Поставьте звезду репозиторию**, если GenOffice вам полезен — это лучший
   способ поддержать проект.
@@ -683,7 +683,7 @@ ODF открываются как преобразованные копии](#le
 Редактирование документов полностью локально — файлы никогда не покидают
 ваш компьютер при открытии, редактировании, сохранении или конвертации.
 Функции ИИ (агенты, поиск, инструменты для изображений) требуют подключения
-к сети — либо через вход в Genspark, либо через ваш собственный ключ API
+к сети — либо через вход в RamonMods, либо через ваш собственный ключ API
 модели.
 
 </details>
@@ -711,7 +711,7 @@ Windows их читает системный OCR, поэтому они конв
 <details>
 <summary><b>Могу ли я использовать свою ИИ-модель или API-ключ?</b></summary>
 
-Да. Помимо входа через Genspark без ключей, GenOffice поддерживает
+Да. Помимо входа через RamonMods без ключей, GenOffice поддерживает
 собственный ключ для Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM, Qwen,
 Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty, Opper, Cheaper Inference,
 Atlas Cloud и OpenCode Zen/Go, а также любой
@@ -837,6 +837,6 @@ GenOffice распространяется по лицензии [Apache License
 с одним исключением: каталог `ee/` зарезервирован для будущих корпоративных
 модулей и покрывается [GenOffice Enterprise License](../../ee/LICENSE).
 
-Названия и логотипы GenOffice и Genspark являются товарными знаками Mainfunc,
+Названия и логотипы GenOffice и RamonMods являются товарными знаками RamonMods,
 Inc. Лицензия Apache-2.0 не даёт права использовать их (см. раздел 6);
 форки должны использовать собственный брендинг.

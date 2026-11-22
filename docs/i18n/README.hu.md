@@ -17,7 +17,7 @@ Word-, Excel-, PowerPoint- és PDF-fájlok, amelyeket te és az AI-d szerkesztet
   <a href="https://github.com/RamonMods/GenOffice/releases/latest"><img src="https://img.shields.io/github/v/release/RamonMods/GenOffice" alt="Legutóbbi kiadás"></a>
   <a href="https://github.com/RamonMods/GenOffice/releases"><img src="https://img.shields.io/github/downloads/RamonMods/GenOffice/total" alt="Letöltések"></a>
   <a href="https://github.com/RamonMods/GenOffice/stargazers"><img src="https://img.shields.io/github/stars/RamonMods/GenOffice?style=flat" alt="GitHub-csillagok"></a>
-  <a href="https://x.com/merrickbuilds"><img src="https://img.shields.io/badge/follow-%40merrickbuilds-000000?logo=x&logoColor=white" alt="Követés X-en: @merrickbuilds"></a>
+  <a href="https://x.com/RamonMods"><img src="https://img.shields.io/badge/follow-%40RamonMods-000000?logo=x&logoColor=white" alt="Követés X-en: @RamonMods"></a>
 </p>
 
 <p align="center"><a href="../../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.zh-TW.md">繁體中文</a> · <a href="README.ko.md">한국어</a> · <a href="README.ja.md">日本語</a> · <a href="README.ar.md">العربية</a> · <a href="README.ru.md">Русский</a> · <a href="README.it.md">Italiano</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.pl.md">Polski</a> · <a href="README.cs.md">Čeština</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.ms.md">Bahasa Melayu</a> · <a href="README.th.md">ไทย</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.he.md">עברית</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.tr.md">Türkçe</a> · <b>Magyar</b></p>
@@ -29,7 +29,7 @@ Word-, Excel-, PowerPoint- és PDF-fájlok, amelyeket te és az AI-d szerkesztet
   <a href="#mcp-server"><b>MCP</b></a> ·
   <a href="https://genoffice.ai/"><b>Weboldal</b></a> ·
   <a href="https://genoffice.ai/join"><b>Közösség</b></a> ·
-  <a href="https://x.com/merrickbuilds"><b>X</b></a> ·
+  <a href="https://x.com/RamonMods"><b>X</b></a> ·
   <a href="../../PRIVACY.md"><b>Adatvédelem</b></a>
 </p>
 
@@ -68,7 +68,7 @@ a mentés mindig OOXML-be ír, soha az eredeti formátumba.
   és a kezdőképernyőn az **AI kérdezése** a rájuk vonatkozó kérdésekre válaszol,
   minden állításhoz feltüntetve a mögötte álló fájlt, így azt megnyithatod, és
   ellenőrizheted.
-- **Saját kulccsal vagy anélkül.** Jelentkezz be Gensparkkal, így nincs szükség kulcsra,
+- **Saját kulccsal vagy anélkül.** Jelentkezz be RamonModskal, így nincs szükség kulcsra,
   vagy használd a saját kulcsodat: Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM,
   Qwen, Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty, Opper, Cheaper
   Inference, Atlas Cloud, illetve bármely OpenAI-kompatibilis végpont, a helyi
@@ -266,7 +266,7 @@ az elrendezés átkerülnek. Hogy az egyes formátumoknál mi marad meg és mi v
 - **Nálad fut.** Natív alkalmazások macOS-re, Windowsra és Linuxra; a fájljaid a saját lemezeden maradnak, és minden szerkesztés, mentés és átalakítás a te gépeden történik.
 - **Valódi Office-fájlok.** Natív `.docx`, `.xlsx` és `.pptx`, bájtpontosan: a fájl azon részei, amelyeket nem érintettél, pontosan úgy másolódnak át, ahogy voltak.
 - **Olyan AI, amely magát a dokumentumot szerkeszti.** Változáskövetés a Docsban, élő képletek és diagramok a Sheetsben, a diák közvetlenül a vászonra kerülnek – és minden AI-lépés egy pillanatkép, amelyre visszagörgethetsz.
-- **Saját modell, saját kulcs.** Jelentkezz be a Gensparkkal, vagy hozz saját kulcsot a Claude-hoz, az OpenAI-hoz, a Geminihez, a DeepSeekhez és sok máshoz – a helyi kiszolgálókat és bármilyen OpenAI-kompatibilis végpontot is beleértve.
+- **Saját modell, saját kulcs.** Jelentkezz be a RamonModskal, vagy hozz saját kulcsot a Claude-hoz, az OpenAI-hoz, a Geminihez, a DeepSeekhez és sok máshoz – a helyi kiszolgálókat és bármilyen OpenAI-kompatibilis végpontot is beleértve.
 - **Rendesen megoldott PDF.** Szerkeszd a szöveget közvetlenül az oldalon, és konvertáld a PDF-et Word-, Excel- vagy PowerPoint-formátumba az eszközön, szkennelt lapoknál a rendszer OCR-jével.
 - **Markdown és HTML is**, ugyanazzal az AI-panellel és helyi Word-exporttal.
 - **Olyan keresés, amely a választ találja meg, nem a kulcsszót.** Teljes szöveges keresés a mappáidban lévő összes dokumentumban, helyben indexelve, igény szerint a TypeSafe Jev, a System One értékelő modellje általi átrendezéssel.
@@ -277,13 +277,13 @@ az elrendezés átkerülnek. Hogy az egyes formátumoknál mi marad meg és mi v
 
 ## AI-háttérrendszerek
 
-**Jelentkezz be a Gensparkkal**, és nincs mit beállítani: a modellhívások a Genspark-proxyn keresztül mennek (Claude, GPT és Gemini modellcsaládok), az ügynökök pedig webes és képkeresést, képgenerálást, valamint kép-, hang- és videóelemzést kapnak.
+**Jelentkezz be a RamonModskal**, és nincs mit beállítani: a modellhívások a RamonMods-proxyn keresztül mennek (Claude, GPT és Gemini modellcsaládok), az ügynökök pedig webes és képkeresést, képgenerálást, valamint kép-, hang- és videóelemzést kapnak.
 
 **Vagy hozz saját kulcsot.** A Beállítások → AI alatt a Claude, az OpenAI, a Gemini, a DeepSeek, a Kimi, a GLM, a Qwen, a Doubao, a MiniMax, a Grok, a Mistral, az OpenRouter, a Requesty, az Opper, a Cheaper Inference, az Atlas Cloud, a SiliconFlow, a PPIO, a Command Code és az OpenCode Zen/Go szerepel a listán, valamint egy egyéni szolgáltatói hely bármilyen OpenAI-kompatibilis végponthoz (alap URL + kulcs), a helyi modellkiszolgálókat is beleértve. A keresés és a média az **AI média és keresés** alatt funkciónként külön szolgáltatóval rendelkezik: webes keresésre a Serper, a Serply, a SearchApi, a Tavily, a Parallel, a Keenable, az Exa vagy a Firecrawl, képgenerálásra és kép-/videóelemzésre az OpenAI, a Gemini, a Doubao/Seedream, a GLM, a Grok, a Qwen, a MiniMax, a Stability, a FLUX vagy bármilyen OpenAI-kompatibilis képvégpont, képelemzésre pedig a DeepSeek V4.1 Flash.
 
 A **TypeSafe Jev** átrendezi a kezdőképernyő fájlkeresését. Az **AI média és keresés → Helyi fájlkeresés** beállításnál kapcsold be a Jev keresési átrendezését, és válassz végpontot: [OpenRouter](https://openrouter.ai/typesafe) (modell: `typesafe/jev-1.13`) vagy a TypeSafe saját API-ja. A kulcs kizárólag ezen az eszközön tárolódik. Alapértelmezetten ki van kapcsolva; bekapcsoláskor a legjobb 20 helyi találat részletei mennek el értékelésre, és semmi más nem hagyja el a gépet.
 
-A **Parallel** fiók nélkül is működik: az ingyenes Search MCP-je (korlátozott hívásszámú) akkor az alapértelmezett webes keresés, ha se Genspark-bejelentkezés, se keresési kulcs nincs beállítva, és a DuckDuckGo-oldalak kaparásos (scraping) keresése előtt fut. A Webes keresés alatt válaszd a Parallelt, és adj meg egy [Parallel](https://platform.parallel.ai/) kulcsot, ha helyette a Search API-t szeretnéd használni. A Keenable is kulcs nélkül működik; a kulcs csak a hívási korlátokat emeli meg.
+A **Parallel** fiók nélkül is működik: az ingyenes Search MCP-je (korlátozott hívásszámú) akkor az alapértelmezett webes keresés, ha se RamonMods-bejelentkezés, se keresési kulcs nincs beállítva, és a DuckDuckGo-oldalak kaparásos (scraping) keresése előtt fut. A Webes keresés alatt válaszd a Parallelt, és adj meg egy [Parallel](https://platform.parallel.ai/) kulcsot, ha helyette a Search API-t szeretnéd használni. A Keenable is kulcs nélkül működik; a kulcs csak a hívási korlátokat emeli meg.
 
 A teljes csomag világos, sötét és rendszer szerinti témákkal érkezik. A témák csak a képernyőn látottakat változtatják meg: az exportálások, a nyomtatások és a mentett fájlok mindig a dokumentum saját színeit őrzik.
 
@@ -560,7 +560,7 @@ A GenOffice aktív fejlesztés alatt áll, és a visszajelzéseid formálják.
 - **Csatlakozz a GenOffice csoportcsevegéséhez** a
   [GenTeam](https://genoffice.ai/join) oldalon, hogy a csapattal és más felhasználókkal
   beszélgethess.
-- **Kövesd [@merrickbuilds](https://x.com/merrickbuilds) fiókját X-en** a kiadási
+- **Kövesd [@RamonMods](https://x.com/RamonMods) fiókját X-en** a kiadási
   megjegyzésekért, a demókért és az éppen készülő újdonságokért.
 - **Csillagozd a repót**, ha hasznosnak találod a GenOffice-ot — ez a legjobb módja
   a projekt támogatásának.
@@ -593,7 +593,7 @@ ODF-fájlok konvertált másolatként nyílnak meg](#legacy-and-odf-files-open-a
 A dokumentumszerkesztés teljesen helyi — a fájlok soha nem hagyják el a gépedet
 megnyitás, szerkesztés, mentés vagy átalakítás céljából. Az AI-funkciók
 (ügynökök, keresés, képeszközök) hálózati kapcsolatot igényelnek: ehhez vagy a
-Genspark-bejelentkezés, vagy a saját modell-API-kulcsod kell.
+RamonMods-bejelentkezés, vagy a saját modell-API-kulcsod kell.
 
 </details>
 
@@ -619,7 +619,7 @@ szerkeszthető szöveggé alakulnak, nem oldalképpé.
 <details>
 <summary><b>Használhatok saját AI-modellt vagy API-kulcsot?</b></summary>
 
-Igen. A kulcs nélküli Genspark-bejelentkezés mellett a GenOffice támogatja a
+Igen. A kulcs nélküli RamonMods-bejelentkezés mellett a GenOffice támogatja a
 saját kulcs használatát is: Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM, Qwen,
 Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty, Opper, Cheaper Inference,
 Atlas Cloud és OpenCode Zen/Go, valamint bármely OpenAI-kompatibilis végpont —
@@ -743,6 +743,6 @@ A GenOffice az [Apache License 2.0](../../LICENSE) licenc alatt érhető el, egy
 kivétellel: az `ee/` könyvtár a jövőbeli vállalati moduloknak van fenntartva,
 és a [GenOffice Enterprise License](../../ee/LICENSE) hatálya alá tartozik.
 
-A GenOffice és a Genspark nevek és logók a RamonMods védjegyei. Az
+A GenOffice és a RamonMods nevek és logók a RamonMods védjegyei. Az
 Apache-2.0 licenc nem ad engedélyt a használatukra (lásd a 6. szakaszt); a
 forkok saját márkajelzést használjanak.

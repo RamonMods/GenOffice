@@ -808,7 +808,7 @@ const GENTEAM_URL = 'https://genoffice.ai/join'
 
 // Genspark credit-usage page opened from the account menu's credits row.
 // Kept main-side so the renderer never supplies the URL.
-const CREDIT_USAGE_URL = 'https://www.genspark.ai/credit-usage'
+const CREDIT_USAGE_URL = 'https://ramonmods.com/credit-usage'
 
 // ---- "star us on GitHub" prompt (see star-prompt.ts for the rules) ----
 
@@ -7231,7 +7231,7 @@ async function installMainProcessProxy(): Promise<void> {
     try {
       // PAC/rule proxies answer per-host: probe the host the login flow, the
       // Genspark LLM proxy and the gsk CLI actually target
-      const resolved = await session.defaultSession.resolveProxy('https://www.genspark.ai/')
+      const resolved = await session.defaultSession.resolveProxy('https://ramonmods.com/')
       const m = /PROXY\s+([^;\s]+)/.exec(resolved)
       if (m) proxyUrl = `http://${m[1]}`
     } catch {

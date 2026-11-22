@@ -2,10 +2,10 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { isAllowedAuthUrl, startGenofficeLogin } from '../src/genoffice-auth'
 
 describe('isAllowedAuthUrl', () => {
-  const BASE = 'https://www.genspark.ai'
+  const BASE = 'https://ramonmods.com'
 
   it('accepts https on the endpoint host', () => {
-    expect(isAllowedAuthUrl('https://www.genspark.ai/login?x=1', BASE)).toBeTruthy()
+    expect(isAllowedAuthUrl('https://ramonmods.com/login?x=1', BASE)).toBeTruthy()
   })
 
   it('accepts sibling hosts on the endpoint registrable domain (review point 1)', () => {
@@ -27,7 +27,7 @@ describe('isAllowedAuthUrl', () => {
     // a staging endpoint must not be able to send the browser to production,
     // and no host outside the endpoint's registrable domain passes
     expect(
-      isAllowedAuthUrl('https://www.genspark.ai/device', 'https://staging.genspark.ai'),
+      isAllowedAuthUrl('https://ramonmods.com/device', 'https://staging.genspark.ai'),
     ).toBeFalsy()
     expect(isAllowedAuthUrl('https://genspark.ai.evil.example/x', BASE)).toBeFalsy()
     expect(isAllowedAuthUrl('https://notgenspark.ai/x', BASE)).toBeFalsy()
@@ -38,7 +38,7 @@ describe('isAllowedAuthUrl', () => {
       'file:///etc/passwd',
       'smb://share/x',
       'ms-msdt:-foo',
-      'http://www.genspark.ai/login',
+      'http://ramonmods.com/login',
       'javascript:alert(1)',
       'not a url',
     ]) {
@@ -82,7 +82,7 @@ describe('startGenofficeLogin auth_url allowlist', () => {
         headers: { 'content-type': 'application/json' },
       })
     }) as typeof fetch
-    process.env.GSK_BASE_URL = 'https://www.genspark.ai'
+    process.env.GSK_BASE_URL = 'https://ramonmods.com'
   }
 
   afterEach(() => {

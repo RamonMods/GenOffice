@@ -225,7 +225,7 @@ export const HELP_TOPICS: HelpTopicMeta[] = [
       'byok',
       '端点',
       'endpoint',
-      'genspark',
+      'ramonmods',
       '登录',
       'login',
     ],

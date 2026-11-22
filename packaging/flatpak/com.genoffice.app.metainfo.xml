@@ -21,7 +21,7 @@
       <li>A local-first design: files stay on disk, working offline</li>
     </ul>
   </description>
-  <developer id="ai.genspark">
+  <developer id="ai.ramonmods">
     <name>RamonMods</name>
   </developer>
   <launchable type="desktop-id">com.genoffice.app.desktop</launchable>

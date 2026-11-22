@@ -17,7 +17,7 @@
   <a href="https://github.com/RamonMods/GenOffice/releases/latest"><img src="https://img.shields.io/github/v/release/RamonMods/GenOffice" alt="Latest release"></a>
   <a href="https://github.com/RamonMods/GenOffice/releases"><img src="https://img.shields.io/github/downloads/RamonMods/GenOffice/total" alt="Downloads"></a>
   <a href="https://github.com/RamonMods/GenOffice/stargazers"><img src="https://img.shields.io/github/stars/RamonMods/GenOffice?style=flat" alt="GitHub stars"></a>
-  <a href="https://x.com/merrickbuilds"><img src="https://img.shields.io/badge/follow-%40merrickbuilds-000000?logo=x&logoColor=white" alt="Follow @merrickbuilds on X"></a>
+  <a href="https://x.com/RamonMods"><img src="https://img.shields.io/badge/follow-%40RamonMods-000000?logo=x&logoColor=white" alt="Follow @RamonMods on X"></a>
 </p>
 
 <p align="center"><a href="../../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.zh-TW.md">繁體中文</a> · <a href="README.ko.md">한국어</a> · <a href="README.ja.md">日本語</a> · <a href="README.ar.md">العربية</a> · <a href="README.ru.md">Русский</a> · <a href="README.it.md">Italiano</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.pl.md">Polski</a> · <a href="README.cs.md">Čeština</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.ms.md">Bahasa Melayu</a> · <a href="README.th.md">ไทย</a> · <a href="README.hi.md">हिन्दी</a> · <b>עברית</b> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.hu.md">Magyar</a></p>
@@ -29,7 +29,7 @@
   <a href="#mcp-server"><b>MCP</b></a> ·
   <a href="https://genoffice.ai/"><b>אתר</b></a> ·
   <a href="https://genoffice.ai/join"><b>קהילה</b></a> ·
-  <a href="https://x.com/merrickbuilds"><b>X</b></a> ·
+  <a href="https://x.com/RamonMods"><b>X</b></a> ·
   <a href="../../PRIVACY.md"><b>פרטיות</b></a>
 </p>
 
@@ -65,7 +65,7 @@ Windows ו-Linux. היא פותחת ושומרת קבצי `.docx`,‏ `.xlsx` ו
 - **שאלו את הקבצים שלכם, עם מקורות.** סמנו בכוכב קבוצת מסמכים, ו-**Ask AI**
   במסך הבית עונה על שאלות על פני כולם, ומצטט את הקובץ שמאחורי כל טענה כדי
   שתוכלו לפתוח אותו ולבדוק.
-- **המפתחות שלכם, או בלי מפתחות בכלל.** התחברו עם Genspark ודלגו על הצורך
+- **המפתחות שלכם, או בלי מפתחות בכלל.** התחברו עם RamonMods ודלגו על הצורך
   במפתח, או הביאו מפתח משלכם עבור Claude,‏ OpenAI,‏ Gemini,‏ DeepSeek,‏
   Kimi,‏ GLM,‏ Qwen,‏ Doubao,‏ MiniMax,‏ Grok,‏ Mistral,‏ OpenRouter,‏ Requesty,‏ Opper,‏ Cheaper Inference,‏
   Atlas Cloud, או כל
@@ -291,7 +291,7 @@ skill ובלי לפתוח חלון, ולקבל 29 כלים בתוספת מדרי
 - **AI שעורך את המסמך עצמו.** מעקב שינויים ב-Docs, נוסחאות וגרפים חיים
   ב-Sheets, שקופיות המצוירות ישירות על הקנבס, כל תור של ה-AI הוא תמונת מצב
   שאפשר לחזור אליה.
-- **המודל שלך, המפתח שלך.** התחברו עם Genspark, או הביאו מפתח משלכם
+- **המודל שלך, המפתח שלך.** התחברו עם RamonMods, או הביאו מפתח משלכם
   ל-Claude, OpenAI, Gemini, DeepSeek ועוד, כולל שרתים מקומיים וכל endpoint
   תואם-OpenAI.
 - **PDF שמטופל כמו שצריך.** ערכו טקסט ישירות בתוך העמוד, והמירו PDF ל-Word,
@@ -310,8 +310,8 @@ skill ובלי לפתוח חלון, ולקבל 29 כלים בתוספת מדרי
 
 ## ספקי ה-AI
 
-**התחברות עם Genspark** לא מצריכה שום הגדרה: קריאות המודל עוברות דרך
-ה-proxy של Genspark (משפחות Claude,‏ GPT ו-Gemini), והסוכנים מקבלים חיפוש
+**התחברות עם RamonMods** לא מצריכה שום הגדרה: קריאות המודל עוברות דרך
+ה-proxy של RamonMods (משפחות Claude,‏ GPT ו-Gemini), והסוכנים מקבלים חיפוש
 רשת ותמונות, יצירת תמונות, וניתוח תמונה/אודיו/וידאו.
 
 **או הביאו מפתח משלכם.** בתפריט Settings → AI מופיעים Claude,‏ OpenAI,‏
@@ -338,7 +338,7 @@ Local file search**, הפעילו את Jev search reranking ובחרו endpoint:
 לא עוזב את המחשב.
 
 **Parallel** עובד בלי חשבון: ה-Search MCP החינמי שלו (עם הגבלת קצב) הוא
-חיפוש הרשת שמוגדר כברירת מחדל בכל פעם שלא הוגדרו התחברות ל-Genspark או מפתח
+חיפוש הרשת שמוגדר כברירת מחדל בכל פעם שלא הוגדרו התחברות ל-RamonMods או מפתח
 חיפוש, והוא רץ לפני גירוד התוצאות מ-DuckDuckGo. בחרו ב-Parallel תחת Web
 search והזינו מפתח [Parallel](https://platform.parallel.ai/) כדי להשתמש
 ב-Search API במקום זאת. גם Keenable לא דורש מפתח; מפתח רק מעלה את מגבלות
@@ -618,7 +618,7 @@ GenOffice נמצאת בפיתוח פעיל, והמשוב שלכם מעצב או�
   [GitHub Issues](https://github.com/RamonMods/GenOffice/issues).
 - **הצטרפו לצ'אט הקבוצתי של GenOffice** ב-
   [GenTeam](https://genoffice.ai/join) כדי לדבר עם הצוות ועם משתמשים אחרים.
-- **עקבו אחרי [@merrickbuilds](https://x.com/merrickbuilds) ב-X** להערות
+- **עקבו אחרי [@RamonMods](https://x.com/RamonMods) ב-X** להערות
   גרסה, הדגמות ומה שנבנה בהמשך.
 - **תנו כוכב (star) למאגר** אם GenOffice שימושית לכם — זו הדרך הטובה ביותר
   לתמוך בפרויקט.
@@ -650,7 +650,7 @@ GenOffice נמצאת בפיתוח פעיל, והמשוב שלכם מעצב או�
 
 עריכת מסמכים מתבצעת באופן מקומי מלא — קבצים לעולם לא עוזבים את המכשיר שלכם
 כדי להיפתח, להיערך, להישמר או להיות מומרים. תכונות ה-AI (סוכנים, חיפוש,
-כלי תמונה) דורשות חיבור לרשת, עם התחברות ל-Genspark או עם מפתח API של מודל
+כלי תמונה) דורשות חיבור לרשת, עם התחברות ל-RamonMods או עם מפתח API של מודל
 משלכם.
 
 </details>
@@ -676,7 +676,7 @@ GenOffice נמצאת בפיתוח פעיל, והמשוב שלכם מעצב או�
 <details>
 <summary><b>האם אפשר להשתמש במודל AI או במפתח API משלי?</b></summary>
 
-כן. מעבר להתחברות ל-Genspark שאינה דורשת מפתח, GenOffice מאפשרת להביא מפתח
+כן. מעבר להתחברות ל-RamonMods שאינה דורשת מפתח, GenOffice מאפשרת להביא מפתח
 משלכם עבור Claude,‏ OpenAI,‏ Gemini,‏ DeepSeek,‏ Kimi,‏ GLM,‏ Qwen,‏ Doubao,‏
 MiniMax,‏ Grok,‏ Mistral,‏ OpenRouter,‏ Requesty,‏ Opper,‏ Cheaper Inference,‏ Atlas Cloud ו-OpenCode Zen/Go, וכן כל endpoint
 תואם-OpenAI — כולל שרתי מודלים מקומיים. חיפוש, יצירת תמונות וניתוח
@@ -791,6 +791,6 @@ GenOffice מופצת ברישיון [Apache License 2.0](../../LICENSE), עם ח
 התיקייה `ee/` שמורה למודולים עסקיים (enterprise) עתידיים, והיא כפופה
 ל-[GenOffice Enterprise License](../../ee/LICENSE).
 
-השמות והלוגואים GenOffice ו-Genspark הם סימנים מסחריים של RamonMods
+השמות והלוגואים GenOffice ו-RamonMods הם סימנים מסחריים של RamonMods
 רישיון Apache-2.0 אינו מעניק הרשאה לשימוש בהם (ראו סעיף 6); על forks
 להשתמש במיתוג משלהם.

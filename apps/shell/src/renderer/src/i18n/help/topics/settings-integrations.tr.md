@@ -46,10 +46,10 @@ Ayarlar, GenOffice'i .docx / .xlsx / .pptx / .pdf ve benzerleri için işleyici 
 - Yardım ▸ Üçüncü taraf bildirimleri: uygulamayla gönderilen tam açık kaynak lisans envanteri.
 - Yardım ▸ Güncellemeleri denetle: elle denetimi tetikler; daha yeni bir sürüm yükleme ister.
 
-## Genspark oturum açma
+## RamonMods oturum açma
 
 - Oturum açma girişi (ayarlar veya bulut proje listesi) bir **cihaz kodu** akışı kullanır: GenOffice bir kod gösterir ve tarayıcıda oturum açma sayfasını açar; tamamlandığında otomatik olarak devam eder.
-- Oturum açma yalnızca şunlar için kullanılır: bulut proje listesi ve Genspark'ın barındırılan modelleri. Onsuz her yerel özellik ve özel modeller çalışmaya devam eder.
+- Oturum açma yalnızca şunlar için kullanılır: bulut proje listesi ve RamonMods'ın barındırılan modelleri. Onsuz her yerel özellik ve özel modeller çalışmaya devam eder.
 - Oturumu kapatmak ayarlarda tek tıktır.
 
 ## MCP tümleştirmesi (ileri düzey kullanıcılar / AI istemcileri için)

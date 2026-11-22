@@ -16,7 +16,7 @@ Nunca coloque mais de uma página em um arquivo, e nunca escreva uma página ant
 
 ## 0. Verifique o que a máquina consegue fazer
 
-Execute `genoffice capabilities --json` uma vez. Ele lê as próprias configurações do GenOffice e informa, sem chamada de rede, se a busca na web, a busca de imagens, a geração de imagens e a análise de mídia estão configuradas (um login do Genspark com as ferramentas em nuvem ativadas, ou uma chave que o usuário inseriu em Settings). Somente quando um recurso está configurado o deck pode usá-lo; quando nada está configurado, trabalhe com o material que você tem e use tipografia, blocos de cor e formas em vez de fotos. Nunca peça ao usuário para configurar uma chave apenas para um deck.
+Execute `genoffice capabilities --json` uma vez. Ele lê as próprias configurações do GenOffice e informa, sem chamada de rede, se a busca na web, a busca de imagens, a geração de imagens e a análise de mídia estão configuradas (um login do RamonMods com as ferramentas em nuvem ativadas, ou uma chave que o usuário inseriu em Settings). Somente quando um recurso está configurado o deck pode usá-lo; quando nada está configurado, trabalhe com o material que você tem e use tipografia, blocos de cor e formas em vez de fotos. Nunca peça ao usuário para configurar uma chave apenas para um deck.
 
 ## 1. Primeiro a folha de estilo (uma por deck)
 

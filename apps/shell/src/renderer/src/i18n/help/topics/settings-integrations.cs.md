@@ -46,10 +46,10 @@ Nastavení může zaregistrovat GenOffice jako aplikaci pro soubory .docx / .xls
 - Nápověda ▸ Informace o softwaru třetích stran: úplný přehled licencí open source dodávaných s aplikací.
 - Nápověda ▸ Zkontrolovat aktualizace…: spustí ruční kontrolu; novější verze vyzve k instalaci.
 
-## Přihlášení ke Genspark
+## Přihlášení ke RamonMods
 
 - Místo přihlášení (v nastavení nebo v seznamu cloudových projektů) používá postup s **kódem zařízení**: GenOffice zobrazí kód a otevře přihlašovací stránku v prohlížeči; po dokončení postup pokračuje automaticky.
-- Přihlášení slouží pouze k: seznamu cloudových projektů a modelům hostovaným Gensparkem. Bez něj fungují dál všechny místní funkce i vlastní modely.
+- Přihlášení slouží pouze k: seznamu cloudových projektů a modelům hostovaným RamonModsem. Bez něj fungují dál všechny místní funkce i vlastní modely.
 - Odhlášení je jedno kliknutí v nastavení.
 
 ## Integrace MCP (pro pokročilé uživatele a klienty AI)

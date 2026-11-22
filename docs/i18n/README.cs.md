@@ -17,7 +17,7 @@ Soubory Word, Excel, PowerPoint a PDF, upravované vámi a vaší AI, ukládané
   <a href="https://github.com/RamonMods/GenOffice/releases/latest"><img src="https://img.shields.io/github/v/release/RamonMods/GenOffice" alt="Nejnovější verze"></a>
   <a href="https://github.com/RamonMods/GenOffice/releases"><img src="https://img.shields.io/github/downloads/RamonMods/GenOffice/total" alt="Stažení"></a>
   <a href="https://github.com/RamonMods/GenOffice/stargazers"><img src="https://img.shields.io/github/stars/RamonMods/GenOffice?style=flat" alt="Hvězdy na GitHubu"></a>
-  <a href="https://x.com/merrickbuilds"><img src="https://img.shields.io/badge/follow-%40merrickbuilds-000000?logo=x&logoColor=white" alt="Sledujte @merrickbuilds na X"></a>
+  <a href="https://x.com/RamonMods"><img src="https://img.shields.io/badge/follow-%40RamonMods-000000?logo=x&logoColor=white" alt="Sledujte @RamonMods na X"></a>
 </p>
 
 <p align="center"><a href="../../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.zh-TW.md">繁體中文</a> · <a href="README.ko.md">한국어</a> · <a href="README.ja.md">日本語</a> · <a href="README.ar.md">العربية</a> · <a href="README.ru.md">Русский</a> · <a href="README.it.md">Italiano</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.pl.md">Polski</a> · <b>Čeština</b> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.ms.md">Bahasa Melayu</a> · <a href="README.th.md">ไทย</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.he.md">עברית</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.hu.md">Magyar</a></p>
@@ -29,7 +29,7 @@ Soubory Word, Excel, PowerPoint a PDF, upravované vámi a vaší AI, ukládané
   <a href="#mcp-server"><b>MCP</b></a> ·
   <a href="https://genoffice.ai/"><b>Web</b></a> ·
   <a href="https://genoffice.ai/join"><b>Komunita</b></a> ·
-  <a href="https://x.com/merrickbuilds"><b>X</b></a> ·
+  <a href="https://x.com/RamonMods"><b>X</b></a> ·
   <a href="../../PRIVACY.md"><b>Soukromí</b></a>
 </p>
 
@@ -68,7 +68,7 @@ nikdy zdrojový formát.
   a **Ask AI** na domovské obrazovce odpovídá na otázky napříč nimi a u každého
   tvrzení cituje soubor, ze kterého vychází, takže jej můžete otevřít
   a ověřit.
-- **Vaše klíče, nebo žádné.** Přihlaste se přes Genspark a klíče nepotřebujete,
+- **Vaše klíče, nebo žádné.** Přihlaste se přes RamonMods a klíče nepotřebujete,
   nebo použijte vlastní klíč pro Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM,
   Qwen, Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty, Opper, Cheaper
   Inference, Atlas Cloud nebo jakýkoli OpenAI kompatibilní endpoint, včetně
@@ -304,7 +304,7 @@ Soubor `.doc` z Wordu 97–2003, excelový `.xls` nebo powerpointový `.ppt` se 
 - **AI, která upravuje dokument přímo.** Sledované změny v Docs, živé vzorce
   a grafy v Sheets, prezentace kreslené přímo na plochu, každý krok AI je
   snapshot, ke kterému se lze vrátit.
-- **Vlastní model, vlastní klíč.** Přihlaste se přes Genspark, nebo použijte
+- **Vlastní model, vlastní klíč.** Přihlaste se přes RamonMods, nebo použijte
   klíč pro Claude, OpenAI, Gemini, DeepSeek a další, včetně lokálních serverů
   a jakéhokoli OpenAI kompatibilního endpointu.
 - **PDF udělané správně.** Upravujte text přímo na stránce a převádějte PDF
@@ -325,8 +325,8 @@ Soubor `.doc` z Wordu 97–2003, excelový `.xls` nebo powerpointový `.ppt` se 
 
 ## AI backendy
 
-**Přihlaste se přes Genspark** a nemusíte nic nastavovat: volání modelů
-prochází přes proxy Genspark (rodiny Claude, GPT a Gemini) a agenti získávají
+**Přihlaste se přes RamonMods** a nemusíte nic nastavovat: volání modelů
+prochází přes proxy RamonMods (rodiny Claude, GPT a Gemini) a agenti získávají
 webové a obrázkové vyhledávání, generování obrázků a analýzu
 obrázků/zvuku/videa.
 
@@ -350,7 +350,7 @@ neopouští.
 
 **Parallel** funguje bez účtu: jeho bezplatné Search MCP (s omezením počtu
 požadavků) je výchozím webovým vyhledáváním, kdykoli není nastaveno přihlášení
-přes Genspark ani klíč pro vyhledávání, a má přednost před scrapováním
+přes RamonMods ani klíč pro vyhledávání, a má přednost před scrapováním
 DuckDuckGo. Chcete-li místo toho používat Search API, vyberte Parallel pod
 Web search a zadejte klíč [Parallel](https://platform.parallel.ai/). I Keenable
 je bez klíče; klíč pouze zvýší limity počtu požadavků.
@@ -637,7 +637,7 @@ GenOffice je v aktivním vývoji a vaše zpětná vazba jej utváří.
 - **Připojte se ke skupinovému chatu GenOffice** na
   [GenTeam](https://genoffice.ai/join), kde si můžete promluvit s týmem
   i ostatními uživateli.
-- **Sledujte [@merrickbuilds](https://x.com/merrickbuilds) na X** — poznámky
+- **Sledujte [@RamonMods](https://x.com/RamonMods) na X** — poznámky
   k vydání, ukázky a to, na čem se právě pracuje.
 - **Ohvězdičkujte repozitář**, pokud je pro vás GenOffice užitečný — je to
   nejlepší způsob, jak projekt podpořit.
@@ -670,7 +670,7 @@ otevírají jako převedené kopie](#legacy-and-odf-files-open-as-converted-copi
 Úprava dokumentů je zcela lokální — soubory neopustí váš počítač při
 otevírání, úpravách, ukládání ani konverzi. AI funkce (agenti, vyhledávání,
 nástroje pro obrázky) potřebují síťové připojení, buď s přihlášením přes
-Genspark, nebo s vlastním API klíčem k modelu.
+RamonMods, nebo s vlastním API klíčem k modelu.
 
 </details>
 
@@ -695,7 +695,7 @@ OCR, takže se převedou na editovatelný text, ne na obrázek stránky.
 <details>
 <summary><b>Můžu použít vlastní AI model nebo API klíč?</b></summary>
 
-Ano. Kromě bezklíčového přihlášení Genspark GenOffice podporuje vlastní klíč
+Ano. Kromě bezklíčového přihlášení RamonMods GenOffice podporuje vlastní klíč
 pro Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM, Qwen, Doubao, MiniMax, Grok,
 Mistral, OpenRouter, Requesty, Opper, Cheaper Inference, Atlas Cloud a OpenCode Zen/Go, plus jakýkoli OpenAI kompatibilní
 endpoint — včetně lokálních serverů s modely. Vyhledávání, generování obrázků
@@ -813,6 +813,6 @@ GenOffice je licencován pod [Apache License 2.0](../../LICENSE), s jednou
 výjimkou: adresář `ee/` je vyhrazen pro budoucí podnikové moduly a je kryt
 [GenOffice Enterprise License](../../ee/LICENSE).
 
-Názvy a loga GenOffice a Genspark jsou ochranné známky společnosti Mainfunc,
+Názvy a loga GenOffice a RamonMods jsou ochranné známky společnosti RamonMods,
 Inc. Licence Apache-2.0 neuděluje oprávnění je používat (viz oddíl 6); forky
 by měly používat vlastní branding.

@@ -504,7 +504,7 @@ export interface MarkdownApi {
   skillsList(): Promise<UserSkillEntry[]>
   /** the body of one installed skill, by name — the main process resolves the path */
   skillText(name: string): Promise<string>
-  /** Genspark login state (shell-registered ai:gsk-status) — gates generate_image with the cloud-tools toggle */
+  /** RamonMods login state (shell-registered ai:gsk-status) — gates generate_image with the cloud-tools toggle */
   aiGskStatus(): Promise<GenSparkAccountStatus>
   aiStream(request: AiStreamRequest): Promise<void>
   aiStreamCancel(requestId: string): Promise<void>
@@ -515,7 +515,7 @@ export interface MarkdownApi {
   imageSearch(query: string, maxResults?: number): Promise<ImageSearchResult>
   /** Download an image URL in the main process (CORS-free, scheme/target validated) */
   fetchImage(url: string): Promise<{ base64: string; mime: string } | null>
-  /** Genspark cloud image generation (markdown-owned channel, gsk login required) */
+  /** RamonMods cloud image generation (markdown-owned channel, gsk login required) */
   aiGenerateImage(op: { prompt: string; aspectRatio?: string }): Promise<{
     url?: string
     error?: string

@@ -17,7 +17,7 @@ Word、Excel、PowerPoint 和 PDF 文件，由你与你的 AI 共同编辑，并
   <a href="https://github.com/RamonMods/GenOffice/releases/latest"><img src="https://img.shields.io/github/v/release/RamonMods/GenOffice" alt="最新版本"></a>
   <a href="https://github.com/RamonMods/GenOffice/releases"><img src="https://img.shields.io/github/downloads/RamonMods/GenOffice/total" alt="下载量"></a>
   <a href="https://github.com/RamonMods/GenOffice/stargazers"><img src="https://img.shields.io/github/stars/RamonMods/GenOffice?style=flat" alt="GitHub Star 数"></a>
-  <a href="https://x.com/merrickbuilds"><img src="https://img.shields.io/badge/follow-%40merrickbuilds-000000?logo=x&logoColor=white" alt="在 X 上关注 @merrickbuilds"></a>
+  <a href="https://x.com/RamonMods"><img src="https://img.shields.io/badge/follow-%40RamonMods-000000?logo=x&logoColor=white" alt="在 X 上关注 @RamonMods"></a>
 </p>
 
 <p align="center"><a href="../../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <b>简体中文</b> · <a href="README.zh-TW.md">繁體中文</a> · <a href="README.ko.md">한국어</a> · <a href="README.ja.md">日本語</a> · <a href="README.ar.md">العربية</a> · <a href="README.ru.md">Русский</a> · <a href="README.it.md">Italiano</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.pl.md">Polski</a> · <a href="README.cs.md">Čeština</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.ms.md">Bahasa Melayu</a> · <a href="README.th.md">ไทย</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.he.md">עברית</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.hu.md">Magyar</a></p>
@@ -29,7 +29,7 @@ Word、Excel、PowerPoint 和 PDF 文件，由你与你的 AI 共同编辑，并
   <a href="#mcp-server"><b>MCP</b></a> ·
   <a href="https://genoffice.ai/"><b>官网</b></a> ·
   <a href="https://genoffice.ai/join"><b>社区</b></a> ·
-  <a href="https://x.com/merrickbuilds"><b>X</b></a> ·
+  <a href="https://x.com/RamonMods"><b>X</b></a> ·
   <a href="../../PRIVACY.md"><b>隐私</b></a>
 </p>
 
@@ -59,7 +59,7 @@ OOXML 副本形式打开，旧版 Word `.doc`/`.dot`、Excel 97 `.xls`、PowerPo
   的结果重新排序，让真正回答你问题的文件排在第一位。
 - **向文件提问，答案带出处。** 给一组文档加上星标，主屏幕上的 **Ask AI** 就能
   跨这些文档回答问题，每个论断都标明出自哪个文件，方便你打开核对。
-- **用自己的密钥，或者不用密钥。** 登录 Genspark 即可免配置使用；也可以自带
+- **用自己的密钥，或者不用密钥。** 登录 RamonMods 即可免配置使用；也可以自带
   Claude、OpenAI、Gemini、DeepSeek、Kimi、GLM、Qwen、Doubao、MiniMax、Grok、
   Mistral、OpenRouter、Requesty、Opper、Cheaper Inference、Atlas Cloud 的密钥，
   或任何 OpenAI 兼容端点，包括本地模型服务。
@@ -272,7 +272,7 @@ Word 97–2003 的 `.doc`、Excel 的 `.xls` 或 PowerPoint 的 `.ppt` 会在本
   的部分原样复制。
 - **直接编辑文档的 AI。** Docs 中的修订痕迹、Sheets 中实时生效的公式和图表、直接
   在画布上生成的幻灯片，每一次 AI 操作都会留下可回滚的快照。
-- **自带模型，自带密钥。** 使用 Genspark 登录，或带上 Claude、OpenAI、Gemini、
+- **自带模型，自带密钥。** 使用 RamonMods 登录，或带上 Claude、OpenAI、Gemini、
   DeepSeek 等的密钥，同样支持本地服务器和任意 OpenAI 兼容端点。
 - **认真做好 PDF。** 在页面内直接编辑文字，本机将 PDF 转换为 Word、Excel 或
   PowerPoint，扫描件支持系统 OCR。
@@ -289,7 +289,7 @@ Word 97–2003 的 `.doc`、Excel 的 `.xls` 或 PowerPoint 的 `.ppt` 会在本
 
 ## AI 后端
 
-**登录 Genspark**，无需任何配置：模型调用通过 Genspark 代理路由（Claude、GPT
+**登录 RamonMods**，无需任何配置：模型调用通过 RamonMods 代理路由（Claude、GPT
 和 Gemini 系列），智能体同时获得网页与图片搜索、图片生成，以及图片/音频/视频
 解析能力。
 
@@ -307,7 +307,7 @@ Doubao/Seedream、GLM、Grok、Qwen、MiniMax、Stability、FLUX 或任何 OpenA
 TypeSafe 自己的 API。密钥只保存在这台设备上。该功能默认关闭；开启后，本地排名
 前 20 的结果摘录会被发送去评判，除此之外没有任何内容离开本机。
 
-**Parallel** 无需账号即可使用：只要既没有登录 Genspark，也没有配置搜索密钥，
+**Parallel** 无需账号即可使用：只要既没有登录 RamonMods，也没有配置搜索密钥，
 它的免费 Search MCP（有速率限制）就是默认的网页搜索，并且优先于 DuckDuckGo
 抓取。在「网页搜索」下选择 Parallel 并填入
 [Parallel](https://platform.parallel.ai/) 密钥，即可改用 Search API。Keenable
@@ -571,7 +571,7 @@ GenOffice 正在积极开发中，你的反馈决定它的走向。
   [GitHub Issues](https://github.com/RamonMods/GenOffice/issues)。
 - **加入 GenOffice 群聊**，在
   [GenTeam](https://genoffice.ai/join) 上与团队和其他用户交流。
-- **在 X 上关注 [@merrickbuilds](https://x.com/merrickbuilds)**，获取版本说明、
+- **在 X 上关注 [@RamonMods](https://x.com/RamonMods)**，获取版本说明、
   演示以及接下来在做什么。
 - **给仓库点个 Star** —— 如果 GenOffice 对你有用，这是支持项目最好的方式。
 
@@ -599,7 +599,7 @@ GenOffice 正在积极开发中，你的反馈决定它的走向。
 <summary><b>GenOffice 可以离线使用吗？</b></summary>
 
 文档编辑完全在本地进行 —— 打开、编辑、保存和转换文件都不需要把文件发送到任何
-地方。AI 功能（智能体、搜索、图片工具）需要网络连接，并且需要登录 Genspark 或
+地方。AI 功能（智能体、搜索、图片工具）需要网络连接，并且需要登录 RamonMods 或
 提供你自己的模型 API 密钥。
 
 </details>
@@ -624,7 +624,7 @@ GenOffice 正在积极开发中，你的反馈决定它的走向。
 <details>
 <summary><b>我可以使用自己的 AI 模型或 API 密钥吗？</b></summary>
 
-可以。除了免密钥的 Genspark 登录，GenOffice 还支持自带 Claude、OpenAI、Gemini、
+可以。除了免密钥的 RamonMods 登录，GenOffice 还支持自带 Claude、OpenAI、Gemini、
 DeepSeek、Kimi、GLM、Qwen、Doubao、MiniMax、Grok、Mistral、OpenRouter、Requesty、Opper、
 Cheaper Inference、Atlas Cloud 和 OpenCode Zen/Go 的密钥，以及任何 OpenAI 兼容端点 —— 包括本地模型服务。搜索、
 图片生成和图片/视频解析在 设置 → AI 媒体与搜索 下使用各自的密钥。
@@ -725,5 +725,5 @@ MIT/Apache-2.0/BSD-3-Clause/OFL 许可。
 GenOffice 采用 [Apache License 2.0](../../LICENSE) 许可，仅有一处例外：`ee/`
 目录为未来的企业模块预留，受 [GenOffice 企业许可证](../../ee/LICENSE) 约束。
 
-GenOffice 和 Genspark 的名称与标识是 RamonMods 的商标。Apache-2.0 许可证
+GenOffice 和 RamonMods 的名称与标识是 RamonMods 的商标。Apache-2.0 许可证
 并不授予使用它们的权利（见第 6 节）；分叉项目请使用自己的品牌。

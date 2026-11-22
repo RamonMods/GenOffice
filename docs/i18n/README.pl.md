@@ -17,7 +17,7 @@ Pliki Word, Excel, PowerPoint i PDF, edytowane przez Ciebie i Twoją AI, zapisyw
   <a href="https://github.com/RamonMods/GenOffice/releases/latest"><img src="https://img.shields.io/github/v/release/RamonMods/GenOffice" alt="Najnowsze wydanie"></a>
   <a href="https://github.com/RamonMods/GenOffice/releases"><img src="https://img.shields.io/github/downloads/RamonMods/GenOffice/total" alt="Liczba pobrań"></a>
   <a href="https://github.com/RamonMods/GenOffice/stargazers"><img src="https://img.shields.io/github/stars/RamonMods/GenOffice?style=flat" alt="Gwiazdki na GitHubie"></a>
-  <a href="https://x.com/merrickbuilds"><img src="https://img.shields.io/badge/follow-%40merrickbuilds-000000?logo=x&logoColor=white" alt="Obserwuj @merrickbuilds na X"></a>
+  <a href="https://x.com/RamonMods"><img src="https://img.shields.io/badge/follow-%40RamonMods-000000?logo=x&logoColor=white" alt="Obserwuj @RamonMods na X"></a>
 </p>
 
 <p align="center"><a href="../../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.zh-TW.md">繁體中文</a> · <a href="README.ko.md">한국어</a> · <a href="README.ja.md">日本語</a> · <a href="README.ar.md">العربية</a> · <a href="README.ru.md">Русский</a> · <a href="README.it.md">Italiano</a> · <a href="README.nl.md">Nederlands</a> · <b>Polski</b> · <a href="README.cs.md">Čeština</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.ms.md">Bahasa Melayu</a> · <a href="README.th.md">ไทย</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.he.md">עברית</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.hu.md">Magyar</a></p>
@@ -29,7 +29,7 @@ Pliki Word, Excel, PowerPoint i PDF, edytowane przez Ciebie i Twoją AI, zapisyw
   <a href="#mcp-server"><b>MCP</b></a> ·
   <a href="https://genoffice.ai/"><b>Strona internetowa</b></a> ·
   <a href="https://genoffice.ai/join"><b>Społeczność</b></a> ·
-  <a href="https://x.com/merrickbuilds"><b>X</b></a> ·
+  <a href="https://x.com/RamonMods"><b>X</b></a> ·
   <a href="../../PRIVACY.md"><b>Prywatność</b></a>
 </p>
 
@@ -71,7 +71,7 @@ w formacie źródłowym.
   dokumentów, a **Ask AI** na ekranie głównym odpowie na pytania dotyczące
   ich wszystkich, przy każdym stwierdzeniu wskazując plik, z którego ono
   pochodzi, żebyś mógł go otworzyć i sprawdzić.
-- **Twoje klucze albo żadne.** Zaloguj się przez Genspark i pomiń klucze, albo
+- **Twoje klucze albo żadne.** Zaloguj się przez RamonMods i pomiń klucze, albo
   użyj własnego klucza dla Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM, Qwen,
   Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty, Opper, Cheaper
   Inference, Atlas Cloud lub dowolnego endpointu zgodnego z OpenAI, w tym
@@ -310,7 +310,7 @@ Plik `.doc` programu Word 97–2003, `.xls` programu Excel lub `.ppt` programu P
 - **AI, która edytuje sam dokument.** Śledzone zmiany w Docs, żywe formuły i
   wykresy w Sheets, prezentacje rysowane bezpośrednio na płótnie, każda tura
   AI to zapis, do którego można wrócić.
-- **Twój model, Twój klucz.** Zaloguj się przez Genspark albo użyj własnego
+- **Twój model, Twój klucz.** Zaloguj się przez RamonMods albo użyj własnego
   klucza do Claude, OpenAI, Gemini, DeepSeek i innych, z lokalnymi serwerami i
   każdym endpointem zgodnym z OpenAI włącznie.
 - **PDF zrobiony właściwie.** Edytuj tekst wewnątrz strony i konwertuj PDF do
@@ -332,8 +332,8 @@ Plik `.doc` programu Word 97–2003, `.xls` programu Excel lub `.ppt` programu P
 
 ## Silniki AI
 
-**Zaloguj się przez Genspark** i nie musisz niczego konfigurować: wywołania
-modeli trafiają przez proxy Genspark (rodziny Claude, GPT i Gemini), a
+**Zaloguj się przez RamonMods** i nie musisz niczego konfigurować: wywołania
+modeli trafiają przez proxy RamonMods (rodziny Claude, GPT i Gemini), a
 agenci dostają wyszukiwanie w internecie i obrazów, generowanie obrazów oraz
 analizę obrazu, audio i wideo.
 
@@ -365,7 +365,7 @@ maszyny.
 
 **Parallel** działa bez konta: jego bezpłatne Search MCP (z limitem zapytań)
 jest domyślnym wyszukiwaniem w internecie zawsze wtedy, gdy nie skonfigurowano
-logowania Genspark ani klucza wyszukiwania, i działa przed scrapowaniem
+logowania RamonMods ani klucza wyszukiwania, i działa przed scrapowaniem
 DuckDuckGo. Wybierz Parallel w sekcji Web search i wpisz klucz
 [Parallel](https://platform.parallel.ai/), aby zamiast tego korzystać z Search
 API. Keenable również nie wymaga klucza; klucz jedynie podnosi limity zapytań.
@@ -663,7 +663,7 @@ GenOffice jest w aktywnym rozwoju, a Twoja opinia go kształtuje.
 - **Przyłącz się do czatu grupowego GenOffice** na
   [GenTeam](https://genoffice.ai/join), aby rozmawiać z zespołem i innymi
   użytkownikami.
-- **Obserwuj [@merrickbuilds](https://x.com/merrickbuilds) na X**, aby
+- **Obserwuj [@RamonMods](https://x.com/RamonMods) na X**, aby
   śledzić informacje o wydaniach, dema i to, co powstaje w następnej
   kolejności.
 - **Oznacz repozytorium gwiazdką**, jeśli GenOffice jest dla Ciebie
@@ -699,7 +699,7 @@ kopie](#legacy-and-odf-files-open-as-converted-copies).
 Edycja dokumentów jest w pełni lokalna — pliki nigdy nie opuszczają Twojego
 urządzenia, aby zostać otwarte, edytowane, zapisane lub przekonwertowane.
 Funkcje AI (agenci, wyszukiwanie, narzędzia obrazu) wymagają połączenia
-sieciowego, wraz z logowaniem przez Genspark albo własnym kluczem API
+sieciowego, wraz z logowaniem przez RamonMods albo własnym kluczem API
 modelu.
 
 </details>
@@ -727,7 +727,7 @@ tekstu, a nie obrazu strony.
 <details>
 <summary><b>Czy mogę użyć własnego modelu AI lub klucza API?</b></summary>
 
-Tak. Oprócz bezkluczowego logowania przez Genspark, GenOffice wspiera
+Tak. Oprócz bezkluczowego logowania przez RamonMods, GenOffice wspiera
 użycie własnego klucza dla Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM,
 Qwen, Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty, Opper, Cheaper
 Inference, Atlas Cloud i OpenCode Zen/Go, a także
@@ -852,6 +852,6 @@ GenOffice jest licencjonowane na warunkach [Apache License 2.0](../../LICENSE), 
 jednym wyjątkiem: katalog `ee/` jest zarezerwowany dla przyszłych modułów
 enterprise i jest objęty [GenOffice Enterprise License](../../ee/LICENSE).
 
-Nazwy i logo GenOffice oraz Genspark są znakami towarowymi RamonMods
+Nazwy i logo GenOffice oraz RamonMods są znakami towarowymi RamonMods
 Licencja Apache-2.0 nie daje prawa do ich używania (patrz sekcja 6); forki
 powinny korzystać z własnej marki.

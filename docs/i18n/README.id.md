@@ -17,7 +17,7 @@ File Word, Excel, PowerPoint, dan PDF, diedit oleh Anda dan AI Anda, disimpan ke
   <a href="https://github.com/RamonMods/GenOffice/releases/latest"><img src="https://img.shields.io/github/v/release/RamonMods/GenOffice" alt="Latest release"></a>
   <a href="https://github.com/RamonMods/GenOffice/releases"><img src="https://img.shields.io/github/downloads/RamonMods/GenOffice/total" alt="Downloads"></a>
   <a href="https://github.com/RamonMods/GenOffice/stargazers"><img src="https://img.shields.io/github/stars/RamonMods/GenOffice?style=flat" alt="GitHub stars"></a>
-  <a href="https://x.com/merrickbuilds"><img src="https://img.shields.io/badge/follow-%40merrickbuilds-000000?logo=x&logoColor=white" alt="Follow @merrickbuilds on X"></a>
+  <a href="https://x.com/RamonMods"><img src="https://img.shields.io/badge/follow-%40RamonMods-000000?logo=x&logoColor=white" alt="Follow @RamonMods on X"></a>
 </p>
 
 <p align="center"><a href="../../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.zh-TW.md">繁體中文</a> · <a href="README.ko.md">한국어</a> · <a href="README.ja.md">日本語</a> · <a href="README.ar.md">العربية</a> · <a href="README.ru.md">Русский</a> · <a href="README.it.md">Italiano</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.pl.md">Polski</a> · <a href="README.cs.md">Čeština</a> · <b>Bahasa Indonesia</b> · <a href="README.ms.md">Bahasa Melayu</a> · <a href="README.th.md">ไทย</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.he.md">עברית</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.hu.md">Magyar</a></p>
@@ -29,7 +29,7 @@ File Word, Excel, PowerPoint, dan PDF, diedit oleh Anda dan AI Anda, disimpan ke
   <a href="#mcp-server"><b>MCP</b></a> ·
   <a href="https://genoffice.ai/"><b>Situs Web</b></a> ·
   <a href="https://genoffice.ai/join"><b>Komunitas</b></a> ·
-  <a href="https://x.com/merrickbuilds"><b>X</b></a> ·
+  <a href="https://x.com/RamonMods"><b>X</b></a> ·
   <a href="../../PRIVACY.md"><b>Privasi</b></a>
 </p>
 
@@ -71,7 +71,7 @@ OOXML, tidak pernah format sumbernya.
   tersebut, dengan mengutip file di balik setiap pernyataan sehingga Anda bisa
   membukanya dan memeriksanya.
 - **Kunci API Anda sendiri, atau tanpa kunci sama sekali.** Masuk dengan
-  Genspark dan lewati urusan kunci API, atau gunakan kunci Anda sendiri untuk
+  RamonMods dan lewati urusan kunci API, atau gunakan kunci Anda sendiri untuk
   Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM, Qwen, Doubao, MiniMax, Grok,
   Mistral, OpenRouter, Requesty, Opper, Cheaper Inference, Atlas Cloud, atau
   endpoint apa pun yang kompatibel dengan OpenAI,
@@ -308,7 +308,7 @@ File `.doc` Word 97–2003, `.xls` Excel, atau `.ppt` PowerPoint dibuka sebagai 
 - **AI yang mengedit dokumen itu sendiri.** Tracked changes di Docs, rumus dan
   grafik langsung di Sheets, slide yang digambar langsung di kanvas, setiap
   giliran AI adalah snapshot yang bisa Anda kembalikan.
-- **Model Anda, kunci Anda.** Masuk dengan Genspark, atau bawa kunci untuk
+- **Model Anda, kunci Anda.** Masuk dengan RamonMods, atau bawa kunci untuk
   Claude, OpenAI, Gemini, DeepSeek dan lainnya, termasuk server lokal dan
   endpoint apa pun yang kompatibel dengan OpenAI.
 - **PDF yang ditangani dengan benar.** Edit teks langsung di halaman, dan
@@ -331,8 +331,8 @@ File `.doc` Word 97–2003, `.xls` Excel, atau `.ppt` PowerPoint dibuka sebagai 
 
 ## Backend AI
 
-**Masuk dengan Genspark** dan tidak ada yang perlu dikonfigurasi: panggilan
-model diarahkan lewat proxy Genspark (keluarga Claude, GPT, dan Gemini) dan
+**Masuk dengan RamonMods** dan tidak ada yang perlu dikonfigurasi: panggilan
+model diarahkan lewat proxy RamonMods (keluarga Claude, GPT, dan Gemini) dan
 agen mendapatkan akses pencarian web dan gambar, generasi gambar, serta
 analisis gambar/audio/video.
 
@@ -355,7 +355,7 @@ hasil lokal teratas dikirim untuk dinilai dan tidak ada hal lain yang
 meninggalkan mesin.
 
 **Parallel** bisa dipakai tanpa akun: Search MCP gratisnya (dengan batas laju)
-menjadi pencarian web default setiap kali tidak ada login Genspark atau kunci
+menjadi pencarian web default setiap kali tidak ada login RamonMods atau kunci
 pencarian yang dikonfigurasi, dan dijalankan lebih dulu sebelum scraping
 DuckDuckGo. Pilih Parallel di bawah Web search dan masukkan kunci
 [Parallel](https://platform.parallel.ai/) untuk memakai Search API sebagai
@@ -649,7 +649,7 @@ GenOffice terus dikembangkan secara aktif dan masukan Anda membentuk arahnya.
 - **Gabung ke grup chat GenOffice** di
   [GenTeam](https://genoffice.ai/join) untuk mengobrol dengan tim dan
   pengguna lain.
-- **Ikuti [@merrickbuilds](https://x.com/merrickbuilds) di X** untuk catatan
+- **Ikuti [@RamonMods](https://x.com/RamonMods) di X** untuk catatan
   rilis, demo, dan apa yang sedang dibangun berikutnya.
 - **Beri bintang (star) pada repo ini** jika GenOffice bermanfaat bagi Anda —
   ini cara terbaik untuk mendukung proyek ini.
@@ -683,7 +683,7 @@ sebagai salinan hasil konversi](#legacy-and-odf-files-open-as-converted-copies).
 Pengeditan dokumen sepenuhnya lokal — file tidak pernah meninggalkan
 perangkat Anda untuk dibuka, diedit, disimpan, atau dikonversi. Fitur AI
 (agen, pencarian, alat gambar) membutuhkan koneksi jaringan, baik dengan
-masuk lewat Genspark atau dengan kunci API model Anda sendiri.
+masuk lewat RamonMods atau dengan kunci API model Anda sendiri.
 
 </details>
 
@@ -710,7 +710,7 @@ gambar halaman.
 <details>
 <summary><b>Bisakah saya menggunakan model AI atau kunci API saya sendiri?</b></summary>
 
-Ya. Selain masuk lewat Genspark tanpa kunci API, GenOffice mendukung
+Ya. Selain masuk lewat RamonMods tanpa kunci API, GenOffice mendukung
 penggunaan kunci Anda sendiri untuk Claude, OpenAI, Gemini, DeepSeek, Kimi,
 GLM, Qwen, Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty, Opper, Cheaper Inference, Atlas Cloud, dan OpenCode Zen/Go,
 plus endpoint apa pun yang kompatibel dengan OpenAI — termasuk server model
@@ -831,6 +831,6 @@ GenOffice dilisensikan di bawah [Apache License 2.0](../../LICENSE), dengan
 satu pengecualian: direktori `ee/` dicadangkan untuk modul enterprise di masa
 depan dan tercakup oleh [GenOffice Enterprise License](../../ee/LICENSE).
 
-Nama dan logo GenOffice serta Genspark adalah merek dagang milik Mainfunc,
+Nama dan logo GenOffice serta RamonMods adalah merek dagang milik RamonMods,
 Inc. Lisensi Apache-2.0 tidak memberikan izin untuk menggunakannya (lihat
 bagian 6); fork sebaiknya menggunakan branding sendiri.

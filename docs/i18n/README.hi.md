@@ -17,7 +17,7 @@ Word, Excel, PowerPoint और PDF फ़ाइलें, आपके और �
   <a href="https://github.com/RamonMods/GenOffice/releases/latest"><img src="https://img.shields.io/github/v/release/RamonMods/GenOffice" alt="Latest release"></a>
   <a href="https://github.com/RamonMods/GenOffice/releases"><img src="https://img.shields.io/github/downloads/RamonMods/GenOffice/total" alt="Downloads"></a>
   <a href="https://github.com/RamonMods/GenOffice/stargazers"><img src="https://img.shields.io/github/stars/RamonMods/GenOffice?style=flat" alt="GitHub stars"></a>
-  <a href="https://x.com/merrickbuilds"><img src="https://img.shields.io/badge/follow-%40merrickbuilds-000000?logo=x&logoColor=white" alt="Follow @merrickbuilds on X"></a>
+  <a href="https://x.com/RamonMods"><img src="https://img.shields.io/badge/follow-%40RamonMods-000000?logo=x&logoColor=white" alt="Follow @RamonMods on X"></a>
 </p>
 
 <p align="center"><a href="../../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.zh-TW.md">繁體中文</a> · <a href="README.ko.md">한국어</a> · <a href="README.ja.md">日本語</a> · <a href="README.ar.md">العربية</a> · <a href="README.ru.md">Русский</a> · <a href="README.it.md">Italiano</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.pl.md">Polski</a> · <a href="README.cs.md">Čeština</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.ms.md">Bahasa Melayu</a> · <a href="README.th.md">ไทย</a> · <b>हिन्दी</b> · <a href="README.he.md">עברית</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.hu.md">Magyar</a></p>
@@ -29,7 +29,7 @@ Word, Excel, PowerPoint और PDF फ़ाइलें, आपके और �
   <a href="#mcp-server"><b>MCP</b></a> ·
   <a href="https://genoffice.ai/"><b>वेबसाइट</b></a> ·
   <a href="https://genoffice.ai/join"><b>कम्युनिटी</b></a> ·
-  <a href="https://x.com/merrickbuilds"><b>X</b></a> ·
+  <a href="https://x.com/RamonMods"><b>X</b></a> ·
   <a href="../../PRIVACY.md"><b>गोपनीयता</b></a>
 </p>
 
@@ -40,7 +40,7 @@ GenOffice, macOS, Windows और Linux के लिए Microsoft Office का 
 - **डिज़ाइन से ही लोकल।** फ़ाइलें आपकी मशीन पर ही खुलती, एडिट होती, सेव होती और कन्वर्ट होती हैं। PDF → Word / Excel / PowerPoint, Markdown → Word और HTML → Word — यह सभी कन्वर्शन ऑन-डिवाइस होते हैं। मशीन से बाहर सिर्फ़ AI कॉल्स जाती हैं, और वह भी आपके चुने हुए प्रोवाइडर तक।
 - **फ़ाइलें उनके कंटेंट से खोजें।** होम स्क्रीन एक लोकल SQLite इंडेक्स से आपकी `.docx`, `.xlsx`, `.pptx`, PDF, Markdown और HTML फ़ाइलों के नाम, फ़ोल्डर और पूरा टेक्स्ट खोजती है, CJK सहित। चाहें तो टॉप नतीजों को System One जजमेंट मॉडल **[TypeSafe Jev](https://typesafe.ai/)** से री-रैंक कराएँ, ताकि आपके सवाल का जवाब देने वाली फ़ाइल सबसे ऊपर आए।
 - **अपनी फ़ाइलों से पूछें, स्रोतों के साथ।** डॉक्यूमेंट्स के एक सेट को स्टार करें और होम स्क्रीन पर **Ask AI** उन सबके आधार पर सवालों के जवाब देता है, और हर दावे के पीछे की फ़ाइल साइट करता है ताकि आप उसे खोलकर जाँच सकें।
-- **आपकी कीज़ या कोई कीज़ नहीं।** Genspark से साइन इन करें और कीज़ की झंझट से बचें, या Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM, Qwen, Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty, Opper, Cheaper Inference, Atlas Cloud या किसी भी OpenAI-compatible endpoint के लिए अपनी खुद की key लाएँ — लोकल सर्वर भी शामिल हैं।
+- **आपकी कीज़ या कोई कीज़ नहीं।** RamonMods से साइन इन करें और कीज़ की झंझट से बचें, या Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM, Qwen, Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty, Opper, Cheaper Inference, Atlas Cloud या किसी भी OpenAI-compatible endpoint के लिए अपनी खुद की key लाएँ — लोकल सर्वर भी शामिल हैं।
 - **स्क्रिप्ट करने योग्य और एजेंट के लिए तैयार।** ऐप के साथ एक `genoffice` कमांड लाइन और Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode और Windsurf के लिए एक skill आती है, ताकि कोई कोडिंग एजेंट बिना कोई विंडो खोले आपकी मशीन पर असली Office फ़ाइलें बना, कन्वर्ट, पढ़ और एडिट कर सके।
 
 **पाएँ:** [macOS](https://github.com/RamonMods/GenOffice/releases/latest) (Apple Silicon और Intel) ·
@@ -230,7 +230,7 @@ Word 97–2003 की `.doc`, Excel की `.xls` या PowerPoint की `.ppt
 - **AI जो डॉक्यूमेंट को खुद एडिट करता है।** Docs में ट्रैक्ड चेंजेस, Sheets में लाइव
   फ़ॉर्मूला और चार्ट, कैनवस पर खींची गई स्लाइड्स, हर AI टर्न एक स्नैपशॉट है जिसे
   आप वापस ले जा सकते हैं।
-- **आपका मॉडल, आपकी key।** Genspark से साइन इन करें, या Claude, OpenAI, Gemini,
+- **आपका मॉडल, आपकी key।** RamonMods से साइन इन करें, या Claude, OpenAI, Gemini,
   DeepSeek और अन्य के लिए अपनी key लाएँ, लोकल सर्वर और कोई भी OpenAI-compatible
   endpoint भी शामिल है।
 - **PDF सही तरीके से हैंडल किया गया।** पेज के भीतर सीधे टेक्स्ट एडिट करें, और PDF को
@@ -250,13 +250,13 @@ Word 97–2003 की `.doc`, Excel की `.xls` या PowerPoint की `.ppt
 
 ## AI बैकएंड
 
-**Genspark से साइन इन करें** और कुछ भी कॉन्फ़िगर करने की ज़रूरत नहीं: मॉडल कॉल्स Genspark प्रॉक्सी (Claude, GPT और Gemini फ़ैमिली) के ज़रिए रूट होती हैं, और एजेंट्स को वेब व इमेज सर्च, इमेज जनरेशन, और इमेज/ऑडियो/वीडियो एनालिसिस मिलता है।
+**RamonMods से साइन इन करें** और कुछ भी कॉन्फ़िगर करने की ज़रूरत नहीं: मॉडल कॉल्स RamonMods प्रॉक्सी (Claude, GPT और Gemini फ़ैमिली) के ज़रिए रूट होती हैं, और एजेंट्स को वेब व इमेज सर्च, इमेज जनरेशन, और इमेज/ऑडियो/वीडियो एनालिसिस मिलता है।
 
 **या अपनी खुद की key लाएँ।** Settings → AI में Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM, Qwen, Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty, Opper, Cheaper Inference, Atlas Cloud, SiliconFlow, PPIO, Command Code और OpenCode Zen/Go लिस्ट किए गए हैं, साथ ही किसी भी OpenAI-compatible endpoint (base URL + key) के लिए एक कस्टम स्लॉट है, जिसमें लोकल मॉडल सर्वर भी शामिल हैं। सर्च और मीडिया के अपने अलग, हर-कैपेबिलिटी प्रोवाइडर **AI Media & Search** के तहत हैं: वेब सर्च के लिए Serper, Serply, SearchApi, Tavily, Parallel, Keenable, Exa या Firecrawl, और इमेज जनरेशन व इमेज/वीडियो एनालिसिस के लिए OpenAI, Gemini, Doubao/Seedream, GLM, Grok, Qwen, MiniMax, Stability, FLUX या कोई भी OpenAI-compatible images endpoint, साथ ही इमेज एनालिसिस के लिए DeepSeek V4.1 Flash।
 
 **TypeSafe Jev** होम स्क्रीन की फ़ाइल सर्च को री-रैंक करता है। **AI Media & Search → स्थानीय फ़ाइल खोज** के तहत Jev खोज पुनर्क्रमण चालू करें और एक endpoint चुनें: [OpenRouter](https://openrouter.ai/typesafe) (मॉडल `typesafe/jev-1.13`) या TypeSafe का अपना API। key सिर्फ़ इसी डिवाइस पर स्टोर होती है। यह डिफ़ॉल्ट रूप से बंद है; चालू होने पर टॉप 20 लोकल नतीजों के अंश परखने के लिए भेजे जाते हैं और इसके अलावा कुछ भी मशीन से बाहर नहीं जाता।
 
-**Parallel** बिना अकाउंट के काम करता है: जब कोई Genspark लॉगिन या सर्च key कॉन्फ़िगर नहीं होती, तब इसका फ़्री Search MCP (रेट-लिमिटेड) डिफ़ॉल्ट वेब सर्च होता है, और यह DuckDuckGo स्क्रेप से पहले चलता है। इसके बजाय Search API इस्तेमाल करने के लिए Web search के तहत Parallel चुनें और एक [Parallel](https://platform.parallel.ai/) key डालें। Keenable भी बिना-key चलता है; key सिर्फ़ रेट लिमिट बढ़ा देती है।
+**Parallel** बिना अकाउंट के काम करता है: जब कोई RamonMods लॉगिन या सर्च key कॉन्फ़िगर नहीं होती, तब इसका फ़्री Search MCP (रेट-लिमिटेड) डिफ़ॉल्ट वेब सर्च होता है, और यह DuckDuckGo स्क्रेप से पहले चलता है। इसके बजाय Search API इस्तेमाल करने के लिए Web search के तहत Parallel चुनें और एक [Parallel](https://platform.parallel.ai/) key डालें। Keenable भी बिना-key चलता है; key सिर्फ़ रेट लिमिट बढ़ा देती है।
 
 पूरा सूट लाइट, डार्क और सिस्टम थीम के साथ आता है। थीम सिर्फ़ स्क्रीन पर दिखने वाली चीज़ बदलती है: एक्सपोर्ट, प्रिंट और सेव की गई फ़ाइलें हमेशा डॉक्यूमेंट के अपने असली रंग बरकरार रखती हैं।
 
@@ -509,7 +509,7 @@ GenOffice पर सक्रिय रूप से काम चल रहा 
 - टीम और दूसरे यूज़र्स से बात करने के लिए
   [GenTeam](https://genoffice.ai/join) पर **GenOffice ग्रुप चैट जॉइन करें**।
 - रिलीज़ नोट्स, डेमो और आगे क्या बन रहा है, यह जानने के लिए **X पर
-  [@merrickbuilds](https://x.com/merrickbuilds) को फ़ॉलो करें**।
+  [@RamonMods](https://x.com/RamonMods) को फ़ॉलो करें**।
 - अगर GenOffice आपके लिए उपयोगी है तो **रीपो को स्टार करें** — प्रोजेक्ट को
   सपोर्ट करने का यह सबसे अच्छा तरीका है।
 
@@ -540,7 +540,7 @@ GenOffice पर सक्रिय रूप से काम चल रहा 
 
 डॉक्यूमेंट एडिटिंग पूरी तरह लोकल है — खोलने, एडिट करने, सेव करने या कन्वर्ट
 करने के लिए फ़ाइलें कभी आपकी मशीन से बाहर नहीं जाती हैं। AI फ़ीचर्स (एजेंट,
-सर्च, इमेज टूल्स) को नेटवर्क कनेक्शन चाहिए, और उसके लिए Genspark साइन-इन या
+सर्च, इमेज टूल्स) को नेटवर्क कनेक्शन चाहिए, और उसके लिए RamonMods साइन-इन या
 आपकी अपनी मॉडल API key में से कोई एक ज़रूरी है।
 
 </details>
@@ -566,7 +566,7 @@ GenOffice पर सक्रिय रूप से काम चल रहा 
 <details>
 <summary><b>क्या मैं अपना AI मॉडल या API key इस्तेमाल कर सकता हूँ?</b></summary>
 
-हाँ। बिना-key वाले Genspark साइन-इन के अलावा, GenOffice Claude, OpenAI,
+हाँ। बिना-key वाले RamonMods साइन-इन के अलावा, GenOffice Claude, OpenAI,
 Gemini, DeepSeek, Kimi, GLM, Qwen, Doubao, MiniMax, Grok, Mistral,
 OpenRouter, Requesty, Opper, Cheaper Inference, Atlas Cloud और OpenCode Zen/Go के लिए अपनी खुद की key लाने को सपोर्ट करता
 है, साथ ही किसी भी OpenAI-compatible endpoint को — जिसमें लोकल मॉडल सर्वर
@@ -682,6 +682,6 @@ GenOffice को [Apache License 2.0](../../LICENSE) के तहत लाइ�
 है, एक अपवाद के साथ: `ee/` डायरेक्टरी भविष्य के एंटरप्राइज़ मॉड्यूल्स के लिए
 रिज़र्व है और [GenOffice Enterprise License](../../ee/LICENSE) के तहत आती है।
 
-GenOffice और Genspark के नाम व लोगो, RamonMods के ट्रेडमार्क हैं।
+GenOffice और RamonMods के नाम व लोगो, RamonMods के ट्रेडमार्क हैं।
 Apache-2.0 लाइसेंस इनके इस्तेमाल की अनुमति नहीं देता (सेक्शन 6 देखें);
 फ़ॉर्क को अपनी खुद की ब्रांडिंग इस्तेमाल करनी चाहिए।

@@ -438,13 +438,13 @@ export const ja = {
   appTabClear: 'クリア',
   // AI settings
   appAiSettings: 'AI 設定',
-  appGensparkAccount: 'Genspark アカウント',
+  appRamonModsAccount: 'RamonMods アカウント',
   appChecking: '確認中…',
   appLoggedIn: 'サインイン済み',
   appLoggedInEmail: 'サインイン済み:{email}',
-  appNotLoggedIn: '未サインイン(AI 機能には Genspark アカウントが必要です)',
+  appNotLoggedIn: '未サインイン(AI 機能には RamonMods アカウントが必要です)',
   appWaitingBrowserLogin: 'ブラウザーでのサインインを待っています…',
-  appLoginGenspark: 'Genspark にサインイン',
+  appLoginRamonMods: 'RamonMods にサインイン',
   appModel: 'モデル',
   // Context menu
   appCut: '切り取り',

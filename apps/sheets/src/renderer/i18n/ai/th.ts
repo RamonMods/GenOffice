@@ -49,13 +49,13 @@ export const th = {
   aiFileTooltip:
     'SHA-256 {sha}\nการบันทึกจะเขียนทับเฉพาะรายการที่แก้ไขเท่านั้น ส่วนที่เหลือคงไว้ตามเดิม',
   aiFileMeta: 'แผ่นงาน {sheets} แผ่น · รายการ {entries} รายการ',
-  aiGensparkAccount: 'บัญชี GenOffice',
+  aiRamonModsAccount: 'บัญชี GenOffice',
   aiAccountChecking: 'กำลังตรวจสอบ…',
   aiLoggedIn: 'ลงชื่อเข้าใช้แล้ว',
   aiLoggedInAs: 'ลงชื่อเข้าใช้แล้ว: {email}',
   aiNotLoggedIn: 'ยังไม่ได้ลงชื่อเข้าใช้ (ฟีเจอร์ AI ต้องใช้บัญชี GenOffice)',
   aiWaitingBrowserLogin: 'กำลังรอการลงชื่อเข้าใช้ในเบราว์เซอร์…',
-  aiLoginGenspark: 'ลงชื่อเข้าใช้ GenOffice',
+  aiLoginRamonMods: 'ลงชื่อเข้าใช้ GenOffice',
   aiModel: 'โมเดล',
   aiCancel: 'ยกเลิก',
   aiSave: 'บันทึก',
@@ -68,7 +68,7 @@ export const th = {
   aiNetworkError:
     'เครือข่ายมีปัญหา ไม่สามารถเชื่อมต่อบริการ AI ได้ โปรดตรวจสอบการเชื่อมต่อแล้วลองใหม่',
   aiCreditsExhausted:
-    'เครดิต GenOffice ของคุณหมดแล้ว โปรดเติมเครดิตที่ genspark.ai/pricing แล้วลองใหม่',
+    'เครดิต GenOffice ของคุณหมดแล้ว โปรดเติมเครดิตที่ ramonmods.com แล้วลองใหม่',
   aiToolWorkbookContext: 'อ่านข้อมูลเวิร์กบุ๊ก',
   aiToolReadRange: 'อ่านช่วง',
   aiToolReadRangeOf: 'อ่านช่วง {range}',

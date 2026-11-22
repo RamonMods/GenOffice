@@ -5,8 +5,8 @@ export const nl = {
   aiEmptyBuildTitle: 'Laat AI deze werkmap voor je opbouwen',
   aiEmptyBuildBody:
     'Beschrijf de tabel, gegevens of grafiek die je nodig hebt — AI maakt het direct.',
-  aiGskLoginBtn: 'Aanmelden bij Genspark',
-  aiGskLoginOk: 'Aangemeld bij Genspark',
+  aiGskLoginBtn: 'Aanmelden bij RamonMods',
+  aiGskLoginOk: 'Aangemeld bij RamonMods',
   aiUndelivered: 'Niet verzonden',
   aiRetry: 'Opnieuw proberen',
   aiOpenAssistant: 'AI-assistent openen',
@@ -51,13 +51,13 @@ export const nl = {
   aiFileTooltip:
     'SHA-256 {sha}\nBij het opslaan worden alleen de bewerkte items herschreven; al het andere blijft behouden.',
   aiFileMeta: '{sheets} bladen · {entries} items',
-  aiGensparkAccount: 'Genspark-account',
+  aiRamonModsAccount: 'RamonMods-account',
   aiAccountChecking: 'Controleren…',
   aiLoggedIn: 'Aangemeld',
   aiLoggedInAs: 'Aangemeld: {email}',
-  aiNotLoggedIn: 'Niet aangemeld (AI-functies vereisen een Genspark-account)',
+  aiNotLoggedIn: 'Niet aangemeld (AI-functies vereisen een RamonMods-account)',
   aiWaitingBrowserLogin: 'Wachten op aanmelding in de browser…',
-  aiLoginGenspark: 'Aanmelden bij Genspark',
+  aiLoginRamonMods: 'Aanmelden bij RamonMods',
   aiModel: 'Model',
   aiCancel: 'Annuleren',
   aiSave: 'Opslaan',
@@ -70,7 +70,7 @@ export const nl = {
   aiNetworkError:
     'Netwerkprobleem: kan de AI-service niet bereiken. Controleer je verbinding en probeer het opnieuw',
   aiCreditsExhausted:
-    'Je Genspark-credits zijn op. Waardeer op via genspark.ai/pricing en probeer het opnieuw',
+    'Je RamonMods-credits zijn op. Waardeer op via ramonmods.com en probeer het opnieuw',
   aiToolWorkbookContext: 'Werkmapgegevens lezen',
   aiToolReadRange: 'Bereik lezen',
   aiToolReadRangeOf: 'Bereik {range} lezen',

@@ -10,8 +10,8 @@ import type { AiProviderId, AiProviderMeta, AiSettings, LegacyAiSettings } from 
  * which differs from the official vendor ids.
  */
 export const GENSPARK_LLM_BASE_URLS = {
-  anthropic: 'https://www.genspark.ai/api/anthropic',
-  openai: 'https://www.genspark.ai/api/llm_proxy/v1',
+  anthropic: 'https://ramonmods.com/api/anthropic',
+  openai: 'https://ramonmods.com/api/llm_proxy/v1',
 } as const
 
 /**
@@ -22,7 +22,7 @@ export const GENSPARK_LLM_BASE_URLS = {
 export const GENSPARK_AGENT_TYPE = 'genoffice'
 
 export function gensparkAttributionHeaders(baseUrl?: string): Record<string, string> {
-  return baseUrl?.startsWith('https://www.genspark.ai')
+  return baseUrl?.startsWith('https://ramonmods.com')
     ? { 'X-Agent-Type': GENSPARK_AGENT_TYPE }
     : {}
 }

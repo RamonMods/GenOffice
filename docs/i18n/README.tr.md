@@ -17,7 +17,7 @@ Word, Excel, PowerPoint ve PDF dosyaları; siz ve yapay zekânız tarafından d�
   <a href="https://github.com/RamonMods/GenOffice/releases/latest"><img src="https://img.shields.io/github/v/release/RamonMods/GenOffice" alt="Son sürüm"></a>
   <a href="https://github.com/RamonMods/GenOffice/releases"><img src="https://img.shields.io/github/downloads/RamonMods/GenOffice/total" alt="İndirmeler"></a>
   <a href="https://github.com/RamonMods/GenOffice/stargazers"><img src="https://img.shields.io/github/stars/RamonMods/GenOffice?style=flat" alt="GitHub yıldızları"></a>
-  <a href="https://x.com/merrickbuilds"><img src="https://img.shields.io/badge/follow-%40merrickbuilds-000000?logo=x&logoColor=white" alt="X'te @merrickbuilds'i takip edin"></a>
+  <a href="https://x.com/RamonMods"><img src="https://img.shields.io/badge/follow-%40RamonMods-000000?logo=x&logoColor=white" alt="X'te @RamonMods'i takip edin"></a>
 </p>
 
 <p align="center"><a href="../../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.zh-TW.md">繁體中文</a> · <a href="README.ko.md">한국어</a> · <a href="README.ja.md">日本語</a> · <a href="README.ar.md">العربية</a> · <a href="README.ru.md">Русский</a> · <a href="README.it.md">Italiano</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.pl.md">Polski</a> · <a href="README.cs.md">Čeština</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.ms.md">Bahasa Melayu</a> · <a href="README.th.md">ไทย</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.he.md">עברית</a> · <a href="README.vi.md">Tiếng Việt</a> · <b>Türkçe</b> · <a href="README.hu.md">Magyar</a></p><!-- lang-switcher · public-hygiene: allow -->
@@ -29,7 +29,7 @@ Word, Excel, PowerPoint ve PDF dosyaları; siz ve yapay zekânız tarafından d�
   <a href="#mcp-server"><b>MCP</b></a> ·
   <a href="https://genoffice.ai/"><b>Web sitesi</b></a> ·
   <a href="https://genoffice.ai/join"><b>Topluluk</b></a> ·
-  <a href="https://x.com/merrickbuilds"><b>X</b></a> ·
+  <a href="https://x.com/RamonMods"><b>X</b></a> ·
   <a href="../../PRIVACY.md"><b>Gizlilik</b></a>
 </p>
 
@@ -70,7 +70,7 @@ her zaman OOXML yazar, asla kaynak biçimi yazmaz.
   ana ekrandaki **Ask AI** soruları bu belgeler üzerinden yanıtlar ve her
   iddianın arkasındaki dosyayı kaynak gösterir, böylece açıp kontrol
   edebilirsiniz.
-- **Kendi anahtarlarınız ya da hiç anahtar yok.** Genspark ile oturum açıp
+- **Kendi anahtarlarınız ya da hiç anahtar yok.** RamonMods ile oturum açıp
   anahtar işini atlayın ya da Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM,
   Qwen, Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty, Opper, Cheaper
   Inference, Atlas Cloud veya yerel sunucular dahil herhangi bir OpenAI uyumlu
@@ -304,7 +304,7 @@ Word 97–2003 `.doc`, Excel `.xls` veya PowerPoint `.ppt` dosyası, bilgisayar�
 - **Belgenin kendisini düzenleyen bir yapay zekâ.** Docs'ta izlenen
   değişiklikler, Sheets'te canlı formüller ve grafikler, tuvale çizilen
   slaytlar; her yapay zekâ turu geri alabileceğiniz bir anlık görüntü.
-- **Sizin modeliniz, sizin anahtarınız.** Genspark ile oturum açın ya da
+- **Sizin modeliniz, sizin anahtarınız.** RamonMods ile oturum açın ya da
   Claude, OpenAI, Gemini, DeepSeek ve daha fazlası için bir anahtar getirin;
   yerel sunucular ve her OpenAI uyumlu uç nokta dahil.
 - **Doğru dürüst PDF.** Sayfanın içinde metin düzenleyin ve PDF'yi cihaz
@@ -327,8 +327,8 @@ Word 97–2003 `.doc`, Excel `.xls` veya PowerPoint `.ppt` dosyası, bilgisayar�
 
 ## Yapay zekâ arka uçları
 
-**Genspark ile oturum açın**; yapılandırılacak hiçbir şey yoktur: model
-çağrıları Genspark proxy'si üzerinden yönlendirilir (Claude, GPT ve Gemini
+**RamonMods ile oturum açın**; yapılandırılacak hiçbir şey yoktur: model
+çağrıları RamonMods proxy'si üzerinden yönlendirilir (Claude, GPT ve Gemini
 aileleri) ve ajanlar web ve görsel arama, görsel üretimi ve görsel/ses/video
 analizi kazanır.
 
@@ -354,7 +354,7 @@ alıntıları değerlendirilmek üzere gönderilir ve makineden başka hiçbir �
 çıkmaz.
 
 **Parallel** hesap olmadan çalışır: ücretsiz Search MCP'si (hız sınırlı),
-Genspark girişi ya da arama anahtarı yapılandırılmamışken varsayılan web
+RamonMods girişi ya da arama anahtarı yapılandırılmamışken varsayılan web
 aramasıdır ve DuckDuckGo kazımasından önce çalışır. Bunun yerine Search API'yi
 kullanmak için Web search altında Parallel'i seçin ve bir
 [Parallel](https://platform.parallel.ai/) anahtarı girin. Keenable de
@@ -652,7 +652,7 @@ GenOffice etkin geliştirme aşamasındadır ve geri bildiriminiz onu şekillend
   [GitHub Issues](https://github.com/RamonMods/GenOffice/issues).
 - **GenOffice grup sohbetine katılın:** ekiple ve diğer kullanıcılarla konuşmak
   için [GenTeam](https://genoffice.ai/join).
-- **X'te [@merrickbuilds](https://x.com/merrickbuilds) hesabını takip edin:**
+- **X'te [@RamonMods](https://x.com/RamonMods) hesabını takip edin:**
   sürüm notları, demolar ve sırada ne olduğu için.
 - **Depoya yıldız verin:** GenOffice size yararlıysa, projeyi desteklemenin en
   iyi yolu budur.
@@ -684,7 +684,7 @@ dönüştürülmüş kopyalar olarak açılır](#legacy-and-odf-files-open-as-co
 
 Belge düzenleme tamamen yereldir — dosyalar açılmak, düzenlenmek, kaydedilmek
 ya da dönüştürülmek için makinenizden asla çıkmaz. Yapay zekâ özellikleri
-(ajanlar, arama, görsel araçları) bir ağ bağlantısı ve ya Genspark oturumu ya
+(ajanlar, arama, görsel araçları) bir ağ bağlantısı ve ya RamonMods oturumu ya
 da kendi model API anahtarınızı gerektirir.
 
 </details>
@@ -710,7 +710,7 @@ görüntüsü yerine düzenlenebilir metne dönüşürler.
 <details>
 <summary><b>Kendi yapay zekâ modelimi ya da API anahtarımı kullanabilir miyim?</b></summary>
 
-Evet. Anahtarsız Genspark oturumunun yanı sıra GenOffice; Claude, OpenAI,
+Evet. Anahtarsız RamonMods oturumunun yanı sıra GenOffice; Claude, OpenAI,
 Gemini, DeepSeek, Kimi, GLM, Qwen, Doubao, MiniMax, Grok, Mistral, OpenRouter,
 Requesty, Opper, Cheaper Inference, Atlas Cloud ve OpenCode Zen/Go için kendi
 anahtarınızı getirmeyi, ayrıca yerel model sunucuları dahil herhangi bir
@@ -827,6 +827,6 @@ GenOffice, tek bir istisnayla [Apache License 2.0](../../LICENSE) altında
 lisanslanmıştır: `ee/` dizini gelecekteki kurumsal modüller için ayrılmıştır ve
 [GenOffice Enterprise License](../../ee/LICENSE) kapsamındadır.
 
-GenOffice ve Genspark adları ile logoları RamonMods'in ticari
+GenOffice ve RamonMods adları ile logoları RamonMods'in ticari
 markalarıdır. Apache-2.0 lisansı bunları kullanma izni vermez (bkz. 6. bölüm);
 çatallar kendi markalarını kullanmalıdır.

@@ -2,8 +2,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { aiFetch } from '../src/fetch'
 import { createNativeAdmission, nativeAdmissionHosts } from '../src/native-admission'
 
-const OPENAI = 'https://www.genspark.ai/api/llm_proxy/v1/chat/completions'
-const ANTHROPIC = 'https://www.genspark.ai/api/anthropic/v1/messages'
+const OPENAI = 'https://ramonmods.com/api/llm_proxy/v1/chat/completions'
+const ANTHROPIC = 'https://ramonmods.com/api/anthropic/v1/messages'
 const pass = (seconds = Math.floor(Date.now() / 1000)) => `${seconds}-${'A'.repeat(43)}`
 const issued = (token: string, family = 'llm') => Response.json({ data: { token, family } })
 
@@ -78,7 +78,7 @@ describe('native admission for Genspark provider requests', () => {
       fetcher,
     )
     expect(calls).toHaveLength(2)
-    expect(calls[0]!.url).toBe('https://www.genspark.ai/api/native-waf/token-pass?family=llm')
+    expect(calls[0]!.url).toBe('https://ramonmods.com/api/native-waf/token-pass?family=llm')
     expect(new Headers(calls[0]!.init.headers).get('authorization')).toBe('Bearer gsk-k')
     expect(new Headers(calls[1]!.init.headers).get('x-api-key')).toBe('gsk-k')
     expect(calls[0]!.init.redirect).toBe('error')
@@ -101,7 +101,7 @@ describe('native admission for Genspark provider requests', () => {
       [ANTHROPIC, { 'x-api-key': 'sk-ant-byok' }],
       [OPENAI.replace('https:', 'http:'), { Authorization: 'Bearer gsk-k' }],
       [
-        OPENAI.replace('www.genspark.ai', 'www.genspark.ai.evil.test'),
+        OPENAI.replace('ramonmods.com', 'ramonmods.com.evil.test'),
         { Authorization: 'Bearer gsk-k' },
       ],
       [OPENAI.replace('/api/llm_proxy/', '/api/tool_cli/'), { Authorization: 'Bearer gsk-k' }],
@@ -205,15 +205,15 @@ describe('native admission for Genspark provider requests', () => {
 
 describe('nativeAdmissionHosts', () => {
   it('keeps the default proxy host and adds the configured ones', () => {
-    expect([...nativeAdmissionHosts({})]).toEqual(['www.genspark.ai'])
+    expect([...nativeAdmissionHosts({})]).toEqual(['ramonmods.com'])
     expect([...nativeAdmissionHosts({ GSK_BASE_URL: 'https://office.example.com/x' })]).toEqual([
-      'www.genspark.ai',
+      'ramonmods.com',
       'office.example.com',
     ])
     expect([
       ...nativeAdmissionHosts({
         GENOFFICE_NATIVE_WAF_HOSTS: ' Tenant.Example.com, ,second.example.com',
       }),
-    ]).toEqual(['www.genspark.ai', 'tenant.example.com', 'second.example.com'])
+    ]).toEqual(['ramonmods.com', 'tenant.example.com', 'second.example.com'])
   })
 })

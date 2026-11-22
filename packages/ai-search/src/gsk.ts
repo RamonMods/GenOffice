@@ -649,7 +649,7 @@ export interface GskPastProject {
   title: string
   /** creation time, ISO-like string from the API */
   ctime: string
-  /** relative web URL, e.g. '/agents?id=...' — join with https://www.genspark.ai */
+  /** relative web URL, e.g. '/agents?id=...' — join with https://ramonmods.com */
   projectUrl: string
 }
 
