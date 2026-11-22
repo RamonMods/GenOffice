@@ -5344,7 +5344,7 @@ export function installSlidesMenu(): void {
  */
 async function applyMainProcessProxy(): Promise<void> {
   const setDispatcher = async (proxyUrl: string) => {
-    // spawned gsk CLI children do their own fetch and never see the
+    // spawned ramonmods CLI children do their own fetch and never see the
     // dispatcher below — forward the proxy to them via env
     setGskProxyUrl(proxyUrl)
     try {
@@ -5373,7 +5373,7 @@ async function applyMainProcessProxy(): Promise<void> {
   try {
     await app.whenReady()
     // PAC/rule proxies answer per-host: probe the host the login flow, the
-    // Genspark LLM proxy and the gsk CLI actually target
+    // RamonMods LLM proxy and the ramonmods CLI actually target
     const resolved = await electronSession.defaultSession.resolveProxy('https://ramonmods.com/')
     // resolveProxy returns strings like "PROXY 127.0.0.1:1087" or "DIRECT"
     const m = /PROXY\s+([^;]+)/i.exec(resolved || '')

@@ -5,8 +5,8 @@
  * Gemini native output / Imagen predict, DashScope multimodal-generation
  * (Qwen-Image) and MiniMax image_generation. Understanding speaks two: OpenAI
  * chat completions (video via a video_url part where the vendor accepts one)
- * and Gemini generateContent (inline or Files API). Genspark is not here — its
- * tools go through the gsk CLI in @genoffice/ai-search.
+ * and Gemini generateContent (inline or Files API). RamonMods is not here — its
+ * tools go through the ramonmods CLI in @genoffice/ai-search.
  */
 
 import { aiFetch } from './fetch'
@@ -525,7 +525,7 @@ async function analyzeMediaOpenAi(
       throw new Error(
         `${meta.label} não pode analisar ${m.name ?? m.mime} (${m.mime}) aqui; a análise de ${
           meta.videoAnalysis ? 'áudio' : 'vídeo e áudio'
-        } requer Gemini ou Genspark.`,
+        } requer Gemini ou RamonMods.`,
       )
     }
   }

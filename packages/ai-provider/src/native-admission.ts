@@ -1,15 +1,15 @@
 /**
- * Optional signed edge admission (native-tok-v1) for Genspark LLM proxy requests whose final
- * credential is a gsk key. On by default in Node host processes; GENOFFICE_NATIVE_WAF=0 turns it off.
+ * Optional signed edge admission (native-tok-v1) for RamonMods LLM proxy requests whose final
+ * credential is a ramonmods key. On by default in Node host processes; GENOFFICE_NATIVE_WAF=0 turns it off.
  * Browsers and Electron renderers never take part.
  *
- * Eligible: HTTPS to an admitted host (default proxy host, GSK_BASE_URL, GENOFFICE_NATIVE_WAF_HOSTS), path /api/llm_proxy/ or /api/anthropic (family
- * "llm"), and exactly one credential header carrying a gsk key — `Authorization: Bearer gsk-…`
- * (OpenAI-compatible) or `x-api-key: gsk-…` (Anthropic). BYOK keys, custom endpoints and every
+ * Eligible: HTTPS to an admitted host (default proxy host, RAMONMODS_BASE_URL, GENOFFICE_NATIVE_WAF_HOSTS), path /api/llm_proxy/ or /api/anthropic (family
+ * "llm"), and exactly one credential header carrying a ramonmods key — `Authorization: Bearer ramonmods-…`
+ * (OpenAI-compatible) or `x-api-key: ramonmods-…` (Anthropic). BYOK keys, custom endpoints and every
  * other host are never sent to the issuer. Issuer failure leaves the request unchanged.
  */
 
-const PASS_HEADER = 'X-Genspark-Token-Pass'
+const PASS_HEADER = 'X-RamonMods-Token-Pass'
 
 /**
  * The default proxy host (providers.ts always targets it), the configured service host and any
@@ -18,7 +18,7 @@ const PASS_HEADER = 'X-Genspark-Token-Pass'
 export function nativeAdmissionHosts(env: NodeJS.ProcessEnv = process.env): Set<string> {
   const hosts = new Set(['ramonmods.com'])
   try {
-    if (env.GSK_BASE_URL) hosts.add(new URL(env.GSK_BASE_URL).hostname)
+    if (env.RAMONMODS_BASE_URL) hosts.add(new URL(env.RAMONMODS_BASE_URL).hostname)
   } catch {
     // Malformed configuration only narrows the allowlist to the default host.
   }
@@ -70,7 +70,7 @@ function subjectOf(raw: string, headers: Headers): Subject | undefined {
   const value = key ?? bearer
   if (
     !value ||
-    !value.startsWith(name === 'x-api-key' ? 'gsk-' : 'Bearer gsk-') ||
+    !value.startsWith(name === 'x-api-key' ? 'ramonmods-' : 'Bearer ramonmods-') ||
     /[,\r\n]/.test(value)
   ) {
     return undefined

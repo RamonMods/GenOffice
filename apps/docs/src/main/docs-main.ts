@@ -126,7 +126,7 @@ import {
   type AiSettings,
   type AiStreamChunk,
   type AiStreamRequest,
-  type GenSparkAccountStatus,
+  type RamonModsAccountStatus,
   type LegacyAiSettings,
 } from '@genoffice/ai-provider'
 import { listCodexModels, shutdownCodexAppServers } from '@genoffice/ai-provider/codex-app-server'
@@ -136,10 +136,10 @@ import {
   ensureGenofficeLogin,
   noteGskCallFailure,
   setGenofficeLoginOpener,
-  gskApiKey,
+  ramonmodsApiKey,
   generateImageTool,
   testSearchProvider,
-  gskLoginInfo,
+  ramonmodsLoginInfo,
   hasGskAuth,
   webSearchTool,
   imageSearchTool,
@@ -2603,7 +2603,7 @@ const tMain = createI18n({
     btnCloseAnyway: 'Trotzdem schließen',
     autosaveFoundTitle: 'Wiederhergestellte Version gefunden',
     autosaveDiskNewer:
-      'Hinweis: Die Datei auf dem Datenträger wurde nach dem Speichern dieser Wiederherstellungskopie geändert. Beim Wiederherstellen werden diese neueren Änderungen ersetzt.',
+      'Hinweis: Die Datei auf dem Datenträger wurde nach dem Speichern dieser Wiederherstellunramonmodsopie geändert. Beim Wiederherstellen werden diese neueren Änderungen ersetzt.',
     autosaveFoundBody:
       'Es gibt ungespeicherte Änderungen. Automatisch gespeicherte Version wiederherstellen?',
     autosaveRestore: 'Wiederherstellen',
@@ -7897,8 +7897,8 @@ export function registerAiIpc(): void {
     // file live, so heal the stored flag once. Judged on the *stored* provider
     // — never the activeProvider fallback below, which must not leak into the
     // file and clobber a saved (half-configured) BYOK selection.
-    if ((stored.provider ?? 'genspark') === 'genspark' && stored.gskToolsEnabled === false) {
-      stored.gskToolsEnabled = true
+    if ((stored.provider ?? 'genspark') === 'genspark' && stored.ramonmodsToolsEnabled === false) {
+      stored.ramonmodsToolsEnabled = true
       writeJsonAtomic(SETTINGS_PATH(), stored, 0o600)
     }
     // heal the file mode of a settings file saved by an older build: BYOK keys
@@ -7910,27 +7910,27 @@ export function registerAiIpc(): void {
     return settings
   })
 
-  // RamonMods account (gsk login state): auth source for AI features; the frontend uses it to prompt login when logged out
+  // RamonMods account (ramonmods login state): auth source for AI features; the frontend uses it to prompt login when logged out
   ipcMain.handle(
-    'ai:gsk-status',
-    async (_event, withEmail?: boolean): Promise<GenSparkAccountStatus> => {
+    'ai:ramonmods-status',
+    async (_event, withEmail?: boolean): Promise<RamonModsAccountStatus> => {
       if (!hasGskAuth()) return { loggedIn: false }
       if (!withEmail) return { loggedIn: true }
-      const info = await gskLoginInfo()
+      const info = await ramonmodsLoginInfo()
       return info?.email ? { loggedIn: true, email: info.email } : { loggedIn: true }
     },
   )
 
-  // a 401 on the gsk key opens the device-code login once (genoffice-auth recovery)
+  // a 401 on the ramonmods key opens the device-code login once (genoffice-auth recovery)
   setGenofficeLoginOpener((url) => void shell.openExternal(url))
 
-  ipcMain.handle('ai:gsk-login', () => {
+  ipcMain.handle('ai:ramonmods-login', () => {
     ensureGenofficeLogin((url) => void shell.openExternal(url))
   })
 
   ipcMain.handle('ai:set-settings', (_event, settings: AiSettings) => {
     // SECURITY.md: payloads are schema-checked in the main process. The settings
-    // file feeds cliPath into spawn() and baseUrl receives the gsk bearer token,
+    // file feeds cliPath into spawn() and baseUrl receives the ramonmods bearer token,
     // so the renderer's copy is sanitized before it touches disk.
     const sanitized = sanitizeAiSettings(settings)
     if (!sanitized) {
@@ -7967,12 +7967,12 @@ export function registerAiIpc(): void {
     const maxTokens = request.maxTokens ?? maxOutputTokensOf(settings)
     const provider = settings.provider
     let config = settings.providers?.[provider]
-    // the RamonMods key never enters the settings file; requests take it from the gsk login state
-    // set only when the gsk key was injected: a 401 then means that key expired
-    let gskKey = ''
+    // the RamonMods key never enters the settings file; requests take it from the ramonmods login state
+    // set only when the ramonmods key was injected: a 401 then means that key expired
+    let ramonmodsKey = ''
     if (provider === 'genspark' && config && !config.apiKey) {
-      gskKey = gskApiKey()
-      config = { ...config, apiKey: gskKey }
+      ramonmodsKey = ramonmodsApiKey()
+      config = { ...config, apiKey: ramonmodsKey }
     }
     // a custom endpoint may name an environment variable instead of storing a key
     config = config ? resolveProfileCredential(config) : config
@@ -8050,7 +8050,7 @@ export function registerAiIpc(): void {
         send({ requestId, type: 'done' })
       } else {
         // an expired/revoked key drops to signed-out so the inline sign-in button shows
-        noteGskCallFailure(gskKey, err)
+        noteGskCallFailure(ramonmodsKey, err)
         send({
           requestId,
           type: 'error',
@@ -8175,7 +8175,7 @@ export function registerAiIpc(): void {
     return testSearchProvider(provider, String(apiKey ?? ''))
   })
 
-  // settings-UI connection test for the media provider (RamonMods = the gsk login state)
+  // settings-UI connection test for the media provider (RamonMods = the ramonmods login state)
   ipcMain.handle('ai:media-test', (_event, input: unknown) => {
     const { provider, config } = (input ?? {}) as {
       provider?: AiMediaProviderId
@@ -8196,11 +8196,11 @@ export function registerAiIpc(): void {
     const { system, user } = request
     const provider = settings.provider
     let config = settings.providers?.[provider]
-    // set only when the gsk key was injected: a 401 then means that key expired
-    let gskKey = ''
+    // set only when the ramonmods key was injected: a 401 then means that key expired
+    let ramonmodsKey = ''
     if (provider === 'genspark' && config && !config.apiKey) {
-      gskKey = gskApiKey()
-      config = { ...config, apiKey: gskKey }
+      ramonmodsKey = ramonmodsApiKey()
+      config = { ...config, apiKey: ramonmodsKey }
     }
     // a custom endpoint may name an environment variable instead of storing a key
     config = config ? resolveProfileCredential(config) : config
@@ -8221,10 +8221,10 @@ export function registerAiIpc(): void {
       if (!result.ok && isAiRegionBlockedError(result.error)) {
         return { ok: false, error: tm('errAiRegion') }
       }
-      if (!result.ok) noteGskCallFailure(gskKey, result.error)
+      if (!result.ok) noteGskCallFailure(ramonmodsKey, result.error)
       return result
     } catch (err) {
-      noteGskCallFailure(gskKey, err)
+      noteGskCallFailure(ramonmodsKey, err)
       return {
         ok: false,
         error: isAiOverloadedError(err)

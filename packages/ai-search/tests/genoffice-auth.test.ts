@@ -19,7 +19,7 @@ import {
   startGenofficeLogin,
   type GskLoginProgress,
 } from '../src/genoffice-auth'
-import { gskApiKey, setGskProxyUrl, watchGskApiKey } from '../src/gsk'
+import { ramonmodsApiKey, setGskProxyUrl, watchGskApiKey } from '../src/ramonmods'
 
 const CODE = 'a'.repeat(64)
 const AUTH_URL = `https://ramonmods.com/api/office_addin_auth/verify?code=${CODE}`
@@ -29,7 +29,7 @@ let dir: string
 beforeEach(() => {
   dir = mkdtempSync(join(tmpdir(), 'genoffice-auth-'))
   process.env.GENOFFICE_AUTH_DIR = dir
-  delete process.env.GSK_API_KEY
+  delete process.env.RAMONMODS_API_KEY
   // Legacy-shape cases opt out explicitly; admission is the shipped default.
   process.env.GENOFFICE_NATIVE_WAF = '0'
   resetGenofficeAuthCache()
@@ -39,7 +39,7 @@ afterEach(() => {
   vi.unstubAllGlobals()
   rmSync(dir, { recursive: true, force: true })
   delete process.env.GENOFFICE_AUTH_DIR
-  delete process.env.GSK_API_KEY
+  delete process.env.RAMONMODS_API_KEY
   delete process.env.GENOFFICE_NATIVE_WAF
   setGskProxyUrl('')
   resetGenofficeAuthCache()
@@ -101,7 +101,7 @@ function stubFlow(
       return jsonResponse(
         opts.createResponse ?? {
           status: 0,
-          data: { key_id: 'kid-1', key_name: 'genoffice', token: 'gsk-genoffice-key' },
+          data: { key_id: 'kid-1', key_name: 'genoffice', token: 'ramonmods-genoffice-key' },
         },
       )
     }
@@ -150,12 +150,12 @@ describe('startGenofficeLogin', () => {
     expect(events.at(-1)?.phase).toBe('success')
     const calls = fetchMock.mock.calls
     const mint = calls.find(([u]) => String(u).includes('/api_tokens/create'))!
-    expect(new Headers(mint[1]?.headers).get('X-Genspark-Native-Pass')).toBe(token)
+    expect(new Headers(mint[1]?.headers).get('X-RamonMods-Native-Pass')).toBe(token)
     expect(new Headers(mint[1]?.headers).get('Cookie')).toBe('session_id=sess-abc')
     expect(mint[1]?.redirect).toBe('manual')
     const session = calls.find(([u]) => String(u).includes('/office_addin_auth/session'))!
     expect(new Headers(session[1]?.headers).get('Authorization')).toBe('Bearer bearer-token')
-    expect(new Headers(session[1]?.headers).has('X-Genspark-Native-Pass')).toBe(false)
+    expect(new Headers(session[1]?.headers).has('X-RamonMods-Native-Pass')).toBe(false)
     expect(calls.filter(([u]) => String(u).endsWith('/api/native-waf/pass'))).toHaveLength(1)
   })
   it('runs device_code → poll → session → key create and stores the key', async () => {
@@ -167,12 +167,12 @@ describe('startGenofficeLogin', () => {
 
     const saved = JSON.parse(readFileSync(genofficeAuthPath(), 'utf-8'))
     expect(saved).toEqual({
-      api_key: 'gsk-genoffice-key',
+      api_key: 'ramonmods-genoffice-key',
       key_id: 'kid-1',
       access_token: 'bearer-token',
     })
     expect(statSync(genofficeAuthPath()).mode & 0o777).toBe(0o600)
-    expect(genofficeApiKey()).toBe('gsk-genoffice-key')
+    expect(genofficeApiKey()).toBe('ramonmods-genoffice-key')
     expect(genofficeLoginInFlight()).toBe(false)
 
     // the key create call must ride on the session cookie
@@ -182,12 +182,12 @@ describe('startGenofficeLogin', () => {
     expect(JSON.parse(String(init.body))).toEqual({ key_name: 'genoffice' })
   })
 
-  it('feeds gskApiKey(), losing only to an explicit GSK_API_KEY env override', async () => {
+  it('feeds ramonmodsApiKey(), losing only to an explicit RAMONMODS_API_KEY env override', async () => {
     stubFlow()
     await loginAndCollect()
-    expect(gskApiKey()).toBe('gsk-genoffice-key')
-    process.env.GSK_API_KEY = 'gsk-env-override'
-    expect(gskApiKey()).toBe('gsk-env-override')
+    expect(ramonmodsApiKey()).toBe('ramonmods-genoffice-key')
+    process.env.RAMONMODS_API_KEY = 'ramonmods-env-override'
+    expect(ramonmodsApiKey()).toBe('ramonmods-env-override')
   })
 
   it('reports a network failure at device_code as error "network"', async () => {
@@ -216,7 +216,7 @@ describe('startGenofficeLogin', () => {
     const events = await loginAndCollect()
     expect(deviceCodeCalls).toBe(2)
     expect(events.at(-1)).toEqual({ phase: 'success' })
-    expect(genofficeApiKey()).toBe('gsk-genoffice-key')
+    expect(genofficeApiKey()).toBe('ramonmods-genoffice-key')
     expect(genofficeProxyFallbackPreferred()).toBe(true)
   })
 
@@ -352,10 +352,10 @@ describe('startGenofficeLogin', () => {
     await loginAndCollect()
 
     const fetchMock = stubFlow({
-      createResponse: { status: 0, data: { key_id: 'kid-2', token: 'gsk-genoffice-key-2' } },
+      createResponse: { status: 0, data: { key_id: 'kid-2', token: 'ramonmods-genoffice-key-2' } },
     })
     await loginAndCollect()
-    expect(loadGenofficeAuth()).toMatchObject({ apiKey: 'gsk-genoffice-key-2', keyId: 'kid-2' })
+    expect(loadGenofficeAuth()).toMatchObject({ apiKey: 'ramonmods-genoffice-key-2', keyId: 'kid-2' })
     await vi.waitFor(() => {
       const revoke = fetchMock.mock.calls.find(([u]) => String(u).includes('/api_tokens/revoke'))
       expect(revoke).toBeDefined()
@@ -427,16 +427,16 @@ describe('watchGskApiKey', () => {
   it('drops the cached key and reports the new one when another process rewrites auth.json', async () => {
     const write = (key: string) =>
       writeFileSync(join(dir, 'auth.json'), JSON.stringify({ api_key: key, key_id: key }))
-    write('gsk-old')
-    expect(gskApiKey()).toBe('gsk-old')
+    write('ramonmods-old')
+    expect(ramonmodsApiKey()).toBe('ramonmods-old')
     const seen: string[] = []
     const stop = watchGskApiKey((key) => seen.push(key), 20)
     try {
       // the first stat runs off-thread; a write that lands before it becomes the baseline
       await new Promise((r) => setTimeout(r, 100))
-      write('gsk-new')
-      await vi.waitFor(() => expect(seen).toEqual(['gsk-new']), { timeout: 3000 })
-      expect(genofficeApiKey()).toBe('gsk-new')
+      write('ramonmods-new')
+      await vi.waitFor(() => expect(seen).toEqual(['ramonmods-new']), { timeout: 3000 })
+      expect(genofficeApiKey()).toBe('ramonmods-new')
     } finally {
       stop()
     }
@@ -446,8 +446,8 @@ describe('watchGskApiKey', () => {
 describe('classifyMintResponse', () => {
   it('reads a minted key', () => {
     expect(
-      classifyMintResponse(200, { status: 0, data: { key_id: 'kid', token: 'gsk-x' } }),
-    ).toEqual({ kind: 'ok', apiKey: 'gsk-x', keyId: 'kid' })
+      classifyMintResponse(200, { status: 0, data: { key_id: 'kid', token: 'ramonmods-x' } }),
+    ).toEqual({ kind: 'ok', apiKey: 'ramonmods-x', keyId: 'kid' })
   })
 
   it('recognises the fresh-login refusal', () => {
@@ -496,7 +496,7 @@ describe('recoverFromRejectedGskKey', () => {
   async function signIn(): Promise<void> {
     stubFlow()
     await loginAndCollect()
-    expect(genofficeApiKey()).toBe('gsk-genoffice-key')
+    expect(genofficeApiKey()).toBe('ramonmods-genoffice-key')
   }
 
   /** fetch stub for the silent re-mint: session ok, create answers `create` */
@@ -512,8 +512,8 @@ describe('recoverFromRejectedGskKey', () => {
 
   it('drops the rejected key from memory and disk', async () => {
     await signIn()
-    expect(invalidateGenofficeKey('gsk-other')).toBe(false)
-    expect(invalidateGenofficeKey('gsk-genoffice-key')).toBe(true)
+    expect(invalidateGenofficeKey('ramonmods-other')).toBe(false)
+    expect(invalidateGenofficeKey('ramonmods-genoffice-key')).toBe(true)
     expect(genofficeApiKey()).toBe('')
     expect(existsSync(genofficeAuthPath())).toBe(false)
   })
@@ -523,10 +523,10 @@ describe('recoverFromRejectedGskKey', () => {
     const opener = vi.fn()
     setGenofficeLoginOpener(opener)
     const fetchMock = stubRemint(() =>
-      jsonResponse({ status: 0, data: { key_id: 'kid-2', token: 'gsk-reminted' } }),
+      jsonResponse({ status: 0, data: { key_id: 'kid-2', token: 'ramonmods-reminted' } }),
     )
-    await expect(recoverFromRejectedGskKey('gsk-genoffice-key')).resolves.toBe('reminted')
-    expect(genofficeApiKey()).toBe('gsk-reminted')
+    await expect(recoverFromRejectedGskKey('ramonmods-genoffice-key')).resolves.toBe('reminted')
+    expect(genofficeApiKey()).toBe('ramonmods-reminted')
     expect(opener).not.toHaveBeenCalled()
     // no device code: the stored Bearer rebuilt the session
     expect(fetchMock.mock.calls.some(([u]) => String(u).includes('/device_code'))).toBe(false)
@@ -540,12 +540,12 @@ describe('recoverFromRejectedGskKey', () => {
     stubRemint(() => {
       // the silent re-mint is refused; the post-login mint (fresh session) succeeds
       if (++creates === 1) return jsonResponse({ detail: FRESH_AUTH_REQUIRED }, { status: 403 })
-      return jsonResponse({ status: 0, data: { key_id: 'kid-3', token: 'gsk-fresh' } })
+      return jsonResponse({ status: 0, data: { key_id: 'kid-3', token: 'ramonmods-fresh' } })
     })
-    await expect(recoverFromRejectedGskKey('gsk-genoffice-key')).resolves.toBe('login_started')
+    await expect(recoverFromRejectedGskKey('ramonmods-genoffice-key')).resolves.toBe('login_started')
     expect(genofficeApiKey()).toBe('')
     await vi.waitFor(() => expect(opener).toHaveBeenCalledWith(AUTH_URL))
-    await vi.waitFor(() => expect(genofficeApiKey()).toBe('gsk-fresh'))
+    await vi.waitFor(() => expect(genofficeApiKey()).toBe('ramonmods-fresh'))
     expect(creates).toBe(2)
   })
 
@@ -569,13 +569,13 @@ describe('recoverFromRejectedGskKey', () => {
       }),
     )
     const [a, b] = await Promise.all([
-      recoverFromRejectedGskKey('gsk-genoffice-key'),
-      recoverFromRejectedGskKey('gsk-genoffice-key'),
+      recoverFromRejectedGskKey('ramonmods-genoffice-key'),
+      recoverFromRejectedGskKey('ramonmods-genoffice-key'),
     ])
     expect([a, b]).toEqual(['login_started', 'login_started'])
     await vi.waitFor(() => expect(genofficeLoginInFlight()).toBe(false))
     // further rejected calls leave the inline sign-in button to the user
-    await expect(recoverFromRejectedGskKey('gsk-genoffice-key')).resolves.toBe('login_required')
+    await expect(recoverFromRejectedGskKey('ramonmods-genoffice-key')).resolves.toBe('login_required')
     await expect(recoverFromRejectedGskKey('')).resolves.toBe('login_required')
     expect(opener).toHaveBeenCalledTimes(1)
   })
@@ -587,17 +587,17 @@ describe('recoverFromRejectedGskKey', () => {
     let creates = 0
     stubRemint(() => {
       creates++
-      return jsonResponse({ status: 0, data: { key_id: `kid-${creates}`, token: 'gsk-reminted' } })
+      return jsonResponse({ status: 0, data: { key_id: `kid-${creates}`, token: 'ramonmods-reminted' } })
     })
-    await expect(recoverFromRejectedGskKey('gsk-genoffice-key')).resolves.toBe('reminted')
-    await expect(recoverFromRejectedGskKey('gsk-reminted')).resolves.toBe('login_started')
+    await expect(recoverFromRejectedGskKey('ramonmods-genoffice-key')).resolves.toBe('reminted')
+    await expect(recoverFromRejectedGskKey('ramonmods-reminted')).resolves.toBe('login_started')
     expect(creates).toBe(1)
   })
 
   it('without an opener only signs out locally', async () => {
     await signIn()
     stubRemint(() => jsonResponse({ detail: FRESH_AUTH_REQUIRED }, { status: 403 }))
-    await expect(recoverFromRejectedGskKey('gsk-genoffice-key')).resolves.toBe('login_required')
+    await expect(recoverFromRejectedGskKey('ramonmods-genoffice-key')).resolves.toBe('login_required')
     expect(genofficeApiKey()).toBe('')
     expect(genofficeLoginInFlight()).toBe(false)
   })
@@ -622,11 +622,11 @@ describe('sign-out during recovery', () => {
         return flow(input, init)
       }),
     )
-    const pending = recoverFromRejectedGskKey('gsk-genoffice-key')
+    const pending = recoverFromRejectedGskKey('ramonmods-genoffice-key')
     // hold the re-mint at the create call, then sign out underneath it
     await vi.waitFor(() => expect(releaseCreate).not.toBeNull())
     await genofficeLogout()
-    releaseCreate!(jsonResponse({ status: 0, data: { key_id: 'kid-9', token: 'gsk-late' } }))
+    releaseCreate!(jsonResponse({ status: 0, data: { key_id: 'kid-9', token: 'ramonmods-late' } }))
     await expect(pending).resolves.toBe('login_required')
     expect(genofficeApiKey()).toBe('')
     expect(existsSync(genofficeAuthPath())).toBe(false)
@@ -649,11 +649,11 @@ describe('sign-out during recovery', () => {
         return flow(input, init)
       }),
     )
-    const first = recoverFromRejectedGskKey('gsk-genoffice-key')
-    const second = recoverFromRejectedGskKey('gsk-genoffice-key')
+    const first = recoverFromRejectedGskKey('ramonmods-genoffice-key')
+    const second = recoverFromRejectedGskKey('ramonmods-genoffice-key')
     await vi.waitFor(() => expect(releaseCreate).not.toBeNull())
     await genofficeLogout()
-    releaseCreate!(jsonResponse({ status: 0, data: { key_id: 'kid-9', token: 'gsk-late' } }))
+    releaseCreate!(jsonResponse({ status: 0, data: { key_id: 'kid-9', token: 'ramonmods-late' } }))
     await expect(first).resolves.toBe('login_required')
     await expect(second).resolves.toBe('login_required')
     expect(opener).not.toHaveBeenCalled()

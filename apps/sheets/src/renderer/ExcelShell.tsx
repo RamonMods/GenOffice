@@ -23,7 +23,7 @@ import {
   BorderThickOuterIcon,
   BorderTopIcon,
   CaretIcon,
-  GensparkMark,
+  RamonModsMark,
   RIBBON_GLYPH_ICONS,
   RedoIcon,
   SaveAsIcon,
@@ -941,7 +941,7 @@ export function ExcelShell({
             disabled={!canSaveAs}
             onClick={onNameWithAi}
           >
-            <GensparkMark />
+            <RamonModsMark />
           </button>
           <button
             type="button"
@@ -3546,10 +3546,10 @@ function Ribbon({
           onClick={onAiToggle}
         >
           <span className="tool-icon-row">
-            <GensparkMark size={26} />
+            <RamonModsMark size={26} />
           </span>
           <span>
-            <strong>Genspark AI</strong>
+            <strong>RamonMods AI</strong>
           </span>
         </button>
         <button

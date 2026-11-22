@@ -1,6 +1,6 @@
 import { describe, it, expect, afterEach } from 'vitest'
 import {
-  gskChildEnv,
+  ramonmodsChildEnv,
   setGskProxyUrl,
   parseGskOutput,
   parseGskWebSearch,
@@ -9,7 +9,7 @@ import {
   parseGskPastProjects,
   extractGskText,
   summarizeGskFailure,
-} from '../src/gsk'
+} from '../src/ramonmods'
 
 describe('parseGskOutput', () => {
   it('parses clean JSON', () => {
@@ -92,7 +92,7 @@ describe('parseGskOutput', () => {
 
   it('gives up on a hostile response in bounded time', () => {
     // Every line opens a block that never closes, so each candidate re-scans the
-    // rest of the output: N lines of length L cost N x L. gsk output is
+    // rest of the output: N lines of length L cost N x L. ramonmods output is
     // model-controlled and capped only by MAX_BUFFER, so the recovery scan has
     // to be bounded rather than quadratic.
     const out = Array.from(
@@ -117,11 +117,11 @@ describe('parseGskOutput', () => {
   })
 })
 
-describe('gskChildEnv', () => {
+describe('ramonmodsChildEnv', () => {
   afterEach(() => setGskProxyUrl(''))
 
   it('sets ELECTRON_RUN_AS_NODE and no proxy vars when no proxy is known', () => {
-    const env = gskChildEnv({ PATH: '/bin' })
+    const env = ramonmodsChildEnv({ PATH: '/bin' })
     expect(env.ELECTRON_RUN_AS_NODE).toBe('1')
     expect(env.NODE_USE_ENV_PROXY).toBeUndefined()
     expect(env.HTTPS_PROXY).toBeUndefined()
@@ -129,27 +129,27 @@ describe('gskChildEnv', () => {
 
   it('forwards the proxy registered by the main-process bootstrap', () => {
     setGskProxyUrl('http://127.0.0.1:7890')
-    const env = gskChildEnv({ PATH: '/bin' })
+    const env = ramonmodsChildEnv({ PATH: '/bin' })
     expect(env.NODE_USE_ENV_PROXY).toBe('1')
     expect(env.HTTPS_PROXY).toBe('http://127.0.0.1:7890')
     expect(env.HTTP_PROXY).toBe('http://127.0.0.1:7890')
   })
 
   it('falls back to inherited proxy env vars (terminal launch)', () => {
-    const env = gskChildEnv({ https_proxy: 'http://10.0.0.1:8080' })
+    const env = ramonmodsChildEnv({ https_proxy: 'http://10.0.0.1:8080' })
     expect(env.NODE_USE_ENV_PROXY).toBe('1')
     expect(env.HTTPS_PROXY).toBe('http://10.0.0.1:8080')
   })
 
   it('prefers the registered proxy over env vars', () => {
     setGskProxyUrl('http://127.0.0.1:7890')
-    const env = gskChildEnv({ HTTPS_PROXY: 'http://10.0.0.1:8080' })
+    const env = ramonmodsChildEnv({ HTTPS_PROXY: 'http://10.0.0.1:8080' })
     expect(env.HTTPS_PROXY).toBe('http://127.0.0.1:7890')
   })
 
   it('scrubs lowercase/ALL_PROXY variants so they cannot override the selection', () => {
     setGskProxyUrl('http://127.0.0.1:7890')
-    const env = gskChildEnv({
+    const env = ramonmodsChildEnv({
       https_proxy: 'socks5://127.0.0.1:1080',
       http_proxy: 'http://10.0.0.1:8080',
       all_proxy: 'socks5://127.0.0.1:1080',
@@ -162,7 +162,7 @@ describe('gskChildEnv', () => {
 
   it('ignores SOCKS proxies (undici env proxy is http(s)-only)', () => {
     setGskProxyUrl('socks5://127.0.0.1:1080')
-    const env = gskChildEnv({ ALL_PROXY: 'socks5://127.0.0.1:1080' })
+    const env = ramonmodsChildEnv({ ALL_PROXY: 'socks5://127.0.0.1:1080' })
     expect(env.NODE_USE_ENV_PROXY).toBeUndefined()
     expect(env.HTTPS_PROXY).toBeUndefined()
   })
@@ -220,7 +220,7 @@ describe('parseGskImageSearch', () => {
       status: 'ok',
       data: [
         {
-          image_url: 'https://sspark.genspark.ai/img1',
+          image_url: 'https://sspark.ramonmods.com/img1',
           title: 'T1',
           source: 'Site',
           link: 'https://site.com/page',
@@ -233,7 +233,7 @@ describe('parseGskImageSearch', () => {
     expect(images).toEqual([
       {
         title: 'T1',
-        imageUrl: 'https://sspark.genspark.ai/img1',
+        imageUrl: 'https://sspark.ramonmods.com/img1',
         sourceUrl: 'https://site.com/page',
         source: 'Site',
         width: 1000,
@@ -280,7 +280,7 @@ describe('parseGskImageSearch', () => {
 })
 
 describe('parseGskPastProjects', () => {
-  // real `gsk projects --artifact_types slides` shape (trimmed)
+  // real `ramonmods projects --artifact_types slides` shape (trimmed)
   const raw = {
     version: 1,
     status: 'ok',
@@ -401,11 +401,11 @@ describe('extractGskText', () => {
 })
 
 describe('summarizeGskFailure', () => {
-  // trimmed version of the gateway page Genspark serves for refused calls
+  // trimmed version of the gateway page RamonMods serves for refused calls
   const HTML_403 = `<html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Genspark</title>
+    <title>RamonMods</title>
   </head>
   <body>
     <div class="tt">Service unavailable. Please check your internet connection.</div>

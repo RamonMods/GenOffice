@@ -165,16 +165,16 @@ describe('media settings', () => {
     ).toBe('genspark')
   })
 
-  it('gates the tools on gsk login + toggle without BYOK, and on the BYOK model with it', () => {
+  it('gates the tools on ramonmods login + toggle without BYOK, and on the BYOK model with it', () => {
     const genspark = defaultAiSettings()
     expect(imageGenerationAvailable(genspark, true)).toBe(true)
     expect(imageGenerationAvailable(genspark, false)).toBe(false)
-    expect(imageGenerationAvailable({ ...genspark, gskToolsEnabled: false }, true)).toBe(false)
-    expect(mediaAnalysisAvailable({ ...genspark, gskToolsEnabled: false }, true)).toBe(false)
+    expect(imageGenerationAvailable({ ...genspark, ramonmodsToolsEnabled: false }, true)).toBe(false)
+    expect(mediaAnalysisAvailable({ ...genspark, ramonmodsToolsEnabled: false }, true)).toBe(false)
 
     const byok = openaiSettings()
     expect(imageGenerationAvailable(byok, false)).toBe(true)
-    expect(imageGenerationAvailable({ ...byok, gskToolsEnabled: false }, false)).toBe(true)
+    expect(imageGenerationAvailable({ ...byok, ramonmodsToolsEnabled: false }, false)).toBe(true)
     expect(mediaAnalysisAvailable(byok, false)).toBe(true)
     // built-in vendors fall back to their default model; a custom endpoint
     // without a model for one capability disables that tool alone

@@ -3,7 +3,7 @@ import { webSearch, imageSearch } from '../src/index'
 import { searchOptionsFromSettings, testSearchProvider } from '../src/search-tools'
 import { defaultAiSettings } from '@genoffice/ai-provider'
 
-// These cases only test the Serper/DuckDuckGo paths; a local gsk login would take priority, so disable it explicitly
+// These cases only test the Serper/DuckDuckGo paths; a local ramonmods login would take priority, so disable it explicitly
 beforeAll(() => {
   process.env.AI_SEARCH_DISABLE_GSK = '1'
 })
@@ -551,7 +551,7 @@ describe('search-tools', () => {
   it('maps the settings block onto SearchOptions', () => {
     const base = defaultAiSettings()
     expect(searchOptionsFromSettings(base)).toEqual({ useGsk: true })
-    expect(searchOptionsFromSettings({ ...base, gskToolsEnabled: false })).toEqual({
+    expect(searchOptionsFromSettings({ ...base, ramonmodsToolsEnabled: false })).toEqual({
       useGsk: false,
     })
     const serper = {

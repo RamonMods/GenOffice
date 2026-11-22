@@ -34,7 +34,7 @@ import type {
   AiSettings,
   AiStreamChunk,
   AiStreamRequest,
-  GenSparkAccountStatus,
+  RamonModsAccountStatus,
 } from '@genoffice/ai-provider'
 import type { AiPanelPrefs } from '@genoffice/ui'
 
@@ -3067,7 +3067,7 @@ export const aiSettingsInputSchema = z
     providers: z.record(z.string(), aiProviderConfigSchema),
     customEndpoints: z.array(aiCustomEndpointSchema).optional(),
     customEndpoint: z.string().optional(),
-    gskToolsEnabled: z.boolean().optional(),
+    ramonmodsToolsEnabled: z.boolean().optional(),
     media: z
       .object({
         imageProvider: z.string().min(1).optional(),
@@ -3601,9 +3601,9 @@ export interface DesktopApi {
   /// start a streaming AI call; deltas arrive via onAiStream with the same requestId
   aiStream(request: AiStreamRequest): Promise<void>
   aiStreamCancel(requestId: string): Promise<void>
-  /// GenOffice account status (gsk login state); withEmail also returns the email
+  /// GenOffice account status (ramonmods login state); withEmail also returns the email
   /// (needs a network request, slower)
-  aiGskStatus(withEmail?: boolean): Promise<GenSparkAccountStatus>
+  aiGskStatus(withEmail?: boolean): Promise<RamonModsAccountStatus>
   /// Opens the browser to sign in to GenOffice (fire-and-forget; aiGskStatus
   /// becomes signed-in on completion)
   aiGskLogin(): Promise<void>

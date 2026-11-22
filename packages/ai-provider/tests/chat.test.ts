@@ -38,7 +38,7 @@ describe('chatForProvider', () => {
 
   it('anthropic: replaces an HTML error body with a readable note', async () => {
     const html =
-      '<!doctype html>\n<html>\n<head><title>Genspark</title></head><body>app shell</body></html>'
+      '<!doctype html>\n<html>\n<head><title>RamonMods</title></head><body>app shell</body></html>'
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(errorResponse(403, html)))
     const result = await chatForProvider('anthropic', { apiKey: 'k', model: 'm' }, 'sys', 'hi')
     expect(result.ok).toBe(false)
@@ -143,13 +143,13 @@ describe('chatForProvider', () => {
       .fn()
       .mockResolvedValue(jsonResponse({ content: [{ type: 'text', text: 'ok' }] }))
     vi.stubGlobal('fetch', fetchMock)
-    await chatForProvider('genspark', { apiKey: 'gsk-k', model: 'claude-opus-4-7' }, 'sys', 'hi')
+    await chatForProvider('genspark', { apiKey: 'ramonmods-k', model: 'claude-opus-4-7' }, 'sys', 'hi')
     expect(fetchMock).toHaveBeenCalledWith(
       'https://ramonmods.com/api/anthropic/v1/messages',
       expect.anything(),
     )
     fetchMock.mockResolvedValue(jsonResponse({ choices: [{ message: { content: 'ok' } }] }))
-    await chatForProvider('genspark', { apiKey: 'gsk-k', model: 'gpt-5.2' }, 'sys', 'hi')
+    await chatForProvider('genspark', { apiKey: 'ramonmods-k', model: 'gpt-5.2' }, 'sys', 'hi')
     expect(fetchMock).toHaveBeenLastCalledWith(
       'https://ramonmods.com/api/llm_proxy/v1/chat/completions',
       expect.anything(),
@@ -161,7 +161,7 @@ describe('chatForProvider', () => {
       .fn()
       .mockImplementation(async () => jsonResponse({ content: [{ type: 'text', text: 'ok' }] }))
     vi.stubGlobal('fetch', fetchMock)
-    await chatForProvider('genspark', { apiKey: 'gsk-k', model: 'claude-opus-4-7' }, 'sys', 'hi')
+    await chatForProvider('genspark', { apiKey: 'ramonmods-k', model: 'claude-opus-4-7' }, 'sys', 'hi')
     expect((fetchMock.mock.calls[0]![1].headers as Record<string, string>)['X-Agent-Type']).toBe(
       'genoffice',
     )

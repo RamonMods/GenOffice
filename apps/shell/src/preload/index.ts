@@ -228,7 +228,7 @@ const homeApi: HomeApi = {
     return () => ipcRenderer.removeListener('ai:stream-chunk', listener)
   },
   async aiGskStatus() {
-    return ipcRenderer.invoke('ai:gsk-status')
+    return ipcRenderer.invoke('ai:ramonmods-status')
   },
   async openPath(path) {
     if (typeof path !== 'string' || !path) throw new Error('Invalid path.')

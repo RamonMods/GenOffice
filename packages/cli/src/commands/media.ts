@@ -41,7 +41,7 @@ export const mediaCommand: CommandDef = {
     if (r.text === undefined)
       throw new CliError(EXIT.app, r.error ?? 'falha na análise de mídia', undefined, {
         suggestion:
-          'tente novamente mais tarde; se persistir, verifique o login do Genspark no app GenOffice ou configure um provedor de análise BYOK em Configurações (Mídia de IA)',
+          'tente novamente mais tarde; se persistir, verifique o login do RamonMods no app GenOffice ou configure um provedor de análise BYOK em Configurações (Mídia de IA)',
       })
     const failure = providerFailure(r.text)
     if (failure) throw new CliError(EXIT.conversion, `falha na análise de mídia: ${failure}`)
@@ -53,7 +53,7 @@ export const mediaCommand: CommandDef = {
   },
 }
 
-/** Genspark reports a fetch/analysis failure as { status: "error", error|message } per file. */
+/** RamonMods reports a fetch/analysis failure as { status: "error", error|message } per file. */
 export function providerFailure(text: string): string | null {
   if (!text.trimStart().startsWith('{')) return null
   try {
@@ -68,7 +68,7 @@ export function providerFailure(text: string): string | null {
   }
 }
 
-/** Genspark answers with a JSON map of upload → { analysis }; BYOK providers with prose. */
+/** RamonMods answers with a JSON map of upload → { analysis }; BYOK providers with prose. */
 export function analysisText(text: string): string {
   if (!text.trimStart().startsWith('{')) return text
   try {

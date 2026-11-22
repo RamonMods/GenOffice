@@ -8,8 +8,8 @@ import type {
 export const AI_SEARCH_PROVIDERS: AiSearchProviderMeta[] = [
   {
     id: 'genspark',
-    label: 'Genspark',
-    keyPlaceholder: 'Não é necessário - faça login na Genspark',
+    label: 'RamonMods',
+    keyPlaceholder: 'Não é necessário - faça login na RamonMods',
     imageSearch: true,
   },
   { id: 'serper', label: 'Serper', keyPlaceholder: 'Chave de API do Serper', imageSearch: true },
@@ -64,7 +64,7 @@ export function resolveAiSearchSettings(
 
 /**
  * Parallel and Keenable can run keylessly; other custom providers require a key or fall back
- * to Genspark.
+ * to RamonMods.
  */
 export function activeSearchProvider(settings: Pick<AiSettings, 'search'>): AiSearchProviderId {
   const search = settings.search

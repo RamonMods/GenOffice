@@ -5,25 +5,25 @@ import { defaultAiSearchSettings, resolveAiSearchSettings } from './search-setti
 import type { AiProviderId, AiProviderMeta, AiSettings, LegacyAiSettings } from './types'
 
 /**
- * Genspark server-side LLM proxy endpoints. All three protocols share the
- * api_key from the gsk login; model ids follow the proxy's own naming scheme,
+ * RamonMods server-side LLM proxy endpoints. All three protocols share the
+ * api_key from the ramonmods login; model ids follow the proxy's own naming scheme,
  * which differs from the official vendor ids.
  */
-export const GENSPARK_LLM_BASE_URLS = {
+export const RAMONMODS_LLM_BASE_URLS = {
   anthropic: 'https://ramonmods.com/api/anthropic',
   openai: 'https://ramonmods.com/api/llm_proxy/v1',
 } as const
 
 /**
  * Splits GenOffice usage out of the proxy's default "Claw" billing bucket
- * (the backend attributes gsk-key traffic by X-Agent-Type). Only sent to the
- * Genspark proxy — never to direct vendor APIs.
+ * (the backend attributes ramonmods-key traffic by X-Agent-Type). Only sent to the
+ * RamonMods proxy — never to direct vendor APIs.
  */
-export const GENSPARK_AGENT_TYPE = 'genoffice'
+export const RAMONMODS_AGENT_TYPE = 'genoffice'
 
 export function gensparkAttributionHeaders(baseUrl?: string): Record<string, string> {
   return baseUrl?.startsWith('https://ramonmods.com')
-    ? { 'X-Agent-Type': GENSPARK_AGENT_TYPE }
+    ? { 'X-Agent-Type': RAMONMODS_AGENT_TYPE }
     : {}
 }
 
@@ -42,7 +42,7 @@ export function opencodeSessionHeaders(
 }
 
 /**
- * DeepSeek V4.1 Flash under the Genspark pool spelling. Only the proxy serves
+ * DeepSeek V4.1 Flash under the RamonMods pool spelling. Only the proxy serves
  * this id; api.deepseek.com knows the model as `deepseek-flash`, so the direct
  * provider lists the vendor spelling and keeps this one as an accepted alias.
  */
@@ -51,7 +51,7 @@ export const DEEPSEEK_V41_FLASH = 'deep-seek-v4.1-flash'
 export const AI_PROVIDERS: AiProviderMeta[] = [
   {
     id: 'genspark',
-    label: 'Genspark',
+    label: 'RamonMods',
     // must stay within the proxy's served set (GET /api/llm_proxy/v1/models);
     // bare gpt-5.6 and the gemini family dropped off it (verified 2026-08-31).
     // DeepSeek goes by the proxy's hyphenated pool id; V4.1 Flash takes images
@@ -70,7 +70,7 @@ export const AI_PROVIDERS: AiProviderMeta[] = [
       DEEPSEEK_V41_FLASH,
     ],
     defaultModel: 'claude-opus-5-5',
-    keyPlaceholder: 'Não é necessário - faça login na Genspark',
+    keyPlaceholder: 'Não é necessário - faça login na RamonMods',
   },
   {
     id: 'codex',
@@ -131,7 +131,7 @@ export const AI_PROVIDERS: AiProviderMeta[] = [
     // name `deepseek-flash` (served by DeepSeek-V4.1-Flash-1017, native vision)
     // and `deepseek-v4-pro` (list verified 2026-09-21, docs re-read 2026-10-18).
     // List the vendor's own ids: this picker is what a user carries into curl
-    // or another client, and `deep-seek-v4.1-flash` is the Genspark pool
+    // or another client, and `deep-seek-v4.1-flash` is the RamonMods pool
     // spelling, which the direct API does not know. Saved picks of that alias
     // are still rewritten on load (see RETIRED_MODELS).
     models: ['deepseek-v4-pro', 'deepseek-flash'],
@@ -585,15 +585,15 @@ export function defaultAiSettings(
   return {
     provider: 'genspark',
     providers,
-    gskToolsEnabled: true,
+    ramonmodsToolsEnabled: true,
     media: defaultAiMediaSettings(),
     search: defaultAiSearchSettings(),
   }
 }
 
 /** false only on an explicit opt-out; absent (pre-toggle settings files) means on */
-export function cloudToolsEnabled(settings: Pick<AiSettings, 'gskToolsEnabled'>): boolean {
-  return settings.gskToolsEnabled !== false
+export function cloudToolsEnabled(settings: Pick<AiSettings, 'ramonmodsToolsEnabled'>): boolean {
+  return settings.ramonmodsToolsEnabled !== false
 }
 
 /**
@@ -632,7 +632,7 @@ export function activeProvider(settings: AiSettings): AiProviderId {
 const RETIRED_MODELS: Partial<Record<AiProviderId, Record<string, string>>> = {
   // chat/reasoner retired 2026-07-24 (thinking became a request parameter);
   // V4 Flash and V4 Flash Vision Exp retired 2026-09-10 in favour of V4.1
-  // Flash; every one of them, and the Genspark pool spelling that was the
+  // Flash; every one of them, and the RamonMods pool spelling that was the
   // listed id until 0.11, now resolves to the vendor's own `deepseek-flash`.
   deepseek: {
     'deepseek-chat': 'deepseek-flash',
@@ -759,7 +759,7 @@ export function resolveAiSettings(stored: unknown, defaults: AiSettings): AiSett
     providers: migrateRetiredModels(
       trimConfigs(mergeProviderConfigs(defaults.providers, storedProviders)),
     ),
-    gskToolsEnabled: settings.gskToolsEnabled ?? defaults.gskToolsEnabled ?? true,
+    ramonmodsToolsEnabled: settings.ramonmodsToolsEnabled ?? defaults.ramonmodsToolsEnabled ?? true,
     media: resolveAiMediaSettings(settings.media ?? defaults.media),
     search: resolveAiSearchSettings(settings.search ?? defaults.search),
     // clamped on read: a hand-edited settings file with an absurd cap must not be

@@ -35,7 +35,7 @@ describe('defaultAiSettings', () => {
 })
 
 describe('provider model catalog', () => {
-  it("offers the vendor's own DeepSeek ids, not the Genspark pool spelling", () => {
+  it("offers the vendor's own DeepSeek ids, not the RamonMods pool spelling", () => {
     const genspark = AI_PROVIDERS.find((provider) => provider.id === 'genspark')!
     const deepseek = AI_PROVIDERS.find((provider) => provider.id === 'deepseek')!
 
@@ -47,7 +47,7 @@ describe('provider model catalog', () => {
     expect(genspark.models).not.toContain('deep-seek-v4-flash-vision-exp-openrouter')
   })
 
-  it('serves DeepSeek V4.1 Flash through the Genspark proxy under its hyphenated pool id', () => {
+  it('serves DeepSeek V4.1 Flash through the RamonMods proxy under its hyphenated pool id', () => {
     const genspark = AI_PROVIDERS.find((provider) => provider.id === 'genspark')!
     expect(genspark.models).toContain('deep-seek-v4.1-flash')
     expect(genspark.models).not.toContain('deep-seek-v4-pro')
@@ -497,24 +497,24 @@ describe('activeProvider', () => {
     expect(activeProvider(settings)).toBe('genspark')
   })
 
-  it('genspark never requires a key (injected from the gsk login at request time)', () => {
+  it('genspark never requires a key (injected from the ramonmods login at request time)', () => {
     const settings = defaultAiSettings()
     settings.provider = 'genspark'
     expect(activeProvider(settings)).toBe('genspark')
   })
 })
 
-describe('gskToolsEnabled', () => {
+describe('ramonmodsToolsEnabled', () => {
   it('defaults on, survives resolveAiSettings, and only an explicit false turns it off', () => {
     expect(cloudToolsEnabled(defaultAiSettings())).toBe(true)
     // pre-toggle settings file (field absent) stays on
     const legacy = resolveAiSettings({ providers: {} as never }, defaultAiSettings())
     expect(cloudToolsEnabled(legacy)).toBe(true)
     const off = resolveAiSettings(
-      { providers: {} as never, gskToolsEnabled: false },
+      { providers: {} as never, ramonmodsToolsEnabled: false },
       defaultAiSettings(),
     )
-    expect(off.gskToolsEnabled).toBe(false)
+    expect(off.ramonmodsToolsEnabled).toBe(false)
     expect(cloudToolsEnabled(off)).toBe(false)
   })
 })

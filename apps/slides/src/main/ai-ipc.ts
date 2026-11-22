@@ -33,7 +33,7 @@ import {
   type AiSettings,
   type AiStreamChunk,
   type AiStreamRequest,
-  type GenSparkAccountStatus,
+  type RamonModsAccountStatus,
   type LegacyAiSettings,
 } from '@genoffice/ai-provider'
 import { shutdownCodexAppServers } from '@genoffice/ai-provider/codex-app-server'
@@ -52,11 +52,11 @@ import {
   ensureGenofficeLogin,
   noteGskCallFailure,
   setGenofficeLoginOpener,
-  gskApiKey,
+  ramonmodsApiKey,
   generateImageTool,
   analyzeMediaTool,
   documentMediaRoots,
-  gskLoginInfo,
+  ramonmodsLoginInfo,
   hasGskAuth,
 } from '@genoffice/ai-search'
 import { addPicture, editPictureSrcRect, replacePictureBytes } from '@genoffice/pptx-engine'
@@ -138,27 +138,27 @@ export function registerAiIpc(): void {
     return settings
   })
 
-  // Genspark account (gsk login state): the auth source for AI features; when logged out the frontend uses this to guide login
+  // RamonMods account (ramonmods login state): the auth source for AI features; when logged out the frontend uses this to guide login
   ipcMain.handle(
-    'ai:gsk-status',
-    async (_event, withEmail?: boolean): Promise<GenSparkAccountStatus> => {
+    'ai:ramonmods-status',
+    async (_event, withEmail?: boolean): Promise<RamonModsAccountStatus> => {
       if (!hasGskAuth()) return { loggedIn: false }
       if (!withEmail) return { loggedIn: true }
-      const info = await gskLoginInfo()
+      const info = await ramonmodsLoginInfo()
       return info?.email ? { loggedIn: true, email: info.email } : { loggedIn: true }
     },
   )
 
-  // a 401 on the gsk key opens the device-code login once (genoffice-auth recovery)
+  // a 401 on the ramonmods key opens the device-code login once (genoffice-auth recovery)
   setGenofficeLoginOpener((url) => void shell.openExternal(url))
 
-  ipcMain.handle('ai:gsk-login', () => {
+  ipcMain.handle('ai:ramonmods-login', () => {
     ensureGenofficeLogin((url) => void shell.openExternal(url))
   })
 
   ipcMain.handle('ai:set-settings', (_event, settings: AiSettings) => {
     // SECURITY.md: payloads are schema-checked in the main process. The settings
-    // file feeds cliPath into spawn() and baseUrl receives the gsk bearer token,
+    // file feeds cliPath into spawn() and baseUrl receives the ramonmods bearer token,
     // so the renderer's copy is sanitized before it touches disk.
     const sanitized = sanitizeAiSettings(settings)
     if (!sanitized) {
@@ -192,12 +192,12 @@ export function registerAiIpc(): void {
     const maxTokens = request.maxTokens ?? maxOutputTokensOf(settings)
     const provider = settings.provider
     let config = settings.providers?.[provider]
-    // The genspark key never enters the settings file; it is fetched from the gsk login state per request
-    // set only when the gsk key was injected: a 401 then means that key expired
-    let gskKey = ''
+    // The genspark key never enters the settings file; it is fetched from the ramonmods login state per request
+    // set only when the ramonmods key was injected: a 401 then means that key expired
+    let ramonmodsKey = ''
     if (provider === 'genspark' && config && !config.apiKey) {
-      gskKey = gskApiKey()
-      config = { ...config, apiKey: gskKey }
+      ramonmodsKey = ramonmodsApiKey()
+      config = { ...config, apiKey: ramonmodsKey }
     }
     // a custom endpoint may name an environment variable instead of storing a key
     config = config ? resolveProfileCredential(config) : config
@@ -279,7 +279,7 @@ export function registerAiIpc(): void {
         send({ requestId, type: 'done' })
       } else {
         // an expired/revoked key drops to signed-out so the inline sign-in button shows
-        noteGskCallFailure(gskKey, err)
+        noteGskCallFailure(ramonmodsKey, err)
         const msg = err instanceof Error ? err.message : String(err)
         console.error(`[ai-stream] ${requestId} (${provider}/${config.model}) failed:`, msg)
         send({
@@ -341,7 +341,7 @@ export function registerAiIpc(): void {
 // never called; docs does not have these channels, so putting them in the wrong place raises
 // "No handler registered".
 export function registerSlidesOnlyAiIpc(): void {
-  // gsk (Genspark CLI) capabilities: AI image generation / media analysis. Returns an error prompt when not logged in.
+  // ramonmods (RamonMods CLI) capabilities: AI image generation / media analysis. Returns an error prompt when not logged in.
   ipcMain.handle(
     'ai:generate-image',
     async (

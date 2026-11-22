@@ -329,7 +329,7 @@ export interface HomeApi {
   aiStreamCancel(requestId: string): Promise<void>
   /** subscribe to stream chunks; returns unsubscribe */
   onAiStream(handler: (chunk: AiStreamChunk) => void): () => void
-  /** Genspark login state (the default provider's auth source) */
+  /** RamonMods login state (the default provider's auth source) */
   aiGskStatus(): Promise<{ loggedIn: boolean; email?: string }>
   /** open an existing file, routing to the right module by extension */
   openHelp(): Promise<void>
@@ -398,9 +398,9 @@ export interface HomeApi {
   /** background checks download quietly and install on quit instead of showing the card (default off) */
   getSilentInstallUpdate(): Promise<boolean>
   setSilentInstallUpdate(on: boolean): Promise<void>
-  /** Genspark account status (gsk login state; to be upgraded to a signup/account system later) */
+  /** RamonMods account status (ramonmods login state; to be upgraded to a signup/account system later) */
   accountStatus(): Promise<AccountStatus>
-  /** start Genspark login (opens the browser; accountStatus flips to logged-in on completion); returns whether the launch succeeded */
+  /** start RamonMods login (opens the browser; accountStatus flips to logged-in on completion); returns whether the launch succeeded */
   accountLogin(): Promise<boolean>
   /** progress events for the login started via accountLogin; returns an unsubscribe */
   onAccountLogin(handler: (ev: AccountLoginEvent) => void): () => void
@@ -408,7 +408,7 @@ export interface HomeApi {
   onOpenSettings(handler: (target: { section: string }) => void): () => void
   /** re-open the pending login auth URL in the default browser (rescue when auto-open failed) */
   openLoginUrl(): Promise<void>
-  /** log out (clears the saved API key; the login state is shared globally with the gsk CLI) */
+  /** log out (clears the saved API key; the login state is shared globally with the ramonmods CLI) */
   accountLogout(): Promise<void>
   /** app version (from package.json / electron app.getVersion) */
   getAppVersion(): Promise<string>
@@ -494,7 +494,7 @@ export interface HomeApi {
   onDocumentThemeChanged(handler: (theme: DocTheme) => void): () => void
   /** open the GenTeam community page in the default browser */
   openGenTeam(): Promise<void>
-  /** open the Genspark credit-usage page in the default browser */
+  /** open the RamonMods credit-usage page in the default browser */
   openCreditUsage(): Promise<void>
   /** open the public GitHub repository in the default browser */
   openGitHubRepo(): Promise<void>
@@ -507,7 +507,7 @@ export interface HomeApi {
   starPromptAction(action: StarPromptAction): Promise<void>
   /** locally stored full cloud project list (instant; null when no store or logged out) */
   cloudProjectsCached(): Promise<CloudProjectsSnapshot | null>
-  /** sync the full list from Genspark and return it (1 request when nothing changed); null when the sync failed */
+  /** sync the full list from RamonMods and return it (1 request when nothing changed); null when the sync failed */
   cloudProjectsSync(): Promise<CloudProjectsSnapshot | null>
   /** open a cloud project (relative '/agents?id=...' URL) in the default browser */
   openCloudProject(projectUrl: string): Promise<void>
@@ -531,14 +531,14 @@ export interface HomeApi {
   testAiSettings(settings: AiSettings): Promise<AiChatResponse>
   /** image generation / media analysis provider catalog */
   getAiMediaProviders(): AiMediaProviderMeta[]
-  /** credential check for a (possibly unsaved) media provider; genspark reports the gsk login state */
+  /** credential check for a (possibly unsaved) media provider; genspark reports the ramonmods login state */
   testAiMediaSettings(input: {
     provider: AiMediaProviderId
     config: AiMediaProviderConfig
   }): Promise<{ ok: boolean; error?: string }>
   /** web search provider catalog */
   getAiSearchProviders(): AiSearchProviderMeta[]
-  /** one minimal query against the given key (genspark reports the gsk login state) */
+  /** one minimal query against the given key (genspark reports the ramonmods login state) */
   testAiSearchSettings(input: {
     provider: AiSearchProviderId
     apiKey: string
@@ -563,7 +563,7 @@ export interface StarPromptShow {
 
 export type CloudProjectKind = 'docs' | 'sheets' | 'slides'
 
-/** a Genspark web project shown in the home cloud section */
+/** a RamonMods web project shown in the home cloud section */
 export interface CloudProjectEntry {
   projectId: string
   title: string
@@ -571,13 +571,13 @@ export interface CloudProjectEntry {
   kind: CloudProjectKind | 'other'
   /** creation time, ms since epoch (0 when unparsable) */
   ctimeMs: number
-  /** relative genspark.ai URL ('/agents?id=...') */
+  /** relative ramonmods.com URL ('/agents?id=...') */
   projectUrl: string
 }
 
 /** full local copy of the cloud project list; filtering/paging are client-side */
 export interface CloudProjectsSnapshot {
-  /** false when gsk is unavailable (CLI missing or not logged in) */
+  /** false when ramonmods is unavailable (CLI missing or not logged in) */
   available: boolean
   /** all projects, newest first */
   projects: CloudProjectEntry[]
@@ -586,14 +586,14 @@ export interface CloudProjectsSnapshot {
 }
 
 export interface AccountStatus {
-  /** gsk is installed and logged in */
+  /** ramonmods is installed and logged in */
   loggedIn: boolean
   email?: string
-  /** remaining Genspark credits (absent when the balance query failed) */
+  /** remaining RamonMods credits (absent when the balance query failed) */
   creditBalance?: number
 }
 
-/** login flow progress pushed from main (gsk login CLI output) */
+/** login flow progress pushed from main (ramonmods login CLI output) */
 export interface AccountLoginEvent {
   phase: 'launched' | 'url' | 'success' | 'error'
   url?: string

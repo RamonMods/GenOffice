@@ -18,31 +18,31 @@ import {
 } from '../src/genoffice-auth'
 import {
   GskAuthError,
-  gskApiKey,
-  gskWebSearch,
+  ramonmodsApiKey,
+  ramonmodsWebSearch,
   hasGskAuth,
   isGskUnauthorizedText,
   noteGskCallFailure,
   noteGskKeyRejected,
   resetGskRejectedKeys,
-} from '../src/gsk'
+} from '../src/ramonmods'
 
 const AUTH_URL = `https://ramonmods.com/api/office_addin_auth/verify?code=${'a'.repeat(64)}`
 
 let dir: string
 
 beforeEach(() => {
-  dir = mkdtempSync(join(tmpdir(), 'gsk-reauth-'))
+  dir = mkdtempSync(join(tmpdir(), 'ramonmods-reauth-'))
   home.dir = dir
   process.env.GENOFFICE_AUTH_DIR = dir
-  process.env.GSK_CLI_PATH = '/fake/gsk.js'
-  delete process.env.GSK_API_KEY
+  process.env.RAMONMODS_CLI_PATH = '/fake/ramonmods.js'
+  delete process.env.RAMONMODS_API_KEY
   delete process.env.AI_SEARCH_DISABLE_GSK
   resetGenofficeAuthCache()
   resetGskRejectedKeys()
   writeFileSync(
     join(dir, 'auth.json'),
-    JSON.stringify({ api_key: 'gsk-expired', key_id: 'kid-1', access_token: 'bearer-old' }),
+    JSON.stringify({ api_key: 'ramonmods-expired', key_id: 'kid-1', access_token: 'bearer-old' }),
   )
 })
 
@@ -54,7 +54,7 @@ afterEach(() => {
   rmSync(dir, { recursive: true, force: true })
   home.dir = ''
   delete process.env.GENOFFICE_AUTH_DIR
-  delete process.env.GSK_CLI_PATH
+  delete process.env.RAMONMODS_CLI_PATH
 })
 
 function response(body: unknown, status = 200, setCookie?: string): Response {
@@ -77,7 +77,7 @@ function stubServer(create: () => Response) {
     if (url.includes('/api/tool_cli/')) {
       const key = (init?.headers as Record<string, string>)['X-Api-Key']!
       toolKeys.push(key)
-      if (key === 'gsk-expired') return response('{"detail":"invalid api key"}', 401)
+      if (key === 'ramonmods-expired') return response('{"detail":"invalid api key"}', 401)
       return ndjsonOk({ download_url: 'https://93.184.216.34/deck.pptx' })
     }
     if (url.includes('/office_addin_auth/session')) {
@@ -96,7 +96,7 @@ function stubServer(create: () => Response) {
 }
 
 describe('isGskUnauthorizedText', () => {
-  it('matches the 401 shapes of gsk CLI, tool_cli and the LLM proxy', () => {
+  it('matches the 401 shapes of ramonmods CLI, tool_cli and the LLM proxy', () => {
     expect(isGskUnauthorizedText('HTTP 401: Unauthorized')).toBe(true)
     expect(isGskUnauthorizedText('tool_cli /x HTTP 401: {}')).toBe(true)
     expect(isGskUnauthorizedText('Claude HTTP 401: {"error":"invalid key"}')).toBe(true)
@@ -105,31 +105,31 @@ describe('isGskUnauthorizedText', () => {
   })
 })
 
-describe('gsk CLI 401 recovery', () => {
+describe('ramonmods CLI 401 recovery', () => {
   /** fake CLI: a 401 for the expired key (printed on stdout like the real CLI), results otherwise */
   function fakeCli(): string {
     const log = join(dir, 'cli-keys.log')
-    const script = join(dir, 'fake-gsk.mjs')
+    const script = join(dir, 'fake-ramonmods.mjs')
     writeFileSync(
       script,
       [
         "import { appendFileSync } from 'node:fs'",
-        `appendFileSync(${JSON.stringify(log)}, process.env.GSK_API_KEY + '\\n')`,
-        "if (process.env.GSK_API_KEY === 'gsk-expired') {",
+        `appendFileSync(${JSON.stringify(log)}, process.env.RAMONMODS_API_KEY + '\\n')`,
+        "if (process.env.RAMONMODS_API_KEY === 'ramonmods-expired') {",
         "  console.log(JSON.stringify({ status: 'error', message: 'HTTP 401: Unauthorized', data: null }))",
         '  process.exit(1)',
         '}',
         "console.log(JSON.stringify({ status: 'ok', data: { organic_results: [{ title: 't', link: 'https://e.x', snippet: 's' }] } }))",
       ].join('\n'),
     )
-    process.env.GSK_CLI_PATH = script
+    process.env.RAMONMODS_CLI_PATH = script
     return log
   }
 
   function sharedLogin(): string {
     const config = join(dir, '.genspark-tool-cli', 'config.json')
     mkdirSync(join(dir, '.genspark-tool-cli'), { recursive: true })
-    writeFileSync(config, JSON.stringify({ api_key: 'gsk-other-app', key_name: 'other app' }))
+    writeFileSync(config, JSON.stringify({ api_key: 'ramonmods-other-app', key_name: 'other app' }))
     return config
   }
 
@@ -140,9 +140,9 @@ describe('gsk CLI 401 recovery', () => {
     rmSync(join(dir, 'auth.json'))
     resetGenofficeAuthCache()
 
-    expect(gskApiKey()).toBe('')
+    expect(ramonmodsApiKey()).toBe('')
     expect(hasGskAuth()).toBe(false)
-    await expect(gskWebSearch('q')).rejects.toBeInstanceOf(GskAuthError)
+    await expect(ramonmodsWebSearch('q')).rejects.toBeInstanceOf(GskAuthError)
     expect(existsSync(log)).toBe(false)
     expect(readFileSync(config, 'utf-8')).toBe(before)
   })
@@ -155,9 +155,9 @@ describe('gsk CLI 401 recovery', () => {
 
     await genofficeLogout()
 
-    expect(gskApiKey()).toBe('')
+    expect(ramonmodsApiKey()).toBe('')
     expect(hasGskAuth()).toBe(false)
-    await expect(gskWebSearch('q')).rejects.toBeInstanceOf(GskAuthError)
+    await expect(ramonmodsWebSearch('q')).rejects.toBeInstanceOf(GskAuthError)
     expect(existsSync(log)).toBe(false)
     expect(readFileSync(config, 'utf-8')).toBe(before)
   })
@@ -167,7 +167,7 @@ describe('gsk CLI 401 recovery', () => {
     rmSync(join(dir, 'auth.json'))
     resetGenofficeAuthCache()
 
-    await expect(gskWebSearch('q')).rejects.toBeInstanceOf(GskAuthError)
+    await expect(ramonmodsWebSearch('q')).rejects.toBeInstanceOf(GskAuthError)
 
     expect(existsSync(log)).toBe(false)
   })
@@ -177,25 +177,25 @@ describe('gsk CLI 401 recovery', () => {
     const log = fakeCli()
     stubServer(() => response({ detail: FRESH_AUTH_REQUIRED }, 403))
 
-    await expect(gskWebSearch('q')).rejects.toBeInstanceOf(GskAuthError)
+    await expect(ramonmodsWebSearch('q')).rejects.toBeInstanceOf(GskAuthError)
 
-    expect(gskApiKey()).toBe('')
+    expect(ramonmodsApiKey()).toBe('')
     expect(hasGskAuth()).toBe(false)
-    expect(readFileSync(log, 'utf-8').trim().split('\n')).toEqual(['gsk-expired'])
+    expect(readFileSync(log, 'utf-8').trim().split('\n')).toEqual(['ramonmods-expired'])
   })
 
   it('re-mints after a CLI 401 and reruns the command with the new key', async () => {
     const log = fakeCli()
-    stubServer(() => response({ status: 0, data: { key_id: 'kid-2', token: 'gsk-new' } }))
-    const out = await gskWebSearch('q')
+    stubServer(() => response({ status: 0, data: { key_id: 'kid-2', token: 'ramonmods-new' } }))
+    const out = await ramonmodsWebSearch('q')
     expect(out.results).toHaveLength(1)
-    expect(readFileSync(log, 'utf-8').trim().split('\n')).toEqual(['gsk-expired', 'gsk-new'])
+    expect(readFileSync(log, 'utf-8').trim().split('\n')).toEqual(['ramonmods-expired', 'ramonmods-new'])
   })
 
   it('reports the auth failure and signs out when a fresh login is required', async () => {
     fakeCli()
     stubServer(() => response({ detail: FRESH_AUTH_REQUIRED }, 403))
-    await expect(gskWebSearch('q')).rejects.toBeInstanceOf(GskAuthError)
+    await expect(ramonmodsWebSearch('q')).rejects.toBeInstanceOf(GskAuthError)
     expect(hasGskAuth()).toBe(false)
   })
 })
@@ -203,26 +203,26 @@ describe('gsk CLI 401 recovery', () => {
 describe('noteGskCallFailure (LLM proxy chat/stream)', () => {
   it('marks the injected key invalid on a 401 so the sign-in button appears', () => {
     stubServer(() => response({ detail: FRESH_AUTH_REQUIRED }, 403))
-    expect(noteGskCallFailure('gsk-expired', new Error('Claude HTTP 401: invalid'))).toBe(true)
+    expect(noteGskCallFailure('ramonmods-expired', new Error('Claude HTTP 401: invalid'))).toBe(true)
     expect(hasGskAuth()).toBe(false)
   })
 
-  it('ignores non-auth failures and calls made without the gsk key', () => {
-    expect(noteGskCallFailure('gsk-expired', new Error('HTTP 500: busy'))).toBe(false)
+  it('ignores non-auth failures and calls made without the ramonmods key', () => {
+    expect(noteGskCallFailure('ramonmods-expired', new Error('HTTP 500: busy'))).toBe(false)
     expect(noteGskCallFailure('', new Error('HTTP 401: bad byok key'))).toBe(false)
     expect(hasGskAuth()).toBe(true)
   })
 
   it('stops offering a rejected env key without touching anyone else’s file', () => {
-    process.env.GSK_API_KEY = 'gsk-env'
+    process.env.RAMONMODS_API_KEY = 'ramonmods-env'
     try {
       stubServer(() => response({ detail: FRESH_AUTH_REQUIRED }, 403))
-      expect(gskApiKey()).toBe('gsk-env')
-      noteGskCallFailure('gsk-env', 'HTTP 401: Unauthorized')
+      expect(ramonmodsApiKey()).toBe('ramonmods-env')
+      noteGskCallFailure('ramonmods-env', 'HTTP 401: Unauthorized')
       // falls through to GenOffice's own (still valid) key
-      expect(gskApiKey()).toBe('gsk-expired')
+      expect(ramonmodsApiKey()).toBe('ramonmods-expired')
     } finally {
-      delete process.env.GSK_API_KEY
+      delete process.env.RAMONMODS_API_KEY
     }
   })
 })
@@ -232,7 +232,7 @@ describe('passive calls', () => {
     stubServer(() => response({ detail: FRESH_AUTH_REQUIRED }, 403))
     const opener = vi.fn()
     setGenofficeLoginOpener(opener)
-    await expect(noteGskKeyRejected('gsk-expired', { allowLogin: false })).resolves.toBe(
+    await expect(noteGskKeyRejected('ramonmods-expired', { allowLogin: false })).resolves.toBe(
       'login_required',
     )
     expect(hasGskAuth()).toBe(false)

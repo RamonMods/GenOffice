@@ -1,7 +1,7 @@
 /**
- * GenOffice's own Genspark identity: device-code login (office_addin_auth,
- * app_type=genoffice) minting a gsk API key named "genoffice" — the key_name
- * lands in billing as billing_tag, attributing all traffic (incl. gsk CLI
+ * GenOffice's own RamonMods identity: device-code login (office_addin_auth,
+ * app_type=genoffice) minting a ramonmods API key named "genoffice" — the key_name
+ * lands in billing as billing_tag, attributing all traffic (incl. ramonmods CLI
  * subprocesses) to GenOffice. Stored in ~/.genoffice/auth.json, deliberately
  * NOT the shared config.json that Claw Desktop overwrites on every launch.
  *
@@ -14,7 +14,7 @@ import { existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from '
 import { createRequire } from 'node:module'
 import { homedir } from 'node:os'
 import { dirname, join } from 'node:path'
-import { asRecord, gskProxyUrl } from './shared'
+import { asRecord, ramonmodsProxyUrl } from './shared'
 import { nativeWaf } from './native-waf'
 
 /** Progress event for the browser login flow. */
@@ -49,7 +49,7 @@ export function isAllowedAuthUrl(raw: string, origin: string): URL | null {
 }
 
 function baseUrl(): string {
-  return (process.env.GSK_BASE_URL || 'https://ramonmods.com').replace(/\/$/, '')
+  return (process.env.RAMONMODS_BASE_URL || 'https://ramonmods.com').replace(/\/$/, '')
 }
 
 let cachedFetch: typeof fetch | undefined
@@ -96,7 +96,7 @@ const GATEWAY_ERROR_STATUSES = new Set([407, 502, 504])
  * is bot-challenged, see resolveFetch). null when no proxy is registered.
  */
 async function proxyFallbackFetch(): Promise<typeof fetch | null> {
-  const proxyUrl = gskProxyUrl()
+  const proxyUrl = ramonmodsProxyUrl()
   if (!proxyUrl) return null
   if (proxyFetchCache?.url === proxyUrl) return proxyFetchCache.impl
   let impl: typeof fetch = (...args) => fetch(...args)
@@ -554,7 +554,7 @@ async function remintWithStoredSession(accessToken: string, generation: number):
 }
 
 /**
- * Recovery after a gsk-key call answered 401: drop the key, try one silent
+ * Recovery after a ramonmods-key call answered 401: drop the key, try one silent
  * re-mint with the stored session, and when that is refused (the server
  * requires a fresh login) open the device-code login once. Concurrent
  * failures share one recovery; a login cancelled or expired leaves the
@@ -626,8 +626,8 @@ export function ensureGenofficeLogin(openUrl: (url: string) => void): void {
 
 /**
  * Signs out of GenOffice only: best-effort server-side revoke of the
- * genoffice key, then local removal. The shared gsk CLI login
- * (~/.genspark-tool-cli) is untouched — terminal gsk and Claw keep working.
+ * genoffice key, then local removal. The shared ramonmods CLI login
+ * (~/.genspark-tool-cli) is untouched — terminal ramonmods and Claw keep working.
  */
 export async function genofficeLogout(): Promise<void> {
   // invalidate any in-flight recovery first: its re-mint or login must not undo this sign-out

@@ -1,9 +1,9 @@
 /**
  * ai:web-search / ai:image-search for the editors' main processes: reads
  * ai-settings.json live and turns the search provider choice into
- * SearchOptions — Genspark keeps the historic chain (gsk when signed in and
+ * SearchOptions — RamonMods keeps the historic chain (ramonmods when signed in and
  * cloud tools are on, then env keys, then free Parallel MCP, then DuckDuckGo); a
- * selected custom provider runs first and skips gsk. Keenable's free endpoint
+ * selected custom provider runs first and skips ramonmods. Keenable's free endpoint
  * only runs when Keenable is the selected provider.
  */
 

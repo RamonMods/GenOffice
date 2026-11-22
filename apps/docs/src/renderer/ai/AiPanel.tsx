@@ -327,7 +327,7 @@ const MODEL_BRIDGE: AiModelPickerBridge = {
   getSettings: () => window.desktop.getAiSettings(),
   setSettings: (settings) => window.desktop.setAiSettings(settings),
   onSettingsChanged: (handler) => window.desktop.onAiSettingsChanged(handler),
-  gskLoggedIn: () => window.desktop.aiGskStatus().then((s) => !!s?.loggedIn),
+  ramonmodsLoggedIn: () => window.desktop.aiGskStatus().then((s) => !!s?.loggedIn),
   openModelSettings: () => window.desktop.openAiModelSettings().catch(() => {}),
 }
 
@@ -434,7 +434,7 @@ export function AiPanel({
   useEffect(
     () =>
       window.desktop?.onGskLoginLanded?.(() => {
-        gskLoggedInRef.current = true
+        ramonmodsLoggedInRef.current = true
         setChat((prev) =>
           prev.some((e) => e.loginRequired)
             ? prev.map((e) => (e.loginRequired ? { ...e, loginRequired: false } : e))
@@ -544,8 +544,8 @@ export function AiPanel({
   editorRef.current = editor
   const settingsRef = useRef(settings)
   settingsRef.current = settings
-  /** gsk login state for the generate_image gate (refreshed on mount and window focus) */
-  const gskLoggedInRef = useRef(false)
+  /** ramonmods login state for the generate_image gate (refreshed on mount and window focus) */
+  const ramonmodsLoggedInRef = useRef(false)
   useEffect(() => {
     let alive = true
     const refresh = () => {
@@ -553,7 +553,7 @@ export function AiPanel({
       void window.desktop
         ?.aiGskStatus?.()
         .then((s) => {
-          if (alive) gskLoggedInRef.current = !!s?.loggedIn
+          if (alive) ramonmodsLoggedInRef.current = !!s?.loggedIn
         })
         .catch(() => {})
     }
@@ -849,14 +849,14 @@ export function AiPanel({
           () => (trackChangesRef.current ? { author: aiRevisionAuthor() } : undefined),
           () => commentsAccessRef.current,
           () => hfAccessRef.current,
-          () => imageGenerationAvailable(settingsRef.current, gskLoggedInRef.current),
+          () => imageGenerationAvailable(settingsRef.current, ramonmodsLoggedInRef.current),
           () => ({
             write: (spec, onProgress, signal) => runDocWriterRef.current(spec, onProgress, signal),
           }),
           () => pageSetupAccessRef.current,
           () => docExtrasRef.current,
           () => notesAccessRef.current,
-          () => mediaAnalysisAvailable(settingsRef.current, gskLoggedInRef.current),
+          () => mediaAnalysisAvailable(settingsRef.current, ramonmodsLoggedInRef.current),
         ),
         createFilesSkill(availableAttachments),
         createSkillsSkill(),
@@ -966,7 +966,7 @@ export function AiPanel({
             return boundChatHistory(next)
           })
           // Signed-out failures get an inline sign-in button; detected via
-          // gsk status rather than matching the localized error text — but only
+          // ramonmods status rather than matching the localized error text — but only
           // when RamonMods is the provider: a BYOK user's error (e.g. their own
           // provider's rate limit) must not advertise a RamonMods sign-in (genoffice#1948)
           void window.desktop

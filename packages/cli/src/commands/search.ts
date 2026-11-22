@@ -7,7 +7,7 @@ import { CliError, EXIT } from '../result'
 export const searchCommand: CommandDef = {
   name: 'search',
   summary:
-    'Pesquisa na web ou por imagens pelo provedor configurado no GenOffice (Genspark, Serper, Serply, SearchApi, Tavily, Parallel).',
+    'Pesquisa na web ou por imagens pelo provedor configurado no GenOffice (RamonMods, Serper, Serply, SearchApi, Tavily, Parallel).',
   usage: 'search <query> [--images] [--max <n>]',
   options: [
     { name: 'images', description: 'pesquisa imagens em vez de páginas da web' },

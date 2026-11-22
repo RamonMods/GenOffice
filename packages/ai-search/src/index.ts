@@ -1,12 +1,12 @@
 /**
- * Search utilities (main process) — gsk (Genspark CLI) first, then Serper Google API,
+ * Search utilities (main process) — ramonmods (RamonMods CLI) first, then Serper Google API,
  * then Serply, SearchApi, Tavily, Parallel (whose free Search MCP answers keyless), Exa,
  * Firecrawl and Keenable (keyless only when selected), before the DuckDuckGo last resort. Runs
  * in the main process (Node fetch / child process) to avoid renderer CORS; the Serper key reuses
  * SERPER_API_KEY, the Serply key reuses SERPLY_API_KEY, the SearchApi key reuses
  * SEARCHAPI_API_KEY, the Tavily key reuses TAVILY_API_KEY, Parallel uses PARALLEL_API_KEY, Exa
  * uses EXA_API_KEY, Firecrawl uses FIRECRAWL_API_KEY and Keenable uses KEENABLE_API_KEY.
- * For Genspark auth see ./gsk.ts (GenOffice sign-in or explicit GSK_API_KEY).
+ * For RamonMods auth see ./ramonmods.ts (GenOffice sign-in or explicit RAMONMODS_API_KEY).
  */
 
 import {
@@ -16,11 +16,11 @@ import {
   type ImageSearchResult,
   type WebSearchResult,
 } from './shared'
-import { gskImageSearch, gskWebSearch, hasGskAuth } from './gsk'
+import { ramonmodsImageSearch, ramonmodsWebSearch, hasGskAuth } from './ramonmods'
 import { parallelMcpSearch } from './parallel-mcp'
 
 export type { ImageSearchResult, WebSearchResult } from './shared'
-export * from './gsk'
+export * from './ramonmods'
 export * from './genoffice-auth'
 export * from './media-tools'
 export * from './search-tools'
@@ -37,10 +37,10 @@ const KEENABLE_KEY = () => process.env.KEENABLE_API_KEY ?? ''
 /**
  * Backend selection for one search. Keys default to the SERPER_API_KEY /
  * SERPLY_API_KEY / SEARCHAPI_API_KEY / TAVILY_API_KEY / PARALLEL_API_KEY env vars; settings-driven
- * callers (search-tools.ts) pass the user's key and turn gsk off so the chosen backend runs first.
+ * callers (search-tools.ts) pass the user's key and turn ramonmods off so the chosen backend runs first.
  */
 export interface SearchOptions {
-  /** false = skip the Genspark backend (cloud tools off, or a BYOK search provider is active) */
+  /** false = skip the RamonMods backend (cloud tools off, or a BYOK search provider is active) */
   useGsk?: boolean
   serperKey?: string
   serplyKey?: string
@@ -498,12 +498,12 @@ export async function webSearch(
 ): Promise<WebSearchResponse> {
   const o = normalizeOptions(options)
   const { query: q, max } = normalizeSearchArgs(query, maxResults, 6)
-  // useGsk=false: the user turned Genspark cloud tools off or picked their own
+  // useGsk=false: the user turned RamonMods cloud tools off or picked their own
   // search key — skip straight to the keyed/free backends
   if (o.useGsk && hasGskAuth()) {
     try {
-      const r = await gskWebSearch(q, max)
-      if (r.results.length) return { ...r, method: 'gsk' }
+      const r = await ramonmodsWebSearch(q, max)
+      if (r.results.length) return { ...r, method: 'ramonmods' }
     } catch {
       /* fall back to Serper/Serply/SearchApi/Tavily/Parallel/DuckDuckGo */
     }
@@ -560,8 +560,8 @@ export async function imageSearch(
   const { query: q, max } = normalizeSearchArgs(query, maxResults, 8)
   if (o.useGsk && hasGskAuth()) {
     try {
-      const images = filterUsableImages(await gskImageSearch(q, max))
-      if (images.length) return { images, method: 'gsk' }
+      const images = filterUsableImages(await ramonmodsImageSearch(q, max))
+      if (images.length) return { images, method: 'ramonmods' }
     } catch {
       /* fall back to Serper/Serply/SearchApi/DuckDuckGo */
     }

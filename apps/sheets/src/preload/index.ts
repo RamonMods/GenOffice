@@ -5,7 +5,7 @@ import type {
   AiChatResponse,
   AiSettings,
   AiStreamChunk,
-  GenSparkAccountStatus,
+  RamonModsAccountStatus,
 } from '@genoffice/ai-provider'
 import type { ProjectApi } from '@genoffice/project-store'
 import type {
@@ -754,9 +754,9 @@ const desktopApi: DesktopApi = {
   async aiGskStatus(withEmail) {
     const result: unknown = await ipcRenderer.invoke(IPC_CHANNELS.aiGskStatus, withEmail)
     if (!isRecord(result) || typeof result.loggedIn !== 'boolean') {
-      throw new Error('Invalid Genspark account status response.')
+      throw new Error('Invalid RamonMods account status response.')
     }
-    return result as unknown as GenSparkAccountStatus
+    return result as unknown as RamonModsAccountStatus
   },
   async aiGskLogin() {
     await ipcRenderer.invoke(IPC_CHANNELS.aiGskLogin)

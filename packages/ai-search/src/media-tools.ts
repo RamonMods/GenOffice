@@ -1,7 +1,7 @@
 /**
  * generate_image / analyze_media for the five editors' main processes: one
  * place that reads ai-settings.json live, routes to the BYOK media provider
- * when one is configured, and otherwise to the Genspark CLI behind the usual
+ * when one is configured, and otherwise to the RamonMods CLI behind the usual
  * login + cloud-tools gate. BYOK providers answer with bytes; those land in
  * the local generated-image store and come back as a file:// URL that the
  * insert pipelines' fetchRemoteImage accepts.
@@ -28,12 +28,12 @@ import {
   readBodyCapped,
 } from '@genoffice/electron-utils/remote-image'
 import { fetchWithSsrfGuard } from '@genoffice/electron-utils/safe-remote-url'
-import { gskAnalyzeMedia, gskGenerateImage, hasGskAuth, type GskGenerateImageOptions } from './gsk'
+import { ramonmodsAnalyzeMedia, ramonmodsGenerateImage, hasGskAuth, type GskGenerateImageOptions } from './ramonmods'
 
-export const GSK_NOT_LOGGED_IN_ERROR =
-  'A conta do Genspark não está conectada neste computador; peça ao usuário para entrar primeiro'
-export const GSK_TOOLS_OFF_ERROR =
-  'As ferramentas em nuvem do Genspark estão desativadas em Configurações (Modelo de IA); ative-as ou configure um provedor de imagens em Configurações (Mídia de IA) para usar esta ferramenta'
+export const RAMONMODS_NOT_LOGGED_IN_ERROR =
+  'A conta do RamonMods não está conectada neste computador; peça ao usuário para entrar primeiro'
+export const RAMONMODS_TOOLS_OFF_ERROR =
+  'As ferramentas em nuvem do RamonMods estão desativadas em Configurações (Modelo de IA); ative-as ou configure um provedor de imagens em Configurações (Mídia de IA) para usar esta ferramenta'
 
 /** 200 MB: enough for a long clip through the Gemini Files API, small enough to hold in memory */
 const MAX_MEDIA_BYTES = 200 * 1024 * 1024
@@ -57,13 +57,13 @@ export const MEDIA_BUDGET = {
   concurrency: MEDIA_LOAD_CONCURRENCY,
 } as const
 
-/** the only load failure that may hand the request back to Genspark; validation failures never do */
+/** the only load failure that may hand the request back to RamonMods; validation failures never do */
 export class MediaTooLargeError extends Error {}
 
-/** Subclasses MediaTooLargeError so the existing "too big, try Genspark" fallback applies. */
+/** Subclasses MediaTooLargeError so the existing "too big, try RamonMods" fallback applies. */
 export class MediaBudgetExceededError extends MediaTooLargeError {}
 
-/** The item ceiling in one place, so the Genspark route rejects like the BYOK one. */
+/** The item ceiling in one place, so the RamonMods route rejects like the BYOK one. */
 function assertMediaItemCount(count: number, maxItems: number): void {
   if (count > maxItems) {
     throw new MediaBudgetExceededError(
@@ -171,10 +171,10 @@ export function isLocalMediaPathAllowed(
   return verifiedLocalPath(ref, roots) !== null
 }
 
-/** the Genspark route's preconditions; null when it may proceed */
-function gskGate(settings: AiSettings, notLoggedInError: string): Gate {
+/** the RamonMods route's preconditions; null when it may proceed */
+function ramonmodsGate(settings: AiSettings, notLoggedInError: string): Gate {
   if (!hasGskAuth()) return { error: notLoggedInError }
-  if (!cloudToolsEnabled(settings)) return { error: GSK_TOOLS_OFF_ERROR }
+  if (!cloudToolsEnabled(settings)) return { error: RAMONMODS_TOOLS_OFF_ERROR }
   return null
 }
 
@@ -310,8 +310,8 @@ export async function loadMediaReferences(
   return blobs
 }
 
-/** Genspark background-removal model — chained after generation for transparentBackground */
-export const GSK_RMBG_MODEL = 'fal-bria-rmbg'
+/** RamonMods background-removal model — chained after generation for transparentBackground */
+export const RAMONMODS_RMBG_MODEL = 'fal-bria-rmbg'
 
 export type GenerateImageToolOp = GskGenerateImageOptions & {
   /** The result must have real PNG alpha (icons/logos/cutouts). Generation models cannot
@@ -332,17 +332,17 @@ export async function generateImageTool(
   const byok = activeMediaConfig(settings, 'image')
   try {
     if (!byok) {
-      const gate = gskGate(settings, options.notLoggedInError ?? GSK_NOT_LOGGED_IN_ERROR)
+      const gate = ramonmodsGate(settings, options.notLoggedInError ?? RAMONMODS_NOT_LOGGED_IN_ERROR)
       if (gate) return gate
-      // gskGenerateImage hands the references straight to the CLI argv, so this route
+      // ramonmodsGenerateImage hands the references straight to the CLI argv, so this route
       // enforces the same item ceiling as the BYOK one instead of passing them on
       assertMediaItemCount(op.referenceImageUrls?.length ?? 0, MEDIA_BUDGET.maxItems)
-      const gen = await gskGenerateImage({ ...op, prompt })
-      if (!op.transparentBackground || op.model === GSK_RMBG_MODEL) return { url: gen.url }
+      const gen = await ramonmodsGenerateImage({ ...op, prompt })
+      if (!op.transparentBackground || op.model === RAMONMODS_RMBG_MODEL) return { url: gen.url }
       try {
-        const cut = await gskGenerateImage({
+        const cut = await ramonmodsGenerateImage({
           prompt: 'remove the background completely, keep only the subject',
-          model: GSK_RMBG_MODEL,
+          model: RAMONMODS_RMBG_MODEL,
           referenceImageUrls: [gen.url],
         })
         return { url: cut.url }
@@ -350,7 +350,7 @@ export async function generateImageTool(
         return { url: gen.url } // strip failed: the opaque image is still usable
       }
     }
-    // `model` names Genspark-only special models (fal-*); BYOK uses the configured image model
+    // `model` names RamonMods-only special models (fal-*); BYOK uses the configured image model
     const references = await loadMediaReferences(
       op.referenceImageUrls ?? [],
       MEDIA_BUDGET,
@@ -383,12 +383,12 @@ export async function analyzeMediaTool(
   const videoByok = activeMediaConfig(settings, 'video')
   try {
     const viaGsk = async () => {
-      const gate = gskGate(settings, options.notLoggedInError ?? GSK_NOT_LOGGED_IN_ERROR)
+      const gate = ramonmodsGate(settings, options.notLoggedInError ?? RAMONMODS_NOT_LOGGED_IN_ERROR)
       if (gate) return gate
-      // gskAnalyzeMedia spreads the URLs straight into the CLI argv, so this route
+      // ramonmodsAnalyzeMedia spreads the URLs straight into the CLI argv, so this route
       // enforces the same item ceiling as the BYOK one instead of passing them on
       assertMediaItemCount(mediaUrls.length, MEDIA_BUDGET.maxItems)
-      return { text: await gskAnalyzeMedia({ mediaUrls, requirements }) }
+      return { text: await ramonmodsAnalyzeMedia({ mediaUrls, requirements }) }
     }
     if (!imageByok && !videoByok) return await viaGsk()
     // route on the loaded bytes' real MIME, not the URL spelling: images go to the
@@ -397,7 +397,7 @@ export async function analyzeMediaTool(
     try {
       media = await loadMediaReferences(mediaUrls, MEDIA_BUDGET, mediaRoots)
     } catch (err) {
-      // only the size cap hands the request back to Genspark (the CLI streams large
+      // only the size cap hands the request back to RamonMods (the CLI streams large
       // files itself); scheme / path / SSRF rejections stay rejections
       if (err instanceof MediaTooLargeError && (!imageByok || !videoByok)) return await viaGsk()
       return { error: errorText(err) }

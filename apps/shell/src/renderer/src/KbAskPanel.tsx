@@ -207,7 +207,7 @@ export function KbAskPanel({
   const [corpusFiles, setCorpusFiles] = useState<KbFileInfo[]>([])
   /** whether the file list under the header is open */
   const [corpusOpen, setCorpusOpen] = useState(false)
-  const [gskEmail, setGskEmail] = useState<string | null>(null)
+  const [ramonmodsEmail, setGskEmail] = useState<string | null>(null)
   const [provider, setProvider] = useState<string | null>(null)
   const corpusRef = useRef<KbFileInfo[]>([])
   /** the @ token open at the end of the draft (null when none is being typed) */
@@ -385,7 +385,7 @@ export function KbAskPanel({
       getSettings: () => window.aiOffice.aiGetSettings(),
       setSettings: (settings) => window.aiOffice.setAiSettings(settings),
       onSettingsChanged: (handler) => window.aiOffice.onAiSettingsChanged(handler),
-      gskLoggedIn: () => window.aiOffice.aiGskStatus().then((s) => !!s.loggedIn),
+      ramonmodsLoggedIn: () => window.aiOffice.aiGskStatus().then((s) => !!s.loggedIn),
       openModelSettings: onOpenModelSettings,
     }),
     [onOpenModelSettings],
@@ -1025,7 +1025,7 @@ export function KbAskPanel({
           {t('askNoSave')}
         </p>
       )}
-      {gskEmail === null && provider === 'genspark' && (
+      {ramonmodsEmail === null && provider === 'genspark' && (
         <p className="kb-ask-login">{t('askNeedsLogin')}</p>
       )}
       {attachNotice && (

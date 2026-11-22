@@ -10,15 +10,15 @@ describe('isAllowedAuthUrl', () => {
 
   it('accepts sibling hosts on the endpoint registrable domain (review point 1)', () => {
     // the verify page may move between the auth service's own hosts
-    expect(isAllowedAuthUrl('https://auth.genspark.ai/device', BASE)).toBeTruthy()
-    expect(isAllowedAuthUrl('https://genspark.ai/device', BASE)).toBeTruthy()
+    expect(isAllowedAuthUrl('https://auth.ramonmods.com/device', BASE)).toBeTruthy()
+    expect(isAllowedAuthUrl('https://ramonmods.com/device', BASE)).toBeTruthy()
   })
 
   it('accepts siblings of a non-www staging base', () => {
     expect(
       isAllowedAuthUrl(
-        'https://auth.staging.genspark.ai/device',
-        'https://www.staging.genspark.ai',
+        'https://auth.staging.ramonmods.com/device',
+        'https://www.staging.ramonmods.com',
       ),
     ).toBeTruthy()
   })
@@ -27,10 +27,10 @@ describe('isAllowedAuthUrl', () => {
     // a staging endpoint must not be able to send the browser to production,
     // and no host outside the endpoint's registrable domain passes
     expect(
-      isAllowedAuthUrl('https://ramonmods.com/device', 'https://staging.genspark.ai'),
+      isAllowedAuthUrl('https://ramonmods.com/device', 'https://staging.ramonmods.com'),
     ).toBeFalsy()
-    expect(isAllowedAuthUrl('https://genspark.ai.evil.example/x', BASE)).toBeFalsy()
-    expect(isAllowedAuthUrl('https://notgenspark.ai/x', BASE)).toBeFalsy()
+    expect(isAllowedAuthUrl('https://ramonmods.com.evil.example/x', BASE)).toBeFalsy()
+    expect(isAllowedAuthUrl('https://notramonmods.com/x', BASE)).toBeFalsy()
   })
 
   it('refuses other protocols and unparseable input', () => {
@@ -62,7 +62,7 @@ describe('startGenofficeLogin auth_url allowlist', () => {
   let savedFetch: typeof fetch | undefined
 
   const stubDeviceCode = (authUrl: string, pollJson: unknown = { status: 'expired' }) => {
-    savedBase = process.env.GSK_BASE_URL
+    savedBase = process.env.RAMONMODS_BASE_URL
     savedFetch = globalThis.fetch
     globalThis.fetch = (async (input: string | URL) => {
       const url = String(input)
@@ -82,12 +82,12 @@ describe('startGenofficeLogin auth_url allowlist', () => {
         headers: { 'content-type': 'application/json' },
       })
     }) as typeof fetch
-    process.env.GSK_BASE_URL = 'https://ramonmods.com'
+    process.env.RAMONMODS_BASE_URL = 'https://ramonmods.com'
   }
 
   afterEach(() => {
-    if (savedBase === undefined) delete process.env.GSK_BASE_URL
-    else process.env.GSK_BASE_URL = savedBase
+    if (savedBase === undefined) delete process.env.RAMONMODS_BASE_URL
+    else process.env.RAMONMODS_BASE_URL = savedBase
     if (savedFetch !== undefined) globalThis.fetch = savedFetch
     vi.unstubAllGlobals()
   })
@@ -100,14 +100,14 @@ describe('startGenofficeLogin auth_url allowlist', () => {
     expect(events).toEqual([{ phase: 'error', error: 'auth_url_rejected' }])
   })
 
-  it('opens a sibling-host auth_url (auth.genspark.ai) end-to-end', async () => {
-    stubDeviceCode('https://auth.genspark.ai/device?code=abc')
+  it('opens a sibling-host auth_url (auth.ramonmods.com) end-to-end', async () => {
+    stubDeviceCode('https://auth.ramonmods.com/device?code=abc')
     const events: { phase: string; url?: string }[] = []
     startGenofficeLogin((p) => events.push(p))
     await vi.waitFor(() => expect(events.at(-1)?.phase).toBe('error')) // poll stub answers 'expired'
     expect(events[0]).toEqual({
       phase: 'url',
-      url: 'https://auth.genspark.ai/device?code=abc',
+      url: 'https://auth.ramonmods.com/device?code=abc',
       expiresInSec: 1,
     })
   })

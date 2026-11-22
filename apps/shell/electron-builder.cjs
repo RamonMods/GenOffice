@@ -654,10 +654,10 @@ const config = {
     },
     {
       from: '../../node_modules/@genspark/cli',
-      to: 'gsk/node_modules/@genspark/cli',
+      to: 'ramonmods/node_modules/@genspark/cli',
     },
     // genoffice command line: runs on the app binary with ELECTRON_RUN_AS_NODE (as
-    // the gsk CLI above already does), so the RunAsNode fuse must stay enabled.
+    // the ramonmods CLI above already does), so the RunAsNode fuse must stay enabled.
     // Layout (Resources/cli next to wasm/, native/, ocr/) is what
     // packages/cli/src/resources.ts expects.
     {
@@ -694,11 +694,11 @@ const config = {
     },
     {
       from: '../../node_modules/@genspark/cli/node_modules/commander',
-      to: 'gsk/node_modules/commander',
+      to: 'ramonmods/node_modules/commander',
     },
     {
       from: '../../node_modules/ws',
-      to: 'gsk/node_modules/ws',
+      to: 'ramonmods/node_modules/ws',
     },
   ],
   // `mimeType` is read only by the Linux target, where it becomes the

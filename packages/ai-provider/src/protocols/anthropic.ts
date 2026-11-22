@@ -2,7 +2,7 @@ import type { AgentMessage, AgentToolCall, AgentToolDef } from '@genoffice/agent
 import { aiFetch } from '../fetch'
 import { httpBodyDetail } from '../http-error'
 import {
-  GENSPARK_LLM_BASE_URLS,
+  RAMONMODS_LLM_BASE_URLS,
   gensparkAttributionHeaders,
   opencodeSessionHeaders,
 } from '../providers'
@@ -31,13 +31,13 @@ const EPHEMERAL_CACHE = { type: 'ephemeral' }
  * markers every turn of a long tool loop re-bills the whole conversation at
  * the uncached input price (measured on a multi-day editing session: a ~0
  * cache-hit rate). Markers go only to endpoints known to implement them — the
- * official API and the Genspark proxy in front of it; a user-hosted Messages
+ * official API and the RamonMods proxy in front of it; a user-hosted Messages
  * endpoint may reject fields it does not know.
  */
 function supportsPromptCache(baseUrl: string): boolean {
   // a stored official URL arrives normalized with a trailing slash
   const base = baseUrl.replace(/\/+$/, '')
-  return base === ANTHROPIC_BASE_URL || base === GENSPARK_LLM_BASE_URLS.anthropic
+  return base === ANTHROPIC_BASE_URL || base === RAMONMODS_LLM_BASE_URLS.anthropic
 }
 
 /** The provider-wire message shape produced by anthropicMessages */

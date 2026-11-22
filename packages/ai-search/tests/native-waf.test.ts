@@ -21,7 +21,7 @@ describe('optional cookie admission', () => {
     )
     reloadGenofficeAuth()
     finish(Response.json({ data: { token } }))
-    expect(new Headers((await pending).headers).get('X-Genspark-Native-Pass')).toBe(token)
+    expect(new Headers((await pending).headers).get('X-RamonMods-Native-Pass')).toBe(token)
     nativeWaf.clear()
   })
   it('coalesces cookie-bound issuer requests and preserves legacy headers', async () => {
@@ -41,7 +41,7 @@ describe('optional cookie admission', () => {
     ])
     expect(calls).toBe(1)
     for (const request of requests) {
-      expect(new Headers(request.headers).get('X-Genspark-Native-Pass')).toBe(token)
+      expect(new Headers(request.headers).get('X-RamonMods-Native-Pass')).toBe(token)
       expect(request.credentials).toBe('omit')
     }
   })
@@ -68,7 +68,7 @@ describe('optional cookie admission', () => {
     for (let i = 0; i < 2; i++) {
       const outgoing = await admission.prepare(url, init(), failing)
       expect(new Headers(outgoing.headers).get('Cookie')).toBe('session_id=original')
-      expect(new Headers(outgoing.headers).has('X-Genspark-Native-Pass')).toBe(false)
+      expect(new Headers(outgoing.headers).has('X-RamonMods-Native-Pass')).toBe(false)
     }
     expect(calls).toBe(1)
     admission.clear()
@@ -83,12 +83,12 @@ describe('optional cookie admission', () => {
     )
     admission.clear()
     finish(Response.json({ data: { token: pass() } }))
-    expect(new Headers((await pending).headers).has('X-Genspark-Native-Pass')).toBe(false)
+    expect(new Headers((await pending).headers).has('X-RamonMods-Native-Pass')).toBe(false)
   })
 
   it('admitted hosts come from the configured base URL and the extra-hosts setting', async () => {
     expect([...nativeWafHosts({})]).toEqual(['ramonmods.com'])
-    expect([...nativeWafHosts({ GSK_BASE_URL: 'https://office.example.com/' })]).toEqual([
+    expect([...nativeWafHosts({ RAMONMODS_BASE_URL: 'https://office.example.com/' })]).toEqual([
       'office.example.com',
     ])
     expect([
@@ -101,14 +101,14 @@ describe('optional cookie admission', () => {
     const tenant = 'https://tenant.example.com/api/api_tokens/create'
     expect(
       new Headers((await admission.prepare(tenant, init(), fetcher)).headers).has(
-        'X-Genspark-Native-Pass',
+        'X-RamonMods-Native-Pass',
       ),
     ).toBe(false)
     process.env.GENOFFICE_NATIVE_WAF_HOSTS = 'tenant.example.com'
     try {
       expect(
         new Headers((await admission.prepare(tenant, init(), fetcher)).headers).get(
-          'X-Genspark-Native-Pass',
+          'X-RamonMods-Native-Pass',
         ),
       ).toBe(token)
     } finally {

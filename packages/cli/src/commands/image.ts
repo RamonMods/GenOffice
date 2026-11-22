@@ -39,13 +39,13 @@ export const imageCommand: CommandDef = {
       value: 'ratio',
       description: '1:1 | 4:3 | 16:9 | 9:16 | 3:4 | 2:3 | 3:2 | auto',
     },
-    { name: 'size', value: 'size', description: 'auto | 0.5k | 1k | 2k | 3k | 4k (somente Genspark)' },
+    { name: 'size', value: 'size', description: 'auto | 0.5k | 1k | 2k | 3k | 4k (somente RamonMods)' },
     {
       name: 'ref',
       value: 'images',
       description: 'imagens de referência ou a editar (caminhos ou URLs), separadas por vírgula',
     },
-    { name: 'model', value: 'name', description: 'substituição do modelo Genspark (ex.: fal-bria-rmbg)' },
+    { name: 'model', value: 'name', description: 'substituição do modelo RamonMods (ex.: fal-bria-rmbg)' },
     { name: 'force', description: 'substituir um arquivo de saída existente' },
   ],
   async run(args, ctx) {
@@ -110,7 +110,7 @@ export const imageCommand: CommandDef = {
     if (!r.url)
       throw new CliError(EXIT.app, r.error ?? 'falha ao gerar a imagem', undefined, {
         suggestion:
-          'tente novamente mais tarde; se persistir, verifique o login do Genspark no app GenOffice, configure um provedor de imagens BYOK em Configurações (Mídia de IA) ou continue sem imagens geradas',
+          'tente novamente mais tarde; se persistir, verifique o login do RamonMods no app GenOffice, configure um provedor de imagens BYOK em Configurações (Mídia de IA) ou continue sem imagens geradas',
       })
     const image = await loadImage(r.url)
     const ext = EXTS_BY_MIME[image.mime]?.[0] ?? 'png'
@@ -154,7 +154,7 @@ export function siblingExtensions(outExt: string): string[] {
     .map(([, exts]) => exts[0]!)
 }
 
-/** Genspark returns an https URL, BYOK providers a file:// in the app's generated-image store; fetchRemoteImage serves both. */
+/** RamonMods returns an https URL, BYOK providers a file:// in the app's generated-image store; fetchRemoteImage serves both. */
 async function loadImage(url: string): Promise<{ bytes: Uint8Array; mime: string }> {
   const response = await fetchRemoteImage(url)
   if (!response?.ok) throw new CliError(EXIT.app, `não foi possível baixar a imagem gerada: ${url}`)

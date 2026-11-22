@@ -705,7 +705,7 @@ describe('streamForProvider: anthropic', () => {
 
   it('replaces an HTML error body (e.g. a gateway block page) with a readable note', async () => {
     const html =
-      '<!doctype html>\n<html>\n<head><title>Genspark</title></head><body>app shell</body></html>'
+      '<!doctype html>\n<html>\n<head><title>RamonMods</title></head><body>app shell</body></html>'
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(html, { status: 403 })))
     const { cb } = collector()
     await expect(
@@ -1367,7 +1367,7 @@ describe('streamForProvider: genspark', () => {
     const { cb } = collector()
     await streamForProvider(
       'genspark',
-      { apiKey: 'gsk-k', model: 'claude-opus-4-7' },
+      { apiKey: 'ramonmods-k', model: 'claude-opus-4-7' },
       'sys',
       [],
       [],
@@ -1376,7 +1376,7 @@ describe('streamForProvider: genspark', () => {
     ).catch(() => {})
     expect(fetchMock).toHaveBeenCalledWith(
       'https://ramonmods.com/api/anthropic/v1/messages',
-      expect.objectContaining({ headers: expect.objectContaining({ 'x-api-key': 'gsk-k' }) }),
+      expect.objectContaining({ headers: expect.objectContaining({ 'x-api-key': 'ramonmods-k' }) }),
     )
   })
 
@@ -1386,7 +1386,7 @@ describe('streamForProvider: genspark', () => {
     const { cb } = collector()
     await streamForProvider(
       'genspark',
-      { apiKey: 'gsk-k', model: 'gpt-5.2' },
+      { apiKey: 'ramonmods-k', model: 'gpt-5.2' },
       'sys',
       [],
       [],
@@ -1404,7 +1404,7 @@ describe('streamForProvider: genspark', () => {
       const fetchMock = vi.fn().mockResolvedValue(okResponse(sseStream([])))
       vi.stubGlobal('fetch', fetchMock)
       const { cb } = collector()
-      await streamForProvider('genspark', { apiKey: 'gsk-k', model }, 'sys', [], [], 100, cb).catch(
+      await streamForProvider('genspark', { apiKey: 'ramonmods-k', model }, 'sys', [], [], 100, cb).catch(
         () => {},
       )
       expect(fetchMock).toHaveBeenCalledWith(
@@ -1482,7 +1482,7 @@ describe('streamForProvider: genspark', () => {
 
 describe('streamForProvider: 200 + non-stream JSON instead of SSE', () => {
   const creditsNotice =
-    'Your Genspark credits have been exhausted. Please visit https://ramonmods.com/pricing to purchase more credits.'
+    'Your RamonMods credits have been exhausted. Please visit https://ramonmods.com/pricing to purchase more credits.'
   const json = (value: unknown) =>
     new Response(JSON.stringify(value), {
       status: 200,
@@ -1735,7 +1735,7 @@ describe('streamForProvider: interleaved-thinking reasoning', () => {
 })
 
 describe('streamForProvider: a connection dropped mid tool arguments is not an empty stream', () => {
-  // Tool arguments are buffered upstream; the Genspark gateway closes the SSE
+  // Tool arguments are buffered upstream; the RamonMods gateway closes the SSE
   // after ~125s of that silence. The turn was billed and in progress, so it
   // must not match the "(empty stream)" contract that agent-core replays.
   it('anthropic: open tool_use block with no stop_reason rejects as a dropped connection', async () => {

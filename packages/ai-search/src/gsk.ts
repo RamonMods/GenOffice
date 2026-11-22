@@ -1,5 +1,5 @@
 /**
- * Wrapper around gsk (Genspark CLI, @genspark/cli) — search / image generation /
+ * Wrapper around ramonmods (RamonMods CLI, @genspark/cli) — search / image generation /
  * media analysis / upload / transcription.
  *
  * Execution: the main process spawns the CLI's JS entry with
@@ -7,7 +7,7 @@
  * no-op in a plain Node environment), avoiding the Windows problem where
  * .cmd files cannot be passed to execFile.
  *
- * Auth: gskApiKey() below. When not logged in, hasGskAuth() returns false and
+ * Auth: ramonmodsApiKey() below. When not logged in, hasGskAuth() returns false and
  * callers should fall back to other implementations (e.g. Serper search).
  */
 
@@ -19,7 +19,7 @@ import { createRequire } from 'node:module'
 import {
   asRecord,
   firstItem,
-  gskProxyUrl,
+  ramonmodsProxyUrl,
   isCopyrightHost,
   safeHost,
   type ImageSearchResult,
@@ -42,19 +42,19 @@ const MAX_BUFFER = 32 * 1024 * 1024
 
 let cachedEntry: string | null | undefined
 
-/** JS entry of @genspark/cli (null if not found). Can be overridden via GSK_CLI_PATH. */
+/** JS entry of @genspark/cli (null if not found). Can be overridden via RAMONMODS_CLI_PATH. */
 export function resolveGskEntry(): string | null {
-  if (process.env.GSK_CLI_PATH) return process.env.GSK_CLI_PATH
+  if (process.env.RAMONMODS_CLI_PATH) return process.env.RAMONMODS_CLI_PATH
   if (cachedEntry !== undefined) return cachedEntry
   try {
     const require = createRequire(import.meta.url)
     cachedEntry = require.resolve('@genspark/cli/dist/index.js')
   } catch {
     // The packaged app has no node_modules; electron-builder extraResources
-    // copies the CLI into Resources/gsk/
+    // copies the CLI into Resources/ramonmods/
     const resourcesPath = (process as { resourcesPath?: string }).resourcesPath
     const packed = resourcesPath
-      ? join(resourcesPath, 'gsk', 'node_modules', '@genspark', 'cli', 'dist', 'index.js')
+      ? join(resourcesPath, 'ramonmods', 'node_modules', '@genspark', 'cli', 'dist', 'index.js')
       : null
     cachedEntry = packed && existsSync(packed) ? packed : null
   }
@@ -86,13 +86,13 @@ function electronCompatArgs(): string[] {
 }
 
 /**
- * API key for Genspark LLM proxy / tool_cli auth; '' when not logged in.
- * Priority: explicit GSK_API_KEY env → GenOffice's own login.
+ * API key for RamonMods LLM proxy / tool_cli auth; '' when not logged in.
+ * Priority: explicit RAMONMODS_API_KEY env → GenOffice's own login.
  * Never borrow the shared CLI login: it can belong to another app or account,
  * and must not silently undo GenOffice sign-out.
  */
-export function gskApiKey(): string {
-  const env = process.env.GSK_API_KEY
+export function ramonmodsApiKey(): string {
+  const env = process.env.RAMONMODS_API_KEY
   if (env && !rejectedKeys.has(env)) return env
   const own = genofficeApiKey()
   return own && !rejectedKeys.has(own) ? own : ''
@@ -107,7 +107,7 @@ export function gskApiKey(): string {
  */
 const rejectedKeys = new Set<string>()
 
-/** Thrown when a gsk-key call is refused with 401 and no fresh key could be minted. */
+/** Thrown when a ramonmods-key call is refused with 401 and no fresh key could be minted. */
 export class GskAuthError extends Error {
   constructor(message: string) {
     super(message)
@@ -115,14 +115,14 @@ export class GskAuthError extends Error {
   }
 }
 
-/** Whether an error text reports an HTTP 401 (gsk CLI, tool_cli, LLM proxy shapes). */
+/** Whether an error text reports an HTTP 401 (ramonmods CLI, tool_cli, LLM proxy shapes). */
 export function isGskUnauthorizedText(text: unknown): boolean {
   return /\bHTTP 401\b|\b401 Unauthorized\b/i.test(String(text ?? ''))
 }
 
 /**
  * Records that `key` was refused with 401: it stops being offered (so
- * hasGskAuth() / ai:gsk-status report signed-out and the existing sign-in UI
+ * hasGskAuth() / ai:ramonmods-status report signed-out and the existing sign-in UI
  * appears) and the re-mint / re-login recovery starts. The invalidation is
  * synchronous, before the first await, so a caller can report the failure
  * right after this returns.
@@ -136,7 +136,7 @@ export function noteGskKeyRejected(
 }
 
 /**
- * For callers that used the gsk key outside this module (the Genspark LLM
+ * For callers that used the ramonmods key outside this module (the RamonMods LLM
  * proxy chat/stream): when `error` reports a 401, drop the key and start the
  * recovery in the background. Returns whether it was an auth failure.
  */
@@ -156,13 +156,13 @@ async function withKeyRecovery<T>(
   call: (key: string) => Promise<T>,
   options: { allowLogin?: boolean } = {},
 ): Promise<T> {
-  const key = gskApiKey()
+  const key = ramonmodsApiKey()
   try {
     return await call(key)
   } catch (err) {
     if (!(err instanceof GskAuthError)) throw err
     const outcome = await noteGskKeyRejected(key, options)
-    const next = gskApiKey()
+    const next = ramonmodsApiKey()
     if (outcome !== 'reminted' || !next || next === key) throw err
     return call(next)
   }
@@ -174,16 +174,16 @@ export function resetGskRejectedKeys(): void {
 }
 
 /**
- * Fires when the effective gsk key changes on disk — another GenOffice-family
+ * Fires when the effective ramonmods key changes on disk — another GenOffice-family
  * app re-logging in mints a new key and revokes the one this process holds.
  * Polls by path (watchFile): auth.json is replaced whole, and fs.watch misses
  * events for a moment after it is armed.
  */
 export function watchGskApiKey(onChange: (key: string) => void, intervalMs = 2000): () => void {
-  let last = gskApiKey()
+  let last = ramonmodsApiKey()
   const check = (): void => {
     reloadGenofficeAuth()
-    const key = gskApiKey()
+    const key = ramonmodsApiKey()
     if (key === last) return
     last = key
     onChange(key)
@@ -196,30 +196,30 @@ export function watchGskApiKey(onChange: (key: string) => void, intervalMs = 200
 }
 
 /**
- * Whether gsk is usable (CLI installed and logged in / has a key). Callers use this to decide fallback.
+ * Whether ramonmods is usable (CLI installed and logged in / has a key). Callers use this to decide fallback.
  * Set AI_SEARCH_DISABLE_GSK=1 to force-disable (test isolation / force Serper).
  */
 export function hasGskAuth(): boolean {
   if (process.env.AI_SEARCH_DISABLE_GSK === '1') return false
-  return !!gskApiKey() && resolveGskEntry() !== null
+  return !!ramonmodsApiKey() && resolveGskEntry() !== null
 }
 
 // ── Child-process proxy plumbing ────────────────────────────────────
 
 // The main process's undici dispatcher (see the apps' proxy bootstraps) never
-// reaches child processes: without forwarding they dial genspark.ai directly.
-export { setGskProxyUrl, gskProxyUrl } from './shared'
+// reaches child processes: without forwarding they dial ramonmods.com directly.
+export { setGskProxyUrl, ramonmodsProxyUrl } from './shared'
 
 /**
- * env for gsk CLI children: Electron-as-Node plus proxy forwarding. The CLI
+ * env for ramonmods CLI children: Electron-as-Node plus proxy forwarding. The CLI
  * uses Node's built-in fetch, which ignores proxy env vars unless
  * NODE_USE_ENV_PROXY=1 (Node >= 24 — Electron 41 ships Node 24). Only
  * http(s):// proxies are forwarded; undici's env proxy cannot speak SOCKS.
  */
-export function gskChildEnv(base: NodeJS.ProcessEnv = process.env): NodeJS.ProcessEnv {
+export function ramonmodsChildEnv(base: NodeJS.ProcessEnv = process.env): NodeJS.ProcessEnv {
   const env: NodeJS.ProcessEnv = { ...base, ELECTRON_RUN_AS_NODE: '1' }
   const proxy = [
-    gskProxyUrl(),
+    ramonmodsProxyUrl(),
     base.HTTPS_PROXY,
     base.https_proxy,
     base.HTTP_PROXY,
@@ -244,11 +244,11 @@ export function gskChildEnv(base: NodeJS.ProcessEnv = process.env): NodeJS.Proce
 // ── Low-level execution ─────────────────────────────────────────────
 
 /**
- * gsk failures can arrive as a full HTML error page (a gateway or CDN
+ * ramonmods failures can arrive as a full HTML error page (a gateway or CDN
  * answering for an unavailable service) in the message or on stderr. That text
  * otherwise lands verbatim in CLI output, logs and agent context, so distill
  * it to one readable line: the HTTP status plus the page's visible text for an
- * HTML page, the [ERROR] lines for gsk's own multi-line logs, a plain clip
+ * HTML page, the [ERROR] lines for ramonmods's own multi-line logs, a plain clip
  * otherwise. Exported for tests.
  */
 export function summarizeGskFailure(raw: unknown, fallback = 'unknown error'): string {
@@ -256,7 +256,7 @@ export function summarizeGskFailure(raw: unknown, fallback = 'unknown error'): s
   if (!text) return fallback
   const isHtml = /<!doctype|<html[\s>]|<\/html>|<body[\s>]/i.test(text)
   if (!isHtml) {
-    // gsk logs mix [INFO] progress chatter, [ERROR] failures and crash noise;
+    // ramonmods logs mix [INFO] progress chatter, [ERROR] failures and crash noise;
     // prefer the [ERROR] lines, drop [INFO] ones, and keep it to one line
     const lines = text
       .split(/\r?\n/)
@@ -324,7 +324,7 @@ interface ScanBudget {
 const MAX_RECOVERY_SCAN_CHARS = 4 * 1024 * 1024
 
 /**
- * gsk output may have [INFO] log lines mixed in before or after the JSON;
+ * ramonmods output may have [INFO] log lines mixed in before or after the JSON;
  * find the first line that opens a JSON block and take that block, so a
  * pretty-printed payload is located in one linear scan instead of by reparsing
  * every line-bounded prefix.
@@ -353,7 +353,7 @@ export function parseGskOutput(stdout: string): unknown {
     }
     offset += line.length + 1
   }
-  throw new Error(`No JSON found in gsk output: ${summarizeGskFailure(stdout, '')}`)
+  throw new Error(`No JSON found in ramonmods output: ${summarizeGskFailure(stdout, '')}`)
 }
 
 /** `passive`: a status/background call — a rejected key is dropped but no browser login opens */
@@ -378,7 +378,7 @@ function runGskOnce(
   signal?: AbortSignal,
 ): Promise<unknown> {
   // With no injected key the CLI would independently load its shared login.
-  if (!key) return Promise.reject(new GskAuthError('Sign in to GenOffice to use Genspark'))
+  if (!key) return Promise.reject(new GskAuthError('Sign in to GenOffice to use RamonMods'))
   // inject the resolved key so the CLI bills the same identity as our direct HTTP calls
   return new Promise((resolve, reject) => {
     execFile(
@@ -388,20 +388,20 @@ function runGskOnce(
         timeout: timeoutMs,
         maxBuffer: MAX_BUFFER,
         env: {
-          ...gskChildEnv(),
-          GSK_API_KEY: key,
+          ...ramonmodsChildEnv(),
+          RAMONMODS_API_KEY: key,
         },
         ...(signal ? { signal } : {}),
       },
       (err, stdout, stderr) => {
         if (err) {
-          // stderr carries gsk's real reason ([ERROR] lines, or a whole HTML
+          // stderr carries ramonmods's real reason ([ERROR] lines, or a whole HTML
           // page); err.message only repeats the command line, so use it alone
           // when stderr has nothing
           const stderrText = summarizeGskFailure(stderr, '')
           const message = stderrText
-            ? `gsk failed: ${stderrText}`
-            : summarizeGskFailure((err as Error).message, 'gsk failed')
+            ? `ramonmods failed: ${stderrText}`
+            : summarizeGskFailure((err as Error).message, 'ramonmods failed')
           // the CLI prints a refused call's {status:'error', message:'HTTP 401…'} on stdout
           const unauthorized =
             !!key && (isGskUnauthorizedText(stdout) || isGskUnauthorizedText(stderr))
@@ -412,7 +412,7 @@ function runGskOnce(
           const result = parseGskOutput(String(stdout))
           const rec = asRecord(result)
           if (rec.status && rec.status !== 'ok') {
-            const message = `gsk returned an error: ${summarizeGskFailure(rec.message ?? rec.status)}`
+            const message = `ramonmods returned an error: ${summarizeGskFailure(rec.message ?? rec.status)}`
             reject(
               key && isGskUnauthorizedText(rec.message)
                 ? new GskAuthError(message)
@@ -432,21 +432,21 @@ function runGskOnce(
 // ── Search ──────────────────────────────────────────────────────────
 
 /** Max search results kept; longest snippet/title chars (prevents MB fields blowing context). */
-export const MAX_GSK_RESULTS = 20
-export const MAX_GSK_SNIPPET_CHARS = 2_000
-const MAX_GSK_URL_CHARS = 8_192
+export const MAX_RAMONMODS_RESULTS = 20
+export const MAX_RAMONMODS_SNIPPET_CHARS = 2_000
+const MAX_RAMONMODS_URL_CHARS = 8_192
 
 function normalizeMaxResults(n: number): number {
   if (!Number.isFinite(n)) return 6
   return Math.min(20, Math.max(1, Math.floor(n)))
 }
 
-function clipField(v: unknown, max = MAX_GSK_SNIPPET_CHARS): string {
+function clipField(v: unknown, max = MAX_RAMONMODS_SNIPPET_CHARS): string {
   const s = String(v ?? '')
   return s.length > max ? s.slice(0, max) : s
 }
 
-/** Parses the `gsk search` response shape data.organic_results[{title,link,snippet}] (exported for tests) */
+/** Parses the `ramonmods search` response shape data.organic_results[{title,link,snippet}] (exported for tests) */
 export function parseGskWebSearch(
   raw: unknown,
   maxResults: number,
@@ -458,19 +458,19 @@ export function parseGskWebSearch(
     const o = asRecord(item)
     return {
       title: clipField(o.title),
-      url: clipField(o.link, MAX_GSK_URL_CHARS),
+      url: clipField(o.link, MAX_RAMONMODS_URL_CHARS),
       snippet: clipField(o.snippet),
     }
   })
   const answerRaw = typeof data.answer === 'string' && data.answer ? data.answer : undefined
   const answer =
-    answerRaw !== undefined && answerRaw.length > MAX_GSK_SNIPPET_CHARS
-      ? `${answerRaw.slice(0, MAX_GSK_SNIPPET_CHARS)}…`
+    answerRaw !== undefined && answerRaw.length > MAX_RAMONMODS_SNIPPET_CHARS
+      ? `${answerRaw.slice(0, MAX_RAMONMODS_SNIPPET_CHARS)}…`
       : answerRaw
   return answer !== undefined ? { results, answer } : { results }
 }
 
-export async function gskWebSearch(
+export async function ramonmodsWebSearch(
   query: string,
   maxResults = 6,
 ): Promise<{ results: WebSearchResult[]; answer?: string }> {
@@ -478,7 +478,7 @@ export async function gskWebSearch(
   return parseGskWebSearch(raw, maxResults)
 }
 
-/** Parses the `gsk img-search` response shape data[{image_url,title,source,link,width,height}] (exported for tests) */
+/** Parses the `ramonmods img-search` response shape data[{image_url,title,source,link,width,height}] (exported for tests) */
 export function parseGskImageSearch(raw: unknown, maxResults: number): ImageSearchResult[] {
   const bounded = normalizeMaxResults(maxResults)
   const dataRaw = asRecord(raw).data
@@ -505,7 +505,7 @@ export function parseGskImageSearch(raw: unknown, maxResults: number): ImageSear
   return images
 }
 
-export async function gskImageSearch(query: string, maxResults = 8): Promise<ImageSearchResult[]> {
+export async function ramonmodsImageSearch(query: string, maxResults = 8): Promise<ImageSearchResult[]> {
   const raw = await runGsk(['img-search', query], SEARCH_TIMEOUT_MS)
   return parseGskImageSearch(raw, maxResults)
 }
@@ -531,18 +531,18 @@ export interface GskGeneratedImage {
   taskId: string
 }
 
-/** Parses `gsk img` results: prefers data.generated_images[].image_urls_nowatermark (exported for tests) */
+/** Parses `ramonmods img` results: prefers data.generated_images[].image_urls_nowatermark (exported for tests) */
 export function parseGskGeneratedImage(raw: unknown): GskGeneratedImage {
   const data = asRecord(asRecord(raw).data ?? raw)
   const img = asRecord(firstItem(data.generated_images ?? data.images ?? []))
   const url = firstItem(img.image_urls_nowatermark) ?? firstItem(img.image_urls) ?? img.url ?? ''
   if (!url) {
-    throw new Error(`gsk image generation returned no result: ${JSON.stringify(raw).slice(0, 200)}`)
+    throw new Error(`ramonmods image generation returned no result: ${JSON.stringify(raw).slice(0, 200)}`)
   }
   return { url: String(url), taskId: String(img.task_id ?? '') }
 }
 
-export async function gskGenerateImage(
+export async function ramonmodsGenerateImage(
   options: GskGenerateImageOptions,
   signal?: AbortSignal,
 ): Promise<GskGeneratedImage> {
@@ -555,16 +555,16 @@ export async function gskGenerateImage(
   const result = parseGskGeneratedImage(raw)
   // Bare genspark file URLs (/api/files/) return 403; swap for a signed direct link with a token
   // so later plain fetch downloads (e.g. insert_web_image) need no auth
-  result.url = await gskResolveDownloadUrl(result.url)
+  result.url = await ramonmodsResolveDownloadUrl(result.url)
   return result
 }
 
 /**
- * Swaps a genspark file wrapper URL for an anonymously downloadable signed direct link (`gsk download`).
+ * Swaps a genspark file wrapper URL for an anonymously downloadable signed direct link (`ramonmods download`).
  * Non-genspark file URLs are returned as-is; on swap failure the URL is also returned as-is
  * (callers handle download failures themselves).
  */
-export async function gskResolveDownloadUrl(url: string): Promise<string> {
+export async function ramonmodsResolveDownloadUrl(url: string): Promise<string> {
   if (!url.includes('/api/files/')) return url
   try {
     const raw = asRecord(await runGsk(['download', url], SEARCH_TIMEOUT_MS))
@@ -577,7 +577,7 @@ export async function gskResolveDownloadUrl(url: string): Promise<string> {
 
 // ── Media analysis / transcription ──────────────────────────────────
 
-/** Best-effort text extraction from gsk analysis-type command output (shape varies by task, so be lenient; exported for tests) */
+/** Best-effort text extraction from ramonmods analysis-type command output (shape varies by task, so be lenient; exported for tests) */
 export function extractGskText(raw: unknown): string {
   const data = asRecord(raw).data ?? raw
   if (typeof data === 'string') return data
@@ -605,7 +605,7 @@ export interface GskAnalyzeMediaOptions {
   requirements: string
 }
 
-export async function gskAnalyzeMedia(
+export async function ramonmodsAnalyzeMedia(
   options: GskAnalyzeMediaOptions,
   signal?: AbortSignal,
 ): Promise<string> {
@@ -629,7 +629,7 @@ export interface GskTranscribeOptions {
   model?: string
 }
 
-export async function gskTranscribe(
+export async function ramonmodsTranscribe(
   options: GskTranscribeOptions,
   signal?: AbortSignal,
 ): Promise<string> {
@@ -640,7 +640,7 @@ export async function gskTranscribe(
   return extractGskText(raw)
 }
 
-// ── Past projects (Genspark web) ────────────────────────────────────
+// ── Past projects (RamonMods web) ────────────────────────────────────
 
 export interface GskPastProject {
   projectId: string
@@ -660,7 +660,7 @@ export interface GskPastProjectsPage {
 }
 
 /**
- * Parses `gsk projects`. data.projects lacks project_url — it only appears in
+ * Parses `ramonmods projects`. data.projects lacks project_url — it only appears in
  * session_state.past_projects — so take it from there, falling back to
  * deriving it from the project id. (exported for tests)
  */
@@ -708,8 +708,8 @@ export interface GskListPastProjectsOptions {
   signal?: AbortSignal
 }
 
-/** Lists the user's own past Genspark web projects, newest first (`gsk projects`). */
-export async function gskListPastProjects(
+/** Lists the user's own past RamonMods web projects, newest first (`ramonmods projects`). */
+export async function ramonmodsListPastProjects(
   options: GskListPastProjectsOptions = {},
 ): Promise<GskPastProjectsPage> {
   const args = ['projects']
@@ -728,7 +728,7 @@ export interface GskLoginInfo {
 }
 
 /** Current login info; null when not logged in */
-export async function gskLoginInfo(): Promise<GskLoginInfo | null> {
+export async function ramonmodsLoginInfo(): Promise<GskLoginInfo | null> {
   try {
     const raw = await runGsk(['login-info'], SEARCH_TIMEOUT_MS, undefined, true)
     const d = asRecord(asRecord(raw).data ?? raw)

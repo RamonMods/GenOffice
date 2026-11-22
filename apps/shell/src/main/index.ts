@@ -148,7 +148,7 @@ import { handleDroppedFiles } from './dropped-files'
 import { collectLaunchPaths } from './launch-paths'
 import {
   genofficeLogout,
-  gskLoginInfo,
+  ramonmodsLoginInfo,
   loadGenofficeAuth,
   setGenofficeLoginSuccessListener,
   setGskProxyUrl,
@@ -806,7 +806,7 @@ function initAnalytics(): void {
 // invite link, which stays out of this repo and rotates server-side.
 const GENTEAM_URL = 'https://genoffice.ai/join'
 
-// Genspark credit-usage page opened from the account menu's credits row.
+// RamonMods credit-usage page opened from the account menu's credits row.
 // Kept main-side so the renderer never supplies the URL.
 const CREDIT_USAGE_URL = 'https://ramonmods.com/credit-usage'
 
@@ -4999,12 +4999,12 @@ function statEntries(paths: string[]): Promise<RecentEntry[]> {
 }
 
 function registerHomeIpc(): void {
-  // signed-in means GenOffice's own device-code login; the shared gsk CLI key
+  // signed-in means GenOffice's own device-code login; the shared ramonmods CLI key
   // is only a silent fallback, deliberately not shown here to nudge users onto our key
   ipcMain.handle(HOME_CHANNELS.accountStatus, async () => {
     if (!loadGenofficeAuth()) return { loggedIn: false }
     await proxyBootstrap
-    const info = await gskLoginInfo()
+    const info = await ramonmodsLoginInfo()
     if (info) return { loggedIn: true, email: info.email, creditBalance: info.creditBalance }
     // login-info answering 401 drops an expired key: report signed-out right away
     return { loggedIn: !!loadGenofficeAuth() }
@@ -7230,7 +7230,7 @@ async function installMainProcessProxy(): Promise<void> {
   if (!proxyUrl) {
     try {
       // PAC/rule proxies answer per-host: probe the host the login flow, the
-      // Genspark LLM proxy and the gsk CLI actually target
+      // RamonMods LLM proxy and the ramonmods CLI actually target
       const resolved = await session.defaultSession.resolveProxy('https://ramonmods.com/')
       const m = /PROXY\s+([^;\s]+)/.exec(resolved)
       if (m) proxyUrl = `http://${m[1]}`
@@ -7239,7 +7239,7 @@ async function installMainProcessProxy(): Promise<void> {
     }
   }
   if (!proxyUrl) return
-  // spawned gsk CLI children (login/search/…) do their own fetch and never see
+  // spawned ramonmods CLI children (login/search/…) do their own fetch and never see
   // the dispatcher below — forward the proxy to them via env
   setGskProxyUrl(proxyUrl)
   try {
@@ -7441,7 +7441,7 @@ app.whenReady().then(async () => {
   }
   // another GenOffice-family app re-logging in rotates the shared key; the
   // home page re-reads its account status. A logout that leaves only the
-  // gsk CLI fallback key is not a login
+  // ramonmods CLI fallback key is not a login
   stopAuthWatch = watchGskApiKey(() => {
     if (!loadGenofficeAuth()) return
     for (const w of BrowserWindow.getAllWindows())
@@ -7460,7 +7460,7 @@ app.whenReady().then(async () => {
     }
     app.focus({ steal: true })
     for (const wc of webContents.getAllWebContents())
-      if (!wc.isDestroyed()) wc.send('ai:gsk-login-landed')
+      if (!wc.isDestroyed()) wc.send('ai:ramonmods-login-landed')
   })
   // a registry left by a crashed instance must not block genoffice writes
   ownsOpenDocumentsRegistry = true

@@ -24,9 +24,9 @@ export const DEEPSEEK_MEDIA_BASE_URL = 'https://api.deepseek.com/v1'
 export const AI_MEDIA_PROVIDERS: AiMediaProviderMeta[] = [
   {
     id: 'genspark',
-    label: 'Genspark',
-    description: 'Geração de imagens, análise de mídia e busca com seu login da Genspark',
-    keyPlaceholder: 'Não é necessário - faça login na Genspark',
+    label: 'RamonMods',
+    description: 'Geração de imagens, análise de mídia e busca com seu login da RamonMods',
+    keyPlaceholder: 'Não é necessário - faça login na RamonMods',
     defaultBaseUrl: '',
     imageProtocol: 'openai-images',
     imageModels: [],
@@ -397,7 +397,7 @@ export function activeMediaProvider(
   return id
 }
 
-/** the active BYOK config for one capability, or null when it runs through Genspark */
+/** the active BYOK config for one capability, or null when it runs through RamonMods */
 export function activeMediaConfig(
   settings: Pick<AiSettings, 'media'>,
   capability: MediaCapability,
@@ -420,38 +420,38 @@ function byokModel(
 }
 
 function capabilityAvailable(
-  settings: Pick<AiSettings, 'media' | 'gskToolsEnabled'> | null | undefined,
-  gskLoggedIn: boolean,
+  settings: Pick<AiSettings, 'media' | 'ramonmodsToolsEnabled'> | null | undefined,
+  ramonmodsLoggedIn: boolean,
   capability: MediaCapability,
 ): boolean {
-  if (!settings) return gskLoggedIn
+  if (!settings) return ramonmodsLoggedIn
   const model = byokModel(settings, capability)
   if (model !== null) return model !== ''
-  return gskLoggedIn && settings.gskToolsEnabled !== false
+  return ramonmodsLoggedIn && settings.ramonmodsToolsEnabled !== false
 }
 
-/** live predicate for the generate_image tool: BYOK image model configured, or gsk login + cloud tools on */
+/** live predicate for the generate_image tool: BYOK image model configured, or ramonmods login + cloud tools on */
 export function imageGenerationAvailable(
-  settings: Pick<AiSettings, 'media' | 'gskToolsEnabled'> | null | undefined,
-  gskLoggedIn: boolean,
+  settings: Pick<AiSettings, 'media' | 'ramonmodsToolsEnabled'> | null | undefined,
+  ramonmodsLoggedIn: boolean,
 ): boolean {
-  return capabilityAvailable(settings, gskLoggedIn, 'image')
+  return capabilityAvailable(settings, ramonmodsLoggedIn, 'image')
 }
 
 /** live predicate for the analyze_media tool: image analysis or video analysis reachable */
 export function mediaAnalysisAvailable(
-  settings: Pick<AiSettings, 'media' | 'gskToolsEnabled'> | null | undefined,
-  gskLoggedIn: boolean,
+  settings: Pick<AiSettings, 'media' | 'ramonmodsToolsEnabled'> | null | undefined,
+  ramonmodsLoggedIn: boolean,
 ): boolean {
   return (
-    capabilityAvailable(settings, gskLoggedIn, 'analysis') ||
-    capabilityAvailable(settings, gskLoggedIn, 'video')
+    capabilityAvailable(settings, ramonmodsLoggedIn, 'analysis') ||
+    capabilityAvailable(settings, ramonmodsLoggedIn, 'video')
   )
 }
 
 export function videoAnalysisAvailable(
-  settings: Pick<AiSettings, 'media' | 'gskToolsEnabled'> | null | undefined,
-  gskLoggedIn: boolean,
+  settings: Pick<AiSettings, 'media' | 'ramonmodsToolsEnabled'> | null | undefined,
+  ramonmodsLoggedIn: boolean,
 ): boolean {
-  return capabilityAvailable(settings, gskLoggedIn, 'video')
+  return capabilityAvailable(settings, ramonmodsLoggedIn, 'video')
 }

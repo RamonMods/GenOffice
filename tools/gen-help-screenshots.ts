@@ -11,17 +11,17 @@
  *
  * ## Why HOME and not just GENOFFICE_USER_DATA
  *
- * The account name is not in userData at all. `gskApiKey()` reads
+ * The account name is not in userData at all. `ramonmodsApiKey()` reads
  * `~/.genspark-tool-cli/config.json` through `homedir()`, and GENOFFICE_USER_DATA
  * says nothing about that — so a run that only overrides userData still finds
  * the developer's key and greets them by name (verified: that is what a local
  * e2e run does today). HOME is the one lever that covers both it and the
  * `~/.genoffice/bin` shim. `GENOFFICE_AUTH_DIR` is not enough on its own: it
- * redirects GenOffice's own key and leaves the shared gsk CLI config in place.
+ * redirects GenOffice's own key and leaves the shared ramonmods CLI config in place.
  *
- * With no key, `gskLoginInfo()` returns null, the app reads as signed out, and
- * the greeting, the account row and the Genspark Projects entry all disappear —
- * which is also the state every CI run and every user without a Genspark account
+ * With no key, `ramonmodsLoginInfo()` returns null, the app reads as signed out, and
+ * the greeting, the account row and the RamonMods Projects entry all disappear —
+ * which is also the state every CI run and every user without a RamonMods account
  * is in. Nothing of the developer's own session is read or written.
  */
 import {

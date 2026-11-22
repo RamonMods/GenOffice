@@ -127,7 +127,7 @@ export interface DeckAccess {
    * On search failure returns an empty array (fail-open; doesn't block the main generation path).
    */
   searchImages?(query: string, maxResults: number): Promise<string[]>
-  /** live predicate (gsk login && cloud-tools toggle, or a BYOK media key); false hides generate_image */
+  /** live predicate (ramonmods login && cloud-tools toggle, or a BYOK media key); false hides generate_image */
   imageGenAvailable?(): boolean
   /** same for analyze_media */
   mediaAnalysisAvailable?(): boolean
@@ -354,7 +354,7 @@ const TOOLS: AgentToolDef[] = [
         model: {
           type: 'string',
           description:
-            "Opcional; usa o modelo configurado por padrão. Apenas Genspark — especifique para fins especiais: fal-bria-rmbg=remoção de fundo, fal-ai/recraft-clarity-upscale=aumento de resolução, flux-pro/outpaint=outpaint, fal-ai/image-editing/text-removal=remover marca d'água de texto",
+            "Opcional; usa o modelo configurado por padrão. Apenas RamonMods — especifique para fins especiais: fal-bria-rmbg=remoção de fundo, fal-ai/recraft-clarity-upscale=aumento de resolução, flux-pro/outpaint=outpaint, fal-ai/image-editing/text-removal=remover marca d'água de texto",
         },
         referenceImageUrls: {
           type: 'array',
@@ -377,7 +377,7 @@ const TOOLS: AgentToolDef[] = [
   {
     name: 'analyze_media',
     description:
-      'Analisa conteúdo de mídia: entende imagens/áudio/vídeo (vídeo e áudio exigem Genspark ou Gemini como provedor de mídia). Passe URLs de mídia (ou caminhos de arquivos locais) e os requisitos de análise; retorna o texto da análise. Vídeo permite extrair pontos-chave, estrutura e intervalos de tempo — ideal para transformar o material do usuário em conteúdo útil para o deck.',
+      'Analisa conteúdo de mídia: entende imagens/áudio/vídeo (vídeo e áudio exigem RamonMods ou Gemini como provedor de mídia). Passe URLs de mídia (ou caminhos de arquivos locais) e os requisitos de análise; retorna o texto da análise. Vídeo permite extrair pontos-chave, estrutura e intervalos de tempo — ideal para transformar o material do usuário em conteúdo útil para o deck.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -1034,7 +1034,7 @@ export function formatSlideDump(slide: RenderSlide): string {
   return `Canvas ${slide.widthPx}×${slide.heightPx}px (1 px = ${pxToEmu} EMU)\n${parts.join('\n---\n') || '(no elements on this page)'}${colorNote}`
 }
 
-/** tools that need a media provider: Genspark login + cloud tools, or a BYOK media key in Settings */
+/** tools that need a media provider: RamonMods login + cloud tools, or a BYOK media key in Settings */
 function hiddenMediaTools(access: DeckAccess): Set<string> {
   const hidden = new Set<string>()
   if (access.imageGenAvailable?.() === false) hidden.add('generate_image')
@@ -1045,7 +1045,7 @@ function hiddenMediaTools(access: DeckAccess): Set<string> {
 function mediaToolsOffNote(hidden: Set<string>): string {
   if (hidden.size === 0) return ''
   const plural = hidden.size > 1
-  return `\n\nNote: ${[...hidden].join(' and ')} ${plural ? 'are' : 'is'} currently unavailable (no image/media provider: signed out of Genspark or cloud tools off, and no media API key in Settings). Do not call or promise ${plural ? 'them' : 'it'}; for imagery use image_search + insert_web_image instead.`
+  return `\n\nNote: ${[...hidden].join(' and ')} ${plural ? 'are' : 'is'} currently unavailable (no image/media provider: signed out of RamonMods or cloud tools off, and no media API key in Settings). Do not call or promise ${plural ? 'them' : 'it'}; for imagery use image_search + insert_web_image instead.`
 }
 
 export function createSlidesSkill(access: DeckAccess): AgentSkill {
