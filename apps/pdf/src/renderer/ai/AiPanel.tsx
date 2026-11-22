@@ -86,7 +86,7 @@ const MODEL_BRIDGE: AiModelPickerBridge = {
   getSettings: () => window.pdfApi.getAiSettings(),
   setSettings: (settings) => window.pdfApi.setAiSettings(settings),
   onSettingsChanged: (handler) => window.pdfApi.onAiSettingsChanged(handler),
-  gskLoggedIn: () => window.pdfApi.gskStatus().then((s) => !!s?.loggedIn),
+  ramonmodsLoggedIn: () => window.pdfApi.ramonmodsStatus().then((s) => !!s?.loggedIn),
   openModelSettings: () => window.pdfApi.openAiModelSettings().catch(() => {}),
 }
 
@@ -286,14 +286,14 @@ export function AiPanel({
   const settingsRef = useRef<AiSettings | null>(null)
 
   /** gsk login state for the cloud-tools gate (refreshed on mount and window focus) */
-  const gskLoggedInRef = useRef(false)
+  const ramonmodsLoggedInRef = useRef(false)
   useEffect(() => {
     let alive = true
     const refresh = () => {
       void window.pdfApi
-        ?.gskStatus()
+        ?.ramonmodsStatus()
         .then((s) => {
-          if (alive) gskLoggedInRef.current = !!s?.loggedIn
+          if (alive) ramonmodsLoggedInRef.current = !!s?.loggedIn
         })
         .catch(() => {})
     }
@@ -414,7 +414,7 @@ export function AiPanel({
       searchImages: (query, max) => apiRef.current.searchImages(query, max),
       generateImage: (op) => apiRef.current.generateImage(op),
       imageGenAvailable: () =>
-        imageGenerationAvailable(settingsRef.current, gskLoggedInRef.current),
+        imageGenerationAvailable(settingsRef.current, ramonmodsLoggedInRef.current),
       fetchImage: (url) => apiRef.current.fetchImage(url),
     }
     loopRef.current = new AgentLoop({

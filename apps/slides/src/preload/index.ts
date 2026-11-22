@@ -449,6 +449,7 @@ const api: SlidesApi = {
   aiStream: (request: AiStreamRequest) => ipcRenderer.invoke('ai:stream', request),
   aiStreamCancel: (requestId: string) => ipcRenderer.invoke('ai:stream-cancel', requestId),
   aiGskStatus: (withEmail?: boolean) => ipcRenderer.invoke('ai:gsk-status', withEmail),
+  ramonmodsStatus: () => ipcRenderer.invoke('ramonmods:status'),
   aiGskLogin: () => ipcRenderer.invoke('ai:gsk-login'),
   onGskLoginLanded: (handler: () => void) => {
     const listener = () => handler()
@@ -491,7 +492,6 @@ const api: SlidesApi = {
   }) => ipcRenderer.invoke('ai:generate-image', op),
   analyzeMedia: (op: { mediaUrls: string[]; requirements: string }) =>
     ipcRenderer.invoke('ai:analyze-media', op),
-  gskStatus: () => ipcRenderer.invoke('ai:gsk-status'),
   onAiStream: (handler: (chunk: AiStreamChunk) => void) => {
     const listener = (_e: IpcRendererEvent, chunk: AiStreamChunk) => handler(chunk)
     ipcRenderer.on('ai:stream-chunk', listener)

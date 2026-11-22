@@ -11,7 +11,7 @@ import { unwatchFile, watchFile } from 'node:fs'
 import {
   asRecord,
   firstItem,
-  ramonmodsProxyUrl,
+  gskProxyUrl,
   isCopyrightHost,
   safeHost,
   type ImageSearchResult,
@@ -127,7 +127,7 @@ export function hasGskAuth(): boolean {
 
 // ── Child-process proxy plumbing ────────────────────────────────────
 
-export { setGskProxyUrl, ramonmodsProxyUrl } from './shared'
+export { setGskProxyUrl, gskProxyUrl } from './shared'
 
 /**
  * env for legacy CLI children. Kept for API compatibility.
@@ -135,7 +135,7 @@ export { setGskProxyUrl, ramonmodsProxyUrl } from './shared'
 export function ramonmodsChildEnv(base: NodeJS.ProcessEnv = process.env): NodeJS.ProcessEnv {
   const env: NodeJS.ProcessEnv = { ...base, ELECTRON_RUN_AS_NODE: '1' }
   const proxy = [
-    ramonmodsProxyUrl(),
+    gskProxyUrl(),
     base.HTTPS_PROXY,
     base.https_proxy,
     base.HTTP_PROXY,

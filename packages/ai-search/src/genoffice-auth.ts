@@ -35,6 +35,10 @@ export function loadGenofficeAuth(): GenofficeAuth | null {
 
 export function reloadGenofficeAuth(): void {}
 
+export function gskApiKey(): string {
+  return genofficeApiKey()
+}
+
 export function genofficeApiKey(): string {
   return ''
 }

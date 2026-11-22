@@ -268,7 +268,7 @@ const MODEL_BRIDGE: AiModelPickerBridge = {
   getSettings: () => window.htmlApi.getAiSettings(),
   setSettings: (settings) => window.htmlApi.setAiSettings(settings),
   onSettingsChanged: (handler) => window.htmlApi.onAiSettingsChanged(handler),
-  gskLoggedIn: () => window.htmlApi.aiGskStatus().then((s) => !!s?.loggedIn),
+  ramonmodsLoggedIn: () => window.htmlApi.aiGskStatus().then((s) => !!s?.loggedIn),
   openModelSettings: () => window.htmlApi.openAiModelSettings().catch(() => {}),
 }
 
@@ -523,14 +523,14 @@ export function AiPanel({
 
   const settingsRef = useRef<AiSettings | null>(null)
   /** gsk login state for the generate_image gate (refreshed on mount and window focus) */
-  const gskLoggedInRef = useRef(false)
+  const ramonmodsLoggedInRef = useRef(false)
   useEffect(() => {
     let alive = true
     const refresh = () => {
       void window.htmlApi
         .aiGskStatus()
         .then((s) => {
-          if (alive) gskLoggedInRef.current = !!s?.loggedIn
+          if (alive) ramonmodsLoggedInRef.current = !!s?.loggedIn
         })
         .catch(() => {})
     }
@@ -742,7 +742,7 @@ export function AiPanel({
             resolveAttachmentSrc: (ref) => resolveAttachmentSrc(ref),
             listAttachmentNames: () => availableAttachments().map((a) => a.name),
           },
-          () => imageGenerationAvailable(settingsRef.current, gskLoggedInRef.current),
+          () => imageGenerationAvailable(settingsRef.current, ramonmodsLoggedInRef.current),
         ),
         createSearchSkill(),
         createFilesSkill(availableAttachments),
