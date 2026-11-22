@@ -9,13 +9,13 @@ import type { AiProviderId, AiProviderMeta, AiSettings, LegacyAiSettings } from 
  * api_key from the ramonmods login; model ids follow the proxy's own naming scheme,
  * which differs from the official vendor ids.
  *
- * NOTE: the default ramonmods.com backend is not available in this build.
+ * NOTE: the default cloud backend is not available in this build.
  * The provider is kept for compatibility/BYOK-style custom routing, but it is
  * not selected by default and callers should not depend on it.
  */
 export const RAMONMODS_LLM_BASE_URLS = {
-  anthropic: 'https://ramonmods.com/api/anthropic',
-  openai: 'https://ramonmods.com/api/llm_proxy/v1',
+  anthropic: 'https://cloud.example.invalid/api/anthropic',
+  openai: 'https://cloud.example.invalid/api/llm_proxy/v1',
 } as const
 
 /**
@@ -26,7 +26,7 @@ export const RAMONMODS_LLM_BASE_URLS = {
 export const RAMONMODS_AGENT_TYPE = 'genoffice'
 
 export function ramonmodsAttributionHeaders(baseUrl?: string): Record<string, string> {
-  return baseUrl?.startsWith('https://ramonmods.com')
+  return baseUrl?.startsWith('https://cloud.example.invalid')
     ? { 'X-Agent-Type': RAMONMODS_AGENT_TYPE }
     : {}
 }
