@@ -37,15 +37,15 @@ export interface NamingProvider {
 export function resolveNamingProvider(stored: unknown, ramonmodsKey: string): NamingProvider | null {
   const settings = resolveAiSettings(stored, defaultAiSettings())
   // a stored BYOK provider is honored when usable; a half-filled one falls back
-  // to genspark rather than silently disabling AI
+  // to ramonmods rather than silently disabling AI
   settings.provider = activeProvider(settings)
   const provider = settings.provider
   const storedConfig = settings.providers?.[provider]
   if (!storedConfig) return null
   let config = storedConfig
-  // the genspark key never enters the settings file; requests take it from the
+  // the ramonmods key never enters the settings file; requests take it from the
   // ramonmods login state
-  if (provider === 'genspark' && !config.apiKey?.trim()) {
+  if (provider === 'ramonmods' && !config.apiKey?.trim()) {
     config = { ...config, apiKey: ramonmodsKey }
   }
   // a custom endpoint may name an environment variable instead of storing a key

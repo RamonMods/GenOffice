@@ -46,7 +46,7 @@ export interface AnalyzeMediaInput {
   requirements: string
 }
 
-export type ByokMediaProviderId = Exclude<AiMediaProviderId, 'genspark'>
+export type ByokMediaProviderId = Exclude<AiMediaProviderId, 'ramonmods'>
 
 /** image generation can take minutes on the large models */
 const GENERATE_TIMEOUT_MS = 600_000

@@ -162,7 +162,7 @@ describe('AI error bubble sign-in button', () => {
         createElement(AiPanel, {
           editor,
           blocks: [],
-          settings: settingsWith('genspark'),
+          settings: settingsWith('ramonmods'),
           open: true,
           onExpand: () => {},
           onCollapse: () => {},
@@ -219,7 +219,7 @@ describe('AI error bubble sign-in button', () => {
         createElement(AiPanel, {
           editor,
           blocks: [],
-          settings: settingsWith('genspark'),
+          settings: settingsWith('ramonmods'),
           open: true,
           onExpand: () => {},
           onCollapse: () => {},

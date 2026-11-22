@@ -154,7 +154,7 @@ async function doSync(storePath: string, owner: string): Promise<CloudProjectsSn
   return snapshot
 }
 
-/** Only relative genspark paths may be opened externally (renderer input is untrusted). */
+/** Only relative ramonmods paths may be opened externally (renderer input is untrusted). */
 export function cloudProjectExternalUrl(projectUrl: unknown): string | null {
   if (typeof projectUrl !== 'string') return null
   if (!projectUrl.startsWith('/') || projectUrl.startsWith('//')) return null

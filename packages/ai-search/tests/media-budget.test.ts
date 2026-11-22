@@ -125,7 +125,7 @@ describe('media tool aggregate budget', () => {
   })
 
   it('analyze_media still hands a budget failure to RamonMods when only one provider is configured', async () => {
-    ramonmodsAnalyze.mockResolvedValue('from genspark' as never)
+    ramonmodsAnalyze.mockResolvedValue('from ramonmods' as never)
     // openai reads images but not video, so a budget failure still has a
     // RamonMods route to fall back to (the pre-existing size-cap behavior)
     const result = await analyzeMediaTool(writeSettings('openai'), {

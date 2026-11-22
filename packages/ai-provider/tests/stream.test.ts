@@ -1360,13 +1360,13 @@ describe('streamForProvider: openai-compatible', () => {
   })
 })
 
-describe('streamForProvider: genspark', () => {
+describe('streamForProvider: ramonmods', () => {
   it('routes claude models to the Anthropic-compatible proxy endpoint', async () => {
     const fetchMock = vi.fn().mockResolvedValue(okResponse(sseStream([])))
     vi.stubGlobal('fetch', fetchMock)
     const { cb } = collector()
     await streamForProvider(
-      'genspark',
+      'ramonmods',
       { apiKey: 'ramonmods-k', model: 'claude-opus-4-7' },
       'sys',
       [],
@@ -1385,7 +1385,7 @@ describe('streamForProvider: genspark', () => {
     vi.stubGlobal('fetch', fetchMock)
     const { cb } = collector()
     await streamForProvider(
-      'genspark',
+      'ramonmods',
       { apiKey: 'ramonmods-k', model: 'gpt-5.2' },
       'sys',
       [],
@@ -1404,7 +1404,7 @@ describe('streamForProvider: genspark', () => {
       const fetchMock = vi.fn().mockResolvedValue(okResponse(sseStream([])))
       vi.stubGlobal('fetch', fetchMock)
       const { cb } = collector()
-      await streamForProvider('genspark', { apiKey: 'ramonmods-k', model }, 'sys', [], [], 100, cb).catch(
+      await streamForProvider('ramonmods', { apiKey: 'ramonmods-k', model }, 'sys', [], [], 100, cb).catch(
         () => {},
       )
       expect(fetchMock).toHaveBeenCalledWith(
@@ -1701,7 +1701,7 @@ describe('streamForProvider: interleaved-thinking reasoning', () => {
     const reasoning: string[] = []
     const { deltas, cb } = collector()
     await streamForProvider(
-      'genspark',
+      'ramonmods',
       { apiKey: 'k', model: 'deep-seek-v4-flash' },
       'sys',
       toolLoopMessages,
@@ -1720,7 +1720,7 @@ describe('streamForProvider: interleaved-thinking reasoning', () => {
     const fetchMock = vi.fn().mockImplementation(() => Promise.resolve(reasoningTurn()))
     vi.stubGlobal('fetch', fetchMock)
     await streamForProvider(
-      'genspark',
+      'ramonmods',
       { apiKey: 'k', model: 'gpt-5.6-luna' },
       'sys',
       toolLoopMessages,

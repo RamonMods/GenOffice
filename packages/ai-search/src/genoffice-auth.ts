@@ -627,7 +627,7 @@ export function ensureGenofficeLogin(openUrl: (url: string) => void): void {
 /**
  * Signs out of GenOffice only: best-effort server-side revoke of the
  * genoffice key, then local removal. The shared ramonmods CLI login
- * (~/.genspark-tool-cli) is untouched — terminal ramonmods and Claw keep working.
+ * (~/.ramonmods-tool-cli) is untouched — terminal ramonmods and Claw keep working.
  */
 export async function genofficeLogout(): Promise<void> {
   // invalidate any in-flight recovery first: its re-mint or login must not undo this sign-out

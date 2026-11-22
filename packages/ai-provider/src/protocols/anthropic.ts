@@ -3,7 +3,7 @@ import { aiFetch } from '../fetch'
 import { httpBodyDetail } from '../http-error'
 import {
   RAMONMODS_LLM_BASE_URLS,
-  gensparkAttributionHeaders,
+  ramonmodsAttributionHeaders,
   opencodeSessionHeaders,
 } from '../providers'
 import type { AiChatResponse, AiProviderConfig, AiTokenUsage } from '../types'
@@ -245,7 +245,7 @@ async function anthropicTurn(
         // which adds browser-semantics headers; Anthropic rejects those with 403 "Request not
         // allowed". This header is the official opt-in for browser/Electron environments.
         'anthropic-dangerous-direct-browser-access': 'true',
-        ...gensparkAttributionHeaders(baseUrl),
+        ...ramonmodsAttributionHeaders(baseUrl),
         ...opencodeSessionHeaders(baseUrl, cb.sessionId),
         // a user-hosted endpoint may route or authenticate on static headers
         ...options.headers,
@@ -422,7 +422,7 @@ export async function chatAnthropic(
       'anthropic-version': '2023-06-01',
       // Fetch in the Electron main process goes through Chromium's network stack; this header avoids 403.
       'anthropic-dangerous-direct-browser-access': 'true',
-      ...gensparkAttributionHeaders(baseUrl),
+      ...ramonmodsAttributionHeaders(baseUrl),
       ...opencodeSessionHeaders(baseUrl),
       ...options.headers,
     },

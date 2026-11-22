@@ -2189,7 +2189,7 @@ export function IconAiImage(props: IconProps) {
 export function RamonModsMark({ size = 30 }: { size?: number }) {
   return (
     <svg
-      className="genspark-mark"
+      className="ramonmods-mark"
       width={size}
       height={size}
       viewBox="0 0 130 130.025"

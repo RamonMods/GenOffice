@@ -630,7 +630,7 @@ describe('search-tools', () => {
       firecrawlKey: 'fc-1',
       prefer: 'firecrawl',
     })
-    // no key → genspark chain
+    // no key → ramonmods chain
     const empty = {
       ...base,
       search: {

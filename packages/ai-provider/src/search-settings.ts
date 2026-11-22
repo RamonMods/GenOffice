@@ -7,7 +7,7 @@ import type {
 
 export const AI_SEARCH_PROVIDERS: AiSearchProviderMeta[] = [
   {
-    id: 'genspark',
+    id: 'ramonmods',
     label: 'RamonMods',
     keyPlaceholder: 'Não é necessário - faça login na RamonMods',
     imageSearch: true,
@@ -26,7 +26,7 @@ export const AI_SEARCH_PROVIDERS: AiSearchProviderMeta[] = [
 
 export function defaultAiSearchSettings(): AiSearchSettings {
   return {
-    provider: 'genspark',
+    provider: 'ramonmods',
     providers: {
       serper: { apiKey: '' },
       serply: { apiKey: '' },
@@ -68,10 +68,10 @@ export function resolveAiSearchSettings(
  */
 export function activeSearchProvider(settings: Pick<AiSettings, 'search'>): AiSearchProviderId {
   const search = settings.search
-  if (!search || search.provider === 'genspark') return 'genspark'
-  if (!AI_SEARCH_PROVIDERS.some((m) => m.id === search.provider)) return 'genspark'
+  if (!search || search.provider === 'ramonmods') return 'ramonmods'
+  if (!AI_SEARCH_PROVIDERS.some((m) => m.id === search.provider)) return 'ramonmods'
   if (search.provider === 'parallel' || search.provider === 'keenable') return search.provider
   // Trim-aware: a whitespace-only key from in-memory settings falls back
   // instead of sending `Bearer    ` to the search backend.
-  return search.providers?.[search.provider]?.apiKey?.trim() ? search.provider : 'genspark'
+  return search.providers?.[search.provider]?.apiKey?.trim() ? search.provider : 'ramonmods'
 }

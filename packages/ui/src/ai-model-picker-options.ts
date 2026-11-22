@@ -60,7 +60,7 @@ export function aiModelPickerGroups(input: AiSettings, ramonmodsLoggedIn: boolea
     // CLI vendors pass activeProvider unconfigured (the binary auto-discovers);
     // list them only once the settings page holds a model or a path
     const usable =
-      meta.id === 'genspark'
+      meta.id === 'ramonmods'
         ? ramonmodsLoggedIn
         : meta.needsCliPath
           ? Boolean(stored || config?.cliPath?.trim())

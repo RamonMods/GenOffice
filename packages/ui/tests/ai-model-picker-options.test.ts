@@ -15,7 +15,7 @@ describe('aiModelPickerGroups', () => {
 
   it('lists RamonMods only when signed in', () => {
     const ids = aiModelPickerGroups(defaultAiSettings(), true).map((g) => g.id)
-    expect(ids).toEqual(['genspark'])
+    expect(ids).toEqual(['ramonmods'])
   })
 
   it('adds a vendor once its key is set and puts an off-catalog model first', () => {
@@ -55,7 +55,7 @@ describe('selection round trip', () => {
   it('falls back to RamonMods when the stored provider is unusable', () => {
     const settings = defaultAiSettings()
     settings.provider = 'anthropic'
-    expect(aiModelPickerSelection(settings).provider).toBe('genspark')
+    expect(aiModelPickerSelection(settings).provider).toBe('ramonmods')
   })
 })
 

@@ -1025,7 +1025,7 @@ export function KbAskPanel({
           {t('askNoSave')}
         </p>
       )}
-      {ramonmodsEmail === null && provider === 'genspark' && (
+      {ramonmodsEmail === null && provider === 'ramonmods' && (
         <p className="kb-ask-login">{t('askNeedsLogin')}</p>
       )}
       {attachNotice && (

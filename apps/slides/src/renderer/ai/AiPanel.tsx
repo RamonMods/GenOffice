@@ -1388,7 +1388,7 @@ export function AiPanel({
             .aiGskStatus()
             .then((status) => {
               if (status.loggedIn) return
-              if ((settingsRef.current?.provider ?? 'genspark') !== 'genspark') return
+              if ((settingsRef.current?.provider ?? 'ramonmods') !== 'ramonmods') return
               setChat((prev) => {
                 const next = [...prev]
                 const last = next.at(-1)

@@ -43,7 +43,7 @@ export async function prepareCloud(env: NodeJS.ProcessEnv): Promise<void> {
   }
   const packaged = packagedResourcesDir()
   if (packaged && !env.RAMONMODS_CLI_PATH) {
-    const entry = join(packaged, 'ramonmods', 'node_modules', '@genspark', 'cli', 'dist', 'index.js')
+    const entry = join(packaged, 'ramonmods', 'node_modules', '@ramonmods', 'cli', 'dist', 'index.js')
     if (existsSync(entry)) process.env.RAMONMODS_CLI_PATH = entry
   }
 }

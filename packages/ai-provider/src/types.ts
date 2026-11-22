@@ -1,7 +1,7 @@
 import type { AgentMessage, AgentToolCall, AgentToolDef } from '@genoffice/agent-core'
 
 export type AiProviderId =
-  | 'genspark'
+  | 'ramonmods'
   | 'codex'
   | 'anthropic'
   | 'gemini'
@@ -181,7 +181,7 @@ export interface AiProviderMeta {
 
 /** Image generation / media analysis backends (separate from the chat provider) */
 export type AiMediaProviderId =
-  | 'genspark'
+  | 'ramonmods'
   | 'openai'
   | 'gemini'
   | 'doubao'
@@ -218,7 +218,7 @@ export interface AiMediaProviderMeta {
   description: string
   keyPlaceholder: string
   needsBaseUrl?: boolean
-  /** '' for genspark (ramonmods login) and custom (user-supplied) */
+  /** '' for ramonmods (ramonmods login) and custom (user-supplied) */
   defaultBaseUrl: string
   /** absent = the provider does not generate images */
   imageProtocol?: AiImageProtocol
@@ -246,7 +246,7 @@ export interface AiMediaSettings {
 
 /** web/image search backends; Parallel and Keenable take a user key or run free and keyless */
 export type AiSearchProviderId =
-  | 'genspark'
+  | 'ramonmods'
   | 'serper'
   | 'serply'
   | 'searchapi'
@@ -266,7 +266,7 @@ export interface AiSearchProviderMeta {
 
 export interface AiSearchSettings {
   provider: AiSearchProviderId
-  providers: Record<Exclude<AiSearchProviderId, 'genspark'>, { apiKey: string }>
+  providers: Record<Exclude<AiSearchProviderId, 'ramonmods'>, { apiKey: string }>
 }
 
 export interface AiSettings {

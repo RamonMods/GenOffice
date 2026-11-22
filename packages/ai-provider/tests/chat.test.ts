@@ -138,30 +138,30 @@ describe('chatForProvider', () => {
     )
   })
 
-  it('genspark: routes by model prefix to the proxy endpoints', async () => {
+  it('ramonmods: routes by model prefix to the proxy endpoints', async () => {
     const fetchMock = vi
       .fn()
       .mockResolvedValue(jsonResponse({ content: [{ type: 'text', text: 'ok' }] }))
     vi.stubGlobal('fetch', fetchMock)
-    await chatForProvider('genspark', { apiKey: 'ramonmods-k', model: 'claude-opus-4-7' }, 'sys', 'hi')
+    await chatForProvider('ramonmods', { apiKey: 'ramonmods-k', model: 'claude-opus-4-7' }, 'sys', 'hi')
     expect(fetchMock).toHaveBeenCalledWith(
       'https://ramonmods.com/api/anthropic/v1/messages',
       expect.anything(),
     )
     fetchMock.mockResolvedValue(jsonResponse({ choices: [{ message: { content: 'ok' } }] }))
-    await chatForProvider('genspark', { apiKey: 'ramonmods-k', model: 'gpt-5.2' }, 'sys', 'hi')
+    await chatForProvider('ramonmods', { apiKey: 'ramonmods-k', model: 'gpt-5.2' }, 'sys', 'hi')
     expect(fetchMock).toHaveBeenLastCalledWith(
       'https://ramonmods.com/api/llm_proxy/v1/chat/completions',
       expect.anything(),
     )
   })
 
-  it('genspark: stamps X-Agent-Type; direct vendors do not get it', async () => {
+  it('ramonmods: stamps X-Agent-Type; direct vendors do not get it', async () => {
     const fetchMock = vi
       .fn()
       .mockImplementation(async () => jsonResponse({ content: [{ type: 'text', text: 'ok' }] }))
     vi.stubGlobal('fetch', fetchMock)
-    await chatForProvider('genspark', { apiKey: 'ramonmods-k', model: 'claude-opus-4-7' }, 'sys', 'hi')
+    await chatForProvider('ramonmods', { apiKey: 'ramonmods-k', model: 'claude-opus-4-7' }, 'sys', 'hi')
     expect((fetchMock.mock.calls[0]![1].headers as Record<string, string>)['X-Agent-Type']).toBe(
       'genoffice',
     )

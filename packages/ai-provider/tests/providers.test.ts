@@ -16,7 +16,7 @@ import type { AiProviderId } from '../src/types'
 describe('defaultAiSettings', () => {
   it('gives every provider its default model and an empty key by default', () => {
     const settings = defaultAiSettings()
-    expect(settings.provider).toBe('genspark')
+    expect(settings.provider).toBe('ramonmods')
     for (const meta of AI_PROVIDERS) {
       expect(settings.providers[meta.id].apiKey).toBe('')
       expect(settings.providers[meta.id].model).toBe(meta.defaultModel)
@@ -36,21 +36,21 @@ describe('defaultAiSettings', () => {
 
 describe('provider model catalog', () => {
   it("offers the vendor's own DeepSeek ids, not the RamonMods pool spelling", () => {
-    const genspark = AI_PROVIDERS.find((provider) => provider.id === 'genspark')!
+    const ramonmods = AI_PROVIDERS.find((provider) => provider.id === 'ramonmods')!
     const deepseek = AI_PROVIDERS.find((provider) => provider.id === 'deepseek')!
 
     expect(deepseek.models).toContain('deepseek-flash')
     expect(deepseek.models).not.toContain('deep-seek-v4.1-flash')
     expect(deepseek.models).not.toContain('deepseek-v4-flash')
     expect(deepseek.models).not.toContain('deepseek-v4-flash-vision-exp')
-    expect(genspark.models).not.toContain('deep-seek-v4-flash')
-    expect(genspark.models).not.toContain('deep-seek-v4-flash-vision-exp-openrouter')
+    expect(ramonmods.models).not.toContain('deep-seek-v4-flash')
+    expect(ramonmods.models).not.toContain('deep-seek-v4-flash-vision-exp-openrouter')
   })
 
   it('serves DeepSeek V4.1 Flash through the RamonMods proxy under its hyphenated pool id', () => {
-    const genspark = AI_PROVIDERS.find((provider) => provider.id === 'genspark')!
-    expect(genspark.models).toContain('deep-seek-v4.1-flash')
-    expect(genspark.models).not.toContain('deep-seek-v4-pro')
+    const ramonmods = AI_PROVIDERS.find((provider) => provider.id === 'ramonmods')!
+    expect(ramonmods.models).toContain('deep-seek-v4.1-flash')
+    expect(ramonmods.models).not.toContain('deep-seek-v4-pro')
   })
 
   it('keeps Responses-only models out of the OpenCode tiers (no such protocol yet)', () => {
@@ -224,7 +224,7 @@ describe('resolveAiSettings', () => {
         defaults,
       )
       expect(resolved.providers.anthropic).toEqual(defaults.providers.anthropic)
-      expect(activeProvider(resolved)).toBe('genspark')
+      expect(activeProvider(resolved)).toBe('ramonmods')
     }
   })
 
@@ -299,26 +299,26 @@ describe('resolveAiSettings', () => {
     }
   })
 
-  it('rewrites genspark model ids the proxy no longer serves', () => {
+  it('rewrites ramonmods model ids the proxy no longer serves', () => {
     const resolved = resolveAiSettings(
       {
         providers: {
-          genspark: { apiKey: '', model: 'gemini-3.7-flash' },
+          ramonmods: { apiKey: '', model: 'gemini-3.7-flash' },
         } as never,
       },
       defaultAiSettings(),
     )
-    expect(resolved.providers.genspark.model).toBe('claude-opus-5-5')
+    expect(resolved.providers.ramonmods.model).toBe('claude-opus-5-5')
 
     const gpt = resolveAiSettings(
       {
         providers: {
-          genspark: { apiKey: '', model: 'gpt-5.6' },
+          ramonmods: { apiKey: '', model: 'gpt-5.6' },
         } as never,
       },
       defaultAiSettings(),
     )
-    expect(gpt.providers.genspark.model).toBe('gpt-5.6-terra')
+    expect(gpt.providers.ramonmods.model).toBe('gpt-5.6-terra')
 
     const glm = resolveAiSettings(
       { providers: { glm: { apiKey: '', model: 'glm-5-turbo' } } as never },
@@ -428,12 +428,12 @@ describe('clampMaxOutputTokens', () => {
 })
 
 describe('activeProvider', () => {
-  it('honors a configured BYOK provider and falls back to genspark otherwise', () => {
+  it('honors a configured BYOK provider and falls back to ramonmods otherwise', () => {
     const settings = defaultAiSettings()
-    expect(activeProvider(settings)).toBe('genspark')
+    expect(activeProvider(settings)).toBe('ramonmods')
 
     settings.provider = 'kimi'
-    expect(activeProvider(settings)).toBe('genspark') // no key yet
+    expect(activeProvider(settings)).toBe('ramonmods') // no key yet
     settings.providers.kimi.apiKey = 'sk-user'
     expect(activeProvider(settings)).toBe('kimi')
   })
@@ -442,9 +442,9 @@ describe('activeProvider', () => {
     const settings = defaultAiSettings()
     settings.provider = 'custom'
     settings.providers.custom.apiKey = 'k'
-    expect(activeProvider(settings)).toBe('genspark')
+    expect(activeProvider(settings)).toBe('ramonmods')
     settings.providers.custom.baseUrl = 'http://localhost:1234/v1'
-    expect(activeProvider(settings)).toBe('genspark') // custom's default model is empty
+    expect(activeProvider(settings)).toBe('ramonmods') // custom's default model is empty
     settings.providers.custom.model = 'my-model'
     expect(activeProvider(settings)).toBe('custom')
   })
@@ -477,10 +477,10 @@ describe('activeProvider', () => {
     const settings = defaultAiSettings()
     settings.provider = 'kimi'
     settings.providers.kimi.apiKey = '   '
-    expect(activeProvider(settings)).toBe('genspark')
+    expect(activeProvider(settings)).toBe('ramonmods')
     settings.providers.kimi.apiKey = 'sk-user'
     settings.providers.kimi.model = '  '
-    expect(activeProvider(settings)).toBe('genspark')
+    expect(activeProvider(settings)).toBe('ramonmods')
     settings.providers.kimi.model = 'kimi-k2'
     expect(activeProvider(settings)).toBe('kimi')
 
@@ -488,19 +488,19 @@ describe('activeProvider', () => {
     custom.provider = 'custom'
     custom.providers.custom.baseUrl = '   '
     custom.providers.custom.model = 'my-model'
-    expect(activeProvider(custom)).toBe('genspark')
+    expect(activeProvider(custom)).toBe('ramonmods')
   })
 
-  it('falls back to genspark for unknown ids from a hand-edited settings file', () => {
+  it('falls back to ramonmods for unknown ids from a hand-edited settings file', () => {
     const settings = defaultAiSettings()
     settings.provider = 'nonsense' as AiProviderId
-    expect(activeProvider(settings)).toBe('genspark')
+    expect(activeProvider(settings)).toBe('ramonmods')
   })
 
-  it('genspark never requires a key (injected from the ramonmods login at request time)', () => {
+  it('ramonmods never requires a key (injected from the ramonmods login at request time)', () => {
     const settings = defaultAiSettings()
-    settings.provider = 'genspark'
-    expect(activeProvider(settings)).toBe('genspark')
+    settings.provider = 'ramonmods'
+    expect(activeProvider(settings)).toBe('ramonmods')
   })
 })
 

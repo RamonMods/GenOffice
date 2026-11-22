@@ -21,7 +21,7 @@ export const RAMONMODS_LLM_BASE_URLS = {
  */
 export const RAMONMODS_AGENT_TYPE = 'genoffice'
 
-export function gensparkAttributionHeaders(baseUrl?: string): Record<string, string> {
+export function ramonmodsAttributionHeaders(baseUrl?: string): Record<string, string> {
   return baseUrl?.startsWith('https://ramonmods.com')
     ? { 'X-Agent-Type': RAMONMODS_AGENT_TYPE }
     : {}
@@ -50,7 +50,7 @@ export const DEEPSEEK_V41_FLASH = 'deep-seek-v4.1-flash'
 
 export const AI_PROVIDERS: AiProviderMeta[] = [
   {
-    id: 'genspark',
+    id: 'ramonmods',
     label: 'RamonMods',
     // must stay within the proxy's served set (GET /api/llm_proxy/v1/models);
     // bare gpt-5.6 and the gemini family dropped off it (verified 2026-08-31).
@@ -583,7 +583,7 @@ export function defaultAiSettings(
     }
   }
   return {
-    provider: 'genspark',
+    provider: 'ramonmods',
     providers,
     ramonmodsToolsEnabled: true,
     media: defaultAiMediaSettings(),
@@ -601,26 +601,26 @@ export function cloudToolsEnabled(settings: Pick<AiSettings, 'ramonmodsToolsEnab
  * (api-key providers need a key and a model id; custom also needs a base URL).
  * Codex can auto-discover its executable. Anything else — including unknown
  * ids from a hand-edited
- * settings file — falls back to genspark, so a half-filled setup degrades
+ * settings file — falls back to ramonmods, so a half-filled setup degrades
  * to the signed-in default instead of silently disabling AI.
  */
 export function activeProvider(settings: AiSettings): AiProviderId {
   const provider = settings.provider
-  if (provider === 'genspark') return 'genspark'
+  if (provider === 'ramonmods') return 'ramonmods'
   const meta = AI_PROVIDERS.find((m) => m.id === provider)
   const config = settings.providers?.[provider]
-  if (!meta || !config) return 'genspark'
+  if (!meta || !config) return 'ramonmods'
   if (meta.needsCliPath) return provider
   // Trim-aware: in-memory settings bypass the trimConfigs applied to
   // persisted files, and a whitespace-only key/URL/model is a 401, not a config.
-  if (!config.model?.trim()) return 'genspark'
+  if (!config.model?.trim()) return 'ramonmods'
   if (meta.needsBaseUrl) {
     // Custom OpenAI-compatible endpoints (Ollama, LM Studio, vLLM) accept
     // anonymous requests: base URL + model suffice, the key stays optional.
-    if (!config.baseUrl?.trim()) return 'genspark'
+    if (!config.baseUrl?.trim()) return 'ramonmods'
     return provider
   }
-  if (!config.apiKey?.trim()) return 'genspark'
+  if (!config.apiKey?.trim()) return 'ramonmods'
   return provider
 }
 
@@ -646,7 +646,7 @@ const RETIRED_MODELS: Partial<Record<AiProviderId, Record<string, string>>> = {
   // provider default since no gemini id is served at all
   // 5-Turbo left the Z.ai price card late 2026-08; 5.3 Flash is the cheap tier now
   glm: { 'glm-5-turbo': 'glm-5.3-flash' },
-  genspark: {
+  ramonmods: {
     'gpt-5.6': 'gpt-5.6-terra',
     'gemini-3.1-pro-preview': 'claude-opus-5-5',
     'gemini-3-flash-preview': 'claude-opus-5-5',

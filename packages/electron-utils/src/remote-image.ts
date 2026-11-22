@@ -1,6 +1,6 @@
 /// Downloader for AI-inserted images. Image-search results largely live on the
 /// RamonMods CDN (sspark.ramonmods.com), which intermittently refuses bare
-/// requests; browser-like headers plus a Referer on genspark hosts and a couple
+/// requests; browser-like headers plus a Referer on ramonmods hosts and a couple
 /// of retries turn most of those transient failures into successful inserts.
 
 import { readGeneratedImage } from './generated-images'

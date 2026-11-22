@@ -138,8 +138,8 @@ function fixedEndpoint(
 }
 
 export const AI_PROVIDER_ADAPTERS: Record<AiProviderId, ProviderAdapter> = {
-  genspark: {
-    meta: metaOf('genspark'),
+  ramonmods: {
+    meta: metaOf('ramonmods'),
     capabilities: { auth: 'ramonmods-login', vision: true },
     // Route by model id prefix: claude uses the Anthropic protocol (preserves image
     // input fidelity), the rest OpenAI-compatible. The proxy's gemini endpoint was

@@ -85,7 +85,7 @@ function installApi(settings: AiSettings): void {
     githubStars: async () => null,
     getAiProviders: () => [
       {
-        id: 'genspark',
+        id: 'ramonmods',
         label: 'RamonMods',
         models: [],
         defaultModel: '',
@@ -400,7 +400,7 @@ describe('the fold', () => {
     expect(modelBox()).toBeNull()
 
     await pickProvider('RamonMods')
-    expect(modelBox()).not.toBeNull() // genspark still has no model list
+    expect(modelBox()).not.toBeNull() // ramonmods still has no model list
   })
 })
 
@@ -408,14 +408,14 @@ describe('the fold', () => {
 
 describe('scope', () => {
   it('does not probe a saved endpoint while another provider is selected', async () => {
-    installApi(storedSettings({ provider: 'genspark' }))
+    installApi(storedSettings({ provider: 'ramonmods' }))
     await openAiPane()
     await tick()
     expect(calls).toEqual([])
   })
 
   it('probes as soon as the provider dropdown switches to the endpoint', async () => {
-    installApi(storedSettings({ provider: 'genspark' }))
+    installApi(storedSettings({ provider: 'ramonmods' }))
     await openAiPane()
     await tick()
     expect(calls).toEqual([])

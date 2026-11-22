@@ -23,7 +23,7 @@ export const DEEPSEEK_MEDIA_BASE_URL = 'https://api.deepseek.com/v1'
 // models in step with the chat catalog in providers.ts.
 export const AI_MEDIA_PROVIDERS: AiMediaProviderMeta[] = [
   {
-    id: 'genspark',
+    id: 'ramonmods',
     label: 'RamonMods',
     description: 'Geração de imagens, análise de mídia e busca com seu login da RamonMods',
     keyPlaceholder: 'Não é necessário - faça login na RamonMods',
@@ -314,9 +314,9 @@ export function defaultAiMediaSettings(): AiMediaSettings {
     }
   }
   return {
-    imageProvider: 'genspark',
-    analysisProvider: 'genspark',
-    videoAnalysisProvider: 'genspark',
+    imageProvider: 'ramonmods',
+    analysisProvider: 'ramonmods',
+    videoAnalysisProvider: 'ramonmods',
     providers,
   }
 }
@@ -375,7 +375,7 @@ export function mediaConfigUsable(
 
 /**
  * The stored provider for one capability, honored only when it exists, has
- * that capability and is usable; anything else falls back to genspark so a
+ * that capability and is usable; anything else falls back to ramonmods so a
  * half-filled setup degrades to the signed-in default.
  */
 export function activeMediaProvider(
@@ -383,17 +383,17 @@ export function activeMediaProvider(
   capability: MediaCapability,
 ): AiMediaProviderId {
   const media = settings.media
-  if (!media) return 'genspark'
+  if (!media) return 'ramonmods'
   const id =
     capability === 'image'
       ? media.imageProvider
       : capability === 'video'
         ? media.videoAnalysisProvider
         : media.analysisProvider
-  if (!id || id === 'genspark') return 'genspark'
+  if (!id || id === 'ramonmods') return 'ramonmods'
   const meta = getMediaProviderMeta(id)
-  if (!meta || !providerHasCapability(meta, capability)) return 'genspark'
-  if (!mediaConfigUsable(meta, media.providers?.[id])) return 'genspark'
+  if (!meta || !providerHasCapability(meta, capability)) return 'ramonmods'
+  if (!mediaConfigUsable(meta, media.providers?.[id])) return 'ramonmods'
   return id
 }
 
@@ -401,9 +401,9 @@ export function activeMediaProvider(
 export function activeMediaConfig(
   settings: Pick<AiSettings, 'media'>,
   capability: MediaCapability,
-): { provider: Exclude<AiMediaProviderId, 'genspark'>; config: AiMediaProviderConfig } | null {
+): { provider: Exclude<AiMediaProviderId, 'ramonmods'>; config: AiMediaProviderConfig } | null {
   const provider = activeMediaProvider(settings, capability)
-  if (provider === 'genspark') return null
+  if (provider === 'ramonmods') return null
   return { provider, config: settings.media!.providers[provider] }
 }
 

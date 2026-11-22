@@ -27,23 +27,23 @@ export const capabilitiesCommand: CommandDef = {
     const settings = readAiSettingsFile(aiSettingsPath(ctx.env))
     const ramonmods = hasGskAuth() && cloudToolsEnabled(settings)
     const searchProvider = activeSearchProvider(settings)
-    const ramonmodsSearch = ramonmods && searchProvider === 'genspark'
-    const customSearch = searchProvider !== 'genspark'
+    const ramonmodsSearch = ramonmods && searchProvider === 'ramonmods'
+    const customSearch = searchProvider !== 'ramonmods'
     const search = ramonmodsSearch || customSearch
     const keyedImageSearch =
       searchProvider === 'serper' || searchProvider === 'serply' || searchProvider === 'searchapi'
     const imageSearch = ramonmodsSearch || keyedImageSearch
     const imageGeneration = imageGenerationAvailable(settings, hasGskAuth())
     const mediaAnalysis = mediaAnalysisAvailable(settings, hasGskAuth())
-    const via = (byok: string | null | undefined) => (byok ? byok : ramonmods ? 'genspark' : null)
+    const via = (byok: string | null | undefined) => (byok ? byok : ramonmods ? 'ramonmods' : null)
     const detail = {
       search: {
         available: search,
-        via: customSearch ? searchProvider : ramonmodsSearch ? 'genspark' : null,
+        via: customSearch ? searchProvider : ramonmodsSearch ? 'ramonmods' : null,
       },
       image_search: {
         available: imageSearch,
-        via: keyedImageSearch ? searchProvider : ramonmodsSearch ? 'genspark' : null,
+        via: keyedImageSearch ? searchProvider : ramonmodsSearch ? 'ramonmods' : null,
       },
       image_generation: {
         available: imageGeneration,

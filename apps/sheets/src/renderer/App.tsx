@@ -1829,7 +1829,7 @@ export function App({
             .aiGskStatus()
             .then((status) => {
               if (status.loggedIn) return
-              if ((aiSettingsRef.current?.provider ?? 'genspark') !== 'genspark') return
+              if ((aiSettingsRef.current?.provider ?? 'ramonmods') !== 'ramonmods') return
               setChat((previous) => {
                 const next = [...previous]
                 const last = next.at(-1)
@@ -1855,7 +1855,7 @@ export function App({
     // RamonMods's key never lands in the settings file; the main process injects
     // it from the ramonmods login state. When logged out, requests return an error
     // guiding sign-in — not intercepted here.
-    return settings.provider === 'genspark' || !!config.apiKey
+    return settings.provider === 'ramonmods' || !!config.apiKey
   }
 
   /** Image attachments read as base64 and sent multimodal with this user message

@@ -15,7 +15,7 @@ import { resolveNamingProvider } from '../src/main/ai-naming-provider'
 describe('resolveNamingProvider', () => {
   it('takes the RamonMods key from the login state, not from the settings file', () => {
     const resolved = resolveNamingProvider({}, 'ramonmods-live-key')
-    expect(resolved?.provider).toBe('genspark')
+    expect(resolved?.provider).toBe('ramonmods')
     expect(resolved?.config.apiKey).toBe('ramonmods-live-key')
   })
 
@@ -48,7 +48,7 @@ describe('resolveNamingProvider', () => {
       },
       'ramonmods-live-key',
     )
-    expect(resolved?.provider).toBe('genspark')
+    expect(resolved?.provider).toBe('ramonmods')
     expect(resolved?.config.apiKey).toBe('ramonmods-live-key')
   })
 
@@ -57,7 +57,7 @@ describe('resolveNamingProvider', () => {
       { provider: 'not-a-provider', providers: {} },
       'ramonmods-live-key',
     )
-    expect(resolved?.provider).toBe('genspark')
+    expect(resolved?.provider).toBe('ramonmods')
   })
 
   it('does not need a key for codex', () => {

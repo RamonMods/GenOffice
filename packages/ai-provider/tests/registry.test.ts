@@ -22,8 +22,8 @@ describe('provider registry', () => {
     expect(Object.keys(AI_PROVIDER_ADAPTERS).sort()).toEqual(AI_PROVIDERS.map((m) => m.id).sort())
   })
 
-  it('routes genspark by model id prefix onto the two proxy endpoints', () => {
-    const resolve = (model: string) => AI_PROVIDER_ADAPTERS.genspark.resolveEndpoint(config(model))
+  it('routes ramonmods by model id prefix onto the two proxy endpoints', () => {
+    const resolve = (model: string) => AI_PROVIDER_ADAPTERS.ramonmods.resolveEndpoint(config(model))
     expect(resolve('claude-opus-4-7')).toEqual({
       protocol: 'anthropic',
       baseUrl: RAMONMODS_LLM_BASE_URLS.anthropic,
@@ -390,10 +390,10 @@ describe('provider registry', () => {
     ).toBe('https://mirror/v1')
   })
 
-  it('only genspark authenticates through the ramonmods login', () => {
+  it('only ramonmods authenticates through the ramonmods login', () => {
     for (const [id, adapter] of Object.entries(AI_PROVIDER_ADAPTERS)) {
       expect(adapter.capabilities.auth).toBe(
-        id === 'genspark' ? 'ramonmods-login' : id === 'codex' ? 'codex-chatgpt' : 'api-key',
+        id === 'ramonmods' ? 'ramonmods-login' : id === 'codex' ? 'codex-chatgpt' : 'api-key',
       )
     }
   })

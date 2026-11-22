@@ -18,7 +18,7 @@ import { readAiSettingsFile } from './media-tools'
 
 export function searchOptionsFromSettings(settings: AiSettings): SearchOptions {
   const provider = activeSearchProvider(settings)
-  if (provider === 'genspark') return { useGsk: cloudToolsEnabled(settings) }
+  if (provider === 'ramonmods') return { useGsk: cloudToolsEnabled(settings) }
   const key = settings.search!.providers?.[provider]?.apiKey?.trim() ?? ''
   if (provider === 'parallel') return { useGsk: false, parallelKey: key, prefer: 'parallel' }
   if (provider === 'serply') return { useGsk: false, serplyKey: key, prefer: 'serply' }
@@ -44,7 +44,7 @@ export async function testSearchProvider(
   provider: AiSearchProviderId,
   apiKey: string,
 ): Promise<{ ok: boolean; error?: string }> {
-  if (provider === 'genspark') return { ok: true }
+  if (provider === 'ramonmods') return { ok: true }
   apiKey = apiKey.trim()
   if (!apiKey && provider !== 'parallel' && provider !== 'keenable')
     return { ok: false, error: 'A chave de API está vazia' }

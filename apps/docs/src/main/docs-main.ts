@@ -7897,7 +7897,7 @@ export function registerAiIpc(): void {
     // file live, so heal the stored flag once. Judged on the *stored* provider
     // — never the activeProvider fallback below, which must not leak into the
     // file and clobber a saved (half-configured) BYOK selection.
-    if ((stored.provider ?? 'genspark') === 'genspark' && stored.ramonmodsToolsEnabled === false) {
+    if ((stored.provider ?? 'ramonmods') === 'ramonmods' && stored.ramonmodsToolsEnabled === false) {
       stored.ramonmodsToolsEnabled = true
       writeJsonAtomic(SETTINGS_PATH(), stored, 0o600)
     }
@@ -7970,7 +7970,7 @@ export function registerAiIpc(): void {
     // the RamonMods key never enters the settings file; requests take it from the ramonmods login state
     // set only when the ramonmods key was injected: a 401 then means that key expired
     let ramonmodsKey = ''
-    if (provider === 'genspark' && config && !config.apiKey) {
+    if (provider === 'ramonmods' && config && !config.apiKey) {
       ramonmodsKey = ramonmodsApiKey()
       config = { ...config, apiKey: ramonmodsKey }
     }
@@ -7983,7 +7983,7 @@ export function registerAiIpc(): void {
       send({
         requestId,
         type: 'error',
-        error: provider === 'genspark' ? tm('errGskNotLoggedIn') : tm('errNoApiKey', { provider }),
+        error: provider === 'ramonmods' ? tm('errGskNotLoggedIn') : tm('errNoApiKey', { provider }),
       })
       return
     }
@@ -8169,7 +8169,7 @@ export function registerAiIpc(): void {
 
   ipcMain.handle('ai:search-test', (_event, input: unknown) => {
     const { provider, apiKey } = (input ?? {}) as { provider?: AiSearchProviderId; apiKey?: string }
-    if (!provider || provider === 'genspark') {
+    if (!provider || provider === 'ramonmods') {
       return hasGskAuth() ? { ok: true } : { ok: false, error: tm('errGskNotLoggedIn') }
     }
     return testSearchProvider(provider, String(apiKey ?? ''))
@@ -8181,7 +8181,7 @@ export function registerAiIpc(): void {
       provider?: AiMediaProviderId
       config?: AiMediaProviderConfig
     }
-    if (!provider || provider === 'genspark') {
+    if (!provider || provider === 'ramonmods') {
       return hasGskAuth() ? { ok: true } : { ok: false, error: tm('errGskNotLoggedIn') }
     }
     if (!config) return { ok: false, error: 'No media provider configuration' }
@@ -8198,7 +8198,7 @@ export function registerAiIpc(): void {
     let config = settings.providers?.[provider]
     // set only when the ramonmods key was injected: a 401 then means that key expired
     let ramonmodsKey = ''
-    if (provider === 'genspark' && config && !config.apiKey) {
+    if (provider === 'ramonmods' && config && !config.apiKey) {
       ramonmodsKey = ramonmodsApiKey()
       config = { ...config, apiKey: ramonmodsKey }
     }
@@ -8207,7 +8207,7 @@ export function registerAiIpc(): void {
     if (!config || (provider !== 'codex' && !config.apiKey)) {
       return {
         ok: false,
-        error: provider === 'genspark' ? tm('errGskNotLoggedIn') : tm('errNoApiKey', { provider }),
+        error: provider === 'ramonmods' ? tm('errGskNotLoggedIn') : tm('errNoApiKey', { provider }),
       }
     }
     if (provider !== 'codex' && !config.model) return { ok: false, error: tm('errNoModel') }

@@ -54,7 +54,7 @@ export function resolveGskEntry(): string | null {
     // copies the CLI into Resources/ramonmods/
     const resourcesPath = (process as { resourcesPath?: string }).resourcesPath
     const packed = resourcesPath
-      ? join(resourcesPath, 'ramonmods', 'node_modules', '@genspark', 'cli', 'dist', 'index.js')
+      ? join(resourcesPath, 'ramonmods', 'node_modules', '@ramonmods', 'cli', 'dist', 'index.js')
       : null
     cachedEntry = packed && existsSync(packed) ? packed : null
   }
@@ -553,15 +553,15 @@ export async function ramonmodsGenerateImage(
   if (options.imageSize) args.push('--image_size', options.imageSize)
   const raw = await runGsk(args, GENERATE_TIMEOUT_MS, signal)
   const result = parseGskGeneratedImage(raw)
-  // Bare genspark file URLs (/api/files/) return 403; swap for a signed direct link with a token
+  // Bare ramonmods file URLs (/api/files/) return 403; swap for a signed direct link with a token
   // so later plain fetch downloads (e.g. insert_web_image) need no auth
   result.url = await ramonmodsResolveDownloadUrl(result.url)
   return result
 }
 
 /**
- * Swaps a genspark file wrapper URL for an anonymously downloadable signed direct link (`ramonmods download`).
- * Non-genspark file URLs are returned as-is; on swap failure the URL is also returned as-is
+ * Swaps a ramonmods file wrapper URL for an anonymously downloadable signed direct link (`ramonmods download`).
+ * Non-ramonmods file URLs are returned as-is; on swap failure the URL is also returned as-is
  * (callers handle download failures themselves).
  */
 export async function ramonmodsResolveDownloadUrl(url: string): Promise<string> {

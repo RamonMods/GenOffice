@@ -377,12 +377,12 @@ function AiModelPane({ t }: { t: TFunc }) {
         setTesting(false)
         setTestResult(null)
         setSaved(false)
-        // The switch is disabled with genspark, so never present it stranded
+        // The switch is disabled with ramonmods, so never present it stranded
         // off. Display-only: s.provider may be the activeProvider fallback for
         // a half-configured BYOK selection, so writing anything back here would
         // clobber the stored choice — the main process heals a genuine legacy
-        // genspark+off file itself, judged on the raw stored provider.
-        if (s.provider === 'genspark' && s.ramonmodsToolsEnabled === false) {
+        // ramonmods+off file itself, judged on the raw stored provider.
+        if (s.provider === 'ramonmods' && s.ramonmodsToolsEnabled === false) {
           s = { ...s, ramonmodsToolsEnabled: true }
         }
         setSettings(s)
@@ -484,7 +484,7 @@ function AiModelPane({ t }: { t: TFunc }) {
     baseUrl: undefined,
     cliPath: undefined,
   }
-  const isRamonMods = provider === 'genspark'
+  const isRamonMods = provider === 'ramonmods'
   const isCodex = provider === 'codex'
 
   const touch = () => {
@@ -586,11 +586,11 @@ function AiModelPane({ t }: { t: TFunc }) {
     touch()
   }
   const selectProvider = (id: AiSettings['provider']) => {
-    // cloud tools cannot be off with genspark (chat runs through ramonmods anyway)
+    // cloud tools cannot be off with ramonmods (chat runs through ramonmods anyway)
     setSettings({
       ...settings,
       provider: id,
-      ...(id === 'genspark' ? { ramonmodsToolsEnabled: true } : {}),
+      ...(id === 'ramonmods' ? { ramonmodsToolsEnabled: true } : {}),
     })
     touch()
   }
@@ -1102,7 +1102,7 @@ function AiModelPane({ t }: { t: TFunc }) {
             <div className="set-field-desc">{t('setAiGskToolsDesc')}</div>
           </div>
         </div>
-        {/* locked on with the genspark provider — chat runs through ramonmods anyway */}
+        {/* locked on with the ramonmods provider — chat runs through ramonmods anyway */}
         <button
           className="set-switch"
           role="switch"
@@ -1292,7 +1292,7 @@ function AiMediaPane({
           window.aiOffice.testAiSearchSettings?.({
             provider: search.provider,
             apiKey:
-              search.provider === 'genspark'
+              search.provider === 'ramonmods'
                 ? ''
                 : (search.providers[search.provider]?.apiKey ?? ''),
           }) ?? Promise.resolve(fallback),
@@ -1565,9 +1565,9 @@ function AiMediaPane({
         {subhead(cap, title)}
         {providerRow(title, id, options, pick)}
         <div className="set-field-desc set-ai-note">
-          {id === 'genspark' ? t('setAiMediaRamonModsHint') : meta.description}
+          {id === 'ramonmods' ? t('setAiMediaRamonModsHint') : meta.description}
         </div>
-        {id !== 'genspark' && (
+        {id !== 'ramonmods' && (
           <>
             {modelRow(
               `set-ai-${cap}-model`,
@@ -1590,7 +1590,7 @@ function AiMediaPane({
 
   const searchMeta = searchCatalog.find((m) => m.id === search.provider)
   const searchKey =
-    search.provider === 'genspark' ? '' : (search.providers[search.provider]?.apiKey ?? '')
+    search.provider === 'ramonmods' ? '' : (search.providers[search.provider]?.apiKey ?? '')
 
   return (
     <>
@@ -1614,7 +1614,7 @@ function AiMediaPane({
           setSearch({ ...search, provider: v as AiSearchSettings['provider'] }),
         )}
         <div className="set-field-desc set-ai-note">
-          {search.provider === 'genspark'
+          {search.provider === 'ramonmods'
             ? t('setAiSearchRamonModsHint')
             : search.provider === 'parallel'
               ? t('setAiSearchParallelHint')
@@ -1628,7 +1628,7 @@ function AiMediaPane({
                       ? t('setAiSearchSerperHint')
                       : t('setAiSearchTavilyHint')}
         </div>
-        {search.provider !== 'genspark' &&
+        {search.provider !== 'ramonmods' &&
           keyRow('set-ai-search-key', searchKey, searchMeta?.keyPlaceholder ?? 'Chave de API', (v) =>
             setSearch({
               ...search,

@@ -127,8 +127,8 @@ describe('ramonmods CLI 401 recovery', () => {
   }
 
   function sharedLogin(): string {
-    const config = join(dir, '.genspark-tool-cli', 'config.json')
-    mkdirSync(join(dir, '.genspark-tool-cli'), { recursive: true })
+    const config = join(dir, '.ramonmods-tool-cli', 'config.json')
+    mkdirSync(join(dir, '.ramonmods-tool-cli'), { recursive: true })
     writeFileSync(config, JSON.stringify({ api_key: 'ramonmods-other-app', key_name: 'other app' }))
     return config
   }

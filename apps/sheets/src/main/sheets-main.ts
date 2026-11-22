@@ -4490,7 +4490,7 @@ export function registerSheetsAiIpc(): void {
     // are credentials and must not stay readable by other local accounts
     restrictFileToOwner(SETTINGS_PATH())
     const settings = resolveAiSettings(stored, defaultAiSettings())
-    // a stored BYOK provider is honored when usable; half-filled configs fall back to genspark
+    // a stored BYOK provider is honored when usable; half-filled configs fall back to ramonmods
     settings.provider = activeProvider(settings)
     return settings
   })
@@ -4529,7 +4529,7 @@ export function registerSheetsAiIpc(): void {
     let config = request.settings.providers[provider]
     // set only when the ramonmods key was injected: a 401 then means that key expired
     let ramonmodsKey = ''
-    if (provider === 'genspark' && config && !config.apiKey) {
+    if (provider === 'ramonmods' && config && !config.apiKey) {
       ramonmodsKey = ramonmodsApiKey()
       config = { ...config, apiKey: ramonmodsKey }
     }
@@ -4538,7 +4538,7 @@ export function registerSheetsAiIpc(): void {
     if (!config || (provider !== 'codex' && !config.apiKey)) {
       return {
         ok: false,
-        error: provider === 'genspark' ? tm('errGskNotLoggedIn') : tm('errNoApiKey', { provider }),
+        error: provider === 'ramonmods' ? tm('errGskNotLoggedIn') : tm('errNoApiKey', { provider }),
       }
     }
     if (provider !== 'codex' && !config.model) return { ok: false, error: tm('errNoModel') }
@@ -4579,7 +4579,7 @@ export function registerSheetsAiIpc(): void {
     // login state per request
     // set only when the ramonmods key was injected: a 401 then means that key expired
     let ramonmodsKey = ''
-    if (provider === 'genspark' && config && !config.apiKey) {
+    if (provider === 'ramonmods' && config && !config.apiKey) {
       ramonmodsKey = ramonmodsApiKey()
       config = { ...config, apiKey: ramonmodsKey }
     }
@@ -4592,7 +4592,7 @@ export function registerSheetsAiIpc(): void {
       send({
         requestId,
         type: 'error',
-        error: provider === 'genspark' ? tm('errGskNotLoggedIn') : tm('errNoApiKey', { provider }),
+        error: provider === 'ramonmods' ? tm('errGskNotLoggedIn') : tm('errNoApiKey', { provider }),
       })
       return
     }

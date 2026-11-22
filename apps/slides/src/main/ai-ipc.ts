@@ -133,7 +133,7 @@ export function registerAiIpc(): void {
     // are credentials and must not stay readable by other local accounts
     restrictFileToOwner(AI_SETTINGS_PATH())
     const settings = resolveAiSettings(stored, defaultAiSettings())
-    // a stored BYOK provider is honored when usable; half-filled configs fall back to genspark
+    // a stored BYOK provider is honored when usable; half-filled configs fall back to ramonmods
     settings.provider = activeProvider(settings)
     return settings
   })
@@ -192,10 +192,10 @@ export function registerAiIpc(): void {
     const maxTokens = request.maxTokens ?? maxOutputTokensOf(settings)
     const provider = settings.provider
     let config = settings.providers?.[provider]
-    // The genspark key never enters the settings file; it is fetched from the ramonmods login state per request
+    // The ramonmods key never enters the settings file; it is fetched from the ramonmods login state per request
     // set only when the ramonmods key was injected: a 401 then means that key expired
     let ramonmodsKey = ''
-    if (provider === 'genspark' && config && !config.apiKey) {
+    if (provider === 'ramonmods' && config && !config.apiKey) {
       ramonmodsKey = ramonmodsApiKey()
       config = { ...config, apiKey: ramonmodsKey }
     }
@@ -208,7 +208,7 @@ export function registerAiIpc(): void {
       send({
         requestId,
         type: 'error',
-        error: provider === 'genspark' ? tm('errGskNotLoggedIn') : tm('errNoApiKey', { provider }),
+        error: provider === 'ramonmods' ? tm('errGskNotLoggedIn') : tm('errNoApiKey', { provider }),
       })
       return
     }

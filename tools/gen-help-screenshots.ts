@@ -12,7 +12,7 @@
  * ## Why HOME and not just GENOFFICE_USER_DATA
  *
  * The account name is not in userData at all. `ramonmodsApiKey()` reads
- * `~/.genspark-tool-cli/config.json` through `homedir()`, and GENOFFICE_USER_DATA
+ * `~/.ramonmods-tool-cli/config.json` through `homedir()`, and GENOFFICE_USER_DATA
  * says nothing about that — so a run that only overrides userData still finds
  * the developer's key and greets them by name (verified: that is what a local
  * e2e run does today). HOME is the one lever that covers both it and the
