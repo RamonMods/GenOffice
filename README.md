@@ -1,8 +1,8 @@
 <p align="center">
   <a href="https://github.com/RamonMods/GenOffice">
     <picture>
-      <source srcset="docs/assets/readme/hero-dark.webp" media="(prefers-color-scheme: dark)">
-      <img src="docs/assets/readme/hero.webp" alt="GenOffice — suíte de escritório com IA open-source: Docs, Sheets, Slides, PDF, Markdown e HTML com painel de IA integrado" width="100%">
+      <source srcset="docs/assets/readme/home-real.webp" media="(prefers-color-scheme: dark)">
+      <img src="docs/assets/readme/home-real.webp" alt="GenOffice — suíte de escritório com IA open-source: Docs, Sheets, Slides, PDF, Markdown e HTML com painel de IA integrado" width="100%">
     </picture>
   </a>
 </p>
@@ -59,27 +59,27 @@ Versões anteriores estão na [página de Releases](https://github.com/RamonMods
 
 ### Docs — edite `.docx` com IA revisável
 
-<img src="docs/assets/readme/docs-ai.webp" alt="GenOffice Docs com painel de IA" width="100%">
+<img src="docs/assets/readme/docs-ai.webp" alt="GenOffice Docs — captura real do aplicativo" width="100%">
 Abre o arquivo como o Word organiza: seções em duas colunas, imagens, tabelas sombreadas, cabeçalhos e rodapés, paginação nas métricas de linha do Word. Estilos, comentários, alterações rastreadas, equações, tinta e controles de conteúdo fazem round-trip sem tocar no que não foi editado.
 
 ### Sheets — `.xlsx` com fórmulas vivas e gráficos
 
-<img src="docs/assets/readme/sheets-ai.webp" alt="GenOffice Sheets com IA" width="100%">
+<img src="docs/assets/readme/sheets-ai.webp" alt="GenOffice Sheets — captura real do aplicativo" width="100%">
 O agente cria planilhas com `SUMIF`s reais, gráficos e alterações em lote desfazíveis. Perguntas sobre a pasta de trabalho voltam com o raciocínio e as células exatas usadas como citações clicáveis.
 
 ### Slides — de um prompt a um deck `.pptx`
 
-<img src="docs/assets/readme/slides-ai.webp" alt="GenOffice Slides com IA" width="100%">
+<img src="docs/assets/readme/markdown-real.webp" alt="GenOffice Markdown — captura real do aplicativo" width="100%">
 Gere apresentações no canvas, edite totalmente e exporte como `.pptx` real.
 
 ### PDF, Markdown e HTML
 
-<img src="docs/assets/readme/pdf-edit.webp" alt="GenOffice PDF com IA" width="100%">
+<img src="docs/assets/readme/html-ai.webp" alt="GenOffice HTML — captura real do aplicativo" width="100%">
 Edite PDF, Markdown e HTML com o mesmo painel de IA. Conversões locais: PDF → Word/Excel/PowerPoint, Markdown → Word, HTML → Word.
 
 ## Linha de comando e skill de agente
 
-<img src="docs/assets/readme/cli-integrations.webp" alt="CLI do GenOffice" width="100%">
+<img src="docs/assets/readme/docs-ai.webp" alt="GenOffice Docs — captura real do aplicativo" width="100%">
 
 O app inclui a CLI `genoffice` para criar, converter, ler e editar arquivos Office reais na sua máquina.
 
@@ -89,7 +89,7 @@ genoffice --help
 
 ## Servidor MCP
 
-<img src="docs/assets/readme/mcp-integrations.webp" alt="Servidor MCP do GenOffice" width="100%">
+<img src="docs/assets/readme/sheets-ai.webp" alt="GenOffice Sheets — captura real do aplicativo" width="100%">
 
 GenOffice também expõe ferramentas via MCP para agentes compatíveis.
 
